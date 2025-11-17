@@ -40,6 +40,12 @@ start the server on localhost
 ```
 Keep the terminal window open, copy the address to your browser to view it rendered.
 
+# Commands used
+Here is how we set up jest, for future reference
+```console
+    npm install -D jest jest-environment-jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom ts-node @types/jest
+    npm init jest@latest
+```
 # todo:
 - [ ] setup MongoDB with Compass 
 - [ ] write first tests
