@@ -45,6 +45,7 @@ Here is how we set up jest, for future reference
 ```console
     npm install -D jest jest-environment-jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom ts-node @types/jest
     npm init jest@latest
+    npm install --save-dev jest@29.7.0
 ```
 # todo:
 - [ ] setup MongoDB with Compass 
