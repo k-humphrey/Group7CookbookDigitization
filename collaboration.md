@@ -41,6 +41,5 @@ start the server on localhost
 Keep the terminal window open, copy the address to your browser to view it rendered.
 
 # todo:
-- [ ] setup tailwind DaisyUI
 - [ ] setup MongoDB with Compass 
 - [ ] write first tests
