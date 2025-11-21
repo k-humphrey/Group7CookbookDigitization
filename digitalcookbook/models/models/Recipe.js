@@ -19,7 +19,10 @@ const recipeSchema = new mongoose.Schema({
         {
             ingredient: { type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient', required: true },
             amount: Number,
-            unit: String,
+            unit: {
+                en: String,
+                es: String,
+            },
         },
     ],
     appliances: [
