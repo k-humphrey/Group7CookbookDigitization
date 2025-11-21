@@ -2,5 +2,6 @@
   "_id": {
     "$oid": "691f9b38c070923666ddc4fe"
   },
-  "name": "Oven"
+  "en": "Oven",
+  "es": "Horno"
 }]
