@@ -1,1 +1,65 @@
-[]
+[{
+  "_id": {
+    "$oid": "691f920dc070923666ddc37f"
+  },
+  "nameE": "Chicken & Dressing Casserole",
+  "nameS": "Cazuela de Pollo y Aderezo",
+  "instructionsE": [
+    "Preheat oven to 350°F.",
+    "Mix all ingredients together and pour into a greased casserole dish.",
+    "Cover with aluminum foil.",
+    "Bake for 45-50 minutes."
+  ],
+  "instructionsS": [
+    "Precaliente el horno a 350°F.",
+    "Mezcle todos los ingredientes y vierta la mezcla en una cazuela engrasada.",
+    "Cubra con papel aluminio.",
+    "Hornee durante 45-50 minutos."
+  ],
+  "picture": "",
+  "blueRibbon": true,
+  "vegan": false,
+  "vegetarian": false,
+  "ingredients": [
+    {
+      "_id": {
+        "$oid": "691fa00c5320291b22e92aaf"
+      },
+      "amountE": "1 Can (12.05oz)",
+      "amountS": "1 Lata"
+    },
+    {
+      "_id": {
+        "$oid": "691fa0565320291b22e92ab4"
+      },
+      "amountE": "1 Can",
+      "amountS": "1 Lata"
+    },
+    {
+      "_id": {
+        "$oid": "691fa08b5320291b22e92ab5"
+      },
+      "amountE": "1 Cup",
+      "amountS": "1 Taza"
+    },
+    {
+      "_id": {
+        "$oid": "691fa0ae5320291b22e92ab6"
+      },
+      "amountE": "1",
+      "amountS": "1"
+    },
+    {
+      "_id": {
+        "$oid": "691fa0d85320291b22e92ab7"
+      },
+      "amountE": "1 Bag",
+      "amountS": "1 Bolsa"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "691f9b38c070923666ddc4fe"
+    }
+  ]
+}]

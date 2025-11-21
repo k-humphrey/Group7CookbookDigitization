@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "691fa00c5320291b22e92aaf"
+  },
+  "en": "Chicken",
+  "es": "Pollo",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "691fa0565320291b22e92ab4"
+  },
+  "en": "Cream of Chicken Soup (low sodium)",
+  "es": "Crema de Pollo (baja en sodio)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "691fa08b5320291b22e92ab5"
+  },
+  "en": "Milk",
+  "es": "Leche",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "691fa0ae5320291b22e92ab6"
+  },
+  "en": "Stuffing Mix",
+  "es": "Mezcla Para Relleno",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "691fa0d85320291b22e92ab7"
+  },
+  "en": "Frozen Mixed Vegetables",
+  "es": "Verduras Mixtas Congeladas",
+  "costPerUnit": null
+}]
