@@ -16,8 +16,6 @@ export default function Home() {
           backgroundImage: "url('/searchbackground.jpg')"
           }}
       >
-        {/* Nav Bar */}  
-        {/*<Navbar />*/}
 
         {/* Logo + Subtitle */}
         <div className="text-center mb-5">
@@ -25,7 +23,6 @@ export default function Home() {
             Thrifty Bites
           </h1>
 
-          
           <p className="mt-5 pt-5 text-base max-w-3xl md:text-2xl text-slate-950">
             Search by ingredients you have or find the perfect recipe
           </p>
