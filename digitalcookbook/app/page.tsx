@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import Navbar from "./components/navbar";
-=======
 import Searchbar from "./components/Searchbar";
->>>>>>> 2349f790d413532fee6efcb968ec631c259062e2
 
 export default function Home() {
   return (
