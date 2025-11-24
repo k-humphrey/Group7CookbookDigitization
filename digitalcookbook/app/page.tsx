@@ -1,6 +1,11 @@
+import Navbar from "./components/navbar";
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-start bg-base-100">
+
+      {/* Nav Bar */}  
+        <Navbar />
 
       {/* Background picture */}
       <div 
@@ -10,7 +15,9 @@ export default function Home() {
           backgroundImage: "url('/searchbackground.jpg')" 
           }}
       >
-      
+        {/* Nav Bar */}  
+        {/*<Navbar />*/}
+
         {/* Logo + Subtitle */}
         <div className="text-center mb-5">
           <h1 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none">
