@@ -30,3 +30,23 @@ doesnt matter what you set it as, but I have mine set as cookbook-cluster
 same as name, doesnt matter. I left mine at No Color
 ### 3. Click Save and Connect
 This should let you connect to the cloud atlas version of the mongoDB. Nothing created there yet besides a collection called recipes.
+___
+# How to Set up environment file to connectToDB
+### 1. Create a file named .env.local
+Inside of the digitalcookbook create the file .env.local. Inside that file add the text:
+
+```
+MONGODB_URI=your-mongodb-connection-string
+```
+where your-mongodb-connection-string is the string previously used to create the connection inside of compass. This file, for security reasons, should never be pushed to the repo. Thus it is added to the .gitignore so it should never be allowed to push.
+
+### 2. once this file is created you should be able to connect to the DB by importing my connectToDB function
+To import:
+```
+import connectToDB from './lib/connectToDB';
+```
+To connect:
+```
+const connection = await connectToDB();
+```
+If your environment is set up correctly this should allow you to connect to the database in a secure manner.
