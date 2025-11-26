@@ -37,4 +37,76 @@
   "en": "Frozen Mixed Vegetables",
   "es": "Verduras Mixtas Congeladas",
   "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692740ddece43a3918579ad2"
+  },
+  "en": "Frozen Peas & Carrots",
+  "es": "Guisantes y Zanahorias Congeladas",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "6927416bece43a3918579ad3"
+  },
+  "en": "Refrigerated Jumbo Biscuits (8 count)",
+  "es": " Galletas Jumbo Refrigeradas (8 unidades)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692741bbece43a3918579ad4"
+  },
+  "en": "Fruit Cocktail (30oz)",
+  "es": "Cóctel de Frutas (30oz)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692741f2ece43a3918579ad5"
+  },
+  "en": "Pepper",
+  "es": "Pimienta",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "69274a0ed12f5dc03e62ad95"
+  },
+  "en": "Chicken Breasts",
+  "es": "Pollo Grandes",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "69274a4ad12f5dc03e62ad97"
+  },
+  "en": "Salsa (16oz)",
+  "es": "Salsa (16oz)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "69274a8cd12f5dc03e62ad99"
+  },
+  "en": "Taco Seasoning",
+  "es": "Sazonador para Tacos",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "69274abfd12f5dc03e62ad9b"
+  },
+  "en": "Corn",
+  "es": "Elote",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "69274af0d12f5dc03e62ad9d"
+  },
+  "en": "Black Beans",
+  "es": "Frijoles Negros",
+  "costPerUnit": null
 }]
