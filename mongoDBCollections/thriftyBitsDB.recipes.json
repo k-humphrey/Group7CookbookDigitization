@@ -8,18 +8,8 @@
   },
   "imageURI": "",
   "instructions": {
-    "en": [
-      "Preheat oven to 350°F.",
-      "Mix all ingredients together and pour into a greased casserole dish.",
-      "Cover with aluminum foil.",
-      "Bake for 45-50 minutes."
-    ],
-    "es": [
-      "Precaliente el horno a 350°F.",
-      "Mezcle todos los ingredientes y vierta la mezcla en una cazuela engrasada.",
-      "Cubra con papel aluminio.",
-      "Hornee durante 45-50 minutos."
-    ]
+    "en": "Preheat oven to 350°F. Mix all ingredients together and pour into a greased casserole dish. Cover with aluminum foil. Bake for 45-50 minutes.",
+    "es": "Precaliente el horno a 350°F. Mezcle todos los ingredientes y vierta la mezcla en una cazuela engrasada. Cubra con papel aluminio. Hornee durante 45-50 minutos."
   },
   "tags": {
     "blueRibbon": true,
@@ -77,6 +67,182 @@
   "appliances": [
     {
       "$oid": "691f9b38c070923666ddc4fe"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "692744e9d12f5dc03e62ad8c"
+  },
+  "title": {
+    "en": "Open–Faced Chicken Pot Pie Sandwiches",
+    "es": "Sándwiches Abiertos de Pastel de Pollo"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Cook biscuits as directed. Steam vegetables in the bag in the microwave for 5-7 minutes OR heat with 1/4 cup of water in a covered saucepan on medium heat until tender. In a saucepan, mix together first 4 ingredients with pepper to taste and heat on medium for 10 minutes until simmering and vegetables are warm. Halve biscuits and open up on plate. Pour chicken mixture over biscuits. Serve with 1/2 cup of fruit cocktail.",
+    "es": "Cocine las galletas según las instrucciones. Cocine al vapor las verduras en la bolsa en el microondas durante 5-7 minutos. Si no tiene microondas, caliente con 1/8 de taza de agua en una cacerola tapada a fuego medio hasta que estén tiernas. En una cacerola, mezcle los primeros 4 ingredientes con pimienta al gusto y caliente a fuego medio durante 10 minutos hasta que hierva a fuego lento y las verduras estén tibias. Corte las galletas por la mitad y ábralas en un plato. Vierta la mezcla de pollo sobre las galletas. Sirva con 1/2 taza de cóctel de frutas."
+  },
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": [
+        {
+          "$oid": "692740ddece43a3918579ad2"
+        },
+        {
+          "$oid": "691fa0d85320291b22e92ab7"
+        }
+      ],
+      "amount": 1,
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa00c5320291b22e92aaf"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa0565320291b22e92ab4"
+      },
+      "amount": 2,
+      "unit": {
+        "en": "Cans",
+        "es": "Latas"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "691fa08b5320291b22e92ab5"
+      },
+      "unit": {
+        "en": "Cup",
+        "es": "Taza"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "6927416bece43a3918579ad3"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692741bbece43a3918579ad4"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692741f2ece43a3918579ad5"
+      },
+      "unit": {
+        "en": "to taste",
+        "es": "al gusto"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "691f9b38c070923666ddc4fe"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69274c5f66d605ed78b47e4a"
+  },
+  "title": {
+    "en": "Salsa Chicken",
+    "es": "Pollo en Salsa"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Place chicken in the bottom of a slow cooker and top with corn, beans, taco seasoning and salsa. No need to stir. Cover and cook on low for 4 hours. Chicken should shred easily with 2 forks. The shredded chicken will soak up some of the salsa liquid as it sits. The chicken will not be dry! This is a very versatile base recipe and can make many different meals!",
+    "es": "Coloca el pollo en el fondo de una olla de cocción lenta y cúbrelo con el elote, los frijoles, el sazonador para tacos y la salsa. No es necesario revolver. Tapa y cocina a fuego lento durante 4 horas. El pollo se deshebrará fácilmente con dos tenedores. El pollo deshebrado absorberá parte del líquido de la salsa al reposar. ¡El pollo no quedará seco! ¡Esta es una receta base muy versátil y puede usarse para preparar muchas comidas diferentes!"
+  },
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "69274a0ed12f5dc03e62ad95"
+      },
+      "amount": 2,
+      "unit": {
+        "en": "Large",
+        "es": "Pechugas"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "69274a4ad12f5dc03e62ad97"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Jar",
+        "es": "Frasco"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "69274a8cd12f5dc03e62ad99"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Package",
+        "es": "Paquete"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "69274abfd12f5dc03e62ad9b"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "69274af0d12f5dc03e62ad9d"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "69274b23d12f5dc03e62ad9e"
     }
   ]
 }]
