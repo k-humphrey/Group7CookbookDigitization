@@ -15,7 +15,7 @@ Password: DB123
 
 Connection String:
 ```
-mongodb+srv://<username>:<password>@cookbook-cluster.77jxjs5.mongodb.net/
+mongodb+srv://<username>:<password>@cookbook-cluster.77jxjs5.mongodb.net/thriftyBitsDB
 ```
 # How to Connect to the Atlas Database using Compass
 ### 1. Open MongoDB Compass

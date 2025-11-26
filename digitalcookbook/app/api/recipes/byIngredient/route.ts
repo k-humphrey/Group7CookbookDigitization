@@ -9,18 +9,9 @@ export async function GET(req: Request){
 
     // Get search parameters
     const url = new URL(req.url);
-    const searchTerm = url.searchParams.get("search") || null;
     const ingredientsParams = url.searchParams.get("ingredients") || null;
 
     let filter: any = {};
-
-    if(searchTerm) {
-        // create filter
-        filter["$or"] = [
-            {"title.en": {$regex: searchTerm, $options: 'i'}},
-            {"title.es": {$regex: searchTerm, $options: 'i'}},
-        ];
-    }
     
     if(ingredientsParams) {
         // Convert ingredients array into string so regex can be used
