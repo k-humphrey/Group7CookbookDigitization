@@ -6,6 +6,8 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req: Request){
     await connectToDB();
-    const recipies = await Recipe.find({}).populate("ingredients.ingredient").populate("appliances");
+    const recipies = await Recipe.find({})
+    .populate({ path: "appliances", model: Appliance })
+    .populate({ path: "ingredients.ingredient", model: Ingredient });
     return NextResponse.json(recipies);
 }
