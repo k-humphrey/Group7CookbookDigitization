@@ -1,3 +1,6 @@
+// app/components/searchbar.tsx
+//import React from "react";
+
 export default function Searchbar() {
     return (
     <><div className="w-full max-w-3xl mb-2">
