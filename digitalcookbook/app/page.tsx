@@ -4,13 +4,8 @@ import Searchbar from "./components/searchbar";
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-start">
-<<<<<<< HEAD
       {/* Nav bar */}
         <Navbar/>
-=======
-      {/* Nav Bar */}  
-        <Navbar />
->>>>>>> 38807bd85a978b2ab41c79fa6f70d4dc7ec838a6
 
       {/* Background picture */}
       <div 
