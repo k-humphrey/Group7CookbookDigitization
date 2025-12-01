@@ -11,4 +11,25 @@
   },
   "en": "Slow Cooker",
   "es": "Olla de Cocción Lenta"
+},
+{
+  "_id": {
+    "$oid": "692e08ab645114ccecc146bc"
+  },
+  "en": "Pot",
+  "es": "Olla"
+},
+{
+  "_id": {
+    "$oid": "692e0bae645114ccecc146bf"
+  },
+  "en": "Skillet",
+  "es": "Sartén"
+},
+{
+  "_id": {
+    "$oid": "692e1b5696d7a413052c8ffc"
+  },
+  "en": "Microwave",
+  "es": "Microondas"
 }]
