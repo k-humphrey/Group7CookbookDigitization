@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "691f9b38c070923666ddc4fe"
+  },
+  "en": "Oven",
+  "es": "Horno"
+},
+{
+  "_id": {
+    "$oid": "69274b23d12f5dc03e62ad9e"
+  },
+  "en": "Slow Cooker",
+  "es": "Olla de Cocción Lenta"
+},
+{
+  "_id": {
+    "$oid": "692e08ab645114ccecc146bc"
+  },
+  "en": "Pot",
+  "es": "Olla"
+},
+{
+  "_id": {
+    "$oid": "692e0bae645114ccecc146bf"
+  },
+  "en": "Skillet",
+  "es": "Sartén"
+},
+{
+  "_id": {
+    "$oid": "692e1b5696d7a413052c8ffc"
+  },
+  "en": "Microwave",
+  "es": "Microondas"
+}]

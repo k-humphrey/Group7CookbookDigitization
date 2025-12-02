@@ -1,0 +1,696 @@
+[{
+  "_id": {
+    "$oid": "691fb7a0105e0cd7062fa1e1"
+  },
+  "title": {
+    "en": "Chicken & Dressing Casserole",
+    "es": "Cazuela de Pollo y Aderezo"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Preheat oven to 350°F. Mix all ingredients together and pour into a greased casserole dish. Cover with aluminum foil. Bake for 45-50 minutes.",
+    "es": "Precaliente el horno a 350°F. Mezcle todos los ingredientes y vierta la mezcla en una cazuela engrasada. Cubra con papel aluminio. Hornee durante 45-50 minutos."
+  },
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "691fa00c5320291b22e92aaf"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa0565320291b22e92ab4"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa08b5320291b22e92ab5"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Cup",
+        "es": "Taza"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "691fa0ae5320291b22e92ab6"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "691fa0d85320291b22e92ab7"
+      },
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "691f9b38c070923666ddc4fe"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "692744e9d12f5dc03e62ad8c"
+  },
+  "title": {
+    "en": "Open–Faced Chicken Pot Pie Sandwiches",
+    "es": "Sándwiches Abiertos de Pastel de Pollo"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Cook biscuits as directed. Steam vegetables in the bag in the microwave for 5-7 minutes OR heat with 1/4 cup of water in a covered saucepan on medium heat until tender. In a saucepan, mix together first 4 ingredients with pepper to taste and heat on medium for 10 minutes until simmering and vegetables are warm. Halve biscuits and open up on plate. Pour chicken mixture over biscuits. Serve with 1/2 cup of fruit cocktail.",
+    "es": "Cocine las galletas según las instrucciones. Cocine al vapor las verduras en la bolsa en el microondas durante 5-7 minutos. Si no tiene microondas, caliente con 1/8 de taza de agua en una cacerola tapada a fuego medio hasta que estén tiernas. En una cacerola, mezcle los primeros 4 ingredientes con pimienta al gusto y caliente a fuego medio durante 10 minutos hasta que hierva a fuego lento y las verduras estén tibias. Corte las galletas por la mitad y ábralas en un plato. Vierta la mezcla de pollo sobre las galletas. Sirva con 1/2 taza de cóctel de frutas."
+  },
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": [
+        {
+          "$oid": "692740ddece43a3918579ad2"
+        },
+        {
+          "$oid": "691fa0d85320291b22e92ab7"
+        }
+      ],
+      "amount": 1,
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa00c5320291b22e92aaf"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa0565320291b22e92ab4"
+      },
+      "amount": 2,
+      "unit": {
+        "en": "Cans",
+        "es": "Latas"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "691fa08b5320291b22e92ab5"
+      },
+      "unit": {
+        "en": "Cup",
+        "es": "Taza"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "6927416bece43a3918579ad3"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692741bbece43a3918579ad4"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692741f2ece43a3918579ad5"
+      },
+      "unit": {
+        "en": "to taste",
+        "es": "al gusto"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "691f9b38c070923666ddc4fe"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69274c5f66d605ed78b47e4a"
+  },
+  "title": {
+    "en": "Salsa Chicken",
+    "es": "Pollo en Salsa"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Place chicken in the bottom of a slow cooker and top with corn, beans, taco seasoning and salsa. No need to stir. Cover and cook on low for 4 hours. Chicken should shred easily with 2 forks. The shredded chicken will soak up some of the salsa liquid as it sits. The chicken will not be dry! This is a very versatile base recipe and can make many different meals!",
+    "es": "Coloca el pollo en el fondo de una olla de cocción lenta y cúbrelo con el elote, los frijoles, el sazonador para tacos y la salsa. No es necesario revolver. Tapa y cocina a fuego lento durante 4 horas. El pollo se deshebrará fácilmente con dos tenedores. El pollo deshebrado absorberá parte del líquido de la salsa al reposar. ¡El pollo no quedará seco! ¡Esta es una receta base muy versátil y puede usarse para preparar muchas comidas diferentes!"
+  },
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "69274a0ed12f5dc03e62ad95"
+      },
+      "amount": 2,
+      "unit": {
+        "en": "Large",
+        "es": "Pechugas"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "69274a4ad12f5dc03e62ad97"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Jar",
+        "es": "Frasco"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "69274a8cd12f5dc03e62ad99"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Package",
+        "es": "Paquete"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "69274abfd12f5dc03e62ad9b"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "69274af0d12f5dc03e62ad9d"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "69274b23d12f5dc03e62ad9e"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "692e02a3645114ccecc146b4"
+  },
+  "title": {
+    "en": "Teriyaki Rice Bowl",
+    "es": "Tazón de Arroz Teriyaki"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Prepare rice as directed. Add oil to a skillet on the stovetop. Sauté chicken and vegetables on medium high until starting to brown. Layer rice in bowl, followed by chicken & vegetables, green onions, and wonton strips. Serve with fresh fruit.",
+    "es": "Prepara el arroz como se indica. Agrega aceite a una sartén en la estufa. Saltea el pollo y las verduras a fuego medio-alto hasta que empiecen a dorarse. Coloca el arroz en un tazón, luego el pollo y las verduras, las cebolletas y las tiras de wantán. Servir con fruta fresca."
+  },
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "692e0148645114ccecc146ad"
+      },
+      "amount": 2
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa00c5320291b22e92aaf"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa0d85320291b22e92ab7"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692e01b3645114ccecc146af"
+      },
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "$oid": "692e01f4645114ccecc146b1"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "$oid": "692e0250645114ccecc146b3"
+      },
+      "units": {
+        "en": "Tbsp",
+        "es": "Cdas."
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "691f9b38c070923666ddc4fe"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "692e07a1645114ccecc146ba"
+  },
+  "title": {
+    "en": "Mushroom Chicken Noodle Dish",
+    "es": " Plato de Fideos con Pollo y Champiñones"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Cook peas & carrots as directed on package adding your preferred seasonings. Boil egg noodles as directed. Drain & return to pot. Add cream of mushroom soup, mushrooms, chicken, milk & cheese. Mix over low heat until cheese is melted. Peas & carrots may be served on the side or mixed in.",
+    "es": "Cocine los guisantes y las zanahorias según las instrucciones del paquete, agregando sus condimentos preferidos. Hierva los fideos de huevo según las instrucciones. Escurra y vuelva a colocarlos en la olla. Agregue la crema de champiñones, los champiñones, el pollo, la leche y el queso. Mezcle a fuego lento hasta que el queso se derrita. Los guisantes y las zanahorias se pueden servir aparte o mezclados."
+  },
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "692e062f645114ccecc146b6"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692740ddece43a3918579ad2"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692e0698645114ccecc146b7"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Cans",
+        "es": "Lata Grande o 2 Pequeñas"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692e0723645114ccecc146b8"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "691fa00c5320291b22e92aaf"
+      },
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "amount": 0.5,
+      "ingredient": {
+        "$oid": "691fa08b5320291b22e92ab5"
+      },
+      "unit": {
+        "en": "Cup",
+        "es": "Taza"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692e0ac8645114ccecc146bd"
+      },
+      "unit": {
+        "en": "Cup",
+        "es": "Taza"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "692e08ab645114ccecc146bc"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "692e117ab8d2751768583093"
+  },
+  "title": {
+    "en": "Chicken & Dumplings with Green Beans",
+    "es": "Pollo y Albóndigas con Judías Verdes"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Cook bag of green beans in the microwave for 6 minutes. In a skillet on medium high, sauté bag of cooked green beans in butter & garlic salt until beans start to brown & remove from heat. On a lightly floured surface, roll out or flatten each biscuit to a thickness of 1/8“ and cut into 1/2\" wide strips. In a stockpot, add the water, bouillon cubes, and cream of chicken soup. Bring to a boil until the broth dissolves. Submerge the biscuit strips in boiling water, one at a time. Reduce heat to low. Cover and simmer for 15 minutes. Add the chicken to the pot. Cover and simmer for 5 more minutes. Season with pepper. Serve with green beans.",
+    "es": "Cocine la bolsa de judías verdes en el microondas durante 6 minutos. En una sartén a fuego medio-alto, saltee la bolsa de judías verdes cocidas en mantequilla y sal de ajo hasta que las judías empiecen a dorarse y retire del fuego. En una superficie ligeramente enharinada, estire o aplane cada galleta hasta que tenga un grosor de 1/8\" y córtela en tiras de 1/2\" de ancho. En una olla sopera, agregue el agua, los cubos de caldo y la crema de pollo. Deje hervir hasta que el caldo se disuelva. Sumerja las tiras de galleta en agua hirviendo, una a la vez. Reduzca el fuego a bajo. Tapar y cocinar a fuego lento durante 15 minutos. Agregar el pollo a la olla. Tapar y cocinar a fuego lento durante 5 minutos más. Sazonar con pimienta. Servir con judías verdes."
+  },
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "691fa00c5320291b22e92aaf"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "6927416bece43a3918579ad3"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "691fa0565320291b22e92ab4"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "$oid": "692e0bf9645114ccecc146c0"
+      }
+    },
+    {
+      "amount": 4,
+      "ingredient": {
+        "$oid": "692e0c71645114ccecc146c2"
+      },
+      "unit": {
+        "en": "Cups",
+        "es": "Tazas"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692e0ca8645114ccecc146c4"
+      },
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "$oid": "692e0ce4645114ccecc146c5"
+      },
+      "unit": {
+        "en": "Tbsp",
+        "es": "Cucharadas"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692e0d1b645114ccecc146c6"
+      },
+      "unit": {
+        "en": "Tsp",
+        "es": "Cucharadita"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692741f2ece43a3918579ad5"
+      },
+      "unit": {
+        "en": "to taste",
+        "es": "al gusto"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "692e08ab645114ccecc146bc"
+    },
+    {
+      "$oid": "692e0bae645114ccecc146bf"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "692e17f096d7a413052c8fee"
+  },
+  "title": {
+    "en": "Hawaiian Chicken with Steamed Broccoli",
+    "es": "Pollo Hawaiano con Brócoli al Vapor"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Add chicken, pineapple, and BBQ sauce to sprayed or lined slow cooker. Cook on low for 4 hours and shred chicken. Cook rice as directed. Microwave unopened bag of broccoli for 5-7 minutes (or follow other cooking method on bag). Serve chicken over rice with steamed broccoli on the side.",
+    "es": "Agregue el pollo, la piña y la salsa barbacoa a una olla de cocción lenta rociada o forrada. Cocine a fuego lento durante 4 horas y desmenuce el pollo. Cocine el arroz según las instrucciones. Caliente en el microondas la bolsa de brócoli sin abrir durante 5-7 minutos (o siga el método de cocción indicado en la bolsa). Sirva el pollo sobre arroz con brócoli al vapor aparte."
+  },
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "69274a0ed12f5dc03e62ad95"
+      },
+      "amount": 2,
+      "unit": {
+        "en": "Large",
+        "es": "Pechugas"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692e15e8b8d275176858309e"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Can",
+        "es": "Lata"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692e172796d7a413052c8fe9"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Cup",
+        "es": "Taza"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692e176c96d7a413052c8fea"
+      },
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "$oid": "692e17af96d7a413052c8feb"
+      },
+      "unit": {
+        "en": "Cups",
+        "es": "Tazas"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "69274b23d12f5dc03e62ad9e"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "692e1c3b96d7a413052c8fff"
+  },
+  "title": {
+    "en": "Rotisserie Chicken & Broccoli Pasta",
+    "es": "Pasta con Pollo Rostizado y Brócoli"
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "Debone chicken and warm in microwave. Make pasta according to directions. Steam broccoli in the bag in the microwave and chop into small pieces. While waiting for the pasta to set, stir in broccoli. Serve with heated chicken.",
+    "es": "Deshuesa el pollo y caliéntalo en el microondas. Prepara la pasta según las instrucciones. Cocine al vapor el brócoli en la bolsa en el microondas y córtelo en trozos pequeños. Mientras la pasta cuece, incorpora el brócoli. Sirve con el pollo caliente."
+  },
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "692e1a7a96d7a413052c8ff7"
+      },
+      "amount": 1,
+      "unit": {
+        "en": "Chilled*",
+        "es": "Frio*"
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": "692e1ac596d7a413052c8ff8"
+      },
+      "amount": 2,
+      "unit": {
+        "en": "Boxes",
+        "es": "Cajas"
+      }
+    },
+    {
+      "ingredient": [
+        {
+          "$oid": "692e1b0a96d7a413052c8ff9"
+        },
+        {
+          "$oid": "692e0ce4645114ccecc146c5"
+        }
+      ],
+      "amount": 0.5,
+      "unit": {
+        "en": "Stick",
+        "es": "Barra"
+      }
+    },
+    {
+      "amount": 0.6666,
+      "ingredient": {
+        "$oid": "691fa08b5320291b22e92ab5"
+      },
+      "unit": {
+        "en": "Cup",
+        "es": "Taza"
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": "692e176c96d7a413052c8fea"
+      },
+      "unit": {
+        "en": "Bag",
+        "es": "Bolsa"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "692e1b5696d7a413052c8ffc"
+    },
+    {
+      "$oid": "692e0bae645114ccecc146bf"
+    }
+  ]
+}]
