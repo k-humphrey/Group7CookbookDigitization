@@ -5,5 +5,5 @@ import { NextResponse } from 'next/server';
 export async function GET(req: Request){
     await connectToDB();
     const ingredients = await Ingredient.find({});
-    return NextResponse.json(Ingredient);
+    return NextResponse.json(ingredients);
 }
