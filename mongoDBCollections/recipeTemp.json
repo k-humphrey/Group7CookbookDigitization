@@ -1,0 +1,77 @@
+{
+  "_id": {
+    "$oid": ""
+  },
+  "title": {
+    "en": "",
+    "es": ""
+  },
+  "imageURI": "",
+  "instructions": {
+    "en": "",
+    "es": ""
+  },
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": ""
+      },
+      "amount": 2,
+      "unit": {
+        "en": "",
+        "es": ""
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": ""
+      },
+      "amount": 1,
+      "unit": {
+        "en": "",
+        "es": ""
+      }
+    },
+    {
+      "ingredient": {
+        "$oid": ""
+      },
+      "amount": 1,
+      "unit": {
+        "en": "",
+        "es": ""
+      }
+    },
+    {
+      "amount": 1,
+      "ingredient": {
+        "$oid": ""
+      },
+      "unit": {
+        "en": "",
+        "es": ""
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "$oid": ""
+      },
+      "unit": {
+        "en": "",
+        "es": ""
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": ""
+    }
+  ],
+  "totalCost": 1
+}

@@ -109,4 +109,164 @@
   "en": "Black Beans",
   "es": "Frijoles Negros",
   "costPerUnit": null
-}]
+},
+{
+  "_id": {
+    "$oid": "692e0148645114ccecc146ad"
+  },
+  "en": "Knorr Rice Sides Teriyaki Flavored",
+  "es": "Arroces Knorr sabor Teriyaki",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e01b3645114ccecc146af"
+  },
+  "en": "Wonton Strips",
+  "es": "Tiras de Wantán",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e01f4645114ccecc146b1"
+  },
+  "en": "Green Onions, chopped",
+  "es": "Cebollas verdes picadas",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0250645114ccecc146b3"
+  },
+  "en": "Vegetable Oil",
+  "es": "Aceite Vegetal",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e062f645114ccecc146b6"
+  },
+  "en": "Egg Noodles",
+  "es": "Fideos de Huevo",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0698645114ccecc146b7"
+  },
+  "en": "Cream of Mushroom Soup Low Sodium (12.5oz)",
+  "es": "Crema de Champiñones",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0723645114ccecc146b8"
+  },
+  "en": "Mushrooms (4oz)",
+  "es": "Champiñones (4oz)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e075f645114ccecc146b9"
+  },
+  "en": "Shredded Cheese",
+  "es": "Queso Rallado",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0bf9645114ccecc146c0"
+  },
+  "en": "Knorr Chicken Flavored Bouillon Cubes",
+  "es": "Cubos de caldo Knorr sabor pollo",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0c71645114ccecc146c2"
+  },
+  "en": "Water",
+  "es": "Agua",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0ca8645114ccecc146c4"
+  },
+  "en": "Frozen Green Beans",
+  "es": "Ejotes congelados",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0ce4645114ccecc146c5"
+  },
+  "en": "Margarine",
+  "es": "Margarina",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e0d1b645114ccecc146c6"
+  },
+  "en": "Garlic Salt",
+  "es": "Sal de ajo",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e15e8b8d275176858309e"
+  },
+  "en": "Pineapple Chunks (15oz)",
+  "es": "Piña en trozos (15oz)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e172796d7a413052c8fe9"
+  },
+  "en": "Teriyaki Sauce",
+  "es": "Salsa teriyaki",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e176c96d7a413052c8fea"
+  },
+  "en": "Frozen Broccoli Florets (12oz)",
+  "es": "Brócoli congelado (12oz)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e17af96d7a413052c8feb"
+  },
+  "en": "Rice",
+  "es": "Arroz",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e1a7a96d7a413052c8ff7"
+  },
+  "en": "Rotisserie Chicken",
+  "es": "Pollo Rotisserie",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e1ac596d7a413052c8ff8"
+  },
+  "en": "Pasta Roni Angel Hair Pasta with Herbs (4.8oz each)",
+  "es": "Pasta Roni Cabello de Ángel con Hierbas (4.8oz cada una)",
+  "costPerUnit": null
+},
+{
+  "_id": {
+    "$oid": "692e1b0a96d7a413052c8ff9"
+  },
+  "en": "Butter",
+  "es": "Mantequilla",
+  "costPerUnit": null
+}] 

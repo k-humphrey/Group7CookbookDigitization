@@ -1,4 +1,5 @@
 import "./globals.css";
+import Footer from "./components/Footer";
 
 export const metadata = {
   title: "My App",
@@ -10,6 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         {children}
+        <Footer/>
       </body>
     </html>
   );
