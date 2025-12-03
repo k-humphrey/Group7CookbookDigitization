@@ -1,4 +1,5 @@
 import Filters from "../components/filters";
+import RecipeGrid from "../components/recipecards";
 export default function RecipeSearchPage() {
   return (
     <div>
@@ -46,8 +47,18 @@ export default function RecipeSearchPage() {
         </div>
       </div>
 
-      {/* Filters */}
-      <Filters />
+      <div className="flex w-full gap-6">
+
+        {/* Filters */}
+        <div className="w-64 sticky top-0 self-start shrink-0">
+          <Filters />
+        </div>
+        
+        {/* Recipes */}
+        <div className="flex-1">
+          <RecipeGrid />
+        </div>
+      </div>
     </div>
   );
 }

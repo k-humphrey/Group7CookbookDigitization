@@ -6,7 +6,7 @@ export default function Filters() {
     <section>
       {/* Filters */}
       <div
-        className={`w-3/12 lg:w-2/12 collapse collapse-arrow bg-gray-200 border-base-300 border mt-15 ml-2 ${
+        className={`mt-6 collapse collapse-arrow bg-gray-200 border-base-300 border mx-3 ${
           isOpen ? "collapse-open" : "collapse-close"
         }`}
       >
@@ -18,33 +18,57 @@ export default function Filters() {
           Filters
         </div>
         <div className="collapse-content text-sm ml-2">
-          <div className="h-120">
+          <div className="h-200">
             {/* Filter 1: Kitchen Appliances */}
             <div>
               <h3 className="font-semibold text-xs uppercase mb-2">Kitchen Appliances</h3>
               <div className="flex flex-col gap-1">
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
                   <span>Oven</span>
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
                   <span>Air Fryer</span>
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
                   <span>Slow Cooker</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
+                  <span>Microwave</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
+                  <span>Stockpot/Dutch oven</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
+                  <span>Skillet/frying pan</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
+                  <span>Saucepan with lid</span>
                 </label>
               </div>
             </div>
 
             {/* Filter 2: Blue Ribbon */}
             <div>
-              <h3 className="font-semibold text-xs uppercase my-2">Blue Ribbon</h3>
+              <h3 className="font-semibold text-xs uppercase my-2">Health</h3>
               <div className="flex flex-col gap-1">
                 <label className="flex items-center gap-2">
                   <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Verified blue ribbon</span>
+                  <span>Blue ribbon</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <span>Vegan</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <span>Vegetarian</span>
                 </label>
               </div>
             </div>
@@ -56,7 +80,6 @@ export default function Filters() {
                 
               </div>
             </div>
-            
           </div>
         </div>
       </div>
