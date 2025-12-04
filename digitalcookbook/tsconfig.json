@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["react", "react-dom"],
     "allowJs": true,
@@ -36,5 +36,3 @@
   "exclude": ["node_modules"]
   
 }
-
-
