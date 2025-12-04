@@ -25,7 +25,7 @@ Description: Will return all recipes with true values for the given tags
 .
 .
 
-###### We have also included an api call to just return all the recipes and there information:
+###### We have also included an api call to just return all the recipes and their information:
 ```
 http://localhost:3000/api/recipes
 ```
