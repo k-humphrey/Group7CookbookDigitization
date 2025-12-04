@@ -73,11 +73,30 @@ export default function Filters() {
               </div>
             </div>
 
-            {/* Filter 3: N/A */}
+            {/* Filter 3: Allergies */}
             <div>
-              <h3 className="font-semibold text-xs uppercase my-2">Filter 3</h3>
+              <h3 className="font-semibold text-xs uppercase my-2">Allergies</h3>
               <div className="flex flex-col gap-1">
-                
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <span>Celiac</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <span>Lactose Intolerant</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <span>Soy</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <span>Fish</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="checkbox checkbox-xs" />
+                  <span>Shellfish</span>
+                </label>
               </div>
             </div>
           </div>
