@@ -1,7 +1,5 @@
-//app/all-recipes/page.tsx
 
-
-export default function AllRecipes() {
+export default function KitckenTool() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-start">
 
@@ -12,7 +10,7 @@ export default function AllRecipes() {
           backgroundImage: "bg-white"
           }}/>  
       <div>
-        <h6 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none">All Recipes </h6>
+        <h6 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none">Shopping Lists </h6>
         
       </div>
       <div/>
