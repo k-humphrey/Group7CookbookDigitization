@@ -14,13 +14,16 @@ export default function Footer(){
             
                 <Link
                     href="/all-recipes"
+            
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     All Recipes
                 </Link>
+
+               
     
                 <Link
-                    href="/all-recipes"
+                    href="/tools"
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     Tools
@@ -28,7 +31,7 @@ export default function Footer(){
          
 
                 <Link
-                    href="/all-recipes"
+                    href="/shopping-list"
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     Shopping List
