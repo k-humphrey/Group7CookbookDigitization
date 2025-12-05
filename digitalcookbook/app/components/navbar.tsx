@@ -5,7 +5,20 @@ import Link from "next/link";
 export default function Navbar() {
     return (
         <div className="navbar bg-white text-black shadow-sm">
-            <img src="pep_logo.png" alt="LEADERSHIP PUTNAM Logo" className="w-50 h-auto max-w-full" />
+
+
+            <Link href="/">
+            <div className="inline-block p-2 hover:bg-gray-100 rounded">
+                <img 
+                src="pep_logo.png" 
+                alt="LEADERSHIP PUTNAM Logo" 
+                className="w-80 h-auto max-w-full"
+                />
+            </div>
+            </Link>
+
+
+            
         <div className="navbar-start">
             <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

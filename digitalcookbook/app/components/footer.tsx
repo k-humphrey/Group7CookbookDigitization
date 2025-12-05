@@ -1,5 +1,7 @@
 
 
+import Link from 'next/link';
+
 export default function Footer(){
     return (
 
@@ -10,7 +12,7 @@ export default function Footer(){
         <nav>
             <h6 className="footer-title">Quick Links</h6>
             <a className="link link-hover">Recipes</a>
-            <a className="link link-hover">Tools</a>
+            <Link href = "/tools" className="link link-hover">Tools</Link>
             <a className="link link-hover">Community</a>
             <a className="link link-hover">Shopping List</a>
         </nav>
