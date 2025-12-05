@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 // Hompe page
-=======
->>>>>>> d4905314381218d119824a1f603d62b6942f6ee6
 import Searchbar from "./components/searchbar";
 
 export default function Home() {
