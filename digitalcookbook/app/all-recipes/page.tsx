@@ -1,9 +1,22 @@
 //app/all-recipes/page.tsx
 
-export default function AllRecipesPage() {
+
+export default function AllRecipes() {
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold">All Recipes</h1>
+    <main className="min-h-screen flex flex-col items-center justify-start">
+
+      <div 
+        className="w-full bg-cover bg-center bg-repeat py-30 flex flex-col items-center"  
+        style={{
+          backgroundSize: "110%", 
+          backgroundImage: "bg-white"
+          }}/>  
+      <div>
+        <h6 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none">All Recipes </h6>
+        
+      </div>
+      <div/>
+
     </main>
   );
 }
