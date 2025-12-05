@@ -1,10 +1,25 @@
+import Link from 'next/link';
+
 // app/components/navbar.tsx
 //import React from "react";
 
 export default function Navbar() {
     return (
         <div className="navbar bg-white text-black shadow-sm">
-            <img src="pep_logo.png" alt="LEADERSHIP PUTNAM Logo" className="w-50 h-auto max-w-full" />
+
+
+            <Link href="/">
+            <div className="inline-block p-2 hover:bg-gray-100 rounded">
+                <img 
+                src="pep_logo.png" 
+                alt="LEADERSHIP PUTNAM Logo" 
+                className="w-80 h-auto max-w-full"
+                />
+            </div>
+            </Link>
+
+
+            
         <div className="navbar-start">
             <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -74,7 +89,7 @@ export default function Navbar() {
             <ul className="menu menu-horizontal px-1">
             <li>
                 <details>
-                <summary>Community Resources</summary>
+                <summary className = "!font-bold">Community Resources</summary>
                     <ul className="p-2">
                     <li><a>Safety</a></li>
                     <li><a>Emergency Preparedness</a></li>
@@ -87,7 +102,7 @@ export default function Navbar() {
             </li>
             <li>
                 <details>
-                <summary>Partners</summary>
+                <summary className = "!font-bold">Partners</summary>
                     <ul className="p-2">
                     <li><a>Kiwanis</a></li>
                     <li><a>Enbridge</a></li>
@@ -96,10 +111,10 @@ export default function Navbar() {
                     </ul>
                 </details>
             </li>
-            <li><a>All Recipes</a></li>
+            <li className = "!font-bold"><a>All Recipes</a></li>
             <li>
                 <details>
-                <summary>Tools</summary>
+                <summary className = "!font-bold">Tools</summary>
                     <ul className="p-2">
                     <li><a>Shelf Life Guidelines</a></li>
                     <li><a>Price Finder</a></li>
