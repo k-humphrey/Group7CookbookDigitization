@@ -1,5 +1,5 @@
 // app/components/navbar.tsx
-//import React from "react";
+import React from "react";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -27,41 +27,133 @@ export default function Navbar() {
             {/*Drop down menu for when screen small*/}
             <ul
                 tabIndex={-1}
-                className="menu menu-sm dropdown-content bg-white text-black rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
+                className="menu menu-sm dropdown-content bg-white text-black rounded-box z-1 mt-3 w-52 p-2 shadow" >
                 <li>
                 <details>
                     <summary>Community Resources</summary>
                     <ul className="p-2">
-                        <li><a>Safety</a></li>
-                        <li><a>Emergency Preparedness</a></li>
-                        <li><a>Putnam County Health Department</a></li>
-                        <li><a>UCAssist.org</a></li>
-                        <li><a>Hispanic Community Center</a></li>
-                        <li><a>Emergecy Numbers</a></li>
-                    </ul>
-                </details>
-                </li>
-                <li>
-                <details>
-                    <summary>Partners</summary>
-                    <ul className="p-2">
-                        <li><a>Kiwanis</a></li>
-                        <li><a>Enbridge</a></li>
-                        <li><a>Power of Putnam</a></li>
-                        <li><a>Etc</a></li>
-                    </ul>
-                </details>
-                </li>
-                <li><a>All Recipes</a></li>
-                <li>
-                <details>
-                    <summary>Tools</summary>
-                    <ul className="p-2">
-                        <li><a>Shelf Life Guidelines</a></li>
-                        <li><a>Price Finder</a></li>
-                        <li><a>Timer</a></li>
-                        <li><a>Etc</a></li>
+                    <li>
+                        <Link
+                            href="/safety"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Safety
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            href="https://www.putnamcountytnhealthdept.com/"
+                            target="_blank"
+                            rel="noopener noreferrer" 
+                            className="hover:underline" >
+                            Putnam County Health Department
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            href="https://UCAssist.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            UCAssist.org
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            href="https://www.elpuentecookeville.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            El Puente - Hispanic Community Center
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/emergency-numbers"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Emergency Numbers
+                        </Link>
+                    </li>
+                </ul>
+            </details>
+            </li>
+            <li>
+            <details>
+                <summary>Partners</summary>
+                <ul className="p-2">
+                    <li>
+                        <Link
+                            href="https://www.kiwanis.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Kiwanis
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="https://www.enbridge.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >                                
+                            Enbridge
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="https://www.powerofputnam.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Power of Putnam
+                        </Link>
+                    </li>
+                </ul>
+            </details>
+            </li>
+            <li>
+                <Link
+                    href="/all-recipes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline" >
+                    All Recipes
+                </Link>
+            </li>
+            <li>
+            <details>
+                <summary>Tools</summary>
+                <ul className="p-2">
+                    <li>
+                        <Link
+                            href="/shelf-life-guidelines"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Shelf Life Guidelines
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/price-finder"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Price Finder
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/timer"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Timer
+                        </Link>
+                    </li>
                     </ul>
                 </details>
                 </li>
@@ -73,40 +165,133 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
             <li>
-                <details>
+            <details>
                 <summary>Community Resources</summary>
-                    <ul className="p-2">
-                    <li><a>Safety</a></li>
-                    <li><a>Emergency Preparedness</a></li>
-                    <li><a>Putnam County Health Department</a></li>
-                    <li><a>UCAssist.org</a></li>
-                    <li><a>Hispanic Community Center</a></li>
-                    <li><a>Emergecy Numbers</a></li>
-                    </ul>
-                </details>
+                <ul className="p-2">
+                    <li>
+                        <Link
+                            href="/safety"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Safety
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            href="https://www.putnamcountytnhealthdept.com/"
+                            target="_blank"
+                            rel="noopener noreferrer" 
+                            className="hover:underline" >
+                            Putnam County Health Department
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            href="https://UCAssist.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            UCAssist.org
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            href="https://www.elpuentecookeville.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            El Puente - Hispanic Community Center
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/emergency-numbers"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Emergency Numbers
+                        </Link>
+                    </li>
+                </ul>
+            </details>
             </li>
             <li>
-                <details>
+            <details>
                 <summary>Partners</summary>
-                    <ul className="p-2">
-                    <li><a>Kiwanis</a></li>
-                    <li><a>Enbridge</a></li>
-                    <li><a>Power of Putnam</a></li>
-                    <li><a>Etc</a></li>
-                    </ul>
-                </details>
+                <ul className="p-2">
+                    <li>
+                        <Link
+                            href="https://www.kiwanis.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Kiwanis
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="https://www.enbridge.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >                                
+                            Enbridge
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="https://www.powerofputnam.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Power of Putnam
+                        </Link>
+                    </li>
+                </ul>
+            </details>
             </li>
-            <li><a>All Recipes</a></li>
             <li>
-                <details>
+                <Link
+                    href="/all-recipes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline" >
+                    All Recipes
+                </Link>
+            </li>
+            <li>
+            <details>
                 <summary>Tools</summary>
-                    <ul className="p-2">
-                    <li><a>Shelf Life Guidelines</a></li>
-                    <li><a>Price Finder</a></li>
-                    <li><a>Timer</a></li>
-                    <li><a>Etc</a></li>
-                    </ul>
-                </details>
+                <ul className="p-2">
+                    <li>
+                        <Link
+                            href="/shelf-life-guidelines"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Shelf Life Guidelines
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/price-finder"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Price Finder
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/timer"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Timer
+                        </Link>
+                    </li>
+                </ul>
+            </details>
             </li>
             </ul>
         </div>
