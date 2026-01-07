@@ -1,34 +1,30 @@
-[{
-  "_id": {
-    "$oid": "691f9b38c070923666ddc4fe"
+[
+  {
+    "en": "Oven",
+    "es": "Horno"
   },
-  "en": "Oven",
-  "es": "Horno"
-},
-{  "_id": {
-    "$oid": "69274b23d12f5dc03e62ad9e"
+  {
+    "en": "Microwave",
+    "es": "Microondas"
   },
-  "en": "Slow Cooker",
-  "es": "Olla de Cocción Lenta"
-},
-{
-  "_id": {
-    "$oid": "692e08ab645114ccecc146bc"
+  {
+    "en": "Slow Cooker",
+    "es": "Olla de Cocción Lenta"
   },
-  "en": "Pot",
-  "es": "Olla"
-},
-{
-  "_id": {
-    "$oid": "692e0bae645114ccecc146bf"
+  {
+    "en": "Stockpot/Dutch Oven",
+    "es": "olla/horno holandés"
   },
-  "en": "Skillet",
-  "es": "Sartén"
-},
-{
-  "_id": {
-    "$oid": "692e1b5696d7a413052c8ffc"
+  {
+    "en": "Skillet/Frying Pan",
+    "es": "Sartén/Sartén"
   },
-  "en": "Microwave",
-  "es": "Microondas"
-}]
+  {
+    "en": "Saucepan with Lid",
+    "es": "Cacerola con Tapa "
+  },
+  {
+    "en": "Stockpot and Skillet",
+    "es": "Olla y Sartén"
+  }
+]
