@@ -1,272 +1,772 @@
-[{
-  "_id": {
-    "$oid": "691fa00c5320291b22e92aaf"
+[
+  {
+    "en": "Chicken (12.5oz) – drained & rinsed",
+    "es": "Pollo (12.5oz) – escurrido y enjuagado ",
+    "costPerUnit": 0
   },
-  "en": "Chicken",
-  "es": "Pollo",
-  "costPerUnit": null
+  {
+    "en": "Cream of Chicken Soup (low sodium)",
+    "es": "Crema de pollo (baja en sodio)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Milk",
+    "es": "Leche",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Stuffing Mix",
+    "es": "Mezcla para relleno",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Frozen Mixed Vegetables",
+    "es": "Verduras mixtas congeladas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Frozen Peas & Carrots",
+    "es": "Guisantes y zanahorias congeladas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Refrigerated Jumbo Biscuits (8 count)",
+    "es": "Galletas Jumbo Refrigeradas (8 unidades)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Fruit Cocktail (30oz)",
+    "es": "Cóctel de Frutas (30oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Pepper",
+    "es": "Pimienta",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Large Chicken Breasts",
+    "es": "Pechugas de Pollo Grandes",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Salsa (16 oz)",
+    "es": "Salsa (16 oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Taco Seasoning",
+    "es": "Sazonador para Tacos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Corn",
+    "es": "Elote",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Black Beans",
+    "es": "Frijoles Negros",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Knorr Rice Sides Teriyaki Flavored",
+    "es": "Knorr sabor Teriyaki",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Wonton Strips",
+    "es": "Tiras de Wantán",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Green Onions, chopped",
+    "es": "cebollas verdes picadas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Vegetable Oil",
+    "es": "Aceite Vegetal",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Egg Noodles",
+    "es": "Fideos de Huevo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Cream of Mushroom Soup Low Sodium (12.5 oz)",
+    "es": "Sopa de crema de champiñones baja en sodio (12.5 oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Mushrooms (4oz) – drained & rinsed",
+    "es": "Champiñones (4oz) escurridos y enjuagados",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Shredded Cheese",
+    "es": "Queso Rallado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Knorr Chicken Flavored Bouillon Cubes",
+    "es": "cubos de caldo Knorr sabor pollo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Frozen Green Beans",
+    "es": "ejotes congelados",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Margarine",
+    "es": "margarina",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Garlic Salt",
+    "es": "sal de ajo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Pineapple Chunks (15oz)",
+    "es": "piña en trozos (15oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Teriyaki Sauce",
+    "es": "salsa teriyaki",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Frozen Broccoli Florets (12oz)",
+    "es": "Brócoli Congelado (12oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Rice",
+    "es": "Arroz",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chilled Rotisserie Chicken",
+    "es": "Pollo Rotisserie Frío",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Pasta Roni Angel Hair Pasta with Herbs (4.8oz each)",
+    "es": "Pasta Roni Cabello de Ángel con Hierbas (4.8oz cada una)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Butter",
+    "es": "Mantequilla",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chicken Flavored Ramen Noodles",
+    "es": "Fideos Ramen con Sabor a Pollo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Ramen Seasoning",
+    "es": "Sazonador para Ramen",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Soy Sauce",
+    "es": "Salsa de Soja",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Boiled Eggs",
+    "es": "Huevos Cocidos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Mild Cheddar Cheese (8oz)",
+    "es": "Queso Cheddar Suave (8oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Sour Cream (8oz)",
+    "es": "Crema Agria (8oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Butter Rounds Crackers",
+    "es": "Galletas Redondas de Mantequilla",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Armour Chili with Beans (14oz)",
+    "es": "Chili Armour con Frijoles (14oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Shredded Colby Jack Cheese (8oz)",
+    "es": "Queso Colby Jack Rallado (8oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Tortilla Chips",
+    "es": "Totopos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Stir-Fry Vegetables – thawed",
+    "es": "Vegetales Salteados - descongelados",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Green Onions",
+    "es": "Cebolletas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chili Powder",
+    "es": "Chile en Polvo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Tomato Sauce (15oz)",
+    "es": "Salsa de Tomate (15oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Frozen Okra (12oz) – not breaded",
+    "es": "okra congelada (12oz) sin empanizar",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chopped Fresh Cilantro",
+    "es": "Cilantro Fresco Picado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Salt",
+    "es": "Sal",
+    "costPerUnit": 0
+  },
+  {
+    "en": "California-Style, Frozen Vegetables",
+    "es": "verduras congeladas estilo California",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Banana",
+    "es": "Plátanos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Tomato Soup",
+    "es": "sopa de tomate",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Loaf White Bread",
+    "es": "Pan Blanco",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Loaf Wheat Bread",
+    "es": "Pan Integral",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Slices American Cheese",
+    "es": "rebanadas de queso americano",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Generic Rotel Tomatoes",
+    "es": "tomates Rotel genéricos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "lb Ground Beef – thawed",
+    "es": "lb de carne molida de res, descongelado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Roll Frozen Ground Turkey – thawed",
+    "es": "rollo de pavo molido congelado, descongelado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Carrots",
+    "es": "Zanahorias",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Large Potatoes – cubed",
+    "es": "papas grandes, en cubos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Small potatoes – cubed",
+    "es": "Papas pequeñas, en cubos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Stalks Celery – chopped",
+    "es": "tallos de apio picados",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Tomato Paste (6oz)",
+    "es": "pasta de tomate (6oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Knorr Beef Bouillon Cubes",
+    "es": "cubos de caldo de res Knorr",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Loaf Walmart Deli Sliced Italian Bread",
+    "es": "pan italiano rebanado Walmart Deli",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Parsley",
+    "es": "Perejil",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Dried 15-Bean Soup Mix",
+    "es": "Mezcla seca de sopa de 15 judías",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Diced Tomatoes (15oz)",
+    "es": "Tomates en dados (15oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Unsalted Beef Broth (32oz)",
+    "es": "Caldo de ternera sin sal (32oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Garlic Powder",
+    "es": "Polvo de ajo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Lemon Juice",
+    "es": "Zumo de limón",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Onion",
+    "es": "cebolla",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chicken Broth (32oz)",
+    "es": "caldo de pollo (32oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Real Bacon Bits",
+    "es": "tocino natural",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chipotle Chile in Adobo Sauce",
+    "es": "chile chipotle en adobo enlatado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Plain Greek Yogurt",
+    "es": "yogur griego natural",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Lime",
+    "es": "Lima",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Pasta Roni Parmesan Cheese Flavor",
+    "es": "pasta Roni sabor queso parmesano",
+    "costPerUnit": 0
+  },
+  {
+    "en": "White Tuna in Water (12oz) - drained & flaked",
+    "es": "atún blanco en agua (12 oz) - escurrido y desmenuzado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Ranch Dressing",
+    "es": "aderezo ranch",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Rotini (16oz)",
+    "es": "fideos rotini (16oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Alfredo Sauce (22oz)",
+    "es": "salsa Alfredo (22oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Mozzarella Cheese (8oz)",
+    "es": "queso mozzarella (8oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Frozen Garlic Bread",
+    "es": "pan de ajo congelado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Microwave Macaroni & Cheese Cups (2oz each)",
+    "es": "Macarrones con queso individuales para microondas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Spanish olives cut in half",
+    "es": "aceitunas españolas cortadas por la mitad",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Egg",
+    "es": "huevo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Dried Onions",
+    "es": "cebolla deshidratada",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Italian Seasoning",
+    "es": "condimento italiano",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Hunt’s Spaghetti Sauce (24oz)",
+    "es": "salsa para espaguetis Hunt's (24oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Rigatoni (16oz)",
+    "es": "rigatoni (16oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Linguine Noodles",
+    "es": "fideos linguini",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Garlic Powder",
+    "es": "ajo en polvo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Onion Powder",
+    "es": "cebolla en polvo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Worcestershire Sauce",
+    "es": "salsa Worcestershire",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Ketchup",
+    "es": "Kétchup",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Parmesan Cheese",
+    "es": "Queso Parmesano",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Saltine Crackers",
+    "es": "galletas saladas trituradas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Hamburger Seasoning",
+    "es": "Condimento para hamburguesas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "brown sugar",
+    "es": "azúcar morena",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Instant Mashed Potatoes",
+    "es": "Puré de papas instantáneo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Uncooked Elbow Macaroni",
+    "es": "macarrones crudos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Petite Diced Tomatoes (14.5oz)",
+    "es": "tomates en cubos pequeños (14.5oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Yellow Mustard",
+    "es": "mostaza amarilla",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Hamburger Buns",
+    "es": "panecillos para hamburguesa",
+    "costPerUnit": 0 
+  },
+  {
+    "en": "Macaroni & Cheese",
+    "es": "macarrones con queso",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Fajita Seasoning",
+    "es": "Condimento Fajita",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Jalepeno",
+    "es": "Jalepeño",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Green Bell Peppers",
+    "es": "pimientos verdes",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Small Fajita Flour Tortillas",
+    "es": "tortillas de harina para fajitas pequeñas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Medium Shell Pasta (16oz box)",
+    "es": "Pasta de Concha Mediana (16oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Crushed Red Pepper",
+    "es": "Pimiento Rojo Triturado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Grated Parmesan Cheese",
+    "es": "Queso Parmesano Rallado",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Kidney Beans – light or dark",
+    "es": "frijoles rojos (claros u oscuros)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Pinto Beans",
+    "es": "frijoles pintos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Pork and Beans",
+    "es": "frijoles con cerdo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Great Northern Beans",
+    "es": "frijoles blancos Great Northern",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Butter Beans",
+    "es": "frijoles blancos con mantequilla",
+    "costPerUnit": 0
+  },
+  {
+    "en": "BBQ Sauce",
+    "es": "salsa barbacoa",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Jiffy Corn Muffin",
+    "es": "panecillos de maíz Jiffy",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Penne Pasta (16oz)",
+    "es": "Penne Pasta (16oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Small Sweet Potatoes",
+    "es": "batatas pequeñas",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Mayonnaise",
+    "es": "mayonesa",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Dill Pickle Slices",
+    "es": "pepinillos picados",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Dill Pickle Juice",
+    "es": "jugo de pepinillos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Veggie Straws",
+    "es": "palitos de verduras",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Gnocchi",
+    "es": "ñoquis",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Hunt’s Four Cheese Pasta Sauce (24oz)",
+    "es": "salsa para pasta Hunt's de cuatro quesos (24oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Large Sweet Potato",
+    "es": "batata grande",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Garlic Cloves",
+    "es": "dientes de ajo",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chili Seasoning Packet",
+    "es": "sobre de condimento para chile",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Fire-Roasted Tomatoes",
+    "es": "tomates asados",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Hot Dogs",
+    "es": "Salchichas",
+    "costPerUnit": 0 
+  },
+  {
+    "en": "Sauerkraut (24oz)",
+    "es": "Chucrut (24oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Baked Beans (28oz)",
+    "es": "Frijoles (28oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Loaf Walmart Bakery French Bread",
+    "es": "Barra de Pan Francés de Walmart Bakery",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Chef Boyardee Pizza Sauce",
+    "es": "Salsa para Pizza Chef Boyardee",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Pepperonis (6oz)",
+    "es": "Pepperonis (6oz)",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Roma Tomatoes",
+    "es": "tomates Roma",
+    "costPerUnit": 0 
+  },
+  {
+    "en": "Knorr Cajun Rice Sides",
+    "es": "arroz cajún Knorr",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Dried Pinto Beans",
+    "es": "frijoles pintos secos",
+    "costPerUnit": 0
+  },
+  {
+    "en": "Polish Kielbasa (14oz)",
+    "es": "kielbasa polaca (14oz)",
+    "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "691fa0565320291b22e92ab4"
-  },
-  "en": "Cream of Chicken Soup (low sodium)",
-  "es": "Crema de Pollo (baja en sodio)",
-  "costPerUnit": null
+  "en": "Bar S Classic Franks (8 count each)",
+  "es": "salchichas clásicas Bar S (8 unidades cada una)",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "691fa08b5320291b22e92ab5"
-  },
-  "en": "Milk",
-  "es": "Leche",
-  "costPerUnit": null
+  "en": "Country Style Baked Beans (28oz each)",
+  "es": "frijoles horneados estilo campestre (28oz cada una)",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "691fa0ae5320291b22e92ab6"
-  },
-  "en": "Stuffing Mix",
-  "es": "Mezcla Para Relleno",
-  "costPerUnit": null
+  "en": "Frozen Tater Tots (32oz)",
+  "es": "tater tots congelados (32oz)",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "691fa0d85320291b22e92ab7"
-  },
-  "en": "Frozen Mixed Vegetables",
-  "es": "Verduras Mixtas Congeladas",
-  "costPerUnit": null
+  "en": "lb. Roll of Breakfast Sausage",
+  "es": "lb. de salchicha de desayuno",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "692740ddece43a3918579ad2"
-  },
-  "en": "Frozen Peas & Carrots",
-  "es": "Guisantes y Zanahorias Congeladas",
-  "costPerUnit": null
+  "en": "Head of Cabbage",
+  "es": "repollo",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "6927416bece43a3918579ad3"
-  },
-  "en": "Refrigerated Jumbo Biscuits (8 count)",
-  "es": " Galletas Jumbo Refrigeradas (8 unidades)",
-  "costPerUnit": null
+  "en": "Chicken Smoked Sausage",
+  "es": "salchicha ahumada de pollo",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "692741bbece43a3918579ad4"
-  },
-  "en": "Fruit Cocktail (30oz)",
-  "es": "Cóctel de Frutas (30oz)",
-  "costPerUnit": null
+  "en": "Avocado",
+  "es": "Aguacate",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "692741f2ece43a3918579ad5"
-  },
-  "en": "Pepper",
-  "es": "Pimienta",
-  "costPerUnit": null
+  "en": "Refried Beans",
+  "es": "Frijoles refritos",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "69274a0ed12f5dc03e62ad95"
-  },
-  "en": "Chicken Breasts",
-  "es": "Pollo Grandes",
-  "costPerUnit": null
+  "en": "Hummus",
+  "es": "Húmus",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "69274a4ad12f5dc03e62ad97"
-  },
-  "en": "Salsa (16oz)",
-  "es": "Salsa (16oz)",
-  "costPerUnit": null
+  "en": "Oats",
+  "es": "Avena",
+  "costPerUnit": 0
 },
 {
-  "_id": {
-    "$oid": "69274a8cd12f5dc03e62ad99"
-  },
-  "en": "Taco Seasoning",
-  "es": "Sazonador para Tacos",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "69274abfd12f5dc03e62ad9b"
-  },
-  "en": "Corn",
-  "es": "Elote",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "69274af0d12f5dc03e62ad9d"
-  },
-  "en": "Black Beans",
-  "es": "Frijoles Negros",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0148645114ccecc146ad"
-  },
-  "en": "Knorr Rice Sides Teriyaki Flavored",
-  "es": "Arroces Knorr sabor Teriyaki",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e01b3645114ccecc146af"
-  },
-  "en": "Wonton Strips",
-  "es": "Tiras de Wantán",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e01f4645114ccecc146b1"
-  },
-  "en": "Green Onions, chopped",
-  "es": "Cebollas verdes picadas",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0250645114ccecc146b3"
-  },
-  "en": "Vegetable Oil",
-  "es": "Aceite Vegetal",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e062f645114ccecc146b6"
-  },
-  "en": "Egg Noodles",
-  "es": "Fideos de Huevo",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0698645114ccecc146b7"
-  },
-  "en": "Cream of Mushroom Soup Low Sodium (12.5oz)",
-  "es": "Crema de Champiñones",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0723645114ccecc146b8"
-  },
-  "en": "Mushrooms (4oz)",
-  "es": "Champiñones (4oz)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e075f645114ccecc146b9"
-  },
-  "en": "Shredded Cheese",
-  "es": "Queso Rallado",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0bf9645114ccecc146c0"
-  },
-  "en": "Knorr Chicken Flavored Bouillon Cubes",
-  "es": "Cubos de caldo Knorr sabor pollo",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0c71645114ccecc146c2"
-  },
-  "en": "Water",
-  "es": "Agua",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0ca8645114ccecc146c4"
-  },
-  "en": "Frozen Green Beans",
-  "es": "Ejotes congelados",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0ce4645114ccecc146c5"
-  },
-  "en": "Margarine",
-  "es": "Margarina",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0d1b645114ccecc146c6"
-  },
-  "en": "Garlic Salt",
-  "es": "Sal de ajo",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e15e8b8d275176858309e"
-  },
-  "en": "Pineapple Chunks (15oz)",
-  "es": "Piña en trozos (15oz)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e172796d7a413052c8fe9"
-  },
-  "en": "Teriyaki Sauce",
-  "es": "Salsa teriyaki",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e176c96d7a413052c8fea"
-  },
-  "en": "Frozen Broccoli Florets (12oz)",
-  "es": "Brócoli congelado (12oz)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e17af96d7a413052c8feb"
-  },
-  "en": "Rice",
-  "es": "Arroz",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e1a7a96d7a413052c8ff7"
-  },
-  "en": "Rotisserie Chicken",
-  "es": "Pollo Rotisserie",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e1ac596d7a413052c8ff8"
-  },
-  "en": "Pasta Roni Angel Hair Pasta with Herbs (4.8oz each)",
-  "es": "Pasta Roni Cabello de Ángel con Hierbas (4.8oz cada una)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e1b0a96d7a413052c8ff9"
-  },
-  "en": "Butter",
-  "es": "Mantequilla",
-  "costPerUnit": null
-}] 
+  "en": "Peanut Butter",
+  "es": "Mantequilla de cacahuete",
+  "costPerUnit": 0
+}
+]
