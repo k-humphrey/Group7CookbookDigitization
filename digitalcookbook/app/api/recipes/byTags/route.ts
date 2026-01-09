@@ -1,7 +1,7 @@
 import { connectToDB } from "@/lib/connectToDB";
-import Recipe from "@/models/models/Recipe";
-import Ingredient from "@/models/models/Ingredient";
-import Appliance from "@/models/models/Appliance";
+import Recipe from "@/models/Recipe";
+import Ingredient from "@/models/Ingredient";
+import Appliance from "@/models/Appliance";
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request){
