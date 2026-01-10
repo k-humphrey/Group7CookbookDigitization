@@ -22,7 +22,8 @@ const recipeSchema = new mongoose.Schema({
     ingredients: [
         {
             ingredient: { type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient', required: true },
-            amount: Number
+            amount: Number,
+            unit: String
         },
     ],
     appliances: [
