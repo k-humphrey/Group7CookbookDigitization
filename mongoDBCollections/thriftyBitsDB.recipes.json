@@ -1,16 +1,16 @@
 [{
   "_id": {
-    "$oid": "691fb7a0105e0cd7062fa1e1"
+    "$oid": "69628cfec11c899e9e364ab9"
   },
   "title": {
     "en": "Chicken & Dressing Casserole",
     "es": "Cazuela de Pollo y Aderezo"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Preheat oven to 350°F. Mix all ingredients together and pour into a greased casserole dish. Cover with aluminum foil. Bake for 45-50 minutes.",
-    "es": "Precaliente el horno a 350°F. Mezcle todos los ingredientes y vierta la mezcla en una cazuela engrasada. Cubra con papel aluminio. Hornee durante 45-50 minutos."
+  "ingredientPlainText": {
+    "en": "1 Can Chicken (12.5oz) – drained & rinsed\n1 Can Cream of Chicken Soup (low sodium)\n1 Cup Milk\n1 Stuffing Mix\n1 Bag Frozen Mixed Vegetables",
+    "es": "1 lata de pollo (12.5oz) – escurrido y\nenjuagado\n1 lata de crema de pollo (baja en sodio)\n1 taza de leche\n1 mezcla para relleno\n1 bolsa de verduras mixtas congeladas"
   },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1767895324/Chicken_Dressing_Casserole_copy_kdk2v1.jpg ",
   "tags": {
     "blueRibbon": true,
     "vegan": false,
@@ -19,71 +19,61 @@
   "ingredients": [
     {
       "ingredient": {
-        "$oid": "691fa00c5320291b22e92aaf"
+        "$oid": "695eb68f48ba1dbb7ec730da"
       },
       "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "691fa0565320291b22e92ab4"
+        "$oid": "695eb68f48ba1dbb7ec730db"
       },
       "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "691fa08b5320291b22e92ab5"
+        "$oid": "695eb68f48ba1dbb7ec730dc"
       },
       "amount": 1,
-      "unit": {
-        "en": "Cup",
-        "es": "Taza"
-      }
+      "unit": "cup"
     },
     {
-      "amount": 1,
       "ingredient": {
-        "$oid": "691fa0ae5320291b22e92ab6"
-      }
-    },
-    {
-      "amount": 1,
-      "ingredient": {
-        "$oid": "691fa0d85320291b22e92ab7"
+        "$oid": "695eb68f48ba1dbb7ec730dd"
       },
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730de"
+      },
+      "amount": 1,
+      "unit": "each"
     }
   ],
   "appliances": [
     {
-      "$oid": "691f9b38c070923666ddc4fe"
+      "$oid": "695ec4c6b0379ee832d8a866"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "692744e9d12f5dc03e62ad8c"
+    "$oid": "69628e84c11c899e9e364abb"
   },
   "title": {
     "en": "Open–Faced Chicken Pot Pie Sandwiches",
     "es": "Sándwiches Abiertos de Pastel de Pollo"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Cook biscuits as directed. Steam vegetables in the bag in the microwave for 5-7 minutes OR heat with 1/4 cup of water in a covered saucepan on medium heat until tender. In a saucepan, mix together first 4 ingredients with pepper to taste and heat on medium for 10 minutes until simmering and vegetables are warm. Halve biscuits and open up on plate. Pour chicken mixture over biscuits. Serve with 1/2 cup of fruit cocktail.",
-    "es": "Cocine las galletas según las instrucciones. Cocine al vapor las verduras en la bolsa en el microondas durante 5-7 minutos. Si no tiene microondas, caliente con 1/8 de taza de agua en una cacerola tapada a fuego medio hasta que estén tiernas. En una cacerola, mezcle los primeros 4 ingredientes con pimienta al gusto y caliente a fuego medio durante 10 minutos hasta que hierva a fuego lento y las verduras estén tibias. Corte las galletas por la mitad y ábralas en un plato. Vierta la mezcla de pollo sobre las galletas. Sirva con 1/2 taza de cóctel de frutas."
+  "ingredientPlainText": {
+    "en": "1 Bag Frozen Peas & Carrots or Mixed Vegetables \n1 Can Chicken (12.5oz) – drained & rinsed \n2 Cans Cream of Chicken Soup (low sodium) \n1 Cup Milk \n1 Can Refrigerated Jumbo Biscuits (8 count) \n1 Can Fruit Cocktail (30oz) \nPepper to taste",
+    "es": "1 Bolsa de Guisantes y Zanahorias\nCongeladas o Vegetales Mixtos\n1 Lata de Pollo (12.5oz) – escurrido y\nenjuagado\n2 Latas de Crema de Pollo (baja en\nsodio)\n1 Taza de Leche\n1 Lata de Galletas Jumbo\nRefrigeradas (8 unidades)\n1 Lata de Cóctel de Frutas  (30oz)\nPimienta al gusto"
   },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1767899913/Open_Faced_Chicken_Pot_Pie_Biscuits_ajafn8.jpg",
   "tags": {
     "blueRibbon": true,
     "vegan": false,
@@ -91,100 +81,76 @@
   },
   "ingredients": [
     {
-      "ingredient": [
-        {
-          "$oid": "692740ddece43a3918579ad2"
-        },
-        {
-          "$oid": "691fa0d85320291b22e92ab7"
-        }
-      ],
-      "amount": 1,
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
-    },
-    {
       "ingredient": {
-        "$oid": "691fa00c5320291b22e92aaf"
+        "$oid": "695eb68f48ba1dbb7ec730df"
       },
       "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "691fa0565320291b22e92ab4"
+        "$oid": "695eb68f48ba1dbb7ec730da"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730db"
       },
       "amount": 2,
-      "unit": {
-        "en": "Cans",
-        "es": "Latas"
-      }
+      "unit": "each"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
       "amount": 1,
-      "ingredient": {
-        "$oid": "691fa08b5320291b22e92ab5"
-      },
-      "unit": {
-        "en": "Cup",
-        "es": "Taza"
-      }
+      "unit": "cup"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e0"
+      },
       "amount": 1,
-      "ingredient": {
-        "$oid": "6927416bece43a3918579ad3"
-      },
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e1"
+      },
       "amount": 1,
-      "ingredient": {
-        "$oid": "692741bbece43a3918579ad4"
-      },
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "692741f2ece43a3918579ad5"
+        "$oid": "695eb68f48ba1dbb7ec730e2"
       },
-      "unit": {
-        "en": "to taste",
-        "es": "al gusto"
-      }
+      "amount": 2,
+      "unit": "g"
     }
   ],
   "appliances": [
     {
-      "$oid": "691f9b38c070923666ddc4fe"
+      "$oid": "695ec4c6b0379ee832d8a866"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "69274c5f66d605ed78b47e4a"
+    "$oid": "69629039c11c899e9e364abd"
   },
   "title": {
     "en": "Salsa Chicken",
     "es": "Pollo en Salsa"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Place chicken in the bottom of a slow cooker and top with corn, beans, taco seasoning and salsa. No need to stir. Cover and cook on low for 4 hours. Chicken should shred easily with 2 forks. The shredded chicken will soak up some of the salsa liquid as it sits. The chicken will not be dry! This is a very versatile base recipe and can make many different meals!",
-    "es": "Coloca el pollo en el fondo de una olla de cocción lenta y cúbrelo con el elote, los frijoles, el sazonador para tacos y la salsa. No es necesario revolver. Tapa y cocina a fuego lento durante 4 horas. El pollo se deshebrará fácilmente con dos tenedores. El pollo deshebrado absorberá parte del líquido de la salsa al reposar. ¡El pollo no quedará seco! ¡Esta es una receta base muy versátil y puede usarse para preparar muchas comidas diferentes!"
+  "ingredientPlainText": {
+    "en": "2 Large Chicken Breasts  \n1 Jar Salsa (16 oz)  \n1 Package Taco Seasoning  \n1 Can Corn  \n1 Can Black Beans",
+    "es": "2 Pechugas de Pollo\nGrandes\n1 Frasco de Salsa (16oz)\n1 Paquete de Sazonador\npara Tacos\n1 Lata de Elote\n1 Lata de Frijoles Negros"
   },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1767900713/Salsa_Chicken_rice_nprxsa.jpg",
   "tags": {
     "blueRibbon": false,
     "vegan": false,
@@ -193,75 +159,61 @@
   "ingredients": [
     {
       "ingredient": {
-        "$oid": "69274a0ed12f5dc03e62ad95"
+        "$oid": "695eb68f48ba1dbb7ec730e3"
       },
       "amount": 2,
-      "unit": {
-        "en": "Large",
-        "es": "Pechugas"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "69274a4ad12f5dc03e62ad97"
+        "$oid": "695eb68f48ba1dbb7ec730e4"
       },
       "amount": 1,
-      "unit": {
-        "en": "Jar",
-        "es": "Frasco"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "69274a8cd12f5dc03e62ad99"
+        "$oid": "695eb68f48ba1dbb7ec730e5"
       },
       "amount": 1,
-      "unit": {
-        "en": "Package",
-        "es": "Paquete"
-      }
+      "unit": "each"
     },
     {
-      "amount": 1,
       "ingredient": {
-        "$oid": "69274abfd12f5dc03e62ad9b"
+        "$oid": "695eb68f48ba1dbb7ec730e6"
       },
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "amount": 1,
+      "unit": "each"
     },
     {
-      "amount": 1,
       "ingredient": {
-        "$oid": "69274af0d12f5dc03e62ad9d"
+        "$oid": "695eb68f48ba1dbb7ec730e7"
       },
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "amount": 1,
+      "unit": "each"
     }
   ],
   "appliances": [
     {
-      "$oid": "69274b23d12f5dc03e62ad9e"
+      "$oid": "695ec4c6b0379ee832d8a868"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "692e02a3645114ccecc146b4"
+    "$oid": "696291b7c11c899e9e364abf"
   },
   "title": {
     "en": "Teriyaki Rice Bowl",
     "es": "Tazón de Arroz Teriyaki"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Prepare rice as directed. Add oil to a skillet on the stovetop. Sauté chicken and vegetables on medium high until starting to brown. Layer rice in bowl, followed by chicken & vegetables, green onions, and wonton strips. Serve with fresh fruit.",
-    "es": "Prepara el arroz como se indica. Agrega aceite a una sartén en la estufa. Saltea el pollo y las verduras a fuego medio-alto hasta que empiecen a dorarse. Coloca el arroz en un tazón, luego el pollo y las verduras, las cebolletas y las tiras de wantán. Servir con fruta fresca."
+  "ingredientPlainText": {
+    "en": "2 Knorr Rice Sides Teriyaki Flavored \n1 Can Chicken (12.5oz) – drained & rinsed \n1 Bag Frozen Mixed Vegetables \n1 Bag Wonton Strips \n2 Green Onions, chopped\n2 Tbsp Vegetable Oil ",
+    "es": "2 Arroces Knorr sabor Teriyaki\n1 Lata de Pollo (12.5oz) \nescurrido y enjuagado\n1 Bolsa de Vegetales Mixtos\nCongelados\n1 Bolsa de Tiras de Wantán\n2 cebollas verdes picadas\n2 Cdas. de Aceite Vegetal"
   },
+  "imageURI": "unknown",
   "tags": {
     "blueRibbon": true,
     "vegan": false,
@@ -270,77 +222,68 @@
   "ingredients": [
     {
       "ingredient": {
-        "$oid": "692e0148645114ccecc146ad"
+        "$oid": "695eb68f48ba1dbb7ec730e8"
       },
-      "amount": 2
-    },
-    {
-      "ingredient": {
-        "$oid": "691fa00c5320291b22e92aaf"
-      },
-      "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
-    },
-    {
-      "ingredient": {
-        "$oid": "691fa0d85320291b22e92ab7"
-      },
-      "amount": 1,
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
-    },
-    {
-      "amount": 1,
-      "ingredient": {
-        "$oid": "692e01b3645114ccecc146af"
-      },
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
-    },
-    {
       "amount": 2,
-      "ingredient": {
-        "$oid": "692e01f4645114ccecc146b1"
-      }
+      "unit": "each"
     },
     {
-      "amount": 2,
       "ingredient": {
-        "$oid": "692e0250645114ccecc146b3"
+        "$oid": "695eb68f48ba1dbb7ec730da"
       },
-      "units": {
-        "en": "Tbsp",
-        "es": "Cdas."
-      }
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730de"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e9"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ea"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 2,
+      "unit": "tbsp"
     }
   ],
   "appliances": [
     {
-      "$oid": "691f9b38c070923666ddc4fe"
+      "$oid": "695ec4c6b0379ee832d8a866"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "692e07a1645114ccecc146ba"
+    "$oid": "69629378c11c899e9e364ac1"
   },
   "title": {
     "en": "Mushroom Chicken Noodle Dish",
-    "es": " Plato de Fideos con Pollo y Champiñones"
+    "es": "Plato de Fideos  con Pollo y Champiñones"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Cook peas & carrots as directed on package adding your preferred seasonings. Boil egg noodles as directed. Drain & return to pot. Add cream of mushroom soup, mushrooms, chicken, milk & cheese. Mix over low heat until cheese is melted. Peas & carrots may be served on the side or mixed in.",
-    "es": "Cocine los guisantes y las zanahorias según las instrucciones del paquete, agregando sus condimentos preferidos. Hierva los fideos de huevo según las instrucciones. Escurra y vuelva a colocarlos en la olla. Agregue la crema de champiñones, los champiñones, el pollo, la leche y el queso. Mezcle a fuego lento hasta que el queso se derrita. Los guisantes y las zanahorias se pueden servir aparte o mezclados."
+  "ingredientPlainText": {
+    "en": "1 Bag Egg Noodles \n1 Bag Frozen Peas & Carrots \n2 Cans Cream of Mushroom Soup Low Sodium\n(12.5 oz)\n1 Can Mushrooms (4oz) – drained & rinsed \n1 Can Chicken (12.5oz) – drained & rinsed\n1/2 Cup Milk \n1 Cup Shredded Cheese",
+    "es": "1 Bolsa de Fideos de Huevo\n1 Bolsa de Guisantes y Zanahorias\nCongeladas\n1 Lata Grande o 2 Pequeñas de Crema\nde Champiñones\n1 Lata de Champiñones (4oz) \nescurridos y enjuagados\n1 Lata de Pollo (12.5oz) – escurrido y\nenjuagado\n1/2 Taza de Leche\n1 Taza de Queso Rallado"
   },
+  "imageURI": "unknown",
   "tags": {
     "blueRibbon": false,
     "vegan": false,
@@ -349,95 +292,75 @@
   "ingredients": [
     {
       "ingredient": {
-        "$oid": "692e062f645114ccecc146b6"
+        "$oid": "695eb68f48ba1dbb7ec730ec"
       },
       "amount": 1,
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "692740ddece43a3918579ad2"
+        "$oid": "695eb68f48ba1dbb7ec730df"
       },
       "amount": 1,
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "692e0698645114ccecc146b7"
+        "$oid": "695eb68f48ba1dbb7ec730ed"
       },
-      "amount": 1,
-      "unit": {
-        "en": "Cans",
-        "es": "Lata Grande o 2 Pequeñas"
-      }
+      "amount": 2,
+      "unit": "each"
     },
     {
-      "amount": 1,
       "ingredient": {
-        "$oid": "692e0723645114ccecc146b8"
+        "$oid": "695eb68f48ba1dbb7ec730ee"
       },
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
-    },
-    {
       "amount": 1,
-      "ingredient": {
-        "$oid": "691fa00c5320291b22e92aaf"
-      },
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730da"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
       "amount": 0.5,
-      "ingredient": {
-        "$oid": "691fa08b5320291b22e92ab5"
-      },
-      "unit": {
-        "en": "Cup",
-        "es": "Taza"
-      }
+      "unit": "cup"
     },
     {
-      "amount": 1,
       "ingredient": {
-        "$oid": "692e0ac8645114ccecc146bd"
+        "$oid": "695eb68f48ba1dbb7ec730ef"
       },
-      "unit": {
-        "en": "Cup",
-        "es": "Taza"
-      }
+      "amount": 1,
+      "unit": "cup"
     }
   ],
   "appliances": [
     {
-      "$oid": "692e08ab645114ccecc146bc"
+      "$oid": "695ec4c6b0379ee832d8a869"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "692e117ab8d2751768583093"
+    "$oid": "696294c2c11c899e9e364ac3"
   },
   "title": {
     "en": "Chicken & Dumplings with Green Beans",
     "es": "Pollo y Albóndigas con Judías Verdes"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Cook bag of green beans in the microwave for 6 minutes. In a skillet on medium high, sauté bag of cooked green beans in butter & garlic salt until beans start to brown & remove from heat. On a lightly floured surface, roll out or flatten each biscuit to a thickness of 1/8“ and cut into 1/2\" wide strips. In a stockpot, add the water, bouillon cubes, and cream of chicken soup. Bring to a boil until the broth dissolves. Submerge the biscuit strips in boiling water, one at a time. Reduce heat to low. Cover and simmer for 15 minutes. Add the chicken to the pot. Cover and simmer for 5 more minutes. Season with pepper. Serve with green beans.",
-    "es": "Cocine la bolsa de judías verdes en el microondas durante 6 minutos. En una sartén a fuego medio-alto, saltee la bolsa de judías verdes cocidas en mantequilla y sal de ajo hasta que las judías empiecen a dorarse y retire del fuego. En una superficie ligeramente enharinada, estire o aplane cada galleta hasta que tenga un grosor de 1/8\" y córtela en tiras de 1/2\" de ancho. En una olla sopera, agregue el agua, los cubos de caldo y la crema de pollo. Deje hervir hasta que el caldo se disuelva. Sumerja las tiras de galleta en agua hirviendo, una a la vez. Reduzca el fuego a bajo. Tapar y cocinar a fuego lento durante 15 minutos. Agregar el pollo a la olla. Tapar y cocinar a fuego lento durante 5 minutos más. Sazonar con pimienta. Servir con judías verdes."
+  "ingredientPlainText": {
+    "en": "1 Can Chicken (12.5oz) – drained & rinsed \n1 Can Refrigerated Jumbo Biscuits (8 count) \n1 Can Cream Chicken Soup (low sodium) \n2 Knorr Chicken Flavored Bouillon Cubes \n4 Cups Water \n1 Bag Frozen Green Beans \n2 Tbsp Margarine \n1 Tsp Garlic Salt \nPepper to taste ",
+    "es": "1 lata de pollo (12.5oz) – escurrido y enjuagado\n1 lata de galletas jumbo refrigeradas\n(8 unidades)\n1 lata de sopa crema de pollo (baja en sodio)\n2 cubos de caldo Knorr sabor pollo\n4 tazas de agua\n1 bolsa de ejotes congelados\n2 cucharadas de margarina\n1 cucharadita de sal de ajo\nPimienta al gusto"
   },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768004317/Chicken_Dumplings_ghmzsb.jpg",
   "tags": {
     "blueRibbon": false,
     "vegan": false,
@@ -446,113 +369,82 @@
   "ingredients": [
     {
       "ingredient": {
-        "$oid": "691fa00c5320291b22e92aaf"
+        "$oid": "695eb68f48ba1dbb7ec730da"
       },
       "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "6927416bece43a3918579ad3"
+        "$oid": "695eb68f48ba1dbb7ec730e0"
       },
       "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "691fa0565320291b22e92ab4"
+        "$oid": "695eb68f48ba1dbb7ec730db"
       },
       "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f0"
+      },
       "amount": 2,
-      "ingredient": {
-        "$oid": "692e0bf9645114ccecc146c0"
-      }
+      "unit": "each"
     },
     {
-      "amount": 4,
       "ingredient": {
-        "$oid": "692e0c71645114ccecc146c2"
+        "$oid": "695eb68f48ba1dbb7ec730f1"
       },
-      "unit": {
-        "en": "Cups",
-        "es": "Tazas"
-      }
-    },
-    {
       "amount": 1,
-      "ingredient": {
-        "$oid": "692e0ca8645114ccecc146c4"
-      },
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
+      "unit": "each"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f2"
+      },
       "amount": 2,
-      "ingredient": {
-        "$oid": "692e0ce4645114ccecc146c5"
-      },
-      "unit": {
-        "en": "Tbsp",
-        "es": "Cucharadas"
-      }
+      "unit": "tbsp"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f3"
+      },
       "amount": 1,
-      "ingredient": {
-        "$oid": "692e0d1b645114ccecc146c6"
-      },
-      "unit": {
-        "en": "Tsp",
-        "es": "Cucharadita"
-      }
+      "unit": "tsp"
     },
     {
       "ingredient": {
-        "$oid": "692741f2ece43a3918579ad5"
+        "$oid": "695eb68f48ba1dbb7ec730e2"
       },
-      "unit": {
-        "en": "to taste",
-        "es": "al gusto"
-      }
+      "amount": 1,
+      "unit": "g"
     }
   ],
   "appliances": [
     {
-      "$oid": "692e08ab645114ccecc146bc"
-    },
-    {
-      "$oid": "692e0bae645114ccecc146bf"
+      "$oid": "695ec4c6b0379ee832d8a86c"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "692e17f096d7a413052c8fee"
+    "$oid": "696295bec11c899e9e364ac5"
   },
   "title": {
     "en": "Hawaiian Chicken with Steamed Broccoli",
     "es": "Pollo Hawaiano con Brócoli al Vapor"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Add chicken, pineapple, and BBQ sauce to sprayed or lined slow cooker. Cook on low for 4 hours and shred chicken. Cook rice as directed. Microwave unopened bag of broccoli for 5-7 minutes (or follow other cooking method on bag). Serve chicken over rice with steamed broccoli on the side.",
-    "es": "Agregue el pollo, la piña y la salsa barbacoa a una olla de cocción lenta rociada o forrada. Cocine a fuego lento durante 4 horas y desmenuce el pollo. Cocine el arroz según las instrucciones. Caliente en el microondas la bolsa de brócoli sin abrir durante 5-7 minutos (o siga el método de cocción indicado en la bolsa). Sirva el pollo sobre arroz con brócoli al vapor aparte."
+  "ingredientPlainText": {
+    "en": "2 Large Chicken Breasts \n1 Can Pineapple Chunks (15oz) \n1 Cup Teriyaki Sauce \n1 Bag Frozen Broccoli Florets (12oz) \n2 Cups Rice ",
+    "es": "2 pechugas de pollo grandes\n1 lata de piña en trozos (15oz)\n1 taza de salsa teriyaki\n1 bolsa de brócoli congelado\n(12oz)\n2 tazas de arroz"
   },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768004386/Slow_Cooker_Hawaiian_Ckn_dfraee.jpg",
   "tags": {
     "blueRibbon": false,
     "vegan": false,
@@ -561,75 +453,61 @@
   "ingredients": [
     {
       "ingredient": {
-        "$oid": "69274a0ed12f5dc03e62ad95"
+        "$oid": "695eb68f48ba1dbb7ec730e3"
       },
       "amount": 2,
-      "unit": {
-        "en": "Large",
-        "es": "Pechugas"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "692e15e8b8d275176858309e"
+        "$oid": "695eb68f48ba1dbb7ec730f4"
       },
       "amount": 1,
-      "unit": {
-        "en": "Can",
-        "es": "Lata"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "692e172796d7a413052c8fe9"
+        "$oid": "695eb68f48ba1dbb7ec730f5"
       },
       "amount": 1,
-      "unit": {
-        "en": "Cup",
-        "es": "Taza"
-      }
+      "unit": "cup"
     },
     {
-      "amount": 1,
       "ingredient": {
-        "$oid": "692e176c96d7a413052c8fea"
+        "$oid": "695eb68f48ba1dbb7ec730f6"
       },
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
+      "amount": 1,
+      "unit": "each"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f7"
+      },
       "amount": 2,
-      "ingredient": {
-        "$oid": "692e17af96d7a413052c8feb"
-      },
-      "unit": {
-        "en": "Cups",
-        "es": "Tazas"
-      }
+      "unit": "cups"
     }
   ],
   "appliances": [
     {
-      "$oid": "69274b23d12f5dc03e62ad9e"
+      "$oid": "695ec4c6b0379ee832d8a868"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "692e1c3b96d7a413052c8fff"
+    "$oid": "6962970bc11c899e9e364ac7"
   },
   "title": {
     "en": "Rotisserie Chicken & Broccoli Pasta",
     "es": "Pasta con Pollo Rostizado y Brócoli"
   },
-  "imageURI": "",
-  "instructions": {
-    "en": "Debone chicken and warm in microwave. Make pasta according to directions. Steam broccoli in the bag in the microwave and chop into small pieces. While waiting for the pasta to set, stir in broccoli. Serve with heated chicken.",
-    "es": "Deshuesa el pollo y caliéntalo en el microondas. Prepara la pasta según las instrucciones. Cocine al vapor el brócoli en la bolsa en el microondas y córtelo en trozos pequeños. Mientras la pasta cuece, incorpora el brócoli. Sirve con el pollo caliente."
+  "ingredientPlainText": {
+    "en": "1 Chilled* Rotisserie Chicken \n2 Boxes Pasta Roni Angel Hair Pasta with Herbs\n(4.8oz each) \n1/2 Stick Butter or Margarine (4 Tbsp) \n2/3 Cup Milk \n1 Bag Frozen Broccoli Florets (12oz) ",
+    "es": "1 Pollo Rotisserie Frío*\n2 Cajas de Pasta Roni Cabello de Ángel\ncon Hierbas (4.8oz cada una)\n1/2 Barra de Mantequilla o Margarina\n(4 cucharadas)\n2/3 Taza de Leche\n1 Bolsa de Ramilletes de Brócoli\nCongelados (12oz)"
   },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768004527/Broccoli_Pasta_Rotisserie_Chicken_bxujhd.jpg",
   "tags": {
     "blueRibbon": false,
     "vegan": false,
@@ -638,67 +516,3459 @@
   "ingredients": [
     {
       "ingredient": {
-        "$oid": "692e1a7a96d7a413052c8ff7"
+        "$oid": "695eb68f48ba1dbb7ec730f8"
       },
       "amount": 1,
-      "unit": {
-        "en": "Chilled*",
-        "es": "Frio*"
-      }
+      "unit": "each"
     },
     {
       "ingredient": {
-        "$oid": "692e1ac596d7a413052c8ff8"
+        "$oid": "695eb68f48ba1dbb7ec730f9"
       },
       "amount": 2,
-      "unit": {
-        "en": "Boxes",
-        "es": "Cajas"
-      }
+      "unit": "each"
     },
     {
-      "ingredient": [
-        {
-          "$oid": "692e1b0a96d7a413052c8ff9"
-        },
-        {
-          "$oid": "692e0ce4645114ccecc146c5"
-        }
-      ],
-      "amount": 0.5,
-      "unit": {
-        "en": "Stick",
-        "es": "Barra"
-      }
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 4,
+      "unit": "tbsp"
     },
     {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
       "amount": 0.6666,
-      "ingredient": {
-        "$oid": "691fa08b5320291b22e92ab5"
-      },
-      "unit": {
-        "en": "Cup",
-        "es": "Taza"
-      }
+      "unit": "cup"
     },
     {
-      "amount": 1,
       "ingredient": {
-        "$oid": "692e176c96d7a413052c8fea"
+        "$oid": "695eb68f48ba1dbb7ec730f6"
       },
-      "unit": {
-        "en": "Bag",
-        "es": "Bolsa"
-      }
+      "amount": 1,
+      "unit": "each"
     }
   ],
   "appliances": [
     {
-      "$oid": "692e1b5696d7a413052c8ffc"
+      "$oid": "695ec4c6b0379ee832d8a86a"
     },
     {
-      "$oid": "692e0bae645114ccecc146bf"
+      "$oid": "695ec4c6b0379ee832d8a867"
     }
   ],
-  "totalCost": 1
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "696299bbc11c899e9e364ac9"
+  },
+  "title": {
+    "en": "Chicken Ramen Skillet",
+    "es": "Sartén de Ramen de Pollo"
+  },
+  "ingredientPlainText": {
+    "en": "3 Pkgs Chicken Flavored Ramen Noodles \n1 Seasoning Packet from the Ramen. Save 2\npackets for other recipes.\n1 Can Chicken (12.5oz) – drained & rinsed \n1 Bag Frozen Peas & Carrots \n2 Tbsp Soy Sauce \n2 Tbsp Vegetable Oil \n5 Boiled Eggs \n2 Green Onions, chopped",
+    "es": "3 Paquetes de Fideos Ramen con Sabor a\nPollo\n1 Paquete de Sazonador para Ramen\n(Guarde 2 paquetes para otras recetas.)\n1 Lata de Pollo (12.5oz) – escurrido y\nenjuagado\n1 Bolsa de Guisantes y Zanahorias\nCongeladas\n2 Cdas. de Salsa de Soja\n2 Cdas. de Aceite Vegetal\n5 Huevos Cocidos\n2 cebollas verdes picadas"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768004626/Chicken_Ramen_Skillet_npwowo.jpg",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fb"
+      },
+      "amount": 3,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fc"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fc"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730df"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fd"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ea"
+      },
+      "amount": 2,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86a"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69629b85c11c899e9e364acb"
+  },
+  "title": {
+    "en": "Chicken Cracker Casserole",
+    "es": "Cazuela de Pollo con Galletas"
+  },
+  "ingredientPlainText": {
+    "en": "1 Can Chicken (12.5oz) – drained & rinsed\n1 Bag Mild Cheddar Cheese (8oz) \nReserve 1/2 cup\n1 Can Cream of Chicken Soup (low sodium)\n1 Container Sour Cream (8oz)\n2 Sleeves Butter Rounds Crackers\n1 Bag Frozen Broccoli Florets (12oz)\nPepper to taste\n1/2 Stick Butter or Margarine",
+    "es": "1 Lata de Pollo (12.5oz) – escurrido y\nenjuagado\n1 Bolsa de Queso Cheddar Suave (8oz) \nreservar 1/2 taza\n1 Lata de Crema de Pollo (baja en sodio)\n1 Envase de Crema Agria (8oz)\n2 Paquetes de Galletas Redondas de\nMantequilla\n1 Bolsa de Ramilletes de Brócoli\nCongelados (12oz)\nSal y Pimienta al gusto\n1/2 Barra de Mantequilla o Margarina"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768004770/Chicken_Cracker_Casserole_hdflqe.heic",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730da"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ff"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730db"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73100"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73101"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f6"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e2"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 4,
+      "unit": "tbsp"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69629c57c11c899e9e364acd"
+  },
+  "title": {
+    "en": "Sheet Pan Chicken Nachos",
+    "es": "Nachos de Pollo en Sartén"
+  },
+  "ingredientPlainText": {
+    "en": "1 Can Chicken (12.5oz) – drained & rinsed\n1 Can Armour Chili with Beans (14oz)\n1 Package Shredded Colby Jack Cheese (8oz)\n1 Bag Tortilla Chips\nOptional Toppings: Shredded Lettuce, Diced\nTomatoes, Jalapenos, Sour Cream, etc.",
+    "es": "1 Lata de Pollo (12.5oz) – escurrido y enjuagado\n1 Lata de Chili Armour con Frijoles (14oz)\n1 Paquete de Queso Colby Jack Rallado (8oz)\n1 Bolsa de Totopos\nIngredientes opcionales: Lechuga rallada,\ntomate picado, jalapeños, crema agria, etc."
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768004837/Sheet_Pan_Chicken_Nachos_wla0xm.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730da"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73102"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73103"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73104"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69629d70c11c899e9e364acf"
+  },
+  "title": {
+    "en": "Stir-Fried Chicken and Vegetables",
+    "es": "Pollo y Verduras Salteados"
+  },
+  "ingredientPlainText": {
+    "en": "2 Large Chicken Breasts\n1 Cup  Teriyaki Sauce\n1 Bag  Stir-Fry Vegetables     – mix of your\nchoice – thawed\n1/2 Bunch of Green Onions\nVegetable Oil\n2 Cups of Rice",
+    "es": "2 Pechugas de Pollo Grandes\n1 Taza de Salsa Teriyaki \n1 Bolsa de Vegetales Salteados  (mezcla de su\nelección, descongelados)\n1/2 Manojo de Cebolletas\nAceite Vegetal\n2 Tazas de Arroz"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768004888/Stir-fried_Chicken_Vegetables_wqbn3l.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e3"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f5"
+      },
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73105"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ea"
+      },
+      "amount": 3,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f7"
+      },
+      "amount": 2,
+      "unit": "cup"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6965531aa14c03ad66377b58"
+  },
+  "title": {
+    "en": "Chili Chicken with Okra",
+    "es": "Pollo al Chile con Okra"
+  },
+  "ingredientPlainText": {
+    "en": "2 Large Chicken Breasts – trimmed and cut\ninto 1” pieces\n2 Tbsp Chili Powder\n1 Can Tomato Sauce (15oz)\n1 Bag Frozen Okra (12oz) – not breaded   \n1/4 Cup Chopped Fresh Cilantro\nSalt & Pepper\nVegetable Oil",
+    "es": "2 pechugas de pollo grandes, limpias y cortadas\nen trozos de 1”\n2 cucharadas de chile en polvo\n1 lata de salsa de tomate (15oz)\n1 bolsa de okra congelada (12oz) sin empanizar\n1/4 taza de cilantro fresco picado\nSal y pimienta\nAceite vegetal"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768005150/Chili_Chicken_with_Okra_s2f7mn.jpg",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e3"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73107"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73108"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73109"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310a"
+      },
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310b"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e2"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 1,
+      "unit": "tbsp"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86a"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6965568ca14c03ad66377b5a"
+  },
+  "title": {
+    "en": "Chicken & Rice Soup",
+    "es": "Sopa de Pollo y Arroz"
+  },
+  "ingredientPlainText": {
+    "en": "1 Can Chicken (12.5oz) – drained & rinsed\n2 Cups Rice\n4 Cans Cream of Chicken Soup (low sodium)\n3 Cups Milk\n1 Bag California-Style, Frozen Vegetables\n1 Pkt Seasoning Leftover from Chicken Ramen\nNoodle Packages\n2 Sleeves of Butter Rounds Crackers\n3-5 Bananas",
+    "es": "1 lata de pollo (12.5oz)\n2 tazas de arroz\n4 latas de crema de pollo (baja en sodio)\n3 tazas de leche\n1 bolsa de verduras congeladas estilo California\n1 paquete de condimento sobrante de los\npaquetes de fideos ramen de pollo\n2 paquetes de galletas redondas de mantequilla\n3-5 plátanos"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768005411/Chicken_and_rice_soup_xmoujb.jpg",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730da"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f7"
+      },
+      "amount": 2,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730db"
+      },
+      "amount": 4,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 3,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310c"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fc"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73101"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310d"
+      },
+      "amount": 3,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69655844a14c03ad66377b5c"
+  },
+  "title": {
+    "en": "Creamy Tomato Soup & Grilled Cheese",
+    "es": "Sopa Cremosa de Tomate y Queso a la Plancha"
+  },
+  "ingredientPlainText": {
+    "en": "3 Cans Tomato Soup\n1 Soup Can Milk\nSalt & Pepper to taste\n1/2 Loaf White or Wheat Bread \n10 Slices American Cheese\n1/2 Stick Margarine or Butter",
+    "es": "3 latas de sopa de tomate\n1 lata de sopa de leche\nSal y pimienta al gusto\n1/2 barra de pan blanco o integral\n10 rebanadas de queso americano\n1/2 barra de margarina o mantequilla"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768005504/Creamy_Tomato_Soup_and_Grilled_Chesse_dtusex.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": true
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310e"
+      },
+      "amount": 3,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 2,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310b"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e2"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310f"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73111"
+      },
+      "amount": 10,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 4,
+      "unit": "tbsp"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69655968a14c03ad66377b5e"
+  },
+  "title": {
+    "en": "Taco Soup",
+    "es": "Sopa de Tacos"
+  },
+  "ingredientPlainText": {
+    "en": "1 Can Chicken (12.5oz) – drained & rinsed\n1 Can Black Beans – drained & rinsed\n1 Can Generic Rotel Tomatoes\n1 Can Corn – with liquid\n1 Pkt Taco Seasoning\n2 Knorr Chicken Flavored Bouillon Cubes\n4 Cups Water",
+    "es": "1 lata de pollo (12.5oz) – escurrido y\nenjuagado\n1 lata de frijoles negros – escurridos y\nenjuagados\n1 lata de tomates Rotel genéricos\n1 lata de maíz – con líquido\n1 paquete de sazonador para tacos\n2 cubos de caldo Knorr sabor pollo\n4 tazas de agua"
+  },
+  "imageURI": "",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730da"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e7"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73112"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e6"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e5"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f0"
+      },
+      "amount": 2,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69655bfba14c03ad66377b60"
+  },
+  "title": {
+    "en": "Beef Stew with Garlic Bread",
+    "es": "Estofado de Ternera con Pan de Ajo"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb Ground Beef or 1 lb Roll Frozen Ground\nTurkey – thawed\n2 Carrots – peeled and cut into 1” pieces\n2 Large or 3 Small Potatoes – cubed\n2 Stalks Celery – chopped\n1/2 Can Tomato Paste (6oz)\n6 Cups Hot Water\n2 Knorr Beef Bouillon Cubes\nPepper to taste\n1 Loaf Walmart Deli Sliced Italian Bread\n1 Stick Margarine\nGarlic Salt",
+    "es": "1 lb de carne molida de res o 1 lb de rollo de\npavo molido congelado, descongelado\n2 zanahorias peladas y cortadas en trozos de 1”\n2 papas grandes o 3 pequeñas, en cubos\n2 tallos de apio picados\n1/2 lata de pasta de tomate (6oz)\n6 tazas de agua caliente\n2 cubos de caldo de res Knorr\nPimienta al gusto\n1 barra de pan italiano rebanado Walmart Deli\n1 barra de margarina\nSal de ajo"
+  },
+  "imageURI": "",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73115"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73116"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73118"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73119"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311a"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e2"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311b"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 8,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f3"
+      },
+      "amount": 1,
+      "unit": "g"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69655d6fa14c03ad66377b62"
+  },
+  "title": {
+    "en": "Chicken Noodle Soup",
+    "es": "Sopa de Pollo con Fideos"
+  },
+  "ingredientPlainText": {
+    "en": "1 Chilled Rotisserie Chicken\n8 Cups Water\n1 Knorr Chicken Bouillon Cube – if needed\n1 Bunch of Parsley\n2 Carrots – peeled and cut into ½” pieces\n2 Stalks Celery – cut into ½” pieces\n1 Bag Egg Noodles\n1 Tsp Each Salt and Pepper",
+    "es": "1 Pollo Rostizado Frío\n8 Tazas de Agua\n1 Cubo de Caldo de Pollo Knorr – si es\nnecesario\n1 Manojo de Perejil\n2 Zanahorias peladas y cortadas en trozos\nde 1/2”\n2 Tallos de Apio cortados en trozos de 1/2”\n1 Bolsa de Fideos de Huevo\n1 Cuchilla de Sal y Pimienta"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768005715/Chicken_Noodle_Soup_qakfcx.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f8"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f0"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311c"
+      },
+      "amount": 5,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73115"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73118"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ec"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310b"
+      },
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e2"
+      },
+      "amount": 1,
+      "unit": "tsp"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69655e8fa14c03ad66377b64"
+  },
+  "title": {
+    "en": "15 Bean Soup",
+    "es": "Sopa de Pollo con Fideos"
+  },
+  "ingredientPlainText": {
+    "en": "1 Bag Dried 15-Bean Soup Mix\n1 Can Diced Tomatoes (15oz)\n1 Box Unsalted Beef Broth (32oz)\n2 Knorr Beef Boullion Cubes \n1/4 Tsp Garlic Powder\nJuice from 1 Lemon\n1 Medium Onion, Chopped\n4 Cups Very Hot Water",
+    "es": "1 Pollo Rostizado Frío\n8 Tazas de Agua\n1 Cubo de Caldo de Pollo Knorr – si es necesario\n1 Manojo de Perejil\n2 Zanahorias peladas y cortadas en trozos de 1/2”\n2 Tallos de Apio cortados en trozos de 1/2”\n1 Bolsa de Fideos de Huevo\n1 Cuchilla de Sal y Pimienta"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768005807/15_Bean_Soup_izhbq5.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311d"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311e"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311f"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311a"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73120"
+      },
+      "amount": 0.25,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73121"
+      },
+      "amount": 25,
+      "unit": "mL"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73122"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69655fbfa14c03ad66377b66"
+  },
+  "title": {
+    "en": "5-Ingredient Bacon Potato Soup",
+    "es": "Sopa de Papa y Tocino de 5 Ingredientes"
+  },
+  "ingredientPlainText": {
+    "en": "4 Large Potatoes – peeled & diced\n1 Medium Onion – finely chopped\n1 Box Chicken Broth (32oz)\n2 Tbsp Butter or Margarine\n1/2  Bag Real Bacon Bits\nSalt & Pepper to taste",
+    "es": "4 papas grandes, peladas y\ncortadas en cubos\n1 cebolla mediana, finamente\npicada\n1 caja de caldo de pollo (32oz)\n2 cucharadas de mantequilla o\nmargarina\n1/2 bolsa de tocino natural\nSal y pimienta al gusto"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768005864/Potato_Soup_kdmas7.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73116"
+      },
+      "amount": 4,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73122"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73123"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73124"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310b"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e2"
+      },
+      "amount": 1,
+      "unit": "g"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "696560a5a14c03ad66377b68"
+  },
+  "title": {
+    "en": "Black Bean Soup",
+    "es": "Sopa de Frijoles Negros"
+  },
+  "ingredientPlainText": {
+    "en": "4 Cans Black Beans, undrained\n2 Knorr Chicken Flavored Bouillon Cubes\n4 Cups Water    \n3 Tbsp Canned Chipotle Chile in Adobo Sauce– minced\n½ Cup Plain Greek Yogurt or Sour Cream\n1 Tsp Grated Lime Zest, Plus Lime Wedges for\nServing",
+    "es": "4 latas de frijoles negros sin\nescurrir\n2 cubos de caldo Knorr sabor\npollo\n4 tazas de agua\n3 cucharadas de chile chipotle\nen adobo enlatado, picado\n½ taza de yogur griego natural\no crema agria\n1 cucharadita de ralladura de\nlima y gajos de lima para servir"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006142/Sweet_Potato_Black_Bean_Chili_iyhhdv.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e7"
+      },
+      "amount": 4,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f0"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73125"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73126"
+      },
+      "amount": 0.5,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73127"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6965618fa14c03ad66377b6a"
+  },
+  "title": {
+    "en": "Bacon-Tuna Parmesano",
+    "es": "Bacon-Tuna Parmesano"
+  },
+  "ingredientPlainText": {
+    "en": "1 1/3 Cup Milk\n2 2/3 Cup Water\n4 Tbsp Butter or Margarine\n2 Boxed Pasta Roni Parmesan Cheese Flavor\n1 Bag Frozen Peas & Carrots\n1 Can White Tuna in Water (12oz) - drained & flaked\n4 Slices Crispy Cooked Bacon, crumbled \n       OR 1/2 Bag Real Bacon Pieces",
+    "es": "1 1/3 taza de leche\n2 2/3 tazas de agua\n4 Cda de mantequilla o margarina\n2 cajas de pasta Roni sabor queso\nparmesano\n1 bolsa de guisantes y zanahorias\ncongelados\n1 lata de atún blanco en agua (12\noz) - escurrido y desmenuzado\n4 rebanadas de tocino crujiente\ncocido, desmenuzado\nO 1/2 bolsa de tocino natural en\ntrozos"
+  },
+  "imageURI": "",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 1.333,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 4,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73128"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730df"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73129"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73124"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a867"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "696562fca14c03ad66377b6c"
+  },
+  "title": {
+    "en": "Tuna Salad Sandwiches & Corn Chips",
+    "es": "Sándwiches de Ensalada de Atún y Chips de Maíz"
+  },
+  "ingredientPlainText": {
+    "en": "1 Can Tuna in Water (12oz) – drained & flaked\n2-3 Oz Ranch Dressing\n1/2 Loaf of White or Wheat Bread\n1 Bag Corn Chips",
+    "es": "1 lata de atún blanco en agua (12 oz) \nescurrido y desmenuzado\n2 – 3 oz de aderezo ranch\n1/2 hogaza de pan blanco o integral\n1 bolsa de totopos"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006229/Tuna_Salad_and_Corn_Chips_u7ldhd.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73129"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312a"
+      },
+      "amount": 2,
+      "unit": "oz"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310f"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "696562e0a2c96930a995a538"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "696563fca14c03ad66377b6e"
+  },
+  "title": {
+    "en": "Tuna Broccoli Alfredo",
+    "es": "Alfredo de Atún y Broccoli"
+  },
+  "ingredientPlainText": {
+    "en": "1 Box Rotini (16oz)\n1 Bag Frozen Broccoli\n1 Jar Alfredo Sauce (22oz)\n1 Can Tuna in Water (12oz) – drained & flaked\n1 Bag Mozzarella Cheese (8oz)\n1 Box Frozen Garlic Bread",
+    "es": "1 Caja de fideos rotini (16oz)\n1 Bolsa de brócoli congelado\n1 Frasco de salsa Alfredo (22oz)\n1 lata de atún blanco en agua (12 oz)- escurrido y desmenuzado\n1 Bolsa de queso mozzarella (8oz)\n1 Caja de pan de ajo congelado"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006277/Tuna_Broccoli_Alfredo_nhma5g.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312b"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f6"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312c"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73129"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312d"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312e"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69656478a14c03ad66377b70"
+  },
+  "title": {
+    "en": "Tuna Mac & Veggies",
+    "es": "Macarrones de Atún con Verduras"
+  },
+  "ingredientPlainText": {
+    "en": "5 Individual Microwave Macaroni & Cheese\nCups (2oz each)\n2 Cans of Tuna in Water (5oz each), drained &\nflaked\n2 Bags Frozen California Style Vegetables",
+    "es": "5 Macarrones con queso\nindividuales para microondas\n2 Latas de atún en agua (5oz\ncada una), escurrido y\ndesmenuzado\n2 Bolsas de verduras\ncongeladas al estilo California"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006322/Tunamac_Cali_Veggies_m7h6mg.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312f"
+      },
+      "amount": 5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73129"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310c"
+      },
+      "amount": 2,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a867"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "696565f4a14c03ad66377b72"
+  },
+  "title": {
+    "en": "Cuban Picadillo",
+    "es": "Cuban Picadillo"
+  },
+  "ingredientPlainText": {
+    "en": "2 tablespoons of olive oil\n1/2 cup diced onion\n3-4 cloves garlic, minced\n1 lb. ground beef\n6 ounces tomato sauce\nSalt and pepper to taste, (start with 1/4 teaspoon\nthen adjust from there)\n1/4 cup Spanish olives cut in half (optional)",
+    "es": "2 cucharadas de aceite de oliva\n1/2 taza de cebolla picada\n3-4 dientes  de ajo picados\n1 libra carne molida\n6 onzas de salsa de tomate\nSal y pimienta al gusto (comience\ncon 1/4 de cucharadita y luego ajuste\ndesde allí)\n1/4 taza de aceitunas españolas\ncortadas por la mitad (opcional)"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "69656520a2c96930a995a539"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73122"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315c"
+      },
+      "amount": 3,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73119"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73130"
+      },
+      "amount": 0.25,
+      "unit": "cup"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69656720a14c03ad66377b74"
+  },
+  "title": {
+    "en": "Spaghetti & Meatballs",
+    "es": "Espaguetis y Albóndigas"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Tube Ground Beef\n2 Slices Bread or a Hamburger Bun, Cubed\n1 Egg\n1 Tbsp Dried Onions\n1 Tsp Italian Seasoning\n1 Hunt’s Spaghetti Sauce (24oz)\n1 Box Rigatoni (16oz)\n4 Tbsp Vegetable Oil",
+    "es": "1 lb de carne molida en tubo\n2 rebanadas de pan o pan de hamburguesa\nen cubos\n1 huevo\n1 cucharada de cebolla deshidratada\n1 cucharadita de condimento italiano\n1 salsa para espaguetis Hunt's (24oz)\n1 caja de rigatoni (16oz)\n4 cucharadas de aceite vegetal"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006429/Spaghetti_Meatballs_jhskgw.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73143"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73132"
+      },
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73133"
+      },
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73134"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73135"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 4,
+      "unit": "tbsp"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "696569b9a14c03ad66377b77"
+  },
+  "title": {
+    "en": "Swedish Meatballs",
+    "es": "Albóndigas Suecas"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Tube Ground Beef\n2 Slices Bread or a Hamburger Bun, Cubed\n1 Egg\n1 Tbsp Dried Onions\n1 Tsp Italian Seasoning\n1 Box  Linguine Noodles\n2 Cans Cream of Chicken Soup (Low Sodium)\n1 Soup Can of Milk\n½ Tsp Garlic Powder\n1 Tsp Onion Powder\n½ Tsp Salt \n½ Tsp Pepper\n1 Tbsp Worcestershire Sauce\n½ Cup Sour Cream",
+    "es": "1 lb de carne molida en tubo\n2 rebanadas de pan o pan de hamburguesa en\ncubos\n1 huevo\n1 cucharada de cebolla deshidratada\n1 cucharadita de condimento italiano\n1 caja de fideos linguini \n2 latas de crema de pollo (baja en sodio)\n1 lata de leche\n½ cucharadita de ajo en polvo\n1 cucharadita de cebolla en polvo\n½ cucharadita de sal\n½ cucharadita de pimienta\n1 cucharada de salsa Worcestershire\n½ taza de crema agria"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006489/Swedish_meatballs_fecphe.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73143"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73132"
+      },
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73133"
+      },
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73136"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730db"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 2,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73120"
+      },
+      "amount": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73138"
+      },
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73139"
+      },
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73100"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    },
+    {
+      "$oid": "695ec4c6b0379ee832d8a86a"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69656ae8a14c03ad66377b79"
+  },
+  "title": {
+    "en": "Rice Casserole",
+    "es": "Cazuela de Arroz"
+  },
+  "ingredientPlainText": {
+    "en": "2 Cups Rice\n1 lb. Tube Ground Beef\n1/4 Cup Ketchup \n1/4 Cup Minced Dried Onions\n1 Hunt’s Spaghetti Sauce (24oz)\n1 Cup Frozen Corn\nGarlic Powder & Pepper to taste\nParmesan Cheese",
+    "es": "2 Tazas de Arroz\n1 lb de Carne Molida en Tubo\n1/4 Taza de Kétchup\n1/4 Taza de Cebolla Seca Picada\n1 Salsa para Espagueti Hunt's (24oz)\n1 Taza de Maíz Congelado\nAjo en Polvo y Pimienta al gusto\nQueso Parmesano"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006527/Rice_Casserole_rlf2du.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f7"
+      },
+      "amount": 2,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7313a"
+      },
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73132"
+      },
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73134"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e6"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7313b"
+      },
+      "amount": 5,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73137"
+      },
+      "amount": 1,
+      "unit": "g"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69656c2ba14c03ad66377b7b"
+  },
+  "title": {
+    "en": "Mini Meat Loaves ",
+    "es": "Mini Pasteles de Carne"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Tube Ground Beef\n2 Large Eggs\n1/2 Cup Milk\n1 Sleeve Saltine Crackers - crushed\n4 Tbsp Finely Chopped Onion or 2 Tbsp Dried\nMinced Onions\n1/2 Tsp salt\nPepper to taste\nHamburger Seasoning to taste \n1/2 Cup ketchup\n4 Tbsp brown sugar \n1/2 Tsp Worcestershire sauce \nInstant Mashed Potatoes",
+    "es": "1 lb de carne molida\n2 huevos grandes\n1/2 taza de leche\n1 paquete de galletas saladas trituradas\n4 cucharadas de cebolla finamente picada\no 2 cds cebolla seca picada\n1/2 cucharadita de sal\nPimienta al gusto\nCondimento para hamburguesas al gusto\n1/2 taza de kétchup\n4 cucharadas de azúcar morena\n1/2 cucharadita de salsa Worcestershire\nPuré de papas instantáneo"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006574/Meatloaf_-_plated_1_hk0ugd.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 0.5,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7313c"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73132"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7313a"
+      },
+      "amount": 0.5,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7313e"
+      },
+      "amount": 4,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73139"
+      },
+      "amount": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7313f"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    },
+    {
+      "$oid": "695ec4c6b0379ee832d8a86b"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69656d81a14c03ad66377b7d"
+  },
+  "title": {
+    "en": "Goulash",
+    "es": "Estofado Húngaro"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Frozen Ground Beef – thawed\n1 Small Onion – diced\n2 cloves garlic         \n1 Box Uncooked Elbow Macaroni\n1 Can Tomato Sauce (15oz)\n1 Can Petite Diced Tomatoes (14.5oz)\n1 Tbsp Worcestershire Sauce\n1 Tbsp Italian seasoning\n1 Tsp Salt\n1 Cup Shredded Cheddar Cheese (1/2 of 8oz bag)",
+    "es": "1 lb de carne molida congelada\n(descongelada)\n1 cebolla pequeña (picada)\n2 dientes de ajo\n1 caja de macarrones crudos\n1 lata de salsa de tomate (15oz)\n1 lata de tomates en cubos pequeños\n(14.5oz)\n1 cucharada de salsa Worcestershire\n1 cucharada de condimento italiano\n1 cucharadita de sal\n1 taza de queso cheddar rallado       \n(1/2\nHierva los fideos según las instrucciones.\nDore la carne en una sartén. Escurra la grasa.\nAgregue la cebolla, el ajo, la pasta, los tomates, la salsa\nWorcestershire, el condimento italiano y la sal, y luego\ncocine a fuego lento.\nSazone con pimienta.\nAgregue los fideos cocidos y revuelva. Cocine a fuego\nmedio hasta que burbujee y todos los ingredientes estén\nbien mezclados.\nSirva con queso rallado.\n65\nbolsa de 8oz)"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006618/Goulash_-_updated_jmd4lc.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73122"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315c"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73140"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73108"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7311e"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73139"
+      },
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73133"
+      },
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ff"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69656e93a14c03ad66377b7f"
+  },
+  "title": {
+    "en": "Sloppy Joes",
+    "es": "Sloppy Joes"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Ground Beef or 1 lb. Roll Frozen Ground\nTurkey – thawed\n1 Cup Ketchup\n1/4 Cup Yellow Mustard\n1/2 Cup Water\nSalt & Pepper to taste\n5 Hamburger Buns\n1 Bag Frozen Corn or Corn on the Cob",
+    "es": "1 lb de carne molida o 1 lb de rollo de pavo\nmolido congelado, descongelado\n1 taza de kétchup\n1/4 de taza de mostaza amarilla\n1/2 taza de agua\nSal y pimienta al gusto\n5 panecillos para hamburguesa\n1 bolsa de maíz congelado o elote"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006666/Sloppy_Joes_corn_tftirs.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7313a"
+      },
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73142"
+      },
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73143"
+      },
+      "amount": 5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e6"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69656f86a14c03ad66377b82"
+  },
+  "title": {
+    "en": "Hamburger Mac & Green Beans",
+    "es": "Hamburguesa con Macarrones y Judías Verdes"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb Ground Beef or 1 lb Roll Frozen Ground\nTurkey – thawed \n2 Boxes Macaroni & Cheese\n2 Cans Green Beans – drained\n1 Tsp Salt\n2 Tbsp Butter\n1 Tsp Garlic Powder\n1 Tbsp Real Bacon Bits",
+    "es": "1 lb de carne molida de res o 1 lb\nde rollo de pavo molido congelado\n(descongelado)\n2 cajas de macarrones con queso\n2 latas de judías verdes\n(escurridas)\n1 cucharadita de sal\n2 cucharadas de mantequilla\n1 cucharadita de ajo en polvo\n1 cucharada de tocino"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006734/Hamburger_Mac_green_beans_jqqwxb.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73113"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73144"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f1"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73120"
+      },
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73124"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6965707ba14c03ad66377b84"
+  },
+  "title": {
+    "en": "Fajita Tacos",
+    "es": "Fajita Tacos"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Roll Frozen Ground Turkey – thawed\n1 Cup Rice\n1 Packet Fajita Seasoning\n1 Jalapeno – minced (keep seeds & ribs for hot,\nremove for mild)\n1 Small Onion – sliced\n2 Green Bell Peppers – sliced    \n2 Garlic Cloves – minced or 1/2 Tsp Garlic\nPowder\n1/2 Packet  Small Fajita Flour Tortillas (10 of 20\ncount)",
+    "es": "1 lb de rollo de pavo molido congelado,\ndescongelado\n1 taza de arroz\n1 paquete de condimento para fajitas\n1 jalapeño picado (conserve las semillas y las\nnervaduras para que esté picante y retírelo\npara que esté suave)\n1 cebolla pequeña, rebanada\n2 pimientos verdes, rebanados\n2 dientes de ajo picados o 1/2 cucharadita de\najo en polvo\n1/2 paquete de tortillas de harina para fajitas\npequeñas (10 de 20 unidades)"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73114"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f7"
+      },
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73145"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73146"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73122"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73147"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315c"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73148"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69657170a14c03ad66377b86"
+  },
+  "title": {
+    "en": "Turkey-Broccoli Pasta",
+    "es": "Pasta con Pavo y Broccoli"
+  },
+  "ingredientPlainText": {
+    "en": "1 Box Medium Shell Pasta (16oz box)\n1 Bag Frozen Broccoli Florets (12oz)\n4 Tbsp Butter or Margarine\n4 Garlic Cloves - minced or 1 Tsp Garlic Powder\n1/2 Tsp Crushed Red Pepper (optional)\n1 lb. Roll Frozen Ground Turkey – thawed\n1/2 Tsp Salt\n1 Cup Grated Parmesan Cheese",
+    "es": "1 Caja de Pasta de Concha Mediana (16oz)\n1 Bolsa de Ramilletes de Brócoli   Congelado\n(12oz)\n4 Cdas. de Mantequilla o Margarina\n4 Dientes de Ajo Picados o 1 Cd. de Ajo      en\nPolvo\n1/2 Cd. de Pimiento Rojo Triturado\n(opcional)\n1 lb de Pavo Molido Congelado\n(descongelado)\n1/2 Cd. de Sal\n1 Taza de Queso Parmesano Rallado"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006925/Turkey_Broccoli_Pasta_iugwr7.jpg",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73149"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f6"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fa"
+      },
+      "amount": 4,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315c"
+      },
+      "amount": 4,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7314a"
+      },
+      "amount": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73114"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7314b"
+      },
+      "amount": 1,
+      "unit": "cup"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69657289a14c03ad66377b88"
+  },
+  "title": {
+    "en": "Cowboy Beans",
+    "es": "Frijoles Vaqueros"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Roll Frozen Ground Turkey – thawed\n1 Can Kidney Beans – light or dark\n1 Can Pinto Beans\n1 Can Pork and Beans\n1 Can Great Northern Beans\n1 Can Butter Beans\n1 Bottle BBQ Sauce\n1 Box Jiffy Corn Muffin\n1 Egg\n1/3 Cup Milk",
+    "es": "1 lb de rollo de pavo molido congelado,\ndescongelado\n1 lata de frijoles rojos (claros u oscuros)\n1 lata de frijoles pintos\n1 lata de frijoles con cerdo\n1 lata de frijoles blancos Great Northern\n1 lata de frijoles blancos con mantequilla\n1 botella de salsa barbacoa\n1 caja de panecillos de maíz Jiffy\n1 huevo\n1/3 taza de leche"
+  },
+  "imageURI": "",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73114"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7314c"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7314d"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7314e"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7314f"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73150"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73151"
+      },
+      "amount": 1800,
+      "unit": "mL"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73152"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 0.5,
+      "unit": "cup"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69657364a14c03ad66377b8b"
+  },
+  "title": {
+    "en": "Baked Penne",
+    "es": "Pasta de Dos Tiempos"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Roll Frozen Ground Turkey- thawed\n1 Box Penne Pasta (16oz)\n1 Jar Alfredo Sauce\n1 Can Hunt’s Spaghetti Sauce\n1 Bag Shredded Mozzarella Cheese (8oz)",
+    "es": "1 lb de rollo de pavo molido congelado,\ndescongelado\n1 caja de pasta penne (16oz)\n1 frasco de salsa Alfredo\n1 lata de salsa para espaguetis Hunt's\n1 bolsa de queso mozzarella rallado\n(8oz)"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007074/Two_Timing_Pasta_with_Garlic_Bread_vtlxdt.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73114"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73153"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312c"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73134"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312d"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    },
+    {
+      "$oid": "695ec4c6b0379ee832d8a86a"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967ecd9781ad7b3627abad2"
+  },
+  "title": {
+    "en": "Loaded Sweet Potatoes",
+    "es": "Batatas rellenas"
+  },
+  "ingredientPlainText": {
+    "en": "5 Small Sweet Potatoes - unpeeled and lightly\npricked all over with fork\n1 Bag Shredded Cheddar (8oz)\n1-2 Tbsp Canned Chipotle Chile in Adobo\nSauce, minced or chili powder\n1 Tbsp Oil\n1 Can Black Beans - drained & rinsed\n3 Green Onions",
+    "es": "5 batatas pequeñas sin pelar y ligeramente\npinchadas con un tenedor\n1 bolsa de queso cheddar rallado (8oz)\n1-2 cucharadas de chile chipotle en adobo\nenlatado, picado o en polvo\n1 lata de frijoles negros, escurridos y\nenjuagados\n3 cebollines"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007181/Loaded_Sweet_Potatoes_acvim8.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315b"
+      },
+      "amount": 5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ef"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73125"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e7"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ea"
+      },
+      "amount": 3,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    },
+    {
+      "$oid": "695ec4c6b0379ee832d8a867"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967ee9f781ad7b3627abad4"
+  },
+  "title": {
+    "en": "Egg Salad Sandwich",
+    "es": "Sándwich de Ensalada de Huevo"
+  },
+  "ingredientPlainText": {
+    "en": "12 Eggs\n1/4 - 1/2 Cup Mayonnaise\n1/8 Cup Dill Pickle Slices – chopped (or any pickle\nyou have on hand)\n1-2 Tbsp Dill Pickle Juice from Jar\nPepper to taste\n1/2 Loaf of Bread or 1-2 Sleeves Saltine Crackers\n1 Bag Veggie Straws",
+    "es": "12 huevos\n1/4 - 1/2 taza de mayonesa\n1/8 taza de pepinillos picados (o cualquier pepinillo\nque tenga a mano)\n1-2 cucharadas de jugo de pepinillos del frasco\nPimienta al gusto\n1/2 barra de pan o 1-2 paquetes de galletas saladas\n1 bolsa de palitos de verduras"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007233/Egg_Salad_Sandwich_w_Veggie_Straws_aiciii.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 12,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73155"
+      },
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73156"
+      },
+      "amount": 0.12,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73157"
+      },
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e2"
+      },
+      "amount": 1,
+      "unit": "g"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310f"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73158"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86b"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f02a781ad7b3627abad6"
+  },
+  "title": {
+    "en": "Easy Baked Gnocchi",
+    "es": "Ñoquis al horno fáciles"
+  },
+  "ingredientPlainText": {
+    "en": "1 Pkg Gnocchi\n1 Jar Hunt’s Four Cheese Pasta Sauce (24oz)\n1 Bag Shredded Mozzarella Cheese (8oz)",
+    "es": "1 Paquete de ñoquis\n1 Frasco de salsa para pasta\nHunt's de cuatro quesos (24oz)\n1 Bolsa de queso mozzarella\nrallado (8oz)"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73159"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315a"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312d"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    },
+    {
+      "$oid": "695ec4c6b0379ee832d8a86b"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f180781ad7b3627abad8"
+  },
+  "title": {
+    "en": "Sweet Potato & Black Bean Chili",
+    "es": "Chili de batata y frijoles negros"
+  },
+  "ingredientPlainText": {
+    "en": "1 Yellow Onion – diced\n2 Tbsp Vegetable Oil\n4-5 Cloves Garlic – minced or 1 Tsp Garlic Powder\n1 Large Sweet Potato – peeled & diced\n1  Chili Seasoning Packet\n2 Cans Black Beans – drained & rinsed\n1 Can Fire-Roasted Tomatoes\n1 Knorr Chicken Flavored Bouillon Cube\n2 Cups Hot Water",
+    "es": "1 cebolla amarilla picada\n2 cucharadas de aceite vegetal\n4-5 dientes de ajo picados o 1 cucharadita de  ajo\nen polvo\n1 batata grande pelada y picada\n1 sobre de condimento para chile \n2 latas de frijoles negros escurridos y enjuagados\n1 lata de tomates asados\n1 cubo de caldo Knorr sabor pollo\n2 tazas de agua caliente"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768006142/Sweet_Potato_Black_Bean_Chili_iyhhdv.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73122"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315c"
+      },
+      "amount": 4,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315b"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315d"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e7"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315e"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f0"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a869"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f25c781ad7b3627abada"
+  },
+  "title": {
+    "en": "Bean & Cheese Quesadillas",
+    "es": "Quesadillas de frijoles y queso"
+  },
+  "ingredientPlainText": {
+    "en": "1/2 Bag Dried Pinto Beans (Can be substituted with 2\ncans of pinto beans)\n2 Tsp Salt\n1 Pkt Taco Seasoning\n1 Bag Shredded Cheddar Cheese (8oz)\n1/2 Pkg Fajita Size Flour Tortillas (10 of 20 count)\n1 Container Sour Cream (8oz)",
+    "es": "1/2 Bolsa de Frijoles Pintos Secos (Se\npueden sustituir por 2 latas de frijoles\npintos)\n2 Cád. de Sal\n1 Paquete de Sazonador para Tacos\n1 Bolsa de Queso Cheddar Rallado (8oz)\n1/2 Paquete de Tortillas de Harina\nTamaño Fajita (10 de 20)\n1 Envase de Crema Agria (8oz)"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73167"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310b"
+      },
+      "amount": 2,
+      "unit": "tsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e5"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ef"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73148"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73100"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f2f6781ad7b3627abadc"
+  },
+  "title": {
+    "en": "Sauerkraut & Weenies with Baked Beans",
+    "es": "Chucrut y salchichas con frijoles horneados"
+  },
+  "ingredientPlainText": {
+    "en": "1 Pkg Hot Dogs\n1 Can Sauerkraut (24oz)\n1 Can Baked Beans (28oz)\nOil to coat pan",
+    "es": "1 Paquete de Salchichas\n1 Lata de Chucrut (24oz)\n1 Lata de Frijoles (28oz)\nAceite para untar la sartén"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007425/Sauerkraut_Weenies_with_Baked_Beans_eiuc4e.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315f"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73160"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73161"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f3a0781ad7b3627abade"
+  },
+  "title": {
+    "en": "French Bread Pizzas",
+    "es": "Pizzas de Pan Francés"
+  },
+  "ingredientPlainText": {
+    "en": "1 Loaf Walmart Bakery French Bread\n1/2 Can Chef Boyardee Pizza Sauce\n1 Pkg Sliced Mozzarella Cheese (8oz)\n1/2 Bag Pepperonis (6oz)\n1 Can Mushrooms – drained & rinsed",
+    "es": "1 Barra de Pan Francés de Walmart Bakery\n1/2 Lata de Salsa para Pizza Chef Boyardee\n1 Paquete de Queso Mozzarella Rebanado\n(8oz)\n1/2 Bolsa de Pepperonis (6oz)\n1 Lata de Champiñones – escurridos y\nenjuagados"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007514/French_Bread_Pizza_wz5fwb.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73162"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73163"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7312d"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73164"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730ee"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f465781ad7b3627abae0"
+  },
+  "title": {
+    "en": "Bacon, Egg, & Cheese Sandwiches",
+    "es": "Sándwiches de tocino, huevo y queso"
+  },
+  "ingredientPlainText": {
+    "en": "6 Eggs\n1/4 Cup Milk\n1/2 Bag Real Bacon Pieces\nSalt & Pepper to taste\n6 Slices American Cheese\n1/2 Loaf Bread – Toasted, optional\n2 Roma Tomatoes Sliced",
+    "es": "6 huevos\n1/4 taza de leche\n1/2 bolsa de tocino en trozos\nSal y pimienta al gusto\n6 rebanadas de queso americano\n1/2 barra de pan – tostado,\nopcional\n2 tomates Roma en rodajas"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007572/Bacon_Egg_Sandwhich_nlroph.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 6,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73124"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73111"
+      },
+      "amount": 6,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310f"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73112"
+      },
+      "amount": 2,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f50e781ad7b3627abae2"
+  },
+  "title": {
+    "en": "Kielbasa, Beans, & Rice",
+    "es": "Kielbasa, Frijoles y Arroz"
+  },
+  "ingredientPlainText": {
+    "en": "2 Pkg Knorr Cajun Rice Sides or 2 Cups Rice\n1/2 Bag Dried Pinto Beans (Can be substituted\nwith 2 cans of pinto beans)\n2 Tbsp Vegetable Oil\n1 Onion – diced\n1 Pkg  Polish Kielbasa (14oz) – cut into 1-inch\nslices",
+    "es": "2 paquetes de arroz cajún Knorr o\n2 tazas de arroz\n1/2 bolsa de frijoles pintos secos\n(se pueden sustituir por 2 latas de\nfrijoles pintos)\n2 cucharadas de aceite vegetal\n1 cebolla picada\n1 paquete de kielbasa polaca\n(14oz) cortada en rodajas de 1\ninch"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007625/Kielbasa_Beans_Rice_vubhk8.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73166"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73167"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730eb"
+      },
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73122"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73168"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a86c"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f5ba781ad7b3627abae4"
+  },
+  "title": {
+    "en": "Beans & Franks with Cornbread",
+    "es": "Frijoles y Salchichas con Pan de Maíz"
+  },
+  "ingredientPlainText": {
+    "en": "1-2 Pkgs Bar S Classic Franks (8 count each)\n1-2 Cans Country Style Baked Beans         (28oz\neach)\n1 Box Jiffy Corn Muffin Mix (makes 6 muffins)\n1 Egg\n1/3 Cup Milk",
+    "es": "1-2 paquetes de salchichas clásicas\nBar S (8 unidades cada una)\n1-2 latas de frijoles horneados estilo\ncampestre (28oz cada una)\n1 caja de mezcla para panecillos de\nmaíz Jiffy (rinde 6 panecillos)\n1 huevo\n1/3 taza de leche"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007714/Beans_Franks_w_Cornbread_lv813h.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73169"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7316a"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73152"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 0.333,
+      "unit": "cup"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f662781ad7b3627abae6"
+  },
+  "title": {
+    "en": "Chili Cheese Tots",
+    "es": "Bolitas de Queso y Chile"
+  },
+  "ingredientPlainText": {
+    "en": "2 Cans Armour Chili with Beans (14oz each)\n1 Pkg Shredded Colby Jack Cheese (8oz)\n1 Bag  Frozen Tater Tots (32oz)",
+    "es": "2 latas de chili con frijoles Armour\n(14oz cada una)\n1 paquete de queso Colby Jack rallado\n(8oz)\n1 bolsa de tater tots congelados\n(32oz)"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007765/Chili_Cheese_Tots_sliced_veggies_vz9tcq.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73102"
+      },
+      "amount": 2,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73103"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7316b"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f776781ad7b3627abae9"
+  },
+  "title": {
+    "en": "Cabbage & Sausage",
+    "es": "Repollo y Salchicha"
+  },
+  "ingredientPlainText": {
+    "en": "1 lb. Roll of Breakfast Sausage\n1 Head of Cabbage – cut up in 1-inch pieces\n1 Box Jiffy Corn Muffin Mix\n1 Egg\n1/3 Cup Milk",
+    "es": "1 lb. de salchicha de desayuno\n1 repollo (cortado en trozos de 1 inch)\n1 caja de mezcla para panecillos de maíz Jiffy\n1 huevo\n1/3 taza de leche"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": true,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7316c"
+      },
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7316d"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73152"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730fe"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730dc"
+      },
+      "amount": 0.333,
+      "unit": "cup"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    },
+    {
+      "$oid": "695ec4c6b0379ee832d8a86a"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f83d781ad7b3627abaeb"
+  },
+  "title": {
+    "en": "Italian Chicken Sausages with Broccoli & Rice",
+    "es": "Salchichas Italianas de Pollo con Brócoli y Arroz"
+  },
+  "ingredientPlainText": {
+    "en": "1 Bag Frozen Broccoli Florets (12oz) – thawed &\nchopped into 1” pieces\n1 Pkg  Chicken Smoked Sausage\n1 Cup Rice\n1/2 Cup Grated Parmesan Cheese\n1 Garlic Clove – minced or 1/4 Tsp Garlic\nPowder\nVegetable Oil\nSalt & Pepper to taste",
+    "es": "1 bolsa de ramilletes de brócoli congelados (12\noz), descongelados y picados en trozos de 1”\n1 paquete de salchicha ahumada de pollo  \n1 taza de arroz\n1/2 taza de queso parmesano rallado\n1 diente de ajo picado o 1/4 cucharadita de ajo\nen polvo\nAceite vegetal\nSal y pimienta al gusto"
+  },
+  "imageURI": "https://res.cloudinary.com/dsbq0vmkr/image/upload/v1768007920/Italian_Sausages_with_Broccoli_Rice_nuy5jt.jpg",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f6"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7316e"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730f7"
+      },
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7314b"
+      },
+      "amount": 0.5,
+      "unit": "cup"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7315c"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [
+    {
+      "$oid": "695ec4c6b0379ee832d8a866"
+    },
+    {
+      "$oid": "695ec4c6b0379ee832d8a867"
+    }
+  ],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967f913781ad7b3627abaed"
+  },
+  "title": {
+    "en": "Tuna Wrap/Sandwich",
+    "es": "Wrap/Sándwich de Atún "
+  },
+  "ingredientPlainText": {
+    "en": "1 Can of White Tuna in Water (12oz)\n1/2 Bag of Small Fajita Flour Tortillas\n\n",
+    "es": "1 Lata de Atún Blanco en Agua (12 oz)\n1/2 Bolsa de Tortillas de Harina para Fajitas Pequeñas"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73129"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73148"
+      },
+      "amount": 0.5,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fa90781ad7b3627abaef"
+  },
+  "title": {
+    "en": "Chicken Tacos",
+    "es": "Ensalada De Frijoles"
+  },
+  "ingredientPlainText": {
+    "en": "1 Can of Chicken (12.5oz)\n1 Box of Great Value Taco Shells (12 count)",
+    "es": "1 Lata de Pollo (12.5oz)\n1 Caja de tortillas para tacos de gran valor (12 unidades)"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730da"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "6967fa4b25ac7298d048de8f"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fb2b781ad7b3627abaf1"
+  },
+  "title": {
+    "en": "Avocado Bread",
+    "es": "Pan De Aguacate"
+  },
+  "ingredientPlainText": {
+    "en": "1 Loaf Wheat Bread\n2-5 Avocados",
+    "es": "1 Pan Integral\n2-5 Aguacates"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73110"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7316f"
+      },
+      "amount": 3,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fbb4781ad7b3627abaf3"
+  },
+  "title": {
+    "en": "Bean Dip",
+    "es": "Dip de frijoles "
+  },
+  "ingredientPlainText": {
+    "en": "1 Can of Beans (any)",
+    "es": "1 Lata de Frijoles (cualquiera)"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73170"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fbfd781ad7b3627abaf5"
+  },
+  "title": {
+    "en": "Hummus",
+    "es": "Hummus"
+  },
+  "ingredientPlainText": {
+    "en": "1 Can of Chickpeas",
+    "es": "1 Lata de Garbanzos"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73171"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fc85781ad7b3627abaf7"
+  },
+  "title": {
+    "en": "Bean or Corn Salad ",
+    "es": "Ensalada de Frijoles o Maíz "
+  },
+  "ingredientPlainText": {
+    "en": "1 Can of Beans\n1 Can of Corn",
+    "es": "1 Lata de Frijoles\n1 Lata de Elote"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e7"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec730e6"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fcfc781ad7b3627abaf9"
+  },
+  "title": {
+    "en": "Overnight Oats",
+    "es": "Avena Nocturna"
+  },
+  "ingredientPlainText": {
+    "en": "1 Cup Oats\n1 Cup Water",
+    "es": "1 taza de avena\n1 taza de agua"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73172"
+      },
+      "amount": 1,
+      "unit": "cup"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fd6d781ad7b3627abafb"
+  },
+  "title": {
+    "en": "Peanut Butter Sandwich",
+    "es": "Sándwich de mantequilla de cacahuete"
+  },
+  "ingredientPlainText": {
+    "en": "1 Jar of Peanut Butter\n1 Loaf of White Bread",
+    "es": "1 frasco de mantequilla de maní\n1 barra de pan blanco"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73173"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec7310f"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6967fdf2781ad7b3627abafd"
+  },
+  "title": {
+    "en": "Banana Wraps",
+    "es": "Wraps de Plátano"
+  },
+  "ingredientPlainText": {
+    "en": "1 Package of Small Tortillas\n1 Jar of Peanut Butter\n",
+    "es": "1 paquete de tortillas pequeñas\n1 frasco de mantequilla de maní"
+  },
+  "imageURI": "unknown",
+  "tags": {
+    "blueRibbon": false,
+    "vegan": false,
+    "vegetarian": false
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73148"
+      },
+      "amount": 1,
+      "unit": "each"
+    },
+    {
+      "ingredient": {
+        "$oid": "695eb68f48ba1dbb7ec73173"
+      },
+      "amount": 1,
+      "unit": "each"
+    }
+  ],
+  "appliances": [],
+  "totalCost": 0,
+  "__v": 0
 }]
