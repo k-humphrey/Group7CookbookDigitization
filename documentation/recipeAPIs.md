@@ -1,5 +1,20 @@
+# Updated Combined API
+Backend has combined the different search filter APIs into a single one. This simplifies searching down and will return all the recipes filtered for or a result of 0 if no recipes are found.
+##### How to use
+It works by finding key search words inside of the url and uses them to build the filter. It then returns all recipes that match such filter.
+###### Combined Search API use Example:
+```
+http://localhost:3000/api/recipes/bySearch?title=chicken&ingredients=chicken&tags=blueRibbon&appliances=oven
+```
+by adding the key search words (title, ingredients, tags, appliances) you can choose what type of item it is your filtering for. After each key word to add another category you need to add the & sign.
+
+##### We have also included an api call to just return all the recipes and their information:
+```
+http://localhost:3000/api/recipes
+```
+___
 # Overview of Recipe API Calls Currently available
-Backend has created some APIs to fetch and filter recipes from the MongoDB database. So far we have implemented filtering based on:
+Backend has created some APIs to fetch and filter recipes from the MongoDB database. These werethe building blocks used to create the combined filter that searches all of them at once. So far we have implemented filtering based on:
 
 ###### Title (en and es):
 ```
@@ -25,10 +40,13 @@ Description: Will return all recipes with true values for the given tags
 .
 .
 
-###### We have also included an api call to just return all the recipes and their information:
+###### Appliances:
 ```
-http://localhost:3000/api/recipes
+http://localhost:3000/api/recipes/byAppliance?appliances=<appliances comma seperated>
 ```
+Description: Will return all recipes that use the given appliances
+.
+.
 
 ##### How to use
 Plug the URLs into your browser with the server running and they should return the recipe with all information you filtered for.
@@ -39,7 +57,7 @@ Plug the URLs into your browser with the server running and they should return t
 
  **Each API connects to the MongoDB using the connectToDB helper function. Make sure you have set up your env.local before testing locally**
  ___
- 
+
 # How to use them in frontend
 const recipes = await fetch(`/api/recipes/byTags?tags=blueRibbon`).json();
 
