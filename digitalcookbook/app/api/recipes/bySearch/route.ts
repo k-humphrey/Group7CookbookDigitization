@@ -18,6 +18,10 @@ export async function GET(req: Request){
 
     const filters: any[] = [];
 
+    // Store info for aggregation
+    let ingredientIds: any[] = [];
+    let applianceIds: any[] = [];
+
     // ---------- Filter by title
     if(titleParam) {
         filters.push({$or: [
@@ -39,7 +43,7 @@ export async function GET(req: Request){
         
         // Add to filters
         if(matchingIngredients.length > 0) {
-            const ingredientIds = matchingIngredients.map(ingredient => ingredient._id);
+            ingredientIds = matchingIngredients.map(ingredient => ingredient._id);
             filters.push({"ingredients.ingredient": {$in: ingredientIds}});
         }
     }   
@@ -57,8 +61,8 @@ export async function GET(req: Request){
 
         // Add to filters
         if(matchingAppliances.length > 0) {
-            const appliancesIds = matchingAppliances.map(appliance => appliance._id);
-            filters.push({appliances: {$in: appliancesIds}});
+            applianceIds = matchingAppliances.map(appliance => appliance._id);
+            filters.push({appliances: {$in: applianceIds}});
         }
     }
 
@@ -74,11 +78,34 @@ export async function GET(req: Request){
 
     // return matched recipes
     if(filters.length != 0) {
-        const recipes = await Recipe.find({$and: filters})
-        .populate({ path: "appliances", model: Appliance })
-        .populate({ path: "ingredients.ingredient", model: Ingredient });
 
+        // Use aggregation to also calculate relevance score and order
+        const recipes = await Recipe.aggregate([
+            {$match: { $and: filters }},
+            {$addFields: 
+                {relevanceScore: 
+                    {$sum: [
+                        {$size: {
+                            $setIntersection: ["$ingredients.ingredient", ingredientIds] // add 1 for each matching ingredient
+                        }},
+                        {$size: {
+                            $setIntersection: ["$appliances", applianceIds] // add 1 for each matching appliance
+                        }},
+                    ]
+                }
+            }},
+            {
+                $sort: { relevanceScore: -1 } // order by relevance score
+            },
+            {
+                $project: { relevanceScore: 0 } // exclude relevance score from results
+            }
+        ]);
+
+        // populate results
+        await Recipe.populate(recipes, [{ path: "appliances", model: Appliance },{ path: "ingredients.ingredient", model: Ingredient }]);
         return NextResponse.json(recipes);
+
     } else
         return NextResponse.json({message: "0 recipes matching the description"});
 
