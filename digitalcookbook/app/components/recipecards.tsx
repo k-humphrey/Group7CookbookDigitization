@@ -1,34 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+interface Props {
+  recipes: any[];
+}
 
-export default function RecipeGrid() {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchRecipes() {
-      try {
-        const res = await fetch("/api/recipes");
-        const data = await res.json();
-        setRecipes(data);
-      } catch (err) {
-        console.error("Failed to fetch recipes:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchRecipes();
-  }, []);
-
-  if (loading) {
-    return <p className="mt-6 text-sm text-slate-600">Loading recipes...</p>;
-  }
-
-  if (recipes.length === 0) {
-    return <p className="mt-6 text-sm text-slate-600">No recipes found.</p>;
-  }
+export default function RecipeGrid({ recipes }: Props) {
+  //if (recipes.length === 0) {
+  //  return <p className="mt-6 text-sm text-slate-600">No recipes found.</p>;
+  //}
 
   return (
     <div className="mt-6 grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">

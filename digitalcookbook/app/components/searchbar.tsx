@@ -3,7 +3,11 @@
 
 import { useState, KeyboardEvent, ChangeEvent } from "react";
 
-export default function Searchbar() {
+interface Props {
+  onSearch: (tags: string[]) => void; // parent callback
+}
+
+export default function Searchbar({ onSearch }: Props) {
   const [input, setInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
 
@@ -25,6 +29,11 @@ export default function Searchbar() {
 
       setInput("");
     }
+  };
+
+  // Search Button Click
+  const handleSearchClick = () => {
+    onSearch(tags); // Send tags to parent
   };
 
   const removeTag = (tag: string) => {
@@ -70,7 +79,7 @@ export default function Searchbar() {
           </div>
 
           {/* Search Button */}
-          <button className="btn btn-warning btn-sm md:btn-md shrink-0 text-slate-950">
+          <button className="btn btn-warning btn-sm md:btn-md shrink-0 text-slate-950" onClick={handleSearchClick}>
             Search Recipes
           </button>
         </div>
