@@ -10,7 +10,7 @@ interface Props {
 
 export default function Searchbar({ onSearch, initialTags }: Props) {
   const [input, setInput] = useState("");
-  const [tags, setTags] = useState<string[]>(initialTags || []); 
+  const [tags, setTags] = useState<string[]>(initialTags || []); // store selected ingredients
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -32,9 +32,9 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
     }
   };
 
-  // Search Button Click
+  // Send tags to parent recipes page
   const handleSearchClick = () => {
-    onSearch(tags); // Send tags to parent
+    onSearch(tags);
   };
 
   const removeTag = (tag: string) => {

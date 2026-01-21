@@ -1,6 +1,27 @@
 "use client";
+
 import { useState } from "react";
-export default function Filters() {
+
+// keep track of selected fitlers
+interface Props {
+  onChange: (appliances: string[]) => void; // callback to parent
+}
+
+export default function Filters({ onChange }: Props) {
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const toggle = (appliance: string) => {
+    let newSelected: string[];
+
+    if(selected.includes(appliance))
+      newSelected = selected.filter((item) => item !== appliance);
+    else
+      newSelected = selected.concat(appliance);
+
+    setSelected(newSelected); // update UI
+    onChange(newSelected); // update recipes
+  };
+
   const [isOpen, setIsOpen] = useState(true);
   return (
     <section>
@@ -23,34 +44,17 @@ export default function Filters() {
             <div>
               <h3 className="font-semibold text-xs uppercase mb-2">Kitchen Appliances</h3>
               <div className="flex flex-col gap-1">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
-                  <span>Oven</span>
+                {["Oven", "Stockpot and Skillet", "Slow Cooker", "Microwave", "Stockpot/Dutch Oven", "Skillet/Frying Pan", "Saucepan with Lid"].map(appliance => (
+                <label key={appliance} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-xs"
+                  checked={selected.includes(appliance)}
+                  onChange={() => toggle(appliance)}
+                />
+                <span>{appliance}</span>
                 </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
-                  <span>Air Fryer</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
-                  <span>Slow Cooker</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
-                  <span>Microwave</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
-                  <span>Stockpot/Dutch oven</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
-                  <span>Skillet/frying pan</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
-                  <span>Saucepan with lid</span>
-                </label>
+                ))}
               </div>
             </div>
 

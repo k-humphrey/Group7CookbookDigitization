@@ -1,6 +1,8 @@
+// Recipes Page
+
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Filters from "../components/filters";
@@ -9,29 +11,40 @@ import Searchbar from "../components/searchbar"
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
+  const searchParams = useSearchParams();
 
-  const tagParam = useSearchParams().get("ingredients"); // get initial ingredients from url
-  const initialTags = tagParam ? tagParam.split(",") : [];
+  const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
+  const initialTags = initialParam ? initialParam.split(",") : [];
+
+  // reference arrays for search
+  const ingredientsRef = useRef<string[]>(initialTags);
+  const appliancesRef =  useRef<string[]>([]);
 
   // Initial loading for page
   useEffect(() => {
-    handleSearch(initialTags);
+    handleSearch(ingredientsRef.current, appliancesRef.current);
   }, []);
-
+  
   // search for recipes in the database
-  const handleSearch = async (tags: string[]) => {
-    try {
-      let url = "/api/recipes";
+  const handleSearch = async (ingredients: string[], appliances: string[]) => {
+    const tags = new URLSearchParams();
 
-      if (tags.length > 0)
-        url = `/api/recipes/bySearch?ingredients=${tags.join(",")}`;
+    // default url to return all recipes if no filters
+    let url = "/api/recipes";
 
-      const res = await fetch(url);
-      const data = await res.json();
-      setRecipes(data);
-    } catch (err) {
-        console.error("Failed to fetch recipes:", err);
-    }
+    // add filters to url search param if available
+    if(ingredients.length > 0)
+      tags.set("ingredients", ingredients.join(","));
+    if(appliances.length > 0)
+      tags.set("appliances", appliances.join(","));
+
+    // construct url if there are any tags
+    if(tags.size > 0)
+      url = `/api/recipes/bySearch?${tags.toString()}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    setRecipes(data);
   }
 
   return (
@@ -44,14 +57,20 @@ export default function RecipeSearchPage() {
         backgroundImage: "url('/searchbackground.jpg')"
         }}
       >
-       <Searchbar onSearch={handleSearch} initialTags={initialTags} /> 
+       <Searchbar onSearch={(ingredients) => {
+        ingredientsRef.current = ingredients; 
+        handleSearch(ingredientsRef.current, appliancesRef.current);
+        }} initialTags={initialTags} /> 
       </div>
       
       <div className="flex w-full gap-6">
 
         {/* Filters */}
         <div className="w-64 sticky top-0 self-start shrink-0">
-          <Filters />
+          <Filters onChange={(appliances) => {
+            appliancesRef.current = appliances;
+            handleSearch(ingredientsRef.current, appliancesRef.current);
+          }} />
         </div>
         
         {/* Recipes */}
