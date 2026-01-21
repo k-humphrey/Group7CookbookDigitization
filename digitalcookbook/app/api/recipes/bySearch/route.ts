@@ -62,7 +62,7 @@ export async function GET(req: Request){
         // Add to filters
         if(matchingAppliances.length > 0) {
             applianceIds = matchingAppliances.map(appliance => appliance._id);
-            filters.push({appliances: {$in: applianceIds}});
+            filters.push({"appliances._id": {$in: applianceIds}});
         }
     }
 
@@ -89,7 +89,7 @@ export async function GET(req: Request){
                             $setIntersection: ["$ingredients.ingredient", ingredientIds] // add 1 for each matching ingredient
                         }},
                         {$size: {
-                            $setIntersection: ["$appliances", applianceIds] // add 1 for each matching appliance
+                            $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                         }},
                     ]
                 }
@@ -103,7 +103,7 @@ export async function GET(req: Request){
         ]);
 
         // populate results
-        await Recipe.populate(recipes, [{ path: "appliances", model: Appliance },{ path: "ingredients.ingredient", model: Ingredient }]);
+        await Recipe.populate(recipes, [{ path: "appliances.appliances", model: Appliance },{ path: "ingredients", model: Ingredient }]);
         return NextResponse.json(recipes);
 
     } else
