@@ -32,6 +32,6 @@ export async function GET(req: Request){
     // return matched recipes
     const recipies = await Recipe.find(filter)
         .populate({ path: "appliances", model: Appliance })
-        .populate({ path: "ingredients.ingredient", model: Ingredient });
+        .populate({ path: "ingredients", model: Ingredient });
     return NextResponse.json(recipies);
 }

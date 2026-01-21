@@ -4,34 +4,42 @@ import Ingredient from "@/models/models/Ingredient";
 import Appliance from "@/models/models/Appliance";
 import { NextResponse } from 'next/server';
 
-export async function GET(req: Request){
-    await connectToDB();
+export async function GET(req: Request) {
+  await connectToDB();
 
-    // Get search parameters
-    const url = new URL(req.url);
-    const appliancesParams = url.searchParams.get("appliances") || null;
+  const url = new URL(req.url);
+  const appliancesParams = url.searchParams.get("appliances");
 
-    let filter: any = {};
-    
-    if(appliancesParams) {
-        // Convert appliances array into string so regex can be used
-        const appliancesList = appliancesParams.split(",").map(appliance => appliance.trim()).flatMap(appliance => [
-            {"en": {$regex: appliance, $options: 'i'}},
-            {"es": {$regex: appliance, $options: 'i'}},
-        ]);
+  let filter: any = {};
 
-        // Connect to the appliances database and find matching appliances ids
-        const matchingAppliances = await Appliance.find({"$or": appliancesList}).select('_id');
-        const appliancesIds = matchingAppliances.map(appliance => appliance._id);
+  if (appliancesParams) {
+    const appliancesList = appliancesParams
+      .split(",")
+      .map(a => a.trim())
+      .flatMap(a => [
+        { en: { $regex: a, $options: "i" } },
+        { es: { $regex: a, $options: "i" } }
+      ]);
 
-        // Create filter 
-        filter["appliances"] = {$in: appliancesIds};
+    // Find matching appliances
+    const matchingAppliances = await Appliance.find({
+      $or: appliancesList
+    }).select("_id").lean();
 
+    const appliancesIds = matchingAppliances.map(a => a._id);
+
+    if (appliancesIds.length > 0) {
+      filter["appliances._id"] = { $in: appliancesIds };
+    } else {
+      // No matches, return empty array
+      return NextResponse.json([]);
     }
+  }
 
-    // return matched recipes
-    const recipies = await Recipe.find(filter)
+  // return matched recipes
+    const recipes = await Recipe.find(filter)
         .populate({ path: "appliances", model: Appliance })
-        .populate({ path: "ingredients.ingredient", model: Ingredient });
-    return NextResponse.json(recipies);
+        .populate({ path: "ingredients", model: Ingredient });
+
+  return NextResponse.json(recipes);
 }
