@@ -5,11 +5,12 @@ import { useState, KeyboardEvent, ChangeEvent } from "react";
 
 interface Props {
   onSearch: (tags: string[]) => void; // parent callback
+  initialTags ?: string[]; // initial tags
 }
 
-export default function Searchbar({ onSearch }: Props) {
+export default function Searchbar({ onSearch, initialTags }: Props) {
   const [input, setInput] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(initialTags || []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);

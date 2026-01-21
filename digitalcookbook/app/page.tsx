@@ -1,7 +1,20 @@
 // Hompe page
+
+"use client";
+
+import { useRouter } from "next/navigation";
 import Searchbar from "./components/searchbar";
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleSearch = (tags: string[]) => {
+    if(tags)
+      router.push(`/recipes?ingredients=${tags.join(",")}`);
+    else
+      router.push('/recipes');
+  };
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-start">
 
@@ -26,7 +39,7 @@ export default function Home() {
         </div>
 
         {/* Searchbar */}
-        <Searchbar />
+        <Searchbar onSearch={handleSearch} />
       </div>  
     </main>
   );

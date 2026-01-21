@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 import Filters from "../components/filters";
 import RecipeGrid from "../components/recipecards";
@@ -8,20 +9,12 @@ import Searchbar from "../components/searchbar"
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
+  const tagParam = useSearchParams().get("ingredients");
+  const initialTags = tagParam ? tagParam.split(",") : [];
 
-  // Populate all recipes on launch
+  // Initial loading for page
   useEffect(() => {
-    const fetchAllRecipes = async () => {
-      try {
-        const res = await fetch("/api/recipes");
-        const data = await res.json();
-        setRecipes(data);
-      } catch (err) {
-        console.error("Failed to fetch recipes:", err);
-      }
-    };
-
-    fetchAllRecipes();
+    handleSearch(initialTags);
   }, []);
 
   const handleSearch = async (tags: string[]) => {
@@ -49,7 +42,7 @@ export default function RecipeSearchPage() {
         backgroundImage: "url('/searchbackground.jpg')"
         }}
       >
-       <Searchbar onSearch={handleSearch} /> 
+       <Searchbar onSearch={handleSearch} initialTags={initialTags} /> 
       </div>
       
       <div className="flex w-full gap-6">
