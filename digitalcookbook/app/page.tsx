@@ -1,9 +1,9 @@
+// Hompe page
 import Searchbar from "./components/searchbar";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-start">
-      {/* Nav bar */}
 
       {/* Background picture */}
       <div 

@@ -1,272 +1,1550 @@
 [{
   "_id": {
-    "$oid": "691fa00c5320291b22e92aaf"
+    "$oid": "695eb68f48ba1dbb7ec730ee"
   },
-  "en": "Chicken",
-  "es": "Pollo",
-  "costPerUnit": null
+  "en": "Can of Mushrooms (4oz)",
+  "es": "Lata de Champiñones (4oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "691fa0565320291b22e92ab4"
+    "$oid": "695eb68f48ba1dbb7ec730fc"
   },
-  "en": "Cream of Chicken Soup (low sodium)",
-  "es": "Crema de Pollo (baja en sodio)",
-  "costPerUnit": null
+  "en": "Ramen Seasoning Packet",
+  "es": "Sobre de Sazonador para Ramen",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "691fa08b5320291b22e92ab5"
+    "$oid": "695eb68f48ba1dbb7ec73110"
   },
-  "en": "Milk",
-  "es": "Leche",
-  "costPerUnit": null
+  "en": "Loaf Wheat Bread",
+  "es": "Pan Integral",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "691fa0ae5320291b22e92ab6"
+    "$oid": "695eb68f48ba1dbb7ec73116"
   },
-  "en": "Stuffing Mix",
-  "es": "Mezcla Para Relleno",
-  "costPerUnit": null
+  "en": "Large Potatoes",
+  "es": "Papas Grandes",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "691fa0d85320291b22e92ab7"
+    "$oid": "695eb68f48ba1dbb7ec73127"
   },
-  "en": "Frozen Mixed Vegetables",
-  "es": "Verduras Mixtas Congeladas",
-  "costPerUnit": null
+  "en": "Lime",
+  "es": "Lima",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "692740ddece43a3918579ad2"
+    "$oid": "695eb68f48ba1dbb7ec73128"
   },
-  "en": "Frozen Peas & Carrots",
-  "es": "Guisantes y Zanahorias Congeladas",
-  "costPerUnit": null
+  "en": "Box of Pasta Roni Parmesan Cheese Flavor",
+  "es": "Caja de Pasta Roni Sabor Queso Parmesano",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "6927416bece43a3918579ad3"
+    "$oid": "695eb68f48ba1dbb7ec7312a"
   },
-  "en": "Refrigerated Jumbo Biscuits (8 count)",
-  "es": " Galletas Jumbo Refrigeradas (8 unidades)",
-  "costPerUnit": null
+  "en": "Ranch Dressing",
+  "es": "Aderezo Ranch",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "692741bbece43a3918579ad4"
+    "$oid": "695eb68f48ba1dbb7ec73140"
   },
-  "en": "Fruit Cocktail (30oz)",
-  "es": "Cóctel de Frutas (30oz)",
-  "costPerUnit": null
+  "en": "Box of Uncooked Elbow Macaroni",
+  "es": "Caja de Macarrones Crudos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "692741f2ece43a3918579ad5"
+    "$oid": "695eb68f48ba1dbb7ec73170"
+  },
+  "en": "Can of Refried Beans",
+  "es": "Lata de Frijoles refritos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e5"
+  },
+  "en": "Taco Seasoning Packet (1.25oz)",
+  "es": "Sobre de Sazonador para Tacos (1.25oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73107"
+  },
+  "en": "Chili Powder",
+  "es": "Chile en Polvo",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7310e"
+  },
+  "en": "Can of Tomato Soup",
+  "es": "Lata de Sopa de Tomate",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73118"
+  },
+  "en": "Stalks Celery",
+  "es": "Tallos de Apio",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73122"
+  },
+  "en": "Onion",
+  "es": "Cebolla",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73136"
+  },
+  "en": "Box of Linguine Noodles",
+  "es": "Caja de Fideos Linguini",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7313b"
+  },
+  "en": "Parmesan Cheese",
+  "es": "Queso Parmesano",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73144"
+  },
+  "en": "Box of Macaroni & Cheese",
+  "es": "Caja de Macarrones con Queso",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73158"
+  },
+  "en": "Bag of Veggie Straws",
+  "es": "Bolsa de Palitos de Verduras",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73164"
+  },
+  "en": "Bag of Pepperonis (6oz)",
+  "es": "Bolsa de Pepperonis (6oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e3"
+  },
+  "en": "Large Chicken Breast",
+  "es": "Pechugas de Pollo Grandes",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e4"
+  },
+  "en": "Jar of Salsa (16 oz)",
+  "es": "Frasco de Salsa (16 oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73100"
+  },
+  "en": "Container of Sour Cream (8oz)",
+  "es": "Envase de Crema Agria (8oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7310a"
+  },
+  "en": "Cilantro",
+  "es": "Cilantro",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73114"
+  },
+  "en": "Ground Turkey",
+  "es": "Pavo Molido",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7311d"
+  },
+  "en": "Bag of Dried 15-Bean Soup Mix",
+  "es": "Bolsa de Mezcla Seca de Sopa de 15 Judías",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73121"
+  },
+  "en": "Lemon Juice",
+  "es": "Zumo de limón",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73139"
+  },
+  "en": "Worcestershire Sauce",
+  "es": "Salsa Worcestershire",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73142"
+  },
+  "en": "Yellow Mustard",
+  "es": "Mostaza Amarilla",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7314f"
+  },
+  "en": "Can of Great Northern Beans",
+  "es": "Lata de Frijoles Blancos Great Northern",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73151"
+  },
+  "en": "BBQ Sauce",
+  "es": "Salsa Barbacoa",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73152"
+  },
+  "en": "Box of Jiffy Corn Muffin",
+  "es": "Caja de Panecillos de Maíz Jiffy",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730df"
+  },
+  "en": "Bag of Frozen Peas & Carrots",
+  "es": "Bolsa de Guisantes y Zanahorias Congeladas",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e2"
   },
   "en": "Pepper",
   "es": "Pimienta",
-  "costPerUnit": null
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "69274a0ed12f5dc03e62ad95"
+    "$oid": "695eb68f48ba1dbb7ec730ea"
   },
-  "en": "Chicken Breasts",
-  "es": "Pollo Grandes",
-  "costPerUnit": null
+  "en": "Green Onion",
+  "es": "Cebollas Verdes",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "69274a4ad12f5dc03e62ad97"
-  },
-  "en": "Salsa (16oz)",
-  "es": "Salsa (16oz)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "69274a8cd12f5dc03e62ad99"
-  },
-  "en": "Taco Seasoning",
-  "es": "Sazonador para Tacos",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "69274abfd12f5dc03e62ad9b"
-  },
-  "en": "Corn",
-  "es": "Elote",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "69274af0d12f5dc03e62ad9d"
-  },
-  "en": "Black Beans",
-  "es": "Frijoles Negros",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0148645114ccecc146ad"
-  },
-  "en": "Knorr Rice Sides Teriyaki Flavored",
-  "es": "Arroces Knorr sabor Teriyaki",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e01b3645114ccecc146af"
-  },
-  "en": "Wonton Strips",
-  "es": "Tiras de Wantán",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e01f4645114ccecc146b1"
-  },
-  "en": "Green Onions, chopped",
-  "es": "Cebollas verdes picadas",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0250645114ccecc146b3"
-  },
-  "en": "Vegetable Oil",
-  "es": "Aceite Vegetal",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e062f645114ccecc146b6"
-  },
-  "en": "Egg Noodles",
-  "es": "Fideos de Huevo",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0698645114ccecc146b7"
-  },
-  "en": "Cream of Mushroom Soup Low Sodium (12.5oz)",
-  "es": "Crema de Champiñones",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0723645114ccecc146b8"
-  },
-  "en": "Mushrooms (4oz)",
-  "es": "Champiñones (4oz)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e075f645114ccecc146b9"
-  },
-  "en": "Shredded Cheese",
-  "es": "Queso Rallado",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0bf9645114ccecc146c0"
-  },
-  "en": "Knorr Chicken Flavored Bouillon Cubes",
-  "es": "Cubos de caldo Knorr sabor pollo",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0c71645114ccecc146c2"
-  },
-  "en": "Water",
-  "es": "Agua",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0ca8645114ccecc146c4"
-  },
-  "en": "Frozen Green Beans",
-  "es": "Ejotes congelados",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0ce4645114ccecc146c5"
-  },
-  "en": "Margarine",
-  "es": "Margarina",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e0d1b645114ccecc146c6"
-  },
-  "en": "Garlic Salt",
-  "es": "Sal de ajo",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e15e8b8d275176858309e"
-  },
-  "en": "Pineapple Chunks (15oz)",
-  "es": "Piña en trozos (15oz)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e172796d7a413052c8fe9"
-  },
-  "en": "Teriyaki Sauce",
-  "es": "Salsa teriyaki",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e176c96d7a413052c8fea"
-  },
-  "en": "Frozen Broccoli Florets (12oz)",
-  "es": "Brócoli congelado (12oz)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e17af96d7a413052c8feb"
+    "$oid": "695eb68f48ba1dbb7ec730f7"
   },
   "en": "Rice",
   "es": "Arroz",
-  "costPerUnit": null
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
 },
 {
   "_id": {
-    "$oid": "692e1a7a96d7a413052c8ff7"
-  },
-  "en": "Rotisserie Chicken",
-  "es": "Pollo Rotisserie",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e1ac596d7a413052c8ff8"
-  },
-  "en": "Pasta Roni Angel Hair Pasta with Herbs (4.8oz each)",
-  "es": "Pasta Roni Cabello de Ángel con Hierbas (4.8oz cada una)",
-  "costPerUnit": null
-},
-{
-  "_id": {
-    "$oid": "692e1b0a96d7a413052c8ff9"
+    "$oid": "695eb68f48ba1dbb7ec730fa"
   },
   "en": "Butter",
   "es": "Mantequilla",
-  "costPerUnit": null
-}] 
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73104"
+  },
+  "en": "Bag of Tortilla Chips",
+  "es": "Bolsa de Totopos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7310d"
+  },
+  "en": "Banana",
+  "es": "Plátanos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73141"
+  },
+  "en": "Can of Petite Diced Tomatoes (14.5oz)",
+  "es": "Lata de Tomates en Cubos Pequeños (14.5oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73146"
+  },
+  "en": "Jalepeno",
+  "es": "Jalepeño",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73148"
+  },
+  "en": "Bag of Small Fajita Flour Tortillas",
+  "es": "Bolsa de Tortillas de Harina para Fajitas Pequeñas",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7314a"
+  },
+  "en": "Crushed Red Pepper",
+  "es": "Pimiento Rojo Triturado",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73157"
+  },
+  "en": "Dill Pickle Juice",
+  "es": "Jugo de Pepinillos",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73163"
+  },
+  "en": "Can of Chef Boyardee Pizza Sauce",
+  "es": "Lata de Salsa para Pizza Chef Boyardee",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73167"
+  },
+  "en": "Bag of Dried Pinto Beans",
+  "es": "Bolsa de Frijoles Pintos Secos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7316e"
+  },
+  "en": "Package of Chicken Smoked Sausage",
+  "es": "Paquete de Salchicha Ahumada de Pollo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e8"
+  },
+  "en": "Knorr Rice Sides Teriyaki Flavored",
+  "es": "Knorr sabor Teriyaki",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73119"
+  },
+  "en": "Can of Tomato Paste (6oz)",
+  "es": "Lata de Pasta de Tomate (6oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7313f"
+  },
+  "en": "Box of Instant Mashed Potatoes",
+  "es": "Caja de Puré de Papas Instantáneo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73159"
+  },
+  "en": "Package of Gnocchi",
+  "es": "Paquete de Ñoquis",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7315b"
+  },
+  "en": "Large Sweet Potato",
+  "es": "Batata Grande",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73168"
+  },
+  "en": "Package of Polish Kielbasa (14oz)",
+  "es": "Paquete de Kielbasa Polaca (14oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7316b"
+  },
+  "en": "Bag of Frozen Tater Tots (32oz)",
+  "es": "Bolsa de Tater Tots Congelados (32oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730da"
+  },
+  "en": "Can of Chicken (12.5oz)",
+  "es": "Lata de Pollo (12.5oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730dd"
+  },
+  "en": "Box of Stuffing Mix",
+  "es": "Caja de Mezcla para Relleno",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f3"
+  },
+  "en": "Garlic Salt",
+  "es": "Sal de Ajo",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73133"
+  },
+  "en": "Italian Seasoning",
+  "es": "Condimento Italiano",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730ec"
+  },
+  "en": "Bag of Egg Noodles",
+  "es": "Bolsa de Fideos de Huevo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730ed"
+  },
+  "en": "Can of Cream of Mushroom Soup Low Sodium (12.5 oz)",
+  "es": "Lata de Sopa de Crema de Champiñones Baja en Sodio (12.5 oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f5"
+  },
+  "en": "Teriyaki Sauce",
+  "es": "Salsa Teriyaki",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730fe"
+  },
+  "en": "Eggs",
+  "es": "Huevos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73103"
+  },
+  "en": "Bag of Shredded Colby Jack Cheese (8oz)",
+  "es": "Bolsa de Queso Colby Jack Rallado (8oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73105"
+  },
+  "en": "Bag of Stir-Fry Vegetables",
+  "es": "Bolsa de Vegetales Salteados",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73109"
+  },
+  "en": "Bag of Frozen Okra (12oz) – not breaded",
+  "es": "Bolsa de Okra Congelada (12oz) sin empanizar",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7311e"
+  },
+  "en": "Can of Diced Tomatoes (15oz)",
+  "es": "Lata de Tomates en Dados (15oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73123"
+  },
+  "en": "Box of Chicken Broth (32oz)",
+  "es": "Caja de Caldo de Pollo (32oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73124"
+  },
+  "en": "Bag of Real Bacon Bits",
+  "es": "Bolsa de Tocino Natural",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7313a"
+  },
+  "en": "Ketchup",
+  "es": "Kétchup",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7314c"
+  },
+  "en": "Can of Kidney Beans – light or dark",
+  "es": "Lata de Frijoles Rojos (claros u oscuros)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7314e"
+  },
+  "en": "Can of Pork and Beans",
+  "es": "Lata de Frijoles con Cerdo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73156"
+  },
+  "en": "Dill Pickle Slices",
+  "es": "Pepinillos Picados",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73173"
+  },
+  "en": "Jar of Peanut Butter",
+  "es": "Frasco de Mantequilla de Cacahuete",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e6"
+  },
+  "en": "Can of Corn",
+  "es": "Lata de Elote",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e9"
+  },
+  "en": "Bag of Wonton Strips",
+  "es": "Bolsa de Tiras de Wantán",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7310c"
+  },
+  "en": "Bag of California-Style, Frozen Vegetables",
+  "es": "Bolsa de Verduras Congeladas Estilo California",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73129"
+  },
+  "en": "Can of White Tuna in Water (12oz)",
+  "es": "Lata de Atún Blanco en Agua (12 oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7312c"
+  },
+  "en": "Jar of Alfredo Sauce (22oz)",
+  "es": "Frasco de Salsa Alfredo (22oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73145"
+  },
+  "en": "Packet of Fajita Seasoning",
+  "es": "Paquete de Condimento Fajita",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7315c"
+  },
+  "en": "Garlic Cloves",
+  "es": "Dientes de Ajo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7316d"
+  },
+  "en": "Head of Cabbage",
+  "es": "Repollo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f4"
+  },
+  "en": "Can of Pineapple Chunks (15oz)",
+  "es": "Lata de Piña en Trozos (15oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730ff"
+  },
+  "en": "Bag of Shredded Mild Cheddar Cheese (8oz)",
+  "es": "Bolsa de Queso Cheddar Suave Rallado (8oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73111"
+  },
+  "en": "Slices American Cheese",
+  "es": "rebanadas de queso americano",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7311b"
+  },
+  "en": "Loaf Walmart Deli Sliced Italian Bread",
+  "es": "Pan Italiano Rebanado Walmart Deli",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7311c"
+  },
+  "en": "Parsley",
+  "es": "Perejil",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73120"
+  },
+  "en": "Garlic Powder",
+  "es": "Polvo de Ajo",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7312d"
+  },
+  "en": "Bag of Mozzarella Cheese (8oz)",
+  "es": "Bolsa de Queso Mozzarella (8oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7312e"
+  },
+  "en": "Box of Frozen Garlic Bread",
+  "es": "Caja de Pan de Ajo Congelado",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73135"
+  },
+  "en": "Box of Rigatoni (16oz)",
+  "es": "Caja de Rigatoni (16oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73149"
+  },
+  "en": "Medium Shell Pasta (16oz box)",
+  "es": "Caja de Pasta de Concha Mediana (16oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73150"
+  },
+  "en": "Can of Butter Beans",
+  "es": "Lata de Frijoles Blancos con Mantequilla",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7315a"
+  },
+  "en": "Jar of Hunt’s Four Cheese Pasta Sauce (24oz)",
+  "es": "Frasco de Salsa para Pasta Hunt's de Cuatro Quesos (24oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73172"
+  },
+  "en": "Oats",
+  "es": "Avena",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730de"
+  },
+  "en": "Bag of Frozen Mixed Vegetables",
+  "es": "Bolsa de Verduras Mixtas Congeladas",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f1"
+  },
+  "en": "Bag of Frozen Green Beans",
+  "es": "Bolsa de Ejotes Congelados",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7310b"
+  },
+  "en": "Salt",
+  "es": "Sal",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73112"
+  },
+  "en": "Can of Generic Rotel Tomatoes",
+  "es": "Lata de Tomates Rotel Genéricos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7316f"
+  },
+  "en": "Avocado",
+  "es": "Aguacate",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e1"
+  },
+  "en": "Can of Fruit Cocktail (30oz)",
+  "es": "Lata de Cóctel de Frutas (30oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e7"
+  },
+  "en": "Can of Black Beans",
+  "es": "Lata de Frijoles Negros",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730ef"
+  },
+  "en": "Shredded Cheddar Cheese",
+  "es": "Queso Cheddar Rallado",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7312b"
+  },
+  "en": "Box of Rotini (16oz)",
+  "es": "Caja de Fideos Rotini (16oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7312f"
+  },
+  "en": "Microwave Macaroni & Cheese Cups (2oz)",
+  "es": "Macarrones con Queso Individuales para Microondas (2oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7313c"
+  },
+  "en": "Sleeve of Saltine Crackers",
+  "es": "Paquete de Galletas Saladas Trituradas",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7313e"
+  },
+  "en": "brown sugar",
+  "es": "azúcar morena",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7315e"
+  },
+  "en": "Can of Fire-Roasted Tomatoes",
+  "es": "Lata de Tomates Asados",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f8"
+  },
+  "en": "Chilled Rotisserie Chicken",
+  "es": "Pollo Rotisserie Frío",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73113"
+  },
+  "en": "Ground Beef",
+  "es": "Carne Molida de Res",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73117"
+  },
+  "en": "Small Potatoes",
+  "es": "Papas Pequeñas",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73130"
+  },
+  "en": "Spanish Olives",
+  "es": "Aceitunas Españolas",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73132"
+  },
+  "en": "Dried Onions",
+  "es": "Cebolla Deshidratada",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73137"
+  },
+  "en": "Garlic Powder",
+  "es": "Ajo en Polvo",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73138"
+  },
+  "en": "Onion Powder",
+  "es": "Cebolla en Polvo",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7313d"
+  },
+  "en": "Hamburger Seasoning",
+  "es": "Condimento para Hamburguesas",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73161"
+  },
+  "en": "Can of Baked Beans (28oz)",
+  "es": "Lata de Frijoles (28oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7316c"
+  },
+  "en": "Breakfast Sausage",
+  "es": "Salchicha de Desayuno",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730eb"
+  },
+  "en": "Vegetable Oil",
+  "es": "Aceite Vegetal",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f6"
+  },
+  "en": "Bag of Frozen Broccoli Florets (12oz)",
+  "es": "Bolsa de Brócoli Congelado (12oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730fd"
+  },
+  "en": "Soy Sauce",
+  "es": "Salsa de Soja",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73102"
+  },
+  "en": "Can of Armour Chili with Beans (14oz)",
+  "es": "Lata de Chili Armour con Frijoles (14oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7310f"
+  },
+  "en": "Loaf White Bread",
+  "es": "Pan Blanco",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73115"
+  },
+  "en": "Carrots",
+  "es": "Zanahorias",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73143"
+  },
+  "en": "Hamburger Buns",
+  "es": "Panecillos para Hamburguesa",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73147"
+  },
+  "en": "Green Bell Peppers",
+  "es": "Pimientos Verdes",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73160"
+  },
+  "en": "Jar of Sauerkraut (24oz)",
+  "es": "Frasco de Chucrut (24oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73165"
+  },
+  "en": "Roma Tomatoes",
+  "es": "Tomates Roma",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73169"
+  },
+  "en": "Package of Bar S Classic Franks (8 count each)",
+  "es": "Paquete de Salchichas Clásicas Bar S (8 unidades cada una)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73171"
+  },
+  "en": "Can of Chickpeas",
+  "es": "Lata de Garbanzos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730dc"
+  },
+  "en": "Milk",
+  "es": "Leche",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7311a"
+  },
+  "en": "Knorr Beef Bouillon Cubes",
+  "es": "Cubos de Caldo de Res Knorr",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73126"
+  },
+  "en": "Plain Greek Yogurt",
+  "es": "Yogur Griego Natural",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7314b"
+  },
+  "en": "Grated Parmesan Cheese",
+  "es": "Queso Parmesano Rallado",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73154"
+  },
+  "en": "Small Sweet Potatoes",
+  "es": "Batatas Pequeñas",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7315d"
+  },
+  "en": "Chili Seasoning Packet",
+  "es": "Sobre de Condimento para Chile",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7316a"
+  },
+  "en": "Can of Country Style Baked Beans (28oz)",
+  "es": "Lata de Frijoles Horneados Estilo Campestre (28oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f2"
+  },
+  "en": "Margarine",
+  "es": "Margarina",
+  "costPerUnit": 0,
+  "baseUnit": "g",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73101"
+  },
+  "en": "Sleeve of Butter Rounds Crackers",
+  "es": "Paquete de Galletas Redondas de Mantequilla",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73125"
+  },
+  "en": "Can of Chipotle Chile in Adobo Sauce",
+  "es": "Lata de Chile Chipotle en Adobo Enlatado",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73134"
+  },
+  "en": "Can of Hunt’s Spaghetti Sauce (24oz)",
+  "es": "Lata de Salsa para Espaguetis Hunt's (24oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730db"
+  },
+  "en": "Can of Cream of Chicken Soup (low sodium)",
+  "es": "Lata de Crema de Pollo (baja en sodio)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730e0"
+  },
+  "en": "Can of Refrigerated Jumbo Biscuits (8 count)",
+  "es": "Lata de Galletas Jumbo Refrigeradas (8 unidades)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f0"
+  },
+  "en": "Knorr Chicken Flavored Bouillon Cube",
+  "es": "Cubos de Caldo Knorr Sabor Pollo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730f9"
+  },
+  "en": "Box of Pasta Roni Angel Hair Pasta with Herbs (4.8oz)",
+  "es": "Caja de Pasta Roni Cabello de Ángel con Hierbas (4.8oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec730fb"
+  },
+  "en": "Chicken Flavored Ramen Noodles",
+  "es": "Fideos Ramen con Sabor a Pollo",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73108"
+  },
+  "en": "Can of Tomato Sauce (15oz)",
+  "es": "Lata de Salsa de Tomate (15oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7311f"
+  },
+  "en": "Box of Unsalted Beef Broth (32oz)",
+  "es": "Caja de Caldo de Ternera Sin Sal (32oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7314d"
+  },
+  "en": "Can of Pinto Beans",
+  "es": "Lata de Frijoles Pintos",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73153"
+  },
+  "en": "Box of Penne Pasta (16oz)",
+  "es": "Caja de Penne Pasta (16oz)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73155"
+  },
+  "en": "Mayonnaise",
+  "es": "Mayonesa",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec7315f"
+  },
+  "en": "Package of Hot Dogs",
+  "es": "Paquete de Salchichas",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73162"
+  },
+  "en": "Loaf Walmart Bakery French Bread",
+  "es": "Barra de Pan Francés de Walmart Bakery",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "695eb68f48ba1dbb7ec73166"
+  },
+  "en": "Knorr Cajun Rice Sides",
+  "es": "Arroz Cajún Knorr",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "696562e0a2c96930a995a538"
+  },
+  "en": "Bag of Corn Chips",
+  "es": "Bolsa de Chips de Maíz",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "69656520a2c96930a995a539"
+  },
+  "en": "Olive Oil",
+  "es": "Aceite de Oliva",
+  "costPerUnit": 0,
+  "baseUnit": "mL",
+  "productLink": "unknown"
+},
+{
+  "_id": {
+    "$oid": "6967fa4b25ac7298d048de8f"
+  },
+  "en": "Box of Great Value Taco Shells (12 count)",
+  "es": "Caja de tortillas para tacos de gran valor (12 unidades)",
+  "costPerUnit": 0,
+  "baseUnit": "each",
+  "productLink": "unknown"
+}]

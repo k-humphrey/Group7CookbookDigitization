@@ -1,34 +1,49 @@
 [{
   "_id": {
-    "$oid": "691f9b38c070923666ddc4fe"
+    "$oid": "695ec4c6b0379ee832d8a867"
+  },
+  "en": "Microwave",
+  "es": "Microondas"
+},
+{
+  "_id": {
+    "$oid": "695ec4c6b0379ee832d8a866"
   },
   "en": "Oven",
   "es": "Horno"
 },
-{  "_id": {
-    "$oid": "69274b23d12f5dc03e62ad9e"
+{
+  "_id": {
+    "$oid": "695ec4c6b0379ee832d8a86a"
+  },
+  "en": "Skillet/Frying Pan",
+  "es": "Sartén/Sartén"
+},
+{
+  "_id": {
+    "$oid": "695ec4c6b0379ee832d8a869"
+  },
+  "en": "Stockpot/Dutch Oven",
+  "es": "olla/horno holandés"
+},
+{
+  "_id": {
+    "$oid": "695ec4c6b0379ee832d8a86b"
+  },
+  "en": "Saucepan with Lid",
+  "es": "Cacerola con Tapa"
+},
+{
+  "_id": {
+    "$oid": "695ec4c6b0379ee832d8a868"
   },
   "en": "Slow Cooker",
   "es": "Olla de Cocción Lenta"
 },
 {
   "_id": {
-    "$oid": "692e08ab645114ccecc146bc"
+    "$oid": "695ec4c6b0379ee832d8a86c"
   },
-  "en": "Pot",
-  "es": "Olla"
-},
-{
-  "_id": {
-    "$oid": "692e0bae645114ccecc146bf"
-  },
-  "en": "Skillet",
-  "es": "Sartén"
-},
-{
-  "_id": {
-    "$oid": "692e1b5696d7a413052c8ffc"
-  },
-  "en": "Microwave",
-  "es": "Microondas"
+  "en": "Stockpot and Skillet",
+  "es": "Olla y Sartén"
 }]

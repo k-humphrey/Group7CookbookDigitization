@@ -5,6 +5,10 @@ const recipeSchema = new mongoose.Schema({
         en: String,
         es: String,
     },
+    ingredientPlainText: {
+        en: String,
+        es: String,
+    },
     instructions: {
         en: String,
         es: String,
@@ -19,10 +23,7 @@ const recipeSchema = new mongoose.Schema({
         {
             ingredient: { type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient', required: true },
             amount: Number,
-            unit: {
-                en: String,
-                es: String,
-            },
+            unit: String
         },
     ],
     appliances: [
