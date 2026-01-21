@@ -10,7 +10,7 @@ interface Props {
 
 export default function Searchbar({ onSearch, initialTags }: Props) {
   const [input, setInput] = useState("");
-  const [tags, setTags] = useState<string[]>(initialTags || []);
+  const [tags, setTags] = useState<string[]>(initialTags || []); 
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);

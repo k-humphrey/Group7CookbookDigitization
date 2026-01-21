@@ -8,6 +8,7 @@ import Searchbar from "./components/searchbar";
 export default function Home() {
   const router = useRouter();
 
+  // routes to the recipes page
   const handleSearch = (tags: string[]) => {
     if(tags)
       router.push(`/recipes?ingredients=${tags.join(",")}`);

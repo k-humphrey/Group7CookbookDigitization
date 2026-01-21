@@ -9,7 +9,8 @@ import Searchbar from "../components/searchbar"
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
-  const tagParam = useSearchParams().get("ingredients");
+
+  const tagParam = useSearchParams().get("ingredients"); // get initial ingredients from url
   const initialTags = tagParam ? tagParam.split(",") : [];
 
   // Initial loading for page
@@ -17,6 +18,7 @@ export default function RecipeSearchPage() {
     handleSearch(initialTags);
   }, []);
 
+  // search for recipes in the database
   const handleSearch = async (tags: string[]) => {
     try {
       let url = "/api/recipes";
