@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function RecipeGrid() {
@@ -74,9 +75,9 @@ export default function RecipeGrid() {
             </div>
 
             <div className="card-actions justify-end mt-4">
-              <button className="btn btn-sm btn-success">
+              <Link href={`/single-recipe/${recipe._id}`} className="btn btn-sm btn-success">
                 View Recipe
-              </button>
+              </Link>
             </div>
           </div>
         </div>
