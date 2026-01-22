@@ -18,29 +18,31 @@ export default function RecipeSearchPage() {
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const appliancesRef =  useRef<string[]>([]);
+  const filtersRef =  useRef({ appliances: [] as string[], tags: [] as string[]});
 
   // Initial loading for page
   useEffect(() => {
-    handleSearch(ingredientsRef.current, appliancesRef.current);
+    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
   }, []);
   
   // search for recipes in the database
-  const handleSearch = async (ingredients: string[], appliances: string[]) => {
-    const tags = new URLSearchParams();
+  const handleSearch = async (ingredients: string[], appliances: string[], tags: string[]) => {
+    const filters = new URLSearchParams();
 
     // default url to return all recipes if no filters
     let url = "/api/recipes";
 
     // add filters to url search param if available
     if(ingredients.length > 0)
-      tags.set("ingredients", ingredients.join(","));
+      filters.set("ingredients", ingredients.join(","));
     if(appliances.length > 0)
-      tags.set("appliances", appliances.join(","));
+      filters.set("appliances", appliances.join(","));
+    if(tags.length > 0)
+      filters.set("tags", tags.join(","));
 
     // construct url if there are any tags
-    if(tags.size > 0)
-      url = `/api/recipes/bySearch?${tags.toString()}`;
+    if(filters.size > 0)
+      url = `/api/recipes/bySearch?${filters.toString()}`;
 
     const res = await fetch(url);
     const data = await res.json();
@@ -58,8 +60,8 @@ export default function RecipeSearchPage() {
         }}
       >
        <Searchbar onSearch={(ingredients) => {
-        ingredientsRef.current = ingredients; 
-        handleSearch(ingredientsRef.current, appliancesRef.current);
+          ingredientsRef.current = ingredients; 
+          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
         }} initialTags={initialTags} /> 
       </div>
       
@@ -68,8 +70,8 @@ export default function RecipeSearchPage() {
         {/* Filters */}
         <div className="w-64 sticky top-0 self-start shrink-0">
           <Filters onChange={(appliances) => {
-            appliancesRef.current = appliances;
-            handleSearch(ingredientsRef.current, appliancesRef.current);
+            filtersRef.current = appliances;
+            handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
           }} />
         </div>
         

@@ -4,25 +4,26 @@ import { useState } from "react";
 
 // keep track of selected fitlers
 interface Props {
-  onChange: (appliances: string[]) => void; // callback to parent
+  onChange: (filters: { appliances: string[]; tags: string[] }) => void; // callback to parent
 }
 
 export default function Filters({ onChange }: Props) {
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState({ appliances: [] as string[], tags: [] as string[]});
 
-  const toggle = (appliance: string) => {
-    let newSelected: string[];
+  const toggle = (category: "appliances" | "tags", newTag: string) => {
+    let newSelected;
 
-    if(selected.includes(appliance))
-      newSelected = selected.filter((item) => item !== appliance);
+    if (selected[category].includes(newTag))
+      newSelected = {...selected, [category]: selected[category].filter((item) => item !== newTag)};
     else
-      newSelected = selected.concat(appliance);
+      newSelected = {...selected, [category]: selected[category].concat(newTag)};
 
     setSelected(newSelected); // update UI
     onChange(newSelected); // update recipes
   };
 
   const [isOpen, setIsOpen] = useState(true);
+  
   return (
     <section>
       {/* Filters */}
@@ -49,8 +50,8 @@ export default function Filters({ onChange }: Props) {
                 <input
                   type="checkbox"
                   className="checkbox checkbox-xs"
-                  checked={selected.includes(appliance)}
-                  onChange={() => toggle(appliance)}
+                  checked={selected.appliances.includes(appliance)}
+                  onChange={() => toggle("appliances", appliance)}
                 />
                 <span>{appliance}</span>
                 </label>
@@ -62,18 +63,17 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase my-2">Health</h3>
               <div className="flex flex-col gap-1">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Blue ribbon</span>
+                {["blueRibbon", "vegan", "vegetarian"].map(tag => (
+                <label key={tag} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-xs"
+                  checked={selected.tags.includes(tag)}
+                  onChange={() => toggle("tags", tag)}
+                />
+                <span>{tag}</span>
                 </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Vegan</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Vegetarian</span>
-                </label>
+                ))}
               </div>
             </div>
 
