@@ -91,6 +91,8 @@ export async function GET(req: Request){
                         {$size: {
                             $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                         }},
+                        { $sum: { $map: { input: { $filter: { input: "$ingredients", as: "i", cond: { $in: ["$$i.ingredient", ingredientIds] } } }, as: "matched", in: "$$matched.amount" } } }
+                        
                     ]
                 }
             }},
