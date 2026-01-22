@@ -4,23 +4,23 @@ import Link from "next/link";
 
 export default function Navbar() {
     return (
-        <div className="navbar bg-white text-black shadow-sm">
+        <div className="navbar bg-white text-black shadow-sm relative z-50">
 
 
             <Link href="/">
-            <div className="inline-block p-2 hover:bg-gray-100 rounded">
-                <img 
-                src="pep_logo.png" 
-                alt="LEADERSHIP PUTNAM Logo" 
-                className="w-80 h-auto max-w-full"
-                />
-            </div>
+                <div className="inline-block p-2 hover:bg-gray-100 rounded">
+                    <img 
+                    src="pep_logo.png" 
+                    alt="LEADERSHIP PUTNAM Logo" 
+                    className="w-80 h-auto max-w-full"
+                    />
+                </div>
             </Link>
 
 
             
         <div className="navbar-start">
-            <div className="dropdown">
+            <div className="dropdown relative">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export default function Navbar() {
             {/*Drop down menu for when screen small*/}
             <ul
                 tabIndex={-1}
-                className="menu menu-sm dropdown-content bg-white text-black rounded-box z-1 mt-3 w-52 p-2 shadow" >
+                className="menu menu-sm dropdown-content bg-white text-black rounded-box z-50 mt-3 w-52 p-2 shadow" >
                 <li>
                 <details>
                     <summary>Community Resources</summary>

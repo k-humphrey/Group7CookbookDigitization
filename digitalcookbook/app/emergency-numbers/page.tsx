@@ -5,7 +5,7 @@ export default function EmergencyNumbersPage() {
     <main className="min-h-screen p-8 flex flex-col items-center gap-10">
       
       {/* Title */}
-      <div className="badge bg-red-800 text-white text-2x2 px-20 py-6 rounded-full">
+      <div className="badge bg-red-800 text-white text-4x1 font-extrabold px-20 py-6 rounded-full">
         Emergency Numbers
       </div>
 
@@ -62,10 +62,11 @@ export default function EmergencyNumbersPage() {
         </table>
       </div>
 
-      {/* Two-column section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+      {/* One-column section */}
+      <div className="grid grid-cols-1 gap-8 w-full max-w-5xl">
         
         {/* Personal Contacts */}
+        {/*
         <div className="card border p-4">
           <h2 className="font-bold mb-2">Personal / Local Contacts</h2>
           <table className="table">
@@ -76,10 +77,10 @@ export default function EmergencyNumbersPage() {
               <tr><th>School / Daycare</th><td></td></tr>
             </tbody>
           </table>
-        </div>
+        </div>   */}
 
         {/* Utilities & Help */}
-        <div className="card border p-4">
+        <div className="card border p-4 mx-auto max-w-md text-center">
           <ul className="space-y-3">
             <li>
               <strong>Poison Control:</strong> 1-800-222-1222
