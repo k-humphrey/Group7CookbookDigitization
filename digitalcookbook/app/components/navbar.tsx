@@ -187,7 +187,7 @@ export default function Navbar() {
                             href="/safety"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             Safety
                         </Link>
                     </li>
@@ -196,7 +196,7 @@ export default function Navbar() {
                             href="https://www.putnamcountytnhealthdept.com/"
                             target="_blank"
                             rel="noopener noreferrer" 
-                            className="no-underline" >
+                            className="hover:underline" >
                             Putnam County Health Department
                         </Link>
                     </li>
@@ -205,7 +205,7 @@ export default function Navbar() {
                             href="https://UCAssist.org"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             UCAssist.org
                         </Link>
                     </li>
@@ -214,7 +214,7 @@ export default function Navbar() {
                             href="https://www.elpuentecookeville.org"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             El Puente - Hispanic Community Center
                         </Link>
                     </li>
@@ -223,7 +223,7 @@ export default function Navbar() {
                             href="/emergency-numbers"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             Emergency Numbers
                         </Link>
                     </li>
@@ -239,7 +239,7 @@ export default function Navbar() {
                             href="https://www.kiwanis.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             Kiwanis
                         </Link>
                     </li>
@@ -248,7 +248,7 @@ export default function Navbar() {
                             href="https://www.enbridge.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >                                
+                            className="hover:underline" >                                
                             Enbridge
                         </Link>
                     </li>
@@ -257,7 +257,7 @@ export default function Navbar() {
                             href="https://www.powerofputnam.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             Power of Putnam
                         </Link>
                     </li>
@@ -269,7 +269,7 @@ export default function Navbar() {
                     href="/all-recipes"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="no-underline" >
+                    className="hover:underline" >
                     All Recipes
                 </Link>
             </li>
@@ -282,7 +282,7 @@ export default function Navbar() {
                             href="/shelf-life-guidelines"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             Shelf Life Guidelines
                         </Link>
                     </li>
@@ -291,7 +291,7 @@ export default function Navbar() {
                             href="/price-finder"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             Price Finder
                         </Link>
                     </li>
@@ -300,7 +300,7 @@ export default function Navbar() {
                             href="/timer"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="no-underline" >
+                            className="hover:underline" >
                             Timer
                         </Link>
                     </li>
