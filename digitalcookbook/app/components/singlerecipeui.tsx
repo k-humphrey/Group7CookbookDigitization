@@ -1,6 +1,4 @@
 //app/components/singlerecipeui.tsx
-"use client";
-
 type Recipe = {
   title?: { en?: string; es?: string };
   imageURI?: string;
@@ -21,7 +19,7 @@ type Recipe = {
 
 export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const title = recipe?.title?.en ?? "Recipe";
-
+  
   return (
     <main className="min-h-screen bg-base-100">
       <div className="mx-auto max-w-3xl px-6 pt-6">
