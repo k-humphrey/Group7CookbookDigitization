@@ -1,12 +1,16 @@
 //app/components/singlerecipeui.tsx
+"use client";
+
 type Recipe = {
   title?: { en?: string; es?: string };
+  ingredientPlainText?: { en?: string; es?: string };
   imageURI?: string;
   tags?: {
     blueRibbon?: boolean;
     vegan?: boolean;
     vegetarian?: boolean;
   };
+  totalCost?: number;
   ingredients?: Array<{
     ingredient?: {
       name?: { en?: string; es?: string };
@@ -14,15 +18,13 @@ type Recipe = {
     amount?: number;
     unit?: string;
   }>;
-  ingredientPlainText?: { en?: string; es?: string };
 };
 
 export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const title = recipe?.title?.en ?? "Recipe";
-  
   return (
     <main className="min-h-screen bg-base-100">
-      <div className="mx-auto max-w-3xl px-6 pt-6">
+      <div className="mx-auto max-w-6xl px-6 pt-6">
         <div className="border border-base-300 bg-base-100">
           
           {/* Image */}
@@ -41,24 +43,49 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           </div>
 
           {/* Title + Tags */}
-          <div className="px-6 pt-4">
-            <div className="flex items-start justify-between gap-4">
-              <h1 className="text-lg font-bold">{title}</h1>
-
-              <div className="flex gap-2">
+          <div className="p-4 sm:p-6">
+            {/* Row 1: Title + Tags */}
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <h1 className="text-lg font-bold leading-tight wrap-break-word">
+                {title}
+              </h1>
+              <div className="flex flex-wrap items-center gap-2 text-sm">
                 {recipe?.tags?.blueRibbon && (
-                  <span className="badge badge-info">Blue Ribbon</span>
+                  <span className="badge badge-info whitespace-nowrap">
+                    Blue Ribbon
+                  </span>
                 )}
                 {recipe?.tags?.vegan && (
-                  <span className="badge badge-success">Vegan</span>
+                  <span className="badge badge-success whitespace-nowrap">
+                    Vegan
+                  </span>
                 )}
                 {recipe?.tags?.vegetarian && (
-                  <span className="badge badge-success">Vegetarian</span>
+                  <span className="badge badge-success whitespace-nowrap">
+                    Vegetarian
+                  </span>
                 )}
               </div>
             </div>
 
-            <div className="mt-3 border-t border-base-300" />
+            {/* Row 2: Time, Servings, and Cost */}
+            <div className="md:flex md:flex-row items-start mt-24 md:gap-10 sm:grid">
+              <div className="font-semibold">
+                Prep Time:
+              </div>
+              <div className="font-semibold">
+                Cook Time:
+              </div>
+              <div className="font-semibold">
+                Servings:
+              </div>
+              <span className="font-semibold">
+                Total Cost: $
+                {recipe?.totalCost != null ? recipe.totalCost.toFixed(2) : "0.00"}
+              </span>
+            </div>
+            {/* Divider */}
+            <div className="mt-4 border-t border-base-900" />
           </div>
 
           {/* Ingredients */}
@@ -77,7 +104,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                     <li key={i}>
                       {item.amount != null && `${item.amount} `}
                       {item.unit && `${item.unit} `}
-                      {item.en ?? item.es ?? "Ingredient"}
+                      {item.ingredient?.name?.en ?? "Ingredient"}
                     </li>
                   ))
                 ) : (
