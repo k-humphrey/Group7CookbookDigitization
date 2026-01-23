@@ -23,6 +23,8 @@ export default async function Page({
     .lean();
 
   if (!recipe) notFound();
+  const safeRecipe = JSON.parse(JSON.stringify(recipe));
 
-  return <SingleRecipeUI recipe={recipe as any} />;
+  return <SingleRecipeUI recipe={safeRecipe} />;
+
 }
