@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 interface Props {
   recipes: any[];
 }
@@ -50,9 +51,9 @@ export default function RecipeGrid({ recipes }: Props) {
               </div>
 
               <div className="card-actions justify-end mt-4">
-                <button className="btn btn-sm btn-success">
-                  View Recipe
-                </button>
+                <Link href={`/single-recipe/${recipe._id}`} className="btn btn-sm btn-success">
+                View Recipe
+                </Link>
               </div>
             </div>
           </div>
