@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 
 import Filters from "../components/filters";
 import RecipeGrid from "../components/recipecards";
-import Searchbar from "../components/searchbar"
+import Searchbar from "../components/searchbar";
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
@@ -18,7 +18,7 @@ export default function RecipeSearchPage() {
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const filtersRef =  useRef({ appliances: [] as string[], tags: [] as string[]});
+  const filtersRef =  useRef({ appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
 
   // Initial loading for page
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function RecipeSearchPage() {
   }, []);
   
   // search for recipes in the database
-  const handleSearch = async (ingredients: string[], appliances: string[], tags: string[]) => {
+  const handleSearch = async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }) => {
     const filters = new URLSearchParams();
 
     // default url to return all recipes if no filters
@@ -37,8 +37,10 @@ export default function RecipeSearchPage() {
       filters.set("ingredients", ingredients.join(","));
     if(appliances.length > 0)
       filters.set("appliances", appliances.join(","));
-    if(tags.length > 0)
-      filters.set("tags", tags.join(","));
+    if(tags.healthTags.length > 0)
+      filters.set("healthTags", tags.healthTags.join(","));
+    if(tags.allergenTags.length > 0)
+      filters.set("allergenTags", tags.allergenTags.join(","))
 
     // construct url if there are any tags
     if(filters.size > 0)

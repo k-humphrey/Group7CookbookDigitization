@@ -4,19 +4,28 @@ import { useState } from "react";
 
 // keep track of selected fitlers
 interface Props {
-  onChange: (filters: { appliances: string[]; tags: string[] }) => void; // callback to parent
+  onChange: (filters: { appliances: string[]; tags: {healthTags: string[], allergenTags: string[]} }) => void; // callback to parent
 }
 
 export default function Filters({ onChange }: Props) {
-  const [selected, setSelected] = useState({ appliances: [] as string[], tags: [] as string[]});
+  const [selected, setSelected] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});
 
-  const toggle = (category: "appliances" | "tags", newTag: string) => {
+  const toggle = (category: "appliances" | "healthTags" | "allergenTags", newTag: string) => {
     let newSelected;
 
-    if (selected[category].includes(newTag))
-      newSelected = {...selected, [category]: selected[category].filter((item) => item !== newTag)};
-    else
-      newSelected = {...selected, [category]: selected[category].concat(newTag)};
+    if(category == "appliances") {  // toggle appliances
+      if (selected.appliances.includes(newTag))
+        newSelected = {...selected, appliances: selected.appliances.filter((item) => item !== newTag)};
+      else
+        newSelected = {...selected, appliances: selected.appliances.concat(newTag)};
+
+    } else {  // toggle tags
+      if (selected.tags[category].includes(newTag))
+        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].filter((item) => item !== newTag)}};
+      else
+        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].concat(newTag)}};
+
+    }
 
     setSelected(newSelected); // update UI
     onChange(newSelected); // update recipes
@@ -68,8 +77,8 @@ export default function Filters({ onChange }: Props) {
                 <input
                   type="checkbox"
                   className="checkbox checkbox-xs"
-                  checked={selected.tags.includes(tag)}
-                  onChange={() => toggle("tags", tag)}
+                  checked={selected.tags.healthTags.includes(tag)}
+                  onChange={() => toggle("healthTags", tag)}
                 />
                 <span>{tag}</span>
                 </label>
@@ -81,26 +90,17 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase my-2">Allergies</h3>
               <div className="flex flex-col gap-1">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Celiac</span>
+                {["dairy", "egg", "fish", "peanuts", "soy", "treeNuts", "wheat"].map(tag => (
+                <label key={tag} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-xs"
+                  checked={selected.tags.allergenTags.includes(tag)}
+                  onChange={() => toggle("allergenTags", tag)}
+                />
+                <span>{tag}</span>
                 </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Lactose Intolerant</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Soy</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Fish</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Shellfish</span>
-                </label>
+                ))}
               </div>
             </div>
           </div>

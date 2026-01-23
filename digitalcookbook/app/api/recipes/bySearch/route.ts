@@ -1,7 +1,7 @@
 import { connectToDB } from "@/lib/connectToDB";
-import Recipe from "@/models/models/Recipe";
-import Ingredient from "@/models/models/Ingredient";
-import Appliance from "@/models/models/Appliance";
+import Recipe from "@/models/Recipe";
+import Ingredient from "@/models/Ingredient";
+import Appliance from "@/models/Appliance";
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request){
@@ -13,7 +13,8 @@ export async function GET(req: Request){
     // Get search parameters from url if available
     const appliancesParams = url.searchParams.get("appliances") || null;
     const ingredientsParams = url.searchParams.get("ingredients") || null;
-    const tagsParams = url.searchParams.get("tags") || null;
+    const healthTagsParams = url.searchParams.get("healthTags") || null;
+    const allergenTagsParams = url.searchParams.get("allergenTags") || null;
     const titleParam = url.searchParams.get("title") || null;
 
     const filters: any[] = [];
@@ -62,17 +63,27 @@ export async function GET(req: Request){
         // Add to filters
         if(matchingAppliances.length > 0) {
             applianceIds = matchingAppliances.map(appliance => appliance._id);
-            filters.push({appliances: {$in: applianceIds}});
+            filters.push({"appliances._id": {$in: applianceIds}});
         }
     }
 
-    // ---------- Filter by tags
-    if(tagsParams) {
-        const tagsList = tagsParams.split(",").map(tag => tag.trim());
+    // ---------- Filter by health tags
+    if(healthTagsParams) {
+        const tagsList = healthTagsParams.split(",").map(tag => tag.trim());
 
-        // match if tag is true
+        // match if tag is true (has the health tag)
         tagsList.forEach(tag => {
             filters.push({[`tags.${tag}`]: true});
+        });
+    }
+
+    // ---------- Filter by allergen tags
+    if(allergenTagsParams) {
+        const tagsList = allergenTagsParams.split(",").map(tag => tag.trim());
+
+        // match if tag is false (does not have the allergen)
+        tagsList.forEach(tag => {
+            filters.push({[`tags.${tag}`]: false});
         });
     }
 
@@ -89,8 +100,10 @@ export async function GET(req: Request){
                             $setIntersection: ["$ingredients.ingredient", ingredientIds] // add 1 for each matching ingredient
                         }},
                         {$size: {
-                            $setIntersection: ["$appliances", applianceIds] // add 1 for each matching appliance
+                            $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                         }},
+                        { $sum: { $map: { input: { $filter: { input: "$ingredients", as: "i", cond: { $in: ["$$i.ingredient", ingredientIds] } } }, as: "matched", in: "$$matched.amount" } } }
+                        
                     ]
                 }
             }},
@@ -103,7 +116,7 @@ export async function GET(req: Request){
         ]);
 
         // populate results
-        await Recipe.populate(recipes, [{ path: "appliances", model: Appliance },{ path: "ingredients.ingredient", model: Ingredient }]);
+        await Recipe.populate(recipes, [{ path: "appliances.appliances", model: Appliance },{ path: "ingredients", model: Ingredient }]);
         return NextResponse.json(recipes);
 
     } else
