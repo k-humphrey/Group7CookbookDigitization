@@ -13,7 +13,8 @@ export async function GET(req: Request){
     // Get search parameters from url if available
     const appliancesParams = url.searchParams.get("appliances") || null;
     const ingredientsParams = url.searchParams.get("ingredients") || null;
-    const tagsParams = url.searchParams.get("tags") || null;
+    const healthTagsParams = url.searchParams.get("healthTags") || null;
+    const allergenTagsParams = url.searchParams.get("allergenTags") || null;
     const titleParam = url.searchParams.get("title") || null;
 
     const filters: any[] = [];
@@ -66,13 +67,23 @@ export async function GET(req: Request){
         }
     }
 
-    // ---------- Filter by tags
-    if(tagsParams) {
-        const tagsList = tagsParams.split(",").map(tag => tag.trim());
+    // ---------- Filter by health tags
+    if(healthTagsParams) {
+        const tagsList = healthTagsParams.split(",").map(tag => tag.trim());
 
-        // match if tag is true
+        // match if tag is true (has the health tag)
         tagsList.forEach(tag => {
             filters.push({[`tags.${tag}`]: true});
+        });
+    }
+
+    // ---------- Filter by allergen tags
+    if(allergenTagsParams) {
+        const tagsList = allergenTagsParams.split(",").map(tag => tag.trim());
+
+        // match if tag is false (does not have the allergen)
+        tagsList.forEach(tag => {
+            filters.push({[`tags.${tag}`]: false});
         });
     }
 
