@@ -4,8 +4,8 @@
   },
   "en": "Can of Mushrooms (4oz)",
   "es": "Lata de Champiñones (4oz)",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.39,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -14,8 +14,8 @@
   },
   "en": "Ramen Seasoning Packet",
   "es": "Sobre de Sazonador para Ramen",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 2.82,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -24,8 +24,8 @@
   },
   "en": "Loaf Wheat Bread",
   "es": "Pan Integral",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 7.4,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -34,8 +34,8 @@
   },
   "en": "Large Potatoes",
   "es": "Papas Grandes",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 78.5,
+  "baseUnit": "lb",
   "productLink": "unknown"
 },
 {
@@ -44,8 +44,8 @@
   },
   "en": "Lime",
   "es": "Lima",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 2.49,
+  "baseUnit": "lb",
   "productLink": "unknown"
 },
 {
@@ -54,8 +54,8 @@
   },
   "en": "Box of Pasta Roni Parmesan Cheese Flavor",
   "es": "Caja de Pasta Roni Sabor Queso Parmesano",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 26.1,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -64,8 +64,8 @@
   },
   "en": "Ranch Dressing",
   "es": "Aderezo Ranch",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 10.6,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -74,8 +74,8 @@
   },
   "en": "Box of Uncooked Elbow Macaroni",
   "es": "Caja de Macarrones Crudos",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 6.1,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -84,8 +84,8 @@
   },
   "en": "Can of Refried Beans",
   "es": "Lata de Frijoles refritos",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 6.3,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
