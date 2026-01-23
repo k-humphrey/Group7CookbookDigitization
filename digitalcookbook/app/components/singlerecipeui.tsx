@@ -11,13 +11,6 @@ type Recipe = {
     vegetarian?: boolean;
   };
   totalCost?: number;
-  ingredients?: Array<{
-    ingredient?: {
-      name?: { en?: string; es?: string };
-    };
-    amount?: number;
-    unit?: string;
-  }>;
 };
 
 export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
@@ -99,14 +92,6 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                   recipe.ingredientPlainText.en
                     .split("\n")
                     .map((line, i) => <li key={i}>{line.trim()}</li>)
-                ) : recipe?.ingredients?.length ? (
-                  recipe.ingredients.map((item: any, i: number) => (
-                    <li key={i}>
-                      {item.amount != null && `${item.amount} `}
-                      {item.unit && `${item.unit} `}
-                      {item.ingredient?.name?.en ?? "Ingredient"}
-                    </li>
-                  ))
                 ) : (
                   <li className="text-base-content/60">No ingredients listed.</li>
                 )}
