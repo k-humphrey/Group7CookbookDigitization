@@ -83,7 +83,7 @@ export async function GET(req: Request){
 
         // match if tag is false (does not have the allergen)
         tagsList.forEach(tag => {
-            filters.push({[`tags.${tag}`]: false});
+            filters.push({[`allergens.${tag}`]: false});
         });
     }
 
@@ -95,14 +95,28 @@ export async function GET(req: Request){
             {$match: { $and: filters }},
             {$addFields: 
                 {relevanceScore: 
-                    {$sum: [
+                    {$add: [
                         {$size: {
                             $setIntersection: ["$ingredients.ingredient", ingredientIds] // add 1 for each matching ingredient
                         }},
                         {$size: {
                             $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                         }},
-                        { $sum: { $map: { input: { $filter: { input: "$ingredients", as: "i", cond: { $in: ["$$i.ingredient", ingredientIds] } } }, as: "matched", in: "$$matched.amount" } } }
+                        { $sum: {
+                             $map: {
+                                 input: {
+                                     $filter: {
+                                        input: "$ingredients",
+                                        as: "i",
+                                        cond: {
+                                            $in: ["$$i.ingredient", ingredientIds] 
+                                        } 
+                                    } 
+                                },
+                                as: "matched",
+                                in: "$$matched.amount" }
+                             }
+                            }
                         
                     ]
                 }

@@ -25,7 +25,11 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
 
       // avoid duplicates
       if (!tags.includes(value)) {
-        setTags((prev) => [...prev, value]);
+        setTags((prev) => {
+          const update = [...prev, value];
+          onSearch(update); // update recipes on page on enter
+          return update;
+        });
       }
 
       setInput("");
@@ -38,7 +42,11 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
   };
 
   const removeTag = (tag: string) => {
-    setTags((prev) => prev.filter((t) => t !== tag));
+    setTags((prev) => {
+      const update = prev.filter((t) => t !== tag);
+      onSearch(update); // update recipes on page after remove
+      return update;
+    });
   };
 
   return (

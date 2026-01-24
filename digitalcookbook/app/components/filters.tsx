@@ -1,15 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// keep track of selected fitlers
+// Props for parent callback
 interface Props {
   onChange: (filters: { appliances: string[]; tags: {healthTags: string[], allergenTags: string[]} }) => void; // callback to parent
 }
 
 export default function Filters({ onChange }: Props) {
-  const [selected, setSelected] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});
+  // State for filter options and selected filters
+  const [filterOptions, setFilterOptions] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});  // available filter options
+  const [selected, setSelected] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});  // selected filters
 
+  // Toggle filter selection
   const toggle = (category: "appliances" | "healthTags" | "allergenTags", newTag: string) => {
     let newSelected;
 
@@ -32,6 +35,27 @@ export default function Filters({ onChange }: Props) {
   };
 
   const [isOpen, setIsOpen] = useState(true);
+
+  // get filter options from database and display dynamically
+  useEffect(() => {
+    const fetchFilterOptions = async () => {
+      const [appliances, healthTags, allergenTags] = await Promise.all([
+        fetch('/api/appliances').then(res => res.json()),
+        fetch('/api/tags').then(res => res.json()),
+        fetch('/api/allergens').then(res => res.json()),
+      ]);
+
+      setFilterOptions({ 
+        appliances, tags: {
+          healthTags,
+          allergenTags
+        }});
+        console.log("Filter options loaded:", { appliances, healthTags, allergenTags });
+
+    };
+
+    fetchFilterOptions();
+  }, []);
   
   return (
     <section>
@@ -54,7 +78,7 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase mb-2">Kitchen Appliances</h3>
               <div className="flex flex-col gap-1">
-                {["Oven", "Stockpot and Skillet", "Slow Cooker", "Microwave", "Stockpot/Dutch Oven", "Skillet/Frying Pan", "Saucepan with Lid"].map(appliance => (
+                {filterOptions.appliances.map(appliance => (
                 <label key={appliance} className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -72,7 +96,7 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase my-2">Health</h3>
               <div className="flex flex-col gap-1">
-                {["blueRibbon", "vegan", "vegetarian"].map(tag => (
+                {filterOptions.tags.healthTags.map(tag => (
                 <label key={tag} className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -90,7 +114,7 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase my-2">Allergies</h3>
               <div className="flex flex-col gap-1">
-                {["dairy", "egg", "fish", "peanuts", "soy", "treeNuts", "wheat"].map(tag => (
+                {filterOptions.tags.allergenTags.map(tag => (
                 <label key={tag} className="flex items-center gap-2">
                 <input
                   type="checkbox"
