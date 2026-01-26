@@ -38,15 +38,11 @@ export default function RecipeGrid({ recipes }: Props) {
 
               {/* Tags */}
               <div className="mt-3 flex flex-wrap gap-2">
-                {recipe.tags?.blueRibbon && (
-                  <div className="badge badge-info">Blue Ribbon</div>
-                )}
-                {recipe.tags?.vegan && (
-                  <div className="badge badge-success">Vegan</div>
-                )}
-                {recipe.tags?.vegetarian && (
-                  <div className="badge badge-success">Vegetarian</div>
-                )}
+                {recipe.tags && Object.entries(recipe.tags).filter(([_, value]) => value == true).map(([tag]) => (
+                  <div key={tag} className={`badge ${tag == "blueRibbon" ? "badge-info" : "badge-success"}`}>
+                    {tag}
+                  </div>
+                ))}
               </div>
 
               <div className="card-actions justify-end mt-4">
