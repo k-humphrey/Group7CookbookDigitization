@@ -6,20 +6,17 @@ export default function Navbar() {
     return (
         <div className="navbar bg-white text-black shadow-sm relative z-50">
 
-
+        <div className="navbar-start">
             <Link href="/">
-                <div className="inline-block p-2 hover:bg-gray-100 rounded">
+                <div className="p-2 hover:bg-gray-100 rounded">
                     <img 
                     src="pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
-                    className="w-80 h-auto max-w-full"
+                    className="h-14 w-45"
                     />
                 </div>
             </Link>
 
-
-            
-        <div className="navbar-start">
             <div className="dropdown relative">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                 <svg
@@ -168,6 +165,15 @@ export default function Navbar() {
                             Timer
                         </Link>
                     </li>
+                    <li>
+                        <Link
+                            href="/measurement-converter"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Measurement Converter
+                        </Link>
+                    </li>
                     </ul>
                 </details>
                 </li>
@@ -304,12 +310,23 @@ export default function Navbar() {
                             Timer
                         </Link>
                     </li>
+                    <li>
+                        <Link
+                            href="/measurement-converter"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            Measurement Converter
+                        </Link>
+                    </li>
                 </ul>
             </details>
             </li>
             </ul>
         </div>
-        <div className="navbar-end"></div>
+        <div className="navbar-end">
+            <input type="checkbox" defaultChecked className="toggle" />
+        </div>
         </div>
     );
 }
