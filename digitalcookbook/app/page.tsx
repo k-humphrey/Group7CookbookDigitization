@@ -1,12 +1,15 @@
-// Hompe page
+// Home page
 
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import Searchbar from "./components/searchbar";
+import RecipeGrid from "./components/recipecards";  
 
 export default function Home() {
   const router = useRouter();
+  const [recipes, setRecipes] = useState<any[]>([]);
 
   // routes to the recipes page
   const handleSearch = (tags: string[]) => {
@@ -15,6 +18,22 @@ export default function Home() {
     else
       router.push('/recipes');
   };
+
+  // fetch all recipes
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("/api/recipes");
+      const data = await res.json();
+      setRecipes(data);
+    })();
+  }, []);
+
+  // select 3 random recipes
+  const featuredRecipes = useMemo(() => {
+    return recipes.length
+      ? [...recipes].sort(() => Math.random() - 0.5).slice(0, 3)
+      : [];
+  }, [recipes]);
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-start">
@@ -41,7 +60,14 @@ export default function Home() {
 
         {/* Searchbar */}
         <Searchbar onSearch={handleSearch} />
-      </div>  
+      
+
+        {/* Featured Recipes */}
+        <section className="w-full max-w-7xl px-6 mt-40 mb-20">
+          <h2 className="text-4xl font-bold mb-6 flex justify-center">Featured Recipes</h2>
+          <RecipeGrid recipes={featuredRecipes} />
+        </section> 
+      </div> 
     </main>
   );
 }
