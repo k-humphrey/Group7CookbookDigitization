@@ -60,13 +60,14 @@ export default function Home() {
 
         {/* Searchbar */}
         <Searchbar onSearch={handleSearch} />
-      </div>
+      
 
-      {/* Featured Recipes */}
-      <section className="w-full max-w-7xl px-6 mt-12 mb-20">
-        <h2 className="text-4xl font-bold mb-6 flex justify-center">Featured Recipes</h2>
-        <RecipeGrid recipes={featuredRecipes} />
-      </section>  
+        {/* Featured Recipes */}
+        <section className="w-full max-w-7xl px-6 mt-40 mb-20">
+          <h2 className="text-4xl font-bold mb-6 flex justify-center">Featured Recipes</h2>
+          <RecipeGrid recipes={featuredRecipes} />
+        </section> 
+      </div> 
     </main>
   );
 }
