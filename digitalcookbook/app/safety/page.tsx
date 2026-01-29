@@ -9,8 +9,8 @@ export default function SafetyPage() {
             <h1 className="text-3xl md:text-[5rem] font-bold">Safety</h1>
         </div>
 
-        {/* Cards Container */}
-        <div className="flex flex-col gap-6 w-full items-center">
+        {/* Cards Container aka Responsive Grid, should work on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4">
             <InfoCard
                 title="Car Seat Recommendations"
                 description="Learn how to choose the correct car seat for your child's age, height, and weight."
