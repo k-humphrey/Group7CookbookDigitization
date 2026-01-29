@@ -10,49 +10,51 @@ export default function RecipeGrid({ recipes }: Props) {
     return (
       <div className="mt-6 grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {recipes.map((recipe: any) => (
-          <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
-            
-            {/* Image */}
-            <figure className="h-48 overflow-hidden bg-base-200">
-              {recipe.imageURI ? (
-                <img
-                  src={recipe.imageURI}
-                  alt={recipe.title?.en ?? "Recipe image"}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-sm text-slate-500">
-                  No image
-                </div>
-              )}
-            </figure>
-
-            {/* Content */}
-            <div className="card-body">
-              <h2 className="card-title text-lg">
-                {recipe.title?.en}
-              </h2>
-
-              <p className="text-sm text-slate-600 line-clamp-3">
-                {recipe.instructions?.en}
-              </p>
-
-              {/* Tags */}
-              <div className="mt-3 flex flex-wrap gap-2">
-                {recipe.tags && Object.entries(recipe.tags).filter(([_, value]) => value == true).map(([tag]) => (
-                  <div key={tag} className={`badge ${tag == "Blue Ribbon" ? "badge-info" : "badge-success"}`}>
-                    {tag}
+          <Link href={`/single-recipe/${recipe._id}`} className="block">
+            <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+              
+              {/* Image */}
+              <figure className="h-48 overflow-hidden bg-base-200">
+                {recipe.imageURI ? (
+                  <img
+                    src={recipe.imageURI}
+                    alt={recipe.title?.en ?? "Recipe image"}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-sm text-slate-500">
+                    No image
                   </div>
-                ))}
-              </div>
+                )}
+              </figure>
 
-              <div className="card-actions justify-end mt-4">
-                <Link href={`/single-recipe/${recipe._id}`} className="btn btn-sm btn-success">
-                View Recipe
-                </Link>
+              {/* Content */}
+              <div className="card-body">
+                <h2 className="card-title text-lg">
+                  {recipe.title?.en}
+                </h2>
+
+                <p className="text-sm text-slate-600 line-clamp-3">
+                  {recipe.instructions?.en}
+                </p>
+
+                {/* Tags */}
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {recipe.tags && Object.entries(recipe.tags).filter(([_, value]) => value == true).map(([tag]) => (
+                    <div key={tag} className={`badge ${tag == "Blue Ribbon" ? "badge-info" : "badge-success"}`}>
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="card-actions justify-end mt-4">
+                  <div className="btn btn-sm btn-success">
+                    View Recipe
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     );
