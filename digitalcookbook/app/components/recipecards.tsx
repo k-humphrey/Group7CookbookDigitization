@@ -40,7 +40,7 @@ export default function RecipeGrid({ recipes }: Props) {
               {/* Tags */}
               <div className="mt-3 flex flex-wrap gap-2">
                 {recipe.tags && Object.entries(recipe.tags).filter(([_, value]) => value == true).map(([tag]) => (
-                  <div key={tag} className={`badge ${tag == "blueRibbon" ? "badge-info" : "badge-success"}`}>
+                  <div key={tag} className={`badge ${tag == "Blue Ribbon" ? "badge-info" : "badge-success"}`}>
                     {tag}
                   </div>
                 ))}
