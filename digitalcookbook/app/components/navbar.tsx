@@ -12,7 +12,7 @@ export default function Navbar() {
                     <img 
                     src="pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
-                    className="h-14 w-45"
+                    className="h-18 w-42"
                     />
                 </div>
             </Link>
