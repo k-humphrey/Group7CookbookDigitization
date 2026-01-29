@@ -1,24 +1,20 @@
+import MeasurementConverter from "./measurement";
 
-//app/measurement-converter/page.tsx
-
-
-
-export default function MeasurementConverter() {
+export default function MeasurementPage() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-start">
-
-      <div 
-        className="w-full bg-cover bg-center bg-repeat py-30 flex flex-col items-center"  
-        style={{
-          backgroundSize: "110%", 
-          backgroundImage: "bg-white"
-          }}/>  
-      <div>
-        <h6 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none">Measurement Converter </h6>
-        
-      </div>
-      <div/>
-
+    <main
+      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-no-repeat bg-[center_75%]"
+      style={{
+        backgroundImage: "url('/resources.png')",
+        backgroundSize: "100%",
+      }}
+    >
+    <div className="-mt-40 flex flex-col items-center">
+      
+      <MeasurementConverter />
+    </div>
     </main>
   );
 }
+
+
