@@ -40,6 +40,12 @@ function formatMeasurement(value: number, unit: string) {
   const fractionSet = fractions;
   const wholeNumber = Math.floor(value);
 
+  // Formating for ounces, makes it 0 decimal places if whole number, else 2 decimal places
+  if (unit == "oz" && value % 1 == 0)
+    return value.toFixed(0);
+  else if (unit == "oz")
+    return value.toFixed(2);
+
   // Find closest fraction representation to decimal part
   let best: { label: string; value: number } | null = null;
   for (const frac of fractionSet) {
@@ -53,11 +59,11 @@ function formatMeasurement(value: number, unit: string) {
 
   // Construct final string
   if (wholeNumber && fractionLabel) // return if it has a wholeNumber and fraction label
-      return `${wholeNumber} ${fractionLabel}`;
+    return `${wholeNumber} ${fractionLabel}`;
   else if (fractionLabel) // return only fraction
     return fractionLabel;
   else if (value - wholeNumber < 0.2) // whole number only, without fraction if fraction is negligible
-      return `${wholeNumber}`;
+    return `${wholeNumber}`;
   else
     return value.toFixed(2); // fallback to decimal representation
 
