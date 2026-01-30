@@ -26,7 +26,7 @@ const conversionsToOz: Record<Unit, number> = {
 
 // Fractional representations for formatting
 const fractions: Record<string, { value: number; label: string }[]> = {
-  gallon: [{ value: 1, label: "1" }, {value: 2/5, label: "⅖"}, { value: 3/4, label: "¾" }, { value: 1/3, label: "⅓" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
+  gallon: [{value: 2/5, label: "⅖"}, { value: 3/4, label: "¾" }, { value: 1/3, label: "⅓" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
   quart: [{ value: 2/3, label: "⅔" }, { value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/3, label: "⅓" }, { value: 1/4, label: "¼" }, { value: 1/8, label: "⅛" }],
   pint: [{ value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
   cup: [{ value: 2/3, label: "⅔" }, { value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/3, label: "⅓" }, { value: 1/4, label: "¼" }, { value: 1/8, label: "⅛" }],
@@ -105,7 +105,7 @@ export default function MeasurementConverter() {
       </div>
 
       {/* Results */}
-      <div className="grid grid-cols-2 gap-2 text-sm mb-6">
+      <div className="grid grid-cols-2 gap-2 text-m mb-6">
         {Object.entries(conversionsToOz).map(([key, oz]) => (
           <div key={key} className="flex justify-between border-b pb-1">
             <span className="capitalize">{key}</span>
