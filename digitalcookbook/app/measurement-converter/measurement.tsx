@@ -87,7 +87,7 @@ export default function MeasurementConverter() {
         <input
           type="number"
           min={0}
-          value={value}
+          value={value || ""}
           onChange={(e) => setValue(Number(e.target.value))}
           className="w-1/2 p-2 border rounded text-center"
         />
