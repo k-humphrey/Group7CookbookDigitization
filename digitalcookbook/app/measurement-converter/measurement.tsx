@@ -26,9 +26,9 @@ const conversionsToOz: Record<Unit, number> = {
 
 // Fractional representations for formatting
 const fractions: Record<string, { value: number; label: string }[]> = {
-  gallon: [{ value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
+  gallon: [{ value: 1, label: "1" }, { value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
   quart: [{ value: 2/3, label: "⅔" }, { value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/3, label: "⅓" }, { value: 1/4, label: "¼" }, { value: 1/8, label: "⅛" }],
-  pint: [{ value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
+  pint: [{ value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
   cup: [{ value: 2/3, label: "⅔" }, { value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/3, label: "⅓" }, { value: 1/4, label: "¼" }, { value: 1/8, label: "⅛" }],
   tbsp: [{ value: 1, label: "1" }, { value: 0.5, label: "½" }, { value: 0.25, label: "¼" }],
   tsp: [{ value: 1, label: "1" }, { value: 0.5, label: "½" }, { value: 0.25, label: "¼" }],
@@ -52,18 +52,14 @@ function formatMeasurement(value: number, unit: string) {
   const fractionLabel = best && Math.abs((value - Math.floor(value)) - best.value) <= 0.05 ? best.label : "";
 
   // Construct final string
-  if (wholeNumber) { // has whole number part
-    if (fractionLabel) // has fraction part
+  if (wholeNumber && fractionLabel) // return if it has a wholeNumber and fraction label
       return `${wholeNumber} ${fractionLabel}`;
-    else if (value - wholeNumber < 0.02) // whole number only, without fraction
+  else if (fractionLabel) // return only fraction
+    return fractionLabel;
+  else if (value - wholeNumber < 0.2) // whole number only, without fraction if fraction is negligible
       return `${wholeNumber}`;
-  }
-
-  if (fractionLabel) { // only fraction part
-    return fractionLabel; // return only fraction
-  }
-
-  return value.toFixed(2); // fallback to decimal representation
+  else
+    return value.toFixed(2); // fallback to decimal representation
 
 }
 
