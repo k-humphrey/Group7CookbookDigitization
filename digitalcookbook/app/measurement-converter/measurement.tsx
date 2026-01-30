@@ -40,29 +40,32 @@ const fractions = [
 function formatMeasurement(value: number, unit: string) {
   const fractionSet = fractions;
   const wholeNumber = Math.floor(value);
+  const remainder = value - wholeNumber;
 
   // Formating for ounces, makes it 0 decimal places if whole number, else 2 decimal places
   if (unit == "oz") 
-    return value % 1 === 0 ? value.toFixed(0) : value.toFixed(2);
+    return remainder === 0 ? value.toFixed(0) : value.toFixed(2);
 
   // Find closest fraction representation to decimal part
   let best: { label: string; value: number } | null = null;
   for (const frac of fractionSet) {
-    if (!best || Math.abs((value - wholeNumber) - frac.value) < Math.abs((value - wholeNumber) - best.value)) { // closer fraction found, save it in best
+    if (!best || Math.abs(remainder - frac.value) < Math.abs(remainder - best.value)) { // closer fraction found, save it in best
       best = frac;
     }
   }
 
   // Assign fraction label if decimal part is significant
-  let fractionLabel = value % 1 > 0.025 && best?.label ? best.label : "";
+  let fractionLabel = remainder > 0.025 && best?.label ? best.label : "";
 
   // Construct final string
   if (fractionLabel) // whole number with fraction or just fraction
     return wholeNumber ? `${wholeNumber} ${fractionLabel}` : fractionLabel;
-  else if (value - wholeNumber < 0.2) // whole number only, without fraction if fraction is negligible
+    
+  else if (remainder == 0) // whole number only if no remainder
     return `${wholeNumber}`;
   
-  return value.toFixed(2); // fallback to decimal representation
+  else
+    return value.toFixed(2); // fallback to decimal representation
 
 }
 
