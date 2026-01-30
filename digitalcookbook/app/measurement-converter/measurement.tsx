@@ -1,7 +1,8 @@
 "use client";
 
-
 import { useState } from "react";
+
+export { conversionsToOz, formatMeasurement };
 
 // Define measurement units
 type Unit =
@@ -49,7 +50,7 @@ function formatMeasurement(value: number, unit: string) {
   }
 
   // Determine if best fraction representation is close enough
-  const fractionLabel = value % 1 <= 0.5 ? best && Math.abs(value % 1 - best.value) <= 0.04 ? best.label : "" : best ? best.label : "";
+  const fractionLabel = value % 1 <= 0.25 ? best && Math.abs(value % 1 - best.value) <= 0.025 ? best.label : "" : best ? best.label : "";
 
   // Construct final string
   if (wholeNumber && fractionLabel) // return if it has a wholeNumber and fraction label
