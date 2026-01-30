@@ -28,6 +28,7 @@ const conversionsToOz: Record<Unit, number> = {
 // Fractional representations for formatting
 const fractions = [
   { value: 1/8, label: "⅛" },
+  { value: 1/6, label: "⅙" },
   { value: 1/4, label: "¼" },
   { value: 1/3, label: "⅓" },
   { value: 1/2, label: "½" },
