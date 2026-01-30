@@ -90,6 +90,7 @@ export default function MeasurementConverter() {
           value={value || ""}
           onChange={(e) => setValue(Number(e.target.value))}
           className="w-1/2 p-2 border rounded text-center"
+          placeholder="0"
         />
 
         <select
