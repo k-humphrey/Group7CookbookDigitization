@@ -41,31 +41,27 @@ function formatMeasurement(value: number, unit: string) {
   const wholeNumber = Math.floor(value);
 
   // Formating for ounces, makes it 0 decimal places if whole number, else 2 decimal places
-  if (unit == "oz" && value % 1 == 0)
-    return value.toFixed(0);
-  else if (unit == "oz")
-    return value.toFixed(2);
+  if (unit == "oz") 
+    return value % 1 === 0 ? value.toFixed(0) : value.toFixed(2);
 
   // Find closest fraction representation to decimal part
   let best: { label: string; value: number } | null = null;
   for (const frac of fractionSet) {
-    if (!best || Math.abs((value - Math.floor(value)) - frac.value) < Math.abs((value - Math.floor(value)) - best.value)) { // closer fraction found, save it in best
+    if (!best || Math.abs((value - wholeNumber) - frac.value) < Math.abs((value - wholeNumber) - best.value)) { // closer fraction found, save it in best
       best = frac;
     }
   }
 
-  // Determine if best fraction representation is close enough
-  const fractionLabel = value % 1 <= 0.25 ? (best && (Math.abs(value % 1 - best.value) <= 0.025 ? best.label : "")) : (best ? best.label : "");
+  // Assign fraction label if decimal part is significant
+  let fractionLabel = value % 1 > 0.025 && best?.label ? best.label : "";
 
   // Construct final string
-  if (wholeNumber && fractionLabel) // return if it has a wholeNumber and fraction label
-    return `${wholeNumber} ${fractionLabel}`;
-  else if (fractionLabel) // return only fraction
-    return fractionLabel;
+  if (fractionLabel) // whole number with fraction or just fraction
+    return wholeNumber ? `${wholeNumber} ${fractionLabel}` : fractionLabel;
   else if (value - wholeNumber < 0.2) // whole number only, without fraction if fraction is negligible
     return `${wholeNumber}`;
-  else
-    return value.toFixed(2); // fallback to decimal representation
+  
+  return value.toFixed(2); // fallback to decimal representation
 
 }
 
