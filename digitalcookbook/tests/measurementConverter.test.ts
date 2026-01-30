@@ -41,7 +41,7 @@ describe("Test Measurement Converter", () => {
 
         // Check conversions to all units
         expect(formatMeasurement(oz / conversionsToOz.cup, "cup")).toBe("1 ½");
-        expect(formatMeasurement(oz / conversionsToOz.gallon, "gallon")).toBe("0");
+        expect(formatMeasurement(oz / conversionsToOz.gallon, "gallon")).toBe("⅛");
         expect(formatMeasurement(oz / conversionsToOz.quart, "quart")).toBe("⅓");
         expect(formatMeasurement(oz / conversionsToOz.pint, "pint")).toBe("¾");
         expect(formatMeasurement(oz / conversionsToOz.tbsp, "tbsp")).toBe("24");

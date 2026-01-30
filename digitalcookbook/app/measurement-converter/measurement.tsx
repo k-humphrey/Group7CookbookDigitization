@@ -55,7 +55,7 @@ function formatMeasurement(value: number, unit: string) {
   }
 
   // Assign fraction label if decimal part is significant
-  let fractionLabel = remainder > 0.025 && best?.label ? best.label : "";
+  let fractionLabel = remainder > 0.05 && best?.label ? best.label : "";
 
   // Construct final string
   if (fractionLabel) // whole number with fraction or just fraction
