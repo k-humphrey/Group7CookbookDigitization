@@ -26,19 +26,18 @@ const conversionsToOz: Record<Unit, number> = {
 };
 
 // Fractional representations for formatting
-const fractions: Record<string, { value: number; label: string }[]> = {
-  gallon: [{value: 2/5, label: "⅖"}, { value: 3/4, label: "¾" }, { value: 1/3, label: "⅓" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
-  quart: [{ value: 2/3, label: "⅔" }, { value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/3, label: "⅓" }, { value: 1/4, label: "¼" }, { value: 1/8, label: "⅛" }],
-  pint: [{ value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
-  cup: [{ value: 2/3, label: "⅔" }, { value: 3/4, label: "¾" }, { value: 1/2, label: "½" }, { value: 1/3, label: "⅓" }, { value: 1/4, label: "¼" }, { value: 1/8, label: "⅛" }],
-  tbsp: [{ value: 1, label: "1" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
-  tsp: [{ value: 1, label: "1" }, { value: 1/2, label: "½" }, { value: 1/4, label: "¼" }],
-  oz: [],
-};
+const fractions = [
+  { value: 1/8, label: "⅛" },
+  { value: 1/4, label: "¼" },
+  { value: 1/3, label: "⅓" },
+  { value: 1/2, label: "½" },
+  { value: 2/3, label: "⅔" },
+  { value: 3/4, label: "¾" },
+];
 
 // Format measurement into fractional representation
 function formatMeasurement(value: number, unit: string) {
-  const fractionSet = fractions[unit] || [];
+  const fractionSet = fractions;
   const wholeNumber = Math.floor(value);
 
   // Find closest fraction representation to decimal part
@@ -50,7 +49,7 @@ function formatMeasurement(value: number, unit: string) {
   }
 
   // Determine if best fraction representation is close enough
-  const fractionLabel = value % 1 <= 0.25 ? best && Math.abs(value % 1 - best.value) <= 0.025 ? best.label : "" : best ? best.label : "";
+  const fractionLabel = value % 1 <= 0.25 ? (best && (Math.abs(value % 1 - best.value) <= 0.025 ? best.label : "")) : (best ? best.label : "");
 
   // Construct final string
   if (wholeNumber && fractionLabel) // return if it has a wholeNumber and fraction label
