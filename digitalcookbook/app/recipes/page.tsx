@@ -48,7 +48,13 @@ export default function RecipeSearchPage() {
 
     const res = await fetch(url);
     const data = await res.json();
-    setRecipes(data);
+    if (!data) {
+      return {
+        notFound: true,
+      }
+    }else{
+      setRecipes(data);
+    }
   }
 
   return (
