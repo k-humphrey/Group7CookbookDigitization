@@ -58,6 +58,7 @@ export default function RecipeSearchPage() {
         notFound: true,
       }
     }else{
+      
       setRecipes(data);
     }
   }
