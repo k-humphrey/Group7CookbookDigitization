@@ -4,7 +4,7 @@
   },
   "en": "Can of Mushrooms (4oz)",
   "es": "Lata de Champiñones (4oz)",
-  "costPerUnit": 0.39,
+  "costPerUnit": 0.0039,
   "baseUnit": "oz",
   "productLink": "unknown"
 },
@@ -14,7 +14,7 @@
   },
   "en": "Ramen Seasoning Packet",
   "es": "Sobre de Sazonador para Ramen",
-  "costPerUnit": 2.82,
+  "costPerUnit": 0.0282,
   "baseUnit": "oz",
   "productLink": "unknown"
 },
@@ -24,8 +24,8 @@
   },
   "en": "Loaf Wheat Bread",
   "es": "Pan Integral",
-  "costPerUnit": 7.4,
-  "baseUnit": "oz",
+  "costPerUnit": "1.48",
+  "baseUnit": "each",
   "productLink": "unknown"
 },
 {
@@ -34,7 +34,7 @@
   },
   "en": "Large Potatoes",
   "es": "Papas Grandes",
-  "costPerUnit": 78.5,
+  "costPerUnit": 69.4,
   "baseUnit": "lb",
   "productLink": "unknown"
 },
@@ -44,8 +44,8 @@
   },
   "en": "Lime",
   "es": "Lima",
-  "costPerUnit": 2.49,
-  "baseUnit": "lb",
+  "costPerUnit": 0.20,
+  "baseUnit": "each",
   "productLink": "unknown"
 },
 {
@@ -54,8 +54,8 @@
   },
   "en": "Box of Pasta Roni Parmesan Cheese Flavor",
   "es": "Caja de Pasta Roni Sabor Queso Parmesano",
-  "costPerUnit": 26.1,
-  "baseUnit": "oz",
+  "costPerUnit": 1.33,
+  "baseUnit": "each",
   "productLink": "unknown"
 },
 {
@@ -94,8 +94,8 @@
   },
   "en": "Taco Seasoning Packet (1.25oz)",
   "es": "Sobre de Sazonador para Tacos (1.25oz)",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.47,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -104,8 +104,8 @@
   },
   "en": "Chili Powder",
   "es": "Chile en Polvo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.36,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -114,8 +114,8 @@
   },
   "en": "Can of Tomato Soup",
   "es": "Lata de Sopa de Tomate",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.065,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -124,7 +124,7 @@
   },
   "en": "Stalks Celery",
   "es": "Tallos de Apio",
-  "costPerUnit": 0,
+  "costPerUnit": 0.197,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -134,7 +134,7 @@
   },
   "en": "Onion",
   "es": "Cebolla",
-  "costPerUnit": 0,
+  "costPerUnit": 1.08,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -144,8 +144,8 @@
   },
   "en": "Box of Linguine Noodles",
   "es": "Caja de Fideos Linguini",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.061,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -154,8 +154,8 @@
   },
   "en": "Parmesan Cheese",
   "es": "Queso Parmesano",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.347,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -164,7 +164,7 @@
   },
   "en": "Box of Macaroni & Cheese",
   "es": "Caja de Macarrones con Queso",
-  "costPerUnit": 0,
+  "costPerUnit": 0.58,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -174,8 +174,8 @@
   },
   "en": "Bag of Veggie Straws",
   "es": "Bolsa de Palitos de Verduras",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.885,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -184,8 +184,8 @@
   },
   "en": "Bag of Pepperonis (6oz)",
   "es": "Bolsa de Pepperonis (6oz)",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.48,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -194,7 +194,7 @@
   },
   "en": "Large Chicken Breast",
   "es": "Pechugas de Pollo Grandes",
-  "costPerUnit": 0,
+  "costPerUnit": 1.52,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -204,8 +204,8 @@
   },
   "en": "Jar of Salsa (16 oz)",
   "es": "Frasco de Salsa (16 oz)",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.12,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -214,7 +214,7 @@
   },
   "en": "Container of Sour Cream (8oz)",
   "es": "Envase de Crema Agria (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.94,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -224,8 +224,8 @@
   },
   "en": "Cilantro",
   "es": "Cilantro",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.0356,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -234,8 +234,8 @@
   },
   "en": "Ground Turkey",
   "es": "Pavo Molido",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 3.97,
+  "baseUnit": "lb",
   "productLink": "unknown"
 },
 {
@@ -244,8 +244,8 @@
   },
   "en": "Bag of Dried 15-Bean Soup Mix",
   "es": "Bolsa de Mezcla Seca de Sopa de 15 Judías",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.141,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -254,8 +254,8 @@
   },
   "en": "Lemon Juice",
   "es": "Zumo de limón",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.129,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -264,8 +264,8 @@
   },
   "en": "Worcestershire Sauce",
   "es": "Salsa Worcestershire",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.10,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -274,8 +274,8 @@
   },
   "en": "Yellow Mustard",
   "es": "Mostaza Amarilla",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.049,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -284,7 +284,7 @@
   },
   "en": "Can of Great Northern Beans",
   "es": "Lata de Frijoles Blancos Great Northern",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -294,8 +294,8 @@
   },
   "en": "BBQ Sauce",
   "es": "Salsa Barbacoa",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.096,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -304,8 +304,8 @@
   },
   "en": "Box of Jiffy Corn Muffin",
   "es": "Caja de Panecillos de Maíz Jiffy",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.079,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -314,8 +314,8 @@
   },
   "en": "Bag of Frozen Peas & Carrots",
   "es": "Bolsa de Guisantes y Zanahorias Congeladas",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.082,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -324,8 +324,8 @@
   },
   "en": "Pepper",
   "es": "Pimienta",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.0122,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -334,7 +334,7 @@
   },
   "en": "Green Onion",
   "es": "Cebollas Verdes",
-  "costPerUnit": 0,
+  "costPerUnit": 0.19,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -344,8 +344,8 @@
   },
   "en": "Rice",
   "es": "Arroz",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.042,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -354,8 +354,8 @@
   },
   "en": "Butter",
   "es": "Mantequilla",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.114,
+  "baseUnit": "tablespoon",
   "productLink": "unknown"
 },
 {
@@ -364,7 +364,7 @@
   },
   "en": "Bag of Tortilla Chips",
   "es": "Bolsa de Totopos",
-  "costPerUnit": 0,
+  "costPerUnit": 3.88,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -374,7 +374,7 @@
   },
   "en": "Banana",
   "es": "Plátanos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.20,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -384,7 +384,7 @@
   },
   "en": "Can of Petite Diced Tomatoes (14.5oz)",
   "es": "Lata de Tomates en Cubos Pequeños (14.5oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.12,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -394,7 +394,7 @@
   },
   "en": "Jalepeno",
   "es": "Jalepeño",
-  "costPerUnit": 0,
+  "costPerUnit": 0.41,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -404,7 +404,7 @@
   },
   "en": "Bag of Small Fajita Flour Tortillas",
   "es": "Bolsa de Tortillas de Harina para Fajitas Pequeñas",
-  "costPerUnit": 0,
+  "costPerUnit": 0.106,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -414,8 +414,8 @@
   },
   "en": "Crushed Red Pepper",
   "es": "Pimiento Rojo Triturado",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.595,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -424,8 +424,8 @@
   },
   "en": "Dill Pickle Juice",
   "es": "Jugo de Pepinillos",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.563,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -434,7 +434,7 @@
   },
   "en": "Can of Chef Boyardee Pizza Sauce",
   "es": "Lata de Salsa para Pizza Chef Boyardee",
-  "costPerUnit": 0,
+  "costPerUnit": 1.44,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -444,8 +444,8 @@
   },
   "en": "Bag of Dried Pinto Beans",
   "es": "Bolsa de Frijoles Pintos Secos",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.054,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -454,8 +454,8 @@
   },
   "en": "Package of Chicken Smoked Sausage",
   "es": "Paquete de Salchicha Ahumada de Pollo",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 3.67,
+  "baseUnit": "lb",
   "productLink": "unknown"
 },
 {
@@ -464,7 +464,7 @@
   },
   "en": "Knorr Rice Sides Teriyaki Flavored",
   "es": "Knorr sabor Teriyaki",
-  "costPerUnit": 0,
+  "costPerUnit": 6.20,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -474,7 +474,7 @@
   },
   "en": "Can of Tomato Paste (6oz)",
   "es": "Lata de Pasta de Tomate (6oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -484,8 +484,8 @@
   },
   "en": "Box of Instant Mashed Potatoes",
   "es": "Caja de Puré de Papas Instantáneo",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 13.6,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -494,7 +494,7 @@
   },
   "en": "Package of Gnocchi",
   "es": "Paquete de Ñoquis",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -504,7 +504,7 @@
   },
   "en": "Large Sweet Potato",
   "es": "Batata Grande",
-  "costPerUnit": 0,
+  "costPerUnit": 1.11,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -514,7 +514,7 @@
   },
   "en": "Package of Polish Kielbasa (14oz)",
   "es": "Paquete de Kielbasa Polaca (14oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.82,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -524,7 +524,7 @@
   },
   "en": "Bag of Frozen Tater Tots (32oz)",
   "es": "Bolsa de Tater Tots Congelados (32oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 4.47,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -534,7 +534,7 @@
   },
   "en": "Can of Chicken (12.5oz)",
   "es": "Lata de Pollo (12.5oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 4.42,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -544,7 +544,7 @@
   },
   "en": "Box of Stuffing Mix",
   "es": "Caja de Mezcla para Relleno",
-  "costPerUnit": 0,
+  "costPerUnit": 0.97,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -554,8 +554,8 @@
   },
   "en": "Garlic Salt",
   "es": "Sal de Ajo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 18.9,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -564,8 +564,8 @@
   },
   "en": "Italian Seasoning",
   "es": "Condimento Italiano",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.985,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -574,8 +574,8 @@
   },
   "en": "Bag of Egg Noodles",
   "es": "Bolsa de Fideos de Huevo",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 10.9,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -584,7 +584,7 @@
   },
   "en": "Can of Cream of Mushroom Soup Low Sodium (12.5 oz)",
   "es": "Lata de Sopa de Crema de Champiñones Baja en Sodio (12.5 oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.24,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -594,8 +594,8 @@
   },
   "en": "Teriyaki Sauce",
   "es": "Salsa Teriyaki",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 16.5,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -604,7 +604,7 @@
   },
   "en": "Eggs",
   "es": "Huevos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.16,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -614,7 +614,7 @@
   },
   "en": "Bag of Shredded Colby Jack Cheese (8oz)",
   "es": "Bolsa de Queso Colby Jack Rallado (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -624,8 +624,8 @@
   },
   "en": "Bag of Stir-Fry Vegetables",
   "es": "Bolsa de Vegetales Salteados",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 13.6,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -634,7 +634,7 @@
   },
   "en": "Bag of Frozen Okra (12oz) – not breaded",
   "es": "Bolsa de Okra Congelada (12oz) sin empanizar",
-  "costPerUnit": 0,
+  "costPerUnit": 1.54,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -644,7 +644,7 @@
   },
   "en": "Can of Diced Tomatoes (15oz)",
   "es": "Lata de Tomates en Dados (15oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.09,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -654,7 +654,7 @@
   },
   "en": "Box of Chicken Broth (32oz)",
   "es": "Caja de Caldo de Pollo (32oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.50,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -664,8 +664,8 @@
   },
   "en": "Bag of Real Bacon Bits",
   "es": "Bolsa de Tocino Natural",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.776,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -674,8 +674,8 @@
   },
   "en": "Ketchup",
   "es": "Kétchup",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.062,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -684,7 +684,7 @@
   },
   "en": "Can of Kidney Beans – light or dark",
   "es": "Lata de Frijoles Rojos (claros u oscuros)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.28,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -694,7 +694,7 @@
   },
   "en": "Can of Pork and Beans",
   "es": "Lata de Frijoles con Cerdo",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -704,8 +704,8 @@
   },
   "en": "Dill Pickle Slices",
   "es": "Pepinillos Picados",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.091,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -714,8 +714,8 @@
   },
   "en": "Jar of Peanut Butter",
   "es": "Frasco de Mantequilla de Cacahuete",
-  "costPerUnit": 0,
-  "baseUnit": "each",
+  "costPerUnit": 0.124,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -724,7 +724,7 @@
   },
   "en": "Can of Corn",
   "es": "Lata de Elote",
-  "costPerUnit": 0,
+  "costPerUnit": 1.57,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -734,7 +734,7 @@
   },
   "en": "Bag of Wonton Strips",
   "es": "Bolsa de Tiras de Wantán",
-  "costPerUnit": 0,
+  "costPerUnit": 1.66,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -744,7 +744,7 @@
   },
   "en": "Bag of California-Style, Frozen Vegetables",
   "es": "Bolsa de Verduras Congeladas Estilo California",
-  "costPerUnit": 0,
+  "costPerUnit": 1.16,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -754,7 +754,7 @@
   },
   "en": "Can of White Tuna in Water (12oz)",
   "es": "Lata de Atún Blanco en Agua (12 oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 3.72,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -764,7 +764,7 @@
   },
   "en": "Jar of Alfredo Sauce (22oz)",
   "es": "Frasco de Salsa Alfredo (22oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.48,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -774,7 +774,7 @@
   },
   "en": "Packet of Fajita Seasoning",
   "es": "Paquete de Condimento Fajita",
-  "costPerUnit": 0,
+  "costPerUnit": 0.97,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -784,7 +784,7 @@
   },
   "en": "Garlic Cloves",
   "es": "Dientes de Ajo",
-  "costPerUnit": 0,
+  "costPerUnit": 0.72,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -794,7 +794,7 @@
   },
   "en": "Head of Cabbage",
   "es": "Repollo",
-  "costPerUnit": 0,
+  "costPerUnit": 2.98,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -804,7 +804,7 @@
   },
   "en": "Can of Pineapple Chunks (15oz)",
   "es": "Lata de Piña en Trozos (15oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.47,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -814,7 +814,7 @@
   },
   "en": "Bag of Shredded Mild Cheddar Cheese (8oz)",
   "es": "Bolsa de Queso Cheddar Suave Rallado (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -824,7 +824,7 @@
   },
   "en": "Slices American Cheese",
   "es": "rebanadas de queso americano",
-  "costPerUnit": 0,
+  "costPerUnit": 0.103,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -834,7 +834,7 @@
   },
   "en": "Loaf Walmart Deli Sliced Italian Bread",
   "es": "Pan Italiano Rebanado Walmart Deli",
-  "costPerUnit": 0,
+  "costPerUnit": 1.62,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -844,7 +844,7 @@
   },
   "en": "Parsley",
   "es": "Perejil",
-  "costPerUnit": 0,
+  "costPerUnit": 0.97,
   "baseUnit": "g",
   "productLink": "unknown"
 },
@@ -854,8 +854,8 @@
   },
   "en": "Garlic Powder",
   "es": "Polvo de Ajo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.318,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -864,7 +864,7 @@
   },
   "en": "Bag of Mozzarella Cheese (8oz)",
   "es": "Bolsa de Queso Mozzarella (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.98,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -874,7 +874,7 @@
   },
   "en": "Box of Frozen Garlic Bread",
   "es": "Caja de Pan de Ajo Congelado",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -884,7 +884,7 @@
   },
   "en": "Box of Rigatoni (16oz)",
   "es": "Caja de Rigatoni (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -894,7 +894,7 @@
   },
   "en": "Medium Shell Pasta (16oz box)",
   "es": "Caja de Pasta de Concha Mediana (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.84,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -904,7 +904,7 @@
   },
   "en": "Can of Butter Beans",
   "es": "Lata de Frijoles Blancos con Mantequilla",
-  "costPerUnit": 0,
+  "costPerUnit": 1.57,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -914,7 +914,7 @@
   },
   "en": "Jar of Hunt’s Four Cheese Pasta Sauce (24oz)",
   "es": "Frasco de Salsa para Pasta Hunt's de Cuatro Quesos (24oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.58,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -924,8 +924,8 @@
   },
   "en": "Oats",
   "es": "Avena",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 4.18,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -934,7 +934,7 @@
   },
   "en": "Bag of Frozen Mixed Vegetables",
   "es": "Bolsa de Verduras Mixtas Congeladas",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -944,7 +944,7 @@
   },
   "en": "Bag of Frozen Green Beans",
   "es": "Bolsa de Ejotes Congelados",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -954,8 +954,8 @@
   },
   "en": "Salt",
   "es": "Sal",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.029,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -964,7 +964,7 @@
   },
   "en": "Can of Generic Rotel Tomatoes",
   "es": "Lata de Tomates Rotel Genéricos",
-  "costPerUnit": 0,
+  "costPerUnit": 1.32,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -974,7 +974,7 @@
   },
   "en": "Avocado",
   "es": "Aguacate",
-  "costPerUnit": 0,
+  "costPerUnit": 0.56,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -984,7 +984,7 @@
   },
   "en": "Can of Fruit Cocktail (30oz)",
   "es": "Lata de Cóctel de Frutas (30oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 3.77,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -994,7 +994,7 @@
   },
   "en": "Can of Black Beans",
   "es": "Lata de Frijoles Negros",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1004,8 +1004,8 @@
   },
   "en": "Shredded Cheddar Cheese",
   "es": "Queso Cheddar Rallado",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 1.97,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1014,7 +1014,7 @@
   },
   "en": "Box of Rotini (16oz)",
   "es": "Caja de Fideos Rotini (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1024,7 +1024,7 @@
   },
   "en": "Microwave Macaroni & Cheese Cups (2oz)",
   "es": "Macarrones con Queso Individuales para Microondas (2oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.675,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1034,8 +1034,8 @@
   },
   "en": "Sleeve of Saltine Crackers",
   "es": "Paquete de Galletas Saladas Trituradas",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.47,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1044,8 +1044,8 @@
   },
   "en": "brown sugar",
   "es": "azúcar morena",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.062,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1054,7 +1054,7 @@
   },
   "en": "Can of Fire-Roasted Tomatoes",
   "es": "Lata de Tomates Asados",
-  "costPerUnit": 0,
+  "costPerUnit": 1.18,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1064,7 +1064,7 @@
   },
   "en": "Chilled Rotisserie Chicken",
   "es": "Pollo Rotisserie Frío",
-  "costPerUnit": 0,
+  "costPerUnit": 3.97,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1074,8 +1074,8 @@
   },
   "en": "Ground Beef",
   "es": "Carne Molida de Res",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 5.94,
+  "baseUnit": "lb",
   "productLink": "unknown"
 },
 {
@@ -1084,7 +1084,7 @@
   },
   "en": "Small Potatoes",
   "es": "Papas Pequeñas",
-  "costPerUnit": 0,
+  "costPerUnit": 0.143,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1094,8 +1094,8 @@
   },
   "en": "Spanish Olives",
   "es": "Aceitunas Españolas",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.455,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1104,8 +1104,8 @@
   },
   "en": "Dried Onions",
   "es": "Cebolla Deshidratada",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.46,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1114,8 +1114,8 @@
   },
   "en": "Garlic Powder",
   "es": "Ajo en Polvo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.318,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1124,8 +1124,8 @@
   },
   "en": "Onion Powder",
   "es": "Cebolla en Polvo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.332,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1134,8 +1134,8 @@
   },
   "en": "Hamburger Seasoning",
   "es": "Condimento para Hamburguesas",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.761,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1144,7 +1144,7 @@
   },
   "en": "Can of Baked Beans (28oz)",
   "es": "Lata de Frijoles (28oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.48,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1154,8 +1154,8 @@
   },
   "en": "Breakfast Sausage",
   "es": "Salchicha de Desayuno",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 3.98,
+  "baseUnit": "lb",
   "productLink": "unknown"
 },
 {
@@ -1164,8 +1164,8 @@
   },
   "en": "Vegetable Oil",
   "es": "Aceite Vegetal",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.067,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -1174,7 +1174,7 @@
   },
   "en": "Bag of Frozen Broccoli Florets (12oz)",
   "es": "Bolsa de Brócoli Congelado (12oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.16,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1184,8 +1184,8 @@
   },
   "en": "Soy Sauce",
   "es": "Salsa de Soja",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.105,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -1194,7 +1194,7 @@
   },
   "en": "Can of Armour Chili with Beans (14oz)",
   "es": "Lata de Chili Armour con Frijoles (14oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.72,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1204,7 +1204,7 @@
   },
   "en": "Loaf White Bread",
   "es": "Pan Blanco",
-  "costPerUnit": 0,
+  "costPerUnit": 1.48,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1214,7 +1214,7 @@
   },
   "en": "Carrots",
   "es": "Zanahorias",
-  "costPerUnit": 0,
+  "costPerUnit": 0.32,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1224,7 +1224,7 @@
   },
   "en": "Hamburger Buns",
   "es": "Panecillos para Hamburguesa",
-  "costPerUnit": 0,
+  "costPerUnit": 0.2933,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1234,7 +1234,7 @@
   },
   "en": "Green Bell Peppers",
   "es": "Pimientos Verdes",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1244,7 +1244,7 @@
   },
   "en": "Jar of Sauerkraut (24oz)",
   "es": "Frasco de Chucrut (24oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 9.99,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1254,7 +1254,7 @@
   },
   "en": "Roma Tomatoes",
   "es": "Tomates Roma",
-  "costPerUnit": 0,
+  "costPerUnit": 0.24,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1264,7 +1264,7 @@
   },
   "en": "Package of Bar S Classic Franks (8 count each)",
   "es": "Paquete de Salchichas Clásicas Bar S (8 unidades cada una)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.00,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1274,7 +1274,7 @@
   },
   "en": "Can of Chickpeas",
   "es": "Lata de Garbanzos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1284,8 +1284,8 @@
   },
   "en": "Milk",
   "es": "Leche",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
+  "costPerUnit": 0.026,
+  "baseUnit": "fl oz",
   "productLink": "unknown"
 },
 {
@@ -1294,7 +1294,7 @@
   },
   "en": "Knorr Beef Bouillon Cubes",
   "es": "Cubos de Caldo de Res Knorr",
-  "costPerUnit": 0,
+  "costPerUnit": 0.2875,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1304,8 +1304,8 @@
   },
   "en": "Plain Greek Yogurt",
   "es": "Yogur Griego Natural",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.0155,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1314,8 +1314,8 @@
   },
   "en": "Grated Parmesan Cheese",
   "es": "Queso Parmesano Rallado",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 0.373,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1324,7 +1324,7 @@
   },
   "en": "Small Sweet Potatoes",
   "es": "Batatas Pequeñas",
-  "costPerUnit": 0,
+  "costPerUnit": 1.11,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1334,7 +1334,7 @@
   },
   "en": "Chili Seasoning Packet",
   "es": "Sobre de Condimento para Chile",
-  "costPerUnit": 0,
+  "costPerUnit": 1.37,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1344,7 +1344,7 @@
   },
   "en": "Can of Country Style Baked Beans (28oz)",
   "es": "Lata de Frijoles Horneados Estilo Campestre (28oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.94,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1354,8 +1354,8 @@
   },
   "en": "Margarine",
   "es": "Margarina",
-  "costPerUnit": 0,
-  "baseUnit": "g",
+  "costPerUnit": 1.28,
+  "baseUnit": "oz",
   "productLink": "unknown"
 },
 {
@@ -1364,7 +1364,7 @@
   },
   "en": "Sleeve of Butter Rounds Crackers",
   "es": "Paquete de Galletas Redondas de Mantequilla",
-  "costPerUnit": 0,
+  "costPerUnit": 0.635,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1374,7 +1374,7 @@
   },
   "en": "Can of Chipotle Chile in Adobo Sauce",
   "es": "Lata de Chile Chipotle en Adobo Enlatado",
-  "costPerUnit": 0,
+  "costPerUnit": 1.63,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1384,7 +1384,7 @@
   },
   "en": "Can of Hunt’s Spaghetti Sauce (24oz)",
   "es": "Lata de Salsa para Espaguetis Hunt's (24oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.58,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1394,7 +1394,7 @@
   },
   "en": "Can of Cream of Chicken Soup (low sodium)",
   "es": "Lata de Crema de Pollo (baja en sodio)",
-  "costPerUnit": 0,
+  "costPerUnit": 7.725,
   "baseUnit": "each",
   "productLink": "unknown"
 },
@@ -1404,9 +1404,9 @@
   },
   "en": "Can of Refrigerated Jumbo Biscuits (8 count)",
   "es": "Lata de Galletas Jumbo Refrigeradas (8 unidades)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.23,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Flaky-Jumbo-Buttermilk-Biscuits-8-Count/10533861?classType=REGULAR&from=/search"
 },
 {
   "_id": {
@@ -1414,9 +1414,9 @@
   },
   "en": "Knorr Chicken Flavored Bouillon Cube",
   "es": "Cubos de Caldo Knorr Sabor Pollo",
-  "costPerUnit": 0,
+  "costPerUnit": 0.245,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Knorr-Shelf-Stable-Cubes-Chicken-Bouillon-2-5-oz-6-Pack-Box/21786679?classType=REGULAR&from=/search"
 },
 {
   "_id": {
@@ -1424,9 +1424,9 @@
   },
   "en": "Box of Pasta Roni Angel Hair Pasta with Herbs (4.8oz)",
   "es": "Caja de Pasta Roni Cabello de Ángel con Hierbas (4.8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.33,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Pasta-Roni-Angel-Hair-Pasta-with-Herbs-4-8oz-Box/10318341?classType=VARIANT&athbdg=L1300&from=/search"
 },
 {
   "_id": {
@@ -1434,9 +1434,9 @@
   },
   "en": "Chicken Flavored Ramen Noodles",
   "es": "Fideos Ramen con Sabor a Pollo",
-  "costPerUnit": 0,
+  "costPerUnit": 0.33,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Maruchan-Ramen-Noodle-Chicken-Flavor-Soup-3-oz-12-Count-Shelf-Stable-Package/10450904?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1444,9 +1444,9 @@
   },
   "en": "Can of Tomato Sauce (15oz)",
   "es": "Lata de Salsa de Tomate (15oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.16,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Contadina-Tomato-Sauce-15-oz-Can/10295268?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1454,9 +1454,9 @@
   },
   "en": "Box of Unsalted Beef Broth (32oz)",
   "es": "Caja de Caldo de Ternera Sin Sal (32oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.50,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Unsalted-Beef-Broth-32-oz-Carton-Shelf-Stable-Ambient-Gluten-Free/312850691?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1464,9 +1464,9 @@
   },
   "en": "Can of Pinto Beans",
   "es": "Lata de Frijoles Pintos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Pinto-Beans-15-5-oz-Can/10534043?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1474,9 +1474,9 @@
   },
   "en": "Box of Penne Pasta (16oz)",
   "es": "Caja de Penne Pasta (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Penne-Pasta-16-oz-Box-Shelf-Stable/10534084?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1484,9 +1484,9 @@
   },
   "en": "Mayonnaise",
   "es": "Mayonesa",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.105,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Mayonnaise-30-fl-oz/17056888?classType=VARIANT&athbdg=L1200&from=/search"
 },
 {
   "_id": {
@@ -1494,9 +1494,9 @@
   },
   "en": "Package of Hot Dogs",
   "es": "Paquete de Salchichas",
-  "costPerUnit": 0,
+  "costPerUnit": 0.396,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Ball-Park-Classic-Bun-Size-Hot-Dogs-30-oz-16-Count/153611550?classType=REGULAR&from=/search"
 },
 {
   "_id": {
@@ -1504,9 +1504,9 @@
   },
   "en": "Loaf Walmart Bakery French Bread",
   "es": "Barra de Pan Francés de Walmart Bakery",
-  "costPerUnit": 0,
+  "costPerUnit": 1.62,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Freshness-Guaranteed-French-Bakery-Bread-Loaf-14-oz-1-Count/46491756?classType=REGULAR&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1514,9 +1514,9 @@
   },
   "en": "Knorr Cajun Rice Sides",
   "es": "Arroz Cajún Knorr",
-  "costPerUnit": 0,
+  "costPerUnit": 1.24,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Knorr-No-Artificial-Flavors-Cajun-Chicken-Flavor-Rice-Sides-5-8-oz-Regular-Pouch/5332703673?classType=VARIANT&from=/search"
 },
 {
   "_id": {
@@ -1524,9 +1524,9 @@
   },
   "en": "Bag of Corn Chips",
   "es": "Bolsa de Chips de Maíz",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Original-Corn-Chips-9-25-Ounce-Bag/220510325?classType=REGULAR&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1534,9 +1534,9 @@
   },
   "en": "Olive Oil",
   "es": "Aceite de Oliva",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.349,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Classic-Olive-Oil-17-fl-oz/10315103?classType=REGULAR&athbdg=L1200&from=/search"
 },
 {
   "_id": {
@@ -1544,7 +1544,7 @@
   },
   "en": "Box of Great Value Taco Shells (12 count)",
   "es": "Caja de tortillas para tacos de gran valor (12 unidades)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.50,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Taco-Shells-4-6-oz-12-Count/1657981925?classType=VARIANT&from=/search"
 }]
