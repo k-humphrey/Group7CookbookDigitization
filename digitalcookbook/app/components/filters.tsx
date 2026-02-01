@@ -1,28 +1,60 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// keep track of selected fitlers
+// Props for parent callback
 interface Props {
-  onChange: (filters: { appliances: string[]; tags: string[] }) => void; // callback to parent
+  onChange: (filters: { appliances: string[]; tags: {healthTags: string[], allergenTags: string[]} }) => void; // callback to parent
 }
 
 export default function Filters({ onChange }: Props) {
-  const [selected, setSelected] = useState({ appliances: [] as string[], tags: [] as string[]});
+  // State for filter options and selected filters
+  const [filterOptions, setFilterOptions] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});  // available filter options
+  const [selected, setSelected] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});  // selected filters
 
-  const toggle = (category: "appliances" | "tags", newTag: string) => {
+  // Toggle filter selection
+  const toggle = (category: "appliances" | "healthTags" | "allergenTags", newTag: string) => {
     let newSelected;
 
-    if (selected[category].includes(newTag))
-      newSelected = {...selected, [category]: selected[category].filter((item) => item !== newTag)};
-    else
-      newSelected = {...selected, [category]: selected[category].concat(newTag)};
+    if(category == "appliances") {  // toggle appliances
+      if (selected.appliances.includes(newTag))
+        newSelected = {...selected, appliances: selected.appliances.filter((item) => item !== newTag)};
+      else
+        newSelected = {...selected, appliances: selected.appliances.concat(newTag)};
+
+    } else {  // toggle tags
+      if (selected.tags[category].includes(newTag))
+        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].filter((item) => item !== newTag)}};
+      else
+        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].concat(newTag)}};
+
+    }
 
     setSelected(newSelected); // update UI
     onChange(newSelected); // update recipes
   };
 
   const [isOpen, setIsOpen] = useState(true);
+
+  // get filter options from database and display dynamically
+  useEffect(() => {
+    const fetchFilterOptions = async () => {
+      const [appliances, healthTags, allergenTags] = await Promise.all([
+        fetch('/api/appliances').then(res => res.json()),
+        fetch('/api/tags').then(res => res.json()),
+        fetch('/api/allergens').then(res => res.json()),
+      ]);
+
+      setFilterOptions({ 
+        appliances, tags: {
+          healthTags,
+          allergenTags
+        }});
+
+    };
+
+    fetchFilterOptions();
+  }, []);
   
   return (
     <section>
@@ -45,7 +77,7 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase mb-2">Kitchen Appliances</h3>
               <div className="flex flex-col gap-1">
-                {["Oven", "Stockpot and Skillet", "Slow Cooker", "Microwave", "Stockpot/Dutch Oven", "Skillet/Frying Pan", "Saucepan with Lid"].map(appliance => (
+                {filterOptions.appliances.map(appliance => (
                 <label key={appliance} className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -63,13 +95,13 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase my-2">Health</h3>
               <div className="flex flex-col gap-1">
-                {["blueRibbon", "vegan", "vegetarian"].map(tag => (
+                {filterOptions.tags.healthTags.map(tag => (
                 <label key={tag} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   className="checkbox checkbox-xs"
-                  checked={selected.tags.includes(tag)}
-                  onChange={() => toggle("tags", tag)}
+                  checked={selected.tags.healthTags.includes(tag)}
+                  onChange={() => toggle("healthTags", tag)}
                 />
                 <span>{tag}</span>
                 </label>
@@ -81,26 +113,17 @@ export default function Filters({ onChange }: Props) {
             <div>
               <h3 className="font-semibold text-xs uppercase my-2">Allergies</h3>
               <div className="flex flex-col gap-1">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Celiac</span>
+                {filterOptions.tags.allergenTags.map(tag => (
+                <label key={tag} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-xs"
+                  checked={selected.tags.allergenTags.includes(tag)}
+                  onChange={() => toggle("allergenTags", tag)}
+                />
+                <span>{tag}</span>
                 </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Lactose Intolerant</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Soy</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Fish</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="checkbox checkbox-xs" />
-                  <span>Shellfish</span>
-                </label>
+                ))}
               </div>
             </div>
           </div>

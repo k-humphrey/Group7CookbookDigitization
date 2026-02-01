@@ -4,6 +4,6 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req: Request){
     await connectToDB();
-    const appliances = await Appliance.find({});
-    return NextResponse.json(appliances);
+    const appliances = await Appliance.find().select("en -_id");
+    return NextResponse.json(appliances.map(appliance => appliance.en));
 }
