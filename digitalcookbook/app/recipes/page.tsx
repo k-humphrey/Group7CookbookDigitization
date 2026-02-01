@@ -47,6 +47,11 @@ export default function RecipeSearchPage() {
       url = `/api/recipes/bySearch?${filters.toString()}`;
 
     const res = await fetch(url);
+    if (!res) {
+      return {
+        notFound: true,
+      }
+    }
     const data = await res.json();
     if (!data) {
       return {
