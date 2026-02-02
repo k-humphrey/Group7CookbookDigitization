@@ -9,13 +9,13 @@ import Filters from "../components/filters";
 import RecipeGrid from "../components/recipecards";
 import Searchbar from "../components/searchbar";
 
+export const dynamic = "force-dynamic";
+
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
-  <Suspense>
-    const searchParams = useSearchParams();
-    const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
-    const initialTags = initialParam ? initialParam.split(",") : [];
-  </Suspense>
+  const searchParams = useSearchParams();
+  const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
+  const initialTags = initialParam ? initialParam.split(",") : [];
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
