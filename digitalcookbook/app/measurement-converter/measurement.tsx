@@ -38,7 +38,6 @@ const fractions = [
 
 // Format measurement into fractional representation
 function formatMeasurement(value: number, unit: string) {
-  const fractionSet = fractions;
   const wholeNumber = Math.floor(value);
   const remainder = value - wholeNumber;
 
@@ -48,7 +47,7 @@ function formatMeasurement(value: number, unit: string) {
 
   // Find closest fraction representation to decimal part
   let best: { label: string; value: number } | null = null;
-  for (const frac of fractionSet) {
+  for (const frac of fractions) {
     if (!best || Math.abs(remainder - frac.value) < Math.abs(remainder - best.value)) { // closer fraction found, save it in best
       best = frac;
     }
@@ -58,7 +57,10 @@ function formatMeasurement(value: number, unit: string) {
   let fractionLabel = remainder > 0.05 && best?.label ? best.label : "";
 
   // Construct final string
-  if (fractionLabel) // whole number with fraction or just fraction
+  if (remainder >= 0.9)
+    return `${wholeNumber+1}`;
+
+  else if (fractionLabel) // whole number with fraction or just fraction
     return wholeNumber ? `${wholeNumber} ${fractionLabel}` : fractionLabel;
     
   else if (remainder == 0) // whole number only if no remainder
