@@ -4,9 +4,9 @@ Backend has combined the different search filter APIs into a single one. This si
 It works by finding key search words inside of the url and uses them to build the filter. It then returns all recipes that match such filter.
 ###### Combined Search API use Example:
 ```
-http://localhost:3000/api/recipes/bySearch?title=chicken&ingredients=chicken&tags=blueRibbon&appliances=oven
+http://localhost:3000/api/recipes/bySearch?title=chicken&ingredients=chicken&tags=blueRibbon&appliances=oven&maxCost=10&minCost=1
 ```
-by adding the key search words (title, ingredients, tags, appliances) you can choose what type of item it is your filtering for. After each key word to add another category you need to add the & sign.
+by adding the key search words (title, ingredients, tags, appliances, maxCost, minCost) you can choose what type of item it is your filtering for. After each key word to add another category you need to add the & sign.
 
 ##### We have also included an api call to just return all the recipes and their information:
 ```
@@ -45,6 +45,14 @@ Description: Will return all recipes with true values for the given tags
 http://localhost:3000/api/recipes/byAppliance?appliances=<appliances comma seperated>
 ```
 Description: Will return all recipes that use the given appliances
+.
+.
+
+###### Cost:
+```
+http://localhost:3000/api/recipes/byCost?maxCost=<value>&minCost=<value>&order=<ascend||descend>
+```
+Description: Will return all recipes within the given range in order ascend/descend
 .
 .
 
