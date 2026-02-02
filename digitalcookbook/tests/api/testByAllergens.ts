@@ -3,7 +3,7 @@
 export async function testByAllergens() {
     try {
         // allergen tags to search by
-        const searchTerm = "dairy";
+        const searchTerm = "Dairy";
         // get searched for recipes and display them if able
         const recipes = await (await fetch(`http://localhost:3000/api/recipes/byAllergens?allergenTags=${searchTerm}`)).json();
         console.log(`Recipe by allergens ${searchTerm}:\n`, recipes);

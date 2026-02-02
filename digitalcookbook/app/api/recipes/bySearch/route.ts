@@ -16,6 +16,7 @@ export async function GET(req: Request){
     const healthTagsParams = url.searchParams.get("healthTags") || null;
     const allergenTagsParams = url.searchParams.get("allergenTags") || null;
     const titleParam = url.searchParams.get("title") || null;
+    const cost = {min: url.searchParams.get("minCost") || null, max: url.searchParams.get("maxCost") || null};
 
     const filters: any[] = [];
 
@@ -85,6 +86,18 @@ export async function GET(req: Request){
         tagsList.forEach(tag => {
             filters.push({[`allergens.${tag}`]: false});
         });
+    }
+
+    // ---------- Filter by Cost
+    if(cost.max || cost.min) {
+        let costFilter: any = {};
+        if(cost.max)
+            costFilter.$lte = Number(cost.max); // only include recipes with cost less than or equal to maxCost
+
+        if(cost.min)
+            costFilter.$gte = Number(cost.min); // only include recipes with cost greater than or equal to minCost
+
+        filters.push({totalCost: costFilter});
     }
 
     // return matched recipes
