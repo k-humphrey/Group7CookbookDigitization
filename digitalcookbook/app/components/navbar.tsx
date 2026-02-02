@@ -326,6 +326,9 @@ export default function Navbar() {
         </div>
         <div className="navbar-end">
             <input type="checkbox" defaultChecked className="toggle" />
+            <img src="logo.png"
+            alt="LEADERSHIP PUTNAM LOGO"
+            className="w-24 h-auto max-w-full -mt 4" />
         </div>
         </div>
     );
