@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Filters from "../components/filters";
@@ -11,10 +11,11 @@ import Searchbar from "../components/searchbar";
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
-  const searchParams = useSearchParams();
-
-  const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
-  const initialTags = initialParam ? initialParam.split(",") : [];
+  <Suspense>
+    const searchParams = useSearchParams();
+    const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
+    const initialTags = initialParam ? initialParam.split(",") : [];
+  </Suspense>
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
@@ -47,20 +48,8 @@ export default function RecipeSearchPage() {
       url = `/api/recipes/bySearch?${filters.toString()}`;
 
     const res = await fetch(url);
-    if (!res) {
-      return {
-        notFound: true,
-      }
-    }
     const data = await res.json();
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }else{
-      
-      setRecipes(data);
-    }
+    setRecipes(data);
   }
 
   return (
