@@ -2,11 +2,11 @@
 
 export async function testAppliances() {
     try {
-        //get ingredients and display them if able
+        //get appliances and display them if able
         const appliances = await (await fetch("http://localhost:3000/api/appliances")).json();
-        console.log("All ingredients: ", appliances);
+        console.log("All appliances: ", appliances);
     } catch (err) {
-        console.error("Error testing api/ingredients/route: ", err);
+        console.error("Error testing api/appliances/route: ", err);
     }
 }
 

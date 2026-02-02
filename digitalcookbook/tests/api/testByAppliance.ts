@@ -2,7 +2,7 @@
 
 export async function testByAppliance() {
     try {
-        // ingredients to search by
+        // appliances to search by
         const searchTerm = "Pot";
         // get searched for recipes and display them if able
         const recipes = await (await fetch(`http://localhost:3000/api/recipes/byAppliance?appliances=${searchTerm}`)).json();
