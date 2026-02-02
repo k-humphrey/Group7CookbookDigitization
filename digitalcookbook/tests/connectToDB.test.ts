@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import mongoose from 'mongoose';
 import { connectToDB } from '../lib/connectToDB';
 

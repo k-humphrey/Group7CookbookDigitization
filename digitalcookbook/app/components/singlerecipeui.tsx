@@ -44,21 +44,11 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 {title}
               </h1>
               <div className="flex flex-wrap items-center gap-2 text-sm">
-                {recipe?.tags?.['Blue Ribbon'] && (
-                  <span className="badge badge-info whitespace-nowrap">
-                    Blue Ribbon
-                  </span>
-                )}
-                {recipe?.tags?.vegan && (
-                  <span className="badge badge-success whitespace-nowrap">
-                    Vegan
-                  </span>
-                )}
-                {recipe?.tags?.vegetarian && (
-                  <span className="badge badge-success whitespace-nowrap">
-                    Vegetarian
-                  </span>
-                )}
+                {recipe.tags && Object.entries(recipe.tags).filter(([_, value]) => value == true).map(([tag]) => (
+                  <div key={tag} className={`badge ${tag == "Blue Ribbon" ? "badge-info" : "badge-success"}`}>
+                    {tag}
+                  </div>
+                ))}
               </div>
             </div>
 

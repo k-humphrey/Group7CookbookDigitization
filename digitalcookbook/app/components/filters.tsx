@@ -50,7 +50,6 @@ export default function Filters({ onChange }: Props) {
           healthTags,
           allergenTags
         }});
-        console.log("Filter options loaded:", { appliances, healthTags, allergenTags });
 
     };
 
