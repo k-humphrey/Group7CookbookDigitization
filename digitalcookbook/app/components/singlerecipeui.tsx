@@ -6,11 +6,12 @@ type Recipe = {
   ingredientPlainText?: { en?: string; es?: string };
   imageURI?: string;
   tags?: {
-    blueRibbon?: boolean;
+    'Blue Ribbon'?: boolean;
     vegan?: boolean;
     vegetarian?: boolean;
   };
   totalCost?: number;
+  allergens?: Record<string, boolean>;
 };
 
 export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
@@ -70,7 +71,17 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
             {/* Divider */}
             <div className="mt-4 border-t border-base-900" />
           </div>
+          <div className="px-6 pb-4 flex flex-wrap gap-2">
+            {/* Allergens */}
+            This Recipe Contains:
+            {recipe.allergens && Object.entries(recipe.allergens).filter(([_, value]) => value === true).map(([allergen]) => (
+                <div key={allergen} className="text-black font-bold">
+                  {allergen}
+                </div>
+              ))}
 
+          </div>
+          
           {/* Ingredients */}
           <div className="px-6 py-6 flex justify-left">
             <section className="rounded-lg bg-[#dfe8d8] p-4">
