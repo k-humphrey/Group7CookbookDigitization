@@ -2,14 +2,14 @@
 
 "use client";
 
-import { useState, useEffect, useRef, Suspense } from "react";
+export const dynamic = "force-dynamic";
+
+import { useState, useEffect, useRef} from "react";
 import { useSearchParams } from "next/navigation";
 
 import Filters from "../components/filters";
 import RecipeGrid from "../components/recipecards";
 import Searchbar from "../components/searchbar";
-
-export const dynamic = "force-dynamic";
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
