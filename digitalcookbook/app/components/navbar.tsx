@@ -4,10 +4,50 @@
 import Link from "next/link";
 import { useLang } from "@/app/components/languageprovider"; 
 
+const STRINGS = {
+    en: {
+        communityResources: "Community Resources",
+        safety: "Safety",
+        putnumHealthDept: "Putnam County Health Department",
+        ucAssist: "UCAssist.org",
+        elPuente: "El Puente - Hispanic Community Center",
+        emergencyNumbers: "Emergency Numbers",
+        partners: "Partners",
+        kwianis: "Kiwanis",
+        enbridge: "Enbridge",
+        powerOfPutnam: "Power of Putnam",
+        tools: "Tools",
+        shelfLife: "Shelf Life Guidelines",
+        priceFinder: "Price Finder",
+        timer: "Timer",
+        measurementConverter: "Measurement Converter",
+        allRecipes: "All Recipes",
+    },
+    es: {
+        communityResources: "Recursos Comunitarios",
+        safety: "Seguridad",
+        putnumHealthDept: "Departamento de Salud del Condado de Putnam",
+        ucAssist: "UCAssist.org",
+        elPuente: "El Puente - Centro Comunitario Hispano",
+        emergencyNumbers: "Números de Emergencia",
+        partners: "Socios",
+        kwianis: "Kiwanis",
+        enbridge: "Enbridge",
+        powerOfPutnam: "Power of Putnam",
+        tools: "Herramientas",
+        shelfLife: "Guías de Vida Útil",
+        priceFinder: "Buscador de Precios",
+        timer: "Temporizador",
+        measurementConverter: "Convertidor de Medidas",
+        allRecipes: "Todas las Recetas",
+    },
+};
+
 export default function Navbar() {
     const langContext = useLang()
     if (!langContext) return null
     const { lang, setLang } = langContext
+    const t = STRINGS[lang];
     return (
         <div className="navbar bg-white text-black shadow-sm relative z-50">
 
@@ -46,7 +86,7 @@ export default function Navbar() {
                 className="menu menu-sm dropdown-content bg-white text-black rounded-box z-50 mt-3 w-52 p-2 shadow" >
                 <li>
                 <details>
-                    <summary>Community Resources</summary>
+                    <summary>{t.communityResources}</summary>
                     <ul className="p-2">
                     <li>
                         <Link
@@ -54,7 +94,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Safety
+                            {t.safety}
                         </Link>
                     </li>
                     <li>
@@ -63,7 +103,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer" 
                             className="hover:underline" >
-                            Putnam County Health Department
+                            {t.putnumHealthDept}
                         </Link>
                     </li>
                     <li>
@@ -72,7 +112,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            UCAssist.org
+                            {t.ucAssist}
                         </Link>
                     </li>
                     <li>
@@ -81,7 +121,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            El Puente - Hispanic Community Center
+                            {t.elPuente}
                         </Link>
                     </li>
                     <li>
@@ -90,7 +130,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Emergency Numbers
+                            {t.emergencyNumbers}
                         </Link>
                     </li>
                 </ul>
@@ -98,7 +138,7 @@ export default function Navbar() {
             </li>
             <li>
             <details>
-                <summary>Partners</summary>
+                <summary>{t.partners}</summary>
                 <ul className="p-2">
                     <li>
                         <Link
@@ -106,7 +146,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Kiwanis
+                            {t.kwianis}
                         </Link>
                     </li>
                     <li>
@@ -115,7 +155,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >                                
-                            Enbridge
+                            {t.enbridge}
                         </Link>
                     </li>
                     <li>
@@ -124,7 +164,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Power of Putnam
+                            {t.powerOfPutnam}
                         </Link>
                     </li>
                 </ul>
@@ -132,16 +172,15 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/all-recipes"
-                    target="_blank"
+                    href="/recipes"
                     rel="noopener noreferrer"
                     className="hover:underline" >
-                    All Recipes
+                    {t.allRecipes}
                 </Link>
             </li>
             <li>
             <details>
-                <summary>Tools</summary>
+                <summary>{t.tools}</summary>
                 <ul className="p-2">
                     <li>
                         <Link
@@ -149,7 +188,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Shelf Life Guidelines
+                            {t.shelfLife}
                         </Link>
                     </li>
                     <li>
@@ -158,7 +197,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Price Finder
+                            {t.priceFinder}
                         </Link>
                     </li>
                     <li>
@@ -167,7 +206,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Timer
+                            {t.timer}
                         </Link>
                     </li>
                     <li>
@@ -176,7 +215,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Measurement Converter
+                            {t.measurementConverter}
                         </Link>
                     </li>
                     </ul>
@@ -191,7 +230,7 @@ export default function Navbar() {
             <ul className="menu menu-horizontal px-1">
             <li>
             <details>
-                <summary>Community Resources</summary>
+                <summary>{t.communityResources}</summary>
                 <ul className="p-2">
                     <li>
                         <Link
@@ -199,7 +238,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Safety
+                            {t.safety}
                         </Link>
                     </li>
                     <li>
@@ -208,7 +247,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer" 
                             className="hover:underline" >
-                            Putnam County Health Department
+                            {t.putnumHealthDept}
                         </Link>
                     </li>
                     <li>
@@ -217,7 +256,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            UCAssist.org
+                            {t.ucAssist}
                         </Link>
                     </li>
                     <li>
@@ -226,7 +265,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            El Puente - Hispanic Community Center
+                            {t.elPuente}
                         </Link>
                     </li>
                     <li>
@@ -235,7 +274,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Emergency Numbers
+                            {t.emergencyNumbers}
                         </Link>
                     </li>
                 </ul>
@@ -243,7 +282,7 @@ export default function Navbar() {
             </li>
             <li>
             <details>
-                <summary>Partners</summary>
+                <summary>{t.partners}</summary>
                 <ul className="p-2">
                     <li>
                         <Link
@@ -251,7 +290,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Kiwanis
+                            {t.kwianis}
                         </Link>
                     </li>
                     <li>
@@ -260,7 +299,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >                                
-                            Enbridge
+                            {t.enbridge}
                         </Link>
                     </li>
                     <li>
@@ -269,7 +308,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Power of Putnam
+                            {t.powerOfPutnam}
                         </Link>
                     </li>
                 </ul>
@@ -277,16 +316,15 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/all-recipes"
-                    target="_blank"
+                    href="/recipes"
                     rel="noopener noreferrer"
                     className="hover:underline" >
-                    All Recipes
+                    {t.allRecipes}
                 </Link>
             </li>
             <li>
             <details>
-                <summary>Tools</summary>
+                <summary>{t.tools}</summary>
                 <ul className="p-2">
                     <li>
                         <Link
@@ -294,7 +332,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Shelf Life Guidelines
+                            {t.shelfLife}
                         </Link>
                     </li>
                     <li>
@@ -303,7 +341,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Price Finder
+                            {t.priceFinder}
                         </Link>
                     </li>
                     <li>
@@ -312,7 +350,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Timer
+                            {t.timer}
                         </Link>
                     </li>
                     <li>
@@ -321,7 +359,7 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline" >
-                            Measurement Converter
+                            {t.measurementConverter}
                         </Link>
                     </li>
                 </ul>
