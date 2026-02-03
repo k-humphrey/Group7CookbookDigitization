@@ -1,4 +1,4 @@
-//app/slguidelines/page.tsx
+//app/shelf-life-guidelines/page.tsx
 
 export default function ShelfLifeGuidelinesPage() {
   return (
