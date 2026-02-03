@@ -58,6 +58,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               </div>
             )}
           </div>
+
           {/* Title + Tags */}
           <div className="p-4 sm:p-6">
             {/* Row 1: Title + Tags */}
@@ -73,6 +74,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 ))}
               </div>
             </div>
+
             {/* Row 2: Time, Servings, and Cost */}
             <div className="md:flex md:flex-row items-start mt-24 md:gap-10 sm:grid">
               <div className="font-semibold">{t.prep}</div>
@@ -83,15 +85,18 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 {recipe?.totalCost != null ? recipe.totalCost.toFixed(2) : "0.00"}
               </span>
             </div>
-            {/* Divider */}
+
+          {/* Divider */}
           <div className="mt-4 border-t border-base-900" />
           </div>
+
           {/* Allergens */}
           <div className="px-6 pb-4 flex flex-wrap gap-2">{t.contains}
             {recipe.allergens && Object.entries(recipe.allergens).filter(([_, value]) => value === true).map(([allergen]) => (
                 <div key={allergen} className="text-black font-bold">{allergen}</div>
               ))}
           </div> 
+
           {/* Ingredients */}
           <div className="px-6 py-6 flex justify-left">
             <section className="rounded-lg bg-[#dfe8d8] p-4">
