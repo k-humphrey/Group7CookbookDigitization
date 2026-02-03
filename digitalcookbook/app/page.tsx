@@ -6,10 +6,27 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import Searchbar from "./components/searchbar";
 import RecipeGrid from "./components/recipecards";  
+import { useLang } from "@/app/components/languageprovider";
+
+const STRINGS = {
+  en: {
+    thrifyBites: "Thrifty Bites",
+    search: "Search by ingredients you have or find the perfect recipe",
+    featured: "Featured Recipes",
+  },
+  es: {
+    thrifyBites: "Bocados Económicos",
+    search: "Busca por ingredientes que tienes o encuentra la receta perfecta",
+    featured: "Recetas Destacadas",
+  },
+};
 
 export default function Home() {
   const router = useRouter();
   const [recipes, setRecipes] = useState<any[]>([]);
+  const langContext = useLang();
+  const lang = langContext?.lang ?? 'en';
+  const t = STRINGS[lang];
 
   // routes to the recipes page
   const handleSearch = (tags: string[]) => {
@@ -49,13 +66,9 @@ export default function Home() {
 
         {/* Logo + Subtitle */}
         <div className="text-center mb-5">
-          <h1 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none">
-            Thrifty Bites
-          </h1>
+          <h1 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none">{t.thrifyBites}</h1>
 
-          <p className="mt-5 pt-5 text-base max-w-3xl md:text-2xl text-slate-950">
-            Search by ingredients you have or find the perfect recipe
-          </p>
+          <p className="mt-5 pt-5 text-base max-w-3xl md:text-2xl text-slate-950">{t.search}</p>
         </div>
 
         {/* Searchbar */}
@@ -64,7 +77,7 @@ export default function Home() {
 
         {/* Featured Recipes */}
         <section className="w-full max-w-7xl px-6 mt-40 mb-20">
-          <h2 className="text-4xl font-bold mb-6 flex justify-center">Featured Recipes</h2>
+          <h2 className="text-4xl font-bold mb-6 flex justify-center">{t.featured}</h2>
           <RecipeGrid recipes={featuredRecipes} />
         </section> 
       </div> 
