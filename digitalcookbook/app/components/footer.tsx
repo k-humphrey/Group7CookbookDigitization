@@ -14,14 +14,12 @@ export default function Footer(){
             
                 <Link
                     href="/all-recipes"
-            
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     All Recipes
                 </Link>
 
                
-    
                 <Link
                     href="/tools"
                     rel="noopener noreferrer"
@@ -36,7 +34,6 @@ export default function Footer(){
                     className="link link-hover" >
                     Shopping List
                 </Link>
-
         </nav>
 
         {/* Resources */}
@@ -100,10 +97,16 @@ export default function Footer(){
         </nav>
 
         </footer>
-    
+
+        {/*Logos*/}
         <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10 flex justify-center gap-20 pr-40">
-            <img src="pep_logo.png" alt="LEADERSHIP PUTNAM Logo" className="w-50 h-auto max-w-full" />
-            <img src="logo.png" alt="LEADERSHIP PUTNAM Logo" className="w-24 h-auto max-w-full -mt-4" />
+            <img src="pep_logo.png" 
+            alt="LEADERSHIP PUTNAM Logo" 
+            className="w-50 h-auto max-w-full" />
+
+            <img src="LP_logo.png" 
+            alt="LEADERSHIP PUTNAM Logo" 
+            className="w-24 h-auto max-w-full -mt-4" />
         </footer>
 
         <footer className="footer sm:footer-horizontal bg-black text-white p-4 flex items-center justify-between">

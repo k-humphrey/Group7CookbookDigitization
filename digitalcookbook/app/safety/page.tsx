@@ -6,7 +6,7 @@ export default function SafetyPage() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-start">
         <div className="text-center mb-5">
-            <h1 className="text-3xl md:text-[5rem] font-bold">Safety</h1>
+            <h1 className="text-2xl md:text-[5rem] font-bold">Safety</h1>
         </div>
 
         {/* Cards Container aka Responsive Grid, should work on mobile */}
