@@ -1,8 +1,13 @@
 // app/components/navbar.tsx
 //import React from "react";
+"use client";
 import Link from "next/link";
+import { useLang } from "@/app/components/languageprovider"; 
 
 export default function Navbar() {
+    const langContext = useLang()
+    if (!langContext) return null
+    const { lang, setLang } = langContext
     return (
         <div className="navbar bg-white text-black shadow-sm relative z-50">
 
@@ -325,7 +330,7 @@ export default function Navbar() {
             </ul>
         </div>
         <div className="navbar-end">
-            <input type="checkbox" defaultChecked className="toggle" />
+            <input type="checkbox" defaultChecked className="toggle" onChange={() => setLang(lang === "en" ? "es" : "en")} />
             <img src="logo.png"
             alt="LEADERSHIP PUTNAM LOGO"
             className="w-24 h-auto max-w-full -mt 4" />
