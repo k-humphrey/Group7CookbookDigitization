@@ -1,8 +1,6 @@
 // Recipes Page
 
-"use client";
-
-export const dynamic = "force-dynamic";
+"use server";
 
 import { useState, useEffect, useRef} from "react";
 import { useSearchParams } from "next/navigation";
