@@ -2,13 +2,32 @@
 "use client";
 
 import { useState, KeyboardEvent, ChangeEvent } from "react";
+import { useLang } from "@/app/components/languageprovider";
 
 interface Props {
   onSearch: (tags: string[]) => void; // parent callback
   initialTags ?: string[]; // initial tags
 }
 
+const STRINGS = {
+  en: {
+    selectedIngredients: "Selected Ingredients:",
+    placeholder: "(Your selected ingredients will appear here)",
+    search: "Search Recipes",
+    placeholder2: "Type an ingredient and press Enter...",
+  },
+  es: {
+    selectedIngredients: "Ingredientes seleccionados:",
+    placeholder: "(Tus ingredientes seleccionados aparecerán aquí)",
+    search: "Buscar recetas",
+    placeholder2: "Escribe un ingrediente y presiona Enter...",
+  },
+};
+
 export default function Searchbar({ onSearch, initialTags }: Props) {
+  const langContext = useLang();
+  const lang = langContext?.lang ?? 'en';
+  const t = STRINGS[lang];
   const [input, setInput] = useState("");
   const [tags, setTags] = useState<string[]>(initialTags || []); // store selected ingredients
 
@@ -58,15 +77,10 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
 
           {/* Tag Area */}
           <div className="flex-1">
-            <h2 className="text-xs font-semibold uppercase text-slate-950">
-              Selected Ingredients:
-            </h2>
-
+            <h2 className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</h2>
             <div className="mt-2 flex flex-wrap gap-2 text-slate-950">
               {tags.length === 0 ? (
-                <span className="text-xs opacity-70">
-                  (Your selected ingredients will appear here)
-                </span>
+                <span className="text-xs opacity-70">{t.placeholder}</span>
               ) : (
                 tags.map((tag) => (
                   <span
@@ -88,9 +102,7 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           </div>
 
           {/* Search Button */}
-          <button className="btn btn-warning btn-sm md:btn-md shrink-0 text-slate-950" onClick={handleSearchClick}>
-            Search Recipes
-          </button>
+          <button className="btn btn-warning btn-sm md:btn-md shrink-0 text-slate-950" onClick={handleSearchClick}>{t.search}</button>
         </div>
       </div>
 
@@ -114,7 +126,7 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           <input
             type="text"
             className="grow placeholder:text-slate-950 bg-transparent outline-none"
-            placeholder="Type an ingredient and press Enter..."
+            placeholder={t.placeholder2}
             value={input}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
