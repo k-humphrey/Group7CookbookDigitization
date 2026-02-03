@@ -9,8 +9,8 @@ export default function TimerPage() {
         backgroundSize: "120%",
       }}
     >
-    <div className="-mt-40 flex flex-col items-center">
-      <h1 className="text-[6rem] md:text-[8rem] font-black text-orange-500 mb-6">
+    <div className="-mt-60 flex flex-col items-center">
+      <h1 className="text-[6rem] md:text-[6rem] font-black text-orange-500 mb-15 -mt-15">
         Timer
       </h1>
 
