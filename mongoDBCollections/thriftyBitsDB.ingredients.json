@@ -4,9 +4,9 @@
   },
   "en": "Can of Mushrooms (4oz)",
   "es": "Lata de Champiñones (4oz)",
-  "costPerUnit": 0.39,
+  "costPerUnit": 0.395,
   "baseUnit": "oz",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Mushrooms-Pieces-and-Stems-4-oz-Can/10315009"
 },
 {
   "_id": {
@@ -14,9 +14,9 @@
   },
   "en": "Ramen Seasoning Packet",
   "es": "Sobre de Sazonador para Ramen",
-  "costPerUnit": 2.82,
-  "baseUnit": "oz",
-  "productLink": "unknown"
+  "costPerUnit": 0.29,
+  "baseUnit": "each",
+  "productLink": "https://www.walmart.com/ip/Maruchan-Ramen-Noodle-Soup-Chicken-Flavor-3-oz-Shelf-Stable-Package/15168864480"
 },
 {
   "_id": {
@@ -24,9 +24,9 @@
   },
   "en": "Loaf Wheat Bread",
   "es": "Pan Integral",
-  "costPerUnit": 7.4,
-  "baseUnit": "oz",
-  "productLink": "unknown"
+  "costPerUnit": 1.48,
+  "baseUnit": "each",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Wheat-Sandwich-Bread-20-oz/10315699"
 },
 {
   "_id": {
@@ -34,9 +34,9 @@
   },
   "en": "Large Potatoes",
   "es": "Papas Grandes",
-  "costPerUnit": 78.5,
+  "costPerUnit": 0.694,
   "baseUnit": "lb",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Whole-Russet-Potatoes-5lb-bag/10447837"
 },
 {
   "_id": {
@@ -44,9 +44,9 @@
   },
   "en": "Lime",
   "es": "Lima",
-  "costPerUnit": 2.49,
-  "baseUnit": "lb",
-  "productLink": "unknown"
+  "costPerUnit": 0.25,
+  "baseUnit": "each",
+  "productLink": "https://www.walmart.com/ip/Fresh-Lime-Each/44391008?classType=REGULAR&athbdg=L1200&from=/search"
 },
 {
   "_id": {
@@ -54,9 +54,9 @@
   },
   "en": "Box of Pasta Roni Parmesan Cheese Flavor",
   "es": "Caja de Pasta Roni Sabor Queso Parmesano",
-  "costPerUnit": 26.1,
-  "baseUnit": "oz",
-  "productLink": "unknown"
+  "costPerUnit": 1.33,
+  "baseUnit": "each",
+  "productLink": "https://www.walmart.com/ip/Pasta-Roni-Parmesan-Cheese-Angel-Hair-Pasta-5-1-oz-Box/10318340"
 },
 {
   "_id": {
@@ -64,9 +64,9 @@
   },
   "en": "Ranch Dressing",
   "es": "Aderezo Ranch",
-  "costPerUnit": 10.6,
+  "costPerUnit": 0.179,
   "baseUnit": "fl oz",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Classic-Ranch-Dressing-Dip-8-oz/2917933728"
 },
 {
   "_id": {
@@ -74,9 +74,9 @@
   },
   "en": "Box of Uncooked Elbow Macaroni",
   "es": "Caja de Macarrones Crudos",
-  "costPerUnit": 6.1,
+  "costPerUnit": 0.061,
   "baseUnit": "oz",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Elbows-16-oz-Box-Shelf-Stable/10534107"
 },
 {
   "_id": {
@@ -84,9 +84,9 @@
   },
   "en": "Can of Refried Beans",
   "es": "Lata de Frijoles refritos",
-  "costPerUnit": 6.3,
+  "costPerUnit": 0.063,
   "baseUnit": "oz",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Traditional-Refried-Beans-16-oz/10534037"
 },
 {
   "_id": {
@@ -94,9 +94,9 @@
   },
   "en": "Taco Seasoning Packet (1.25oz)",
   "es": "Sobre de Sazonador para Tacos (1.25oz)",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.456,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Taco-Seasoning-Mix-1-25-oz/10314963"
 },
 {
   "_id": {
@@ -104,9 +104,9 @@
   },
   "en": "Chili Powder",
   "es": "Chile en Polvo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.36,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Chili-Powder-3-oz/157643393"
 },
 {
   "_id": {
@@ -114,9 +114,9 @@
   },
   "en": "Can of Tomato Soup",
   "es": "Lata de Sopa de Tomate",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.065,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Tomato-Condensed-Soup-10-75-oz/10314957"
 },
 {
   "_id": {
@@ -124,9 +124,9 @@
   },
   "en": "Stalks Celery",
   "es": "Tallos de Apio",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Celery-Stalk-Each/51259411"
 },
 {
   "_id": {
@@ -134,9 +134,9 @@
   },
   "en": "Onion",
   "es": "Cebolla",
-  "costPerUnit": 0,
+  "costPerUnit": 1.03,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Whole-White-Onions-Each/51259208"
 },
 {
   "_id": {
@@ -144,9 +144,9 @@
   },
   "en": "Box of Linguine Noodles",
   "es": "Caja de Fideos Linguini",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.061,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Linguine-16-oz/10534116"
 },
 {
   "_id": {
@@ -154,9 +154,9 @@
   },
   "en": "Parmesan Cheese",
   "es": "Queso Parmesano",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.347,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Finely-Shredded-Parmesan-Cheese-6-oz/10452414"
 },
 {
   "_id": {
@@ -164,9 +164,9 @@
   },
   "en": "Box of Macaroni & Cheese",
   "es": "Caja de Macarrones con Queso",
-  "costPerUnit": 0,
+  "costPerUnit": 0.58,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Original-Macaroni-Cheese-7-25-oz-Shelf-Stable/10315422"
 },
 {
   "_id": {
@@ -174,9 +174,9 @@
   },
   "en": "Bag of Veggie Straws",
   "es": "Bolsa de Palitos de Verduras",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.406,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Zesty-Ranch-Flavored-Veggie-Straws-7-oz-Bag/682201944"
 },
 {
   "_id": {
@@ -184,9 +184,9 @@
   },
   "en": "Bag of Pepperonis (6oz)",
   "es": "Bolsa de Pepperonis (6oz)",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.48,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Original-Pepperoni-Slices-6-oz/40495518"
 },
 {
   "_id": {
@@ -194,9 +194,9 @@
   },
   "en": "Large Chicken Breast",
   "es": "Pechugas de Pollo Grandes",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 2.98,
+  "baseUnit": "lb",
+  "productLink": "https://www.walmart.com/ip/Great-Value-All-Natural-Boneless-Skinless-Chicken-Breasts-3-lb-Frozen/10414680"
 },
 {
   "_id": {
@@ -204,9 +204,9 @@
   },
   "en": "Jar of Salsa (16 oz)",
   "es": "Frasco de Salsa (16 oz)",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.12,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Thick-and-Chunky-Salsa-Mild-16-oz/1959652540"
 },
 {
   "_id": {
@@ -214,9 +214,9 @@
   },
   "en": "Container of Sour Cream (8oz)",
   "es": "Envase de Crema Agria (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.24,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-All-Natural-Sour-Cream-8-oz/12335110"
 },
 {
   "_id": {
@@ -224,9 +224,9 @@
   },
   "en": "Cilantro",
   "es": "Cilantro",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 3.56,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Fresh-Cut-Cilantro-0-5-oz-Clamshell/3558983106"
 },
 {
   "_id": {
@@ -234,9 +234,9 @@
   },
   "en": "Ground Turkey",
   "es": "Pavo Molido",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 3.94,
+  "baseUnit": "lb",
+  "productLink": "https://www.walmart.com/ip/Butterball-All-Natural-Fresh-Ground-Turkey-85-15-16oz-Roll/17247623"
 },
 {
   "_id": {
@@ -244,9 +244,9 @@
   },
   "en": "Bag of Dried 15-Bean Soup Mix",
   "es": "Bolsa de Mezcla Seca de Sopa de 15 Judías",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.141,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Hurst-s-HamBeens-15-Bean-Soup-20-oz/10295039"
 },
 {
   "_id": {
@@ -254,9 +254,9 @@
   },
   "en": "Lemon Juice",
   "es": "Zumo de limón",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.218,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Concord-Foods-Lemon-Juice-No-Pulp-from-Concentrate-4-5-oz/29823646"
 },
 {
   "_id": {
@@ -264,9 +264,9 @@
   },
   "en": "Worcestershire Sauce",
   "es": "Salsa Worcestershire",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.10,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Worcestershire-Sauce-10-fl-oz-Regular/12157940"
 },
 {
   "_id": {
@@ -274,9 +274,9 @@
   },
   "en": "Yellow Mustard",
   "es": "Mostaza Amarilla",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.049,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Yellow-Mustard-20-oz-Squeeze-Bottle/43711099"
 },
 {
   "_id": {
@@ -284,9 +284,9 @@
   },
   "en": "Can of Great Northern Beans",
   "es": "Lata de Frijoles Blancos Great Northern",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Great-Northern-Beans-15-5-oz-Can/10534042"
 },
 {
   "_id": {
@@ -294,9 +294,9 @@
   },
   "en": "BBQ Sauce",
   "es": "Salsa Barbacoa",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.096,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/PL-Great-Value-18-Oz-Bbq-Sauce-Original-1-Bottle-Each/593927194"
 },
 {
   "_id": {
@@ -304,9 +304,9 @@
   },
   "en": "Box of Jiffy Corn Muffin",
   "es": "Caja de Panecillos de Maíz Jiffy",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.079,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Jiffy-Corn-Muffin-Mix-8-5-oz/10448133"
 },
 {
   "_id": {
@@ -314,9 +314,9 @@
   },
   "en": "Bag of Frozen Peas & Carrots",
   "es": "Bolsa de Guisantes y Zanahorias Congeladas",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.082,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Frozen-Peas-Carrots-Gluten-Free-12-oz-Steamable-Bag/994038828"
 },
 {
   "_id": {
@@ -324,9 +324,9 @@
   },
   "en": "Pepper",
   "es": "Pimienta",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 1.22,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Ground-Black-Pepper-3-oz/44662573"
 },
 {
   "_id": {
@@ -334,9 +334,9 @@
   },
   "en": "Green Onion",
   "es": "Cebollas Verdes",
-  "costPerUnit": 0,
+  "costPerUnit": 0.96,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Green-Onions-Bunch-Each/51259361"
 },
 {
   "_id": {
@@ -344,9 +344,9 @@
   },
   "en": "Rice",
   "es": "Arroz",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.058,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Long-Grain-Enriched-Rice-16-oz/10315393"
 },
 {
   "_id": {
@@ -354,9 +354,9 @@
   },
   "en": "Butter",
   "es": "Mantequilla",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.243,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Salted-Butter-Sticks-8-oz-2-Sticks/1416786932"
 },
 {
   "_id": {
@@ -364,9 +364,9 @@
   },
   "en": "Bag of Tortilla Chips",
   "es": "Bolsa de Totopos",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Restaurant-Style-White-Corn-Tortilla-Chips-13-oz/12335104"
 },
 {
   "_id": {
@@ -374,9 +374,9 @@
   },
   "en": "Banana",
   "es": "Plátanos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.20,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Banana-Each/44390948"
 },
 {
   "_id": {
@@ -384,9 +384,9 @@
   },
   "en": "Can of Petite Diced Tomatoes (14.5oz)",
   "es": "Lata de Tomates en Cubos Pequeños (14.5oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.96,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Petite-Diced-Tomatoes-in-Tomato-Juice-14-5-oz/10416105"
 },
 {
   "_id": {
@@ -394,9 +394,9 @@
   },
   "en": "Jalepeno",
   "es": "Jalepeño",
-  "costPerUnit": 0,
+  "costPerUnit": 0.41,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Jalapeno-Pepper-Approx-3-5-per-0-25-Pound/44391018"
 },
 {
   "_id": {
@@ -404,9 +404,9 @@
   },
   "en": "Bag of Small Fajita Flour Tortillas",
   "es": "Bolsa de Tortillas de Harina para Fajitas Pequeñas",
-  "costPerUnit": 0,
+  "costPerUnit": 2.12,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Small-Fajita-Flour-Tortillas-22-5-oz-20-Count/348913867"
 },
 {
   "_id": {
@@ -414,9 +414,9 @@
   },
   "en": "Crushed Red Pepper",
   "es": "Pimiento Rojo Triturado",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 1.44,
+  "baseUnit": "each",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Crushed-Red-Pepper-1-75-oz/217612954"
 },
 {
   "_id": {
@@ -424,9 +424,9 @@
   },
   "en": "Dill Pickle Juice",
   "es": "Jugo de Pepinillos",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.563,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Mt-Olive-Pickle-Juicers/1648389747"
 },
 {
   "_id": {
@@ -434,9 +434,9 @@
   },
   "en": "Can of Chef Boyardee Pizza Sauce",
   "es": "Lata de Salsa para Pizza Chef Boyardee",
-  "costPerUnit": 0,
+  "costPerUnit": 1.44,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Chef-Boyardee-Pizza-Tomato-Sauce-with-Cheese-15-oz/21151975"
 },
 {
   "_id": {
@@ -444,9 +444,9 @@
   },
   "en": "Bag of Dried Pinto Beans",
   "es": "Bolsa de Frijoles Pintos Secos",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.063,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Pinto-Beans-1-lb/294723013"
 },
 {
   "_id": {
@@ -454,9 +454,9 @@
   },
   "en": "Package of Chicken Smoked Sausage",
   "es": "Paquete de Salchicha Ahumada de Pollo",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 3.67,
+  "baseUnit": "lb",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Chicken-Smoked-Sausage-14-oz/5440505153"
 },
 {
   "_id": {
@@ -464,9 +464,9 @@
   },
   "en": "Knorr Rice Sides Teriyaki Flavored",
   "es": "Knorr sabor Teriyaki",
-  "costPerUnit": 0,
+  "costPerUnit": 5.99,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Knorr-Rice-Side-Dish-Asian-Teriyaki-5-4-oz/10307830"
 },
 {
   "_id": {
@@ -474,9 +474,9 @@
   },
   "en": "Can of Tomato Paste (6oz)",
   "es": "Lata de Pasta de Tomate (6oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Tomato-Paste-6-oz/10415519"
 },
 {
   "_id": {
@@ -484,9 +484,9 @@
   },
   "en": "Box of Instant Mashed Potatoes",
   "es": "Caja de Puré de Papas Instantáneo",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.137,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Instant-Mashed-Potatoes-26-7-oz-Box/22734174"
 },
 {
   "_id": {
@@ -494,9 +494,9 @@
   },
   "en": "Package of Gnocchi",
   "es": "Paquete de Ñoquis",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Giovanni-Rana-Skillet-Gnocchi-12-oz-Bag-Refrigerated/757687275"
 },
 {
   "_id": {
@@ -504,9 +504,9 @@
   },
   "en": "Large Sweet Potato",
   "es": "Batata Grande",
-  "costPerUnit": 0,
+  "costPerUnit": 1.11,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Sweet-Potatoes-Whole-Fresh-Each-Batata-Mameya/44390964"
 },
 {
   "_id": {
@@ -514,9 +514,9 @@
   },
   "en": "Package of Polish Kielbasa (14oz)",
   "es": "Paquete de Kielbasa Polaca (14oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.82,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Fully-Cooked-Polish-Kielbasa-14-oz/5265533849"
 },
 {
   "_id": {
@@ -524,9 +524,9 @@
   },
   "en": "Bag of Frozen Tater Tots (32oz)",
   "es": "Bolsa de Tater Tots Congelados (32oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 4.47,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Ore-Ida-Golden-Tater-Tots-Seasoned-Shredded-Frozen-Potatoes-32-oz-Bag/11961001"
 },
 {
   "_id": {
@@ -534,9 +534,9 @@
   },
   "en": "Can of Chicken (12.5oz)",
   "es": "Lata de Pollo (12.5oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.62,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Chunk-Chicken-in-Water-Chunks-12-5-Ounce-Can/10315929"
 },
 {
   "_id": {
@@ -544,9 +544,9 @@
   },
   "en": "Box of Stuffing Mix",
   "es": "Caja de Mezcla para Relleno",
-  "costPerUnit": 0,
+  "costPerUnit": 0.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Chicken-Flavored-Stuffing-Mix-6-oz/10315304"
 },
 {
   "_id": {
@@ -554,9 +554,9 @@
   },
   "en": "Garlic Salt",
   "es": "Sal de Ajo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.189,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Garlic-Salt-5-7-oz/339769224"
 },
 {
   "_id": {
@@ -564,9 +564,9 @@
   },
   "en": "Italian Seasoning",
   "es": "Condimento Italiano",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.985,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Italian-Seasoning-2-oz/116427929"
 },
 {
   "_id": {
@@ -574,9 +574,9 @@
   },
   "en": "Bag of Egg Noodles",
   "es": "Bolsa de Fideos de Huevo",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.109,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Wide-Egg-Noodles-16-oz/10534093"
 },
 {
   "_id": {
@@ -584,9 +584,9 @@
   },
   "en": "Can of Cream of Mushroom Soup Low Sodium (12.5 oz)",
   "es": "Lata de Sopa de Crema de Champiñones Baja en Sodio (12.5 oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.24,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Campbell-s-Condensed-Cream-of-Mushroom-Soup-10-5-oz-Can/10321675"
 },
 {
   "_id": {
@@ -594,9 +594,9 @@
   },
   "en": "Teriyaki Sauce",
   "es": "Salsa Teriyaki",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.165,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Teriyaki-Sauce-15-fl-oz/23598506"
 },
 {
   "_id": {
@@ -604,9 +604,9 @@
   },
   "en": "Eggs",
   "es": "Huevos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.162,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Large-White-Eggs-18-Count/172844767"
 },
 {
   "_id": {
@@ -614,9 +614,9 @@
   },
   "en": "Bag of Shredded Colby Jack Cheese (8oz)",
   "es": "Bolsa de Queso Colby Jack Rallado (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Finely-Shredded-Colby-Jack-Cheese-8-oz/10452564"
 },
 {
   "_id": {
@@ -624,9 +624,9 @@
   },
   "en": "Bag of Stir-Fry Vegetables",
   "es": "Bolsa de Vegetales Salteados",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.136,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Frozen-Broccoli-Stir-Fry-Mixed-Vegetables-20-oz-Bag/689725125"
 },
 {
   "_id": {
@@ -634,9 +634,9 @@
   },
   "en": "Bag of Frozen Okra (12oz) – not breaded",
   "es": "Bolsa de Okra Congelada (12oz) sin empanizar",
-  "costPerUnit": 0,
+  "costPerUnit": 1.54,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Cut-Okra-Frozen-12-oz/268148491"
 },
 {
   "_id": {
@@ -644,9 +644,9 @@
   },
   "en": "Can of Diced Tomatoes (15oz)",
   "es": "Lata de Tomates en Dados (15oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.92,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Chili-Ready-Diced-Tomatoes-14-5-oz/10415889"
 },
 {
   "_id": {
@@ -654,9 +654,9 @@
   },
   "en": "Box of Chicken Broth (32oz)",
   "es": "Caja de Caldo de Pollo (32oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.50,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Reduced-Sodium-Chicken-Broth-32-oz-Carton-Shelf-Stable-Ambient-Gluten-Free/483866934"
 },
 {
   "_id": {
@@ -664,9 +664,9 @@
   },
   "en": "Bag of Real Bacon Bits",
   "es": "Bolsa de Tocino Natural",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.776,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Real-Bacon-Pieces-2-5-oz/10315616"
 },
 {
   "_id": {
@@ -674,9 +674,9 @@
   },
   "en": "Ketchup",
   "es": "Kétchup",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.052,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Tomato-Ketchup-38-oz/44391309"
 },
 {
   "_id": {
@@ -684,9 +684,9 @@
   },
   "en": "Can of Kidney Beans – light or dark",
   "es": "Lata de Frijoles Rojos (claros u oscuros)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Dark-Red-Kidney-Beans-15-5-oz/10534045"
 },
 {
   "_id": {
@@ -694,9 +694,9 @@
   },
   "en": "Can of Pork and Beans",
   "es": "Lata de Frijoles con Cerdo",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Pork-Beans-in-Tomato-Sauce-15-oz/10314922"
 },
 {
   "_id": {
@@ -704,9 +704,9 @@
   },
   "en": "Dill Pickle Slices",
   "es": "Pepinillos Picados",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.103,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Mt-Olive-Kosher-Dill-Pickle-Spears-24-fl-oz-Jar/10290692"
 },
 {
   "_id": {
@@ -714,9 +714,9 @@
   },
   "en": "Jar of Peanut Butter",
   "es": "Frasco de Mantequilla de Cacahuete",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.124,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Creamy-Peanut-Butter-16-oz/3716446909"
 },
 {
   "_id": {
@@ -724,9 +724,9 @@
   },
   "en": "Can of Corn",
   "es": "Lata de Elote",
-  "costPerUnit": 0,
+  "costPerUnit": 0.76,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Golden-Sweet-Whole-Kernel-Corn-15-Oz/10315427"
 },
 {
   "_id": {
@@ -734,9 +734,9 @@
   },
   "en": "Bag of Wonton Strips",
   "es": "Bolsa de Tiras de Wantán",
-  "costPerUnit": 0,
+  "costPerUnit": 1.66,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Authentic-Wonton-Strips-Salad-Topping-3-5-oz-Resealable-Bag-Salted/186398919"
 },
 {
   "_id": {
@@ -744,9 +744,9 @@
   },
   "en": "Bag of California-Style, Frozen Vegetables",
   "es": "Bolsa de Verduras Congeladas Estilo California",
-  "costPerUnit": 0,
+  "costPerUnit": 1.16,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-California-Style-Vegetable-Mix-12-oz-Bag-Frozen/857019836"
 },
 {
   "_id": {
@@ -754,9 +754,9 @@
   },
   "en": "Can of White Tuna in Water (12oz)",
   "es": "Lata de Atún Blanco en Agua (12 oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 3.72,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/StarKist-Solid-White-Albacore-Tuna-in-Water-12-oz-Can/10293457"
 },
 {
   "_id": {
@@ -764,9 +764,9 @@
   },
   "en": "Jar of Alfredo Sauce (22oz)",
   "es": "Frasco de Salsa Alfredo (22oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.48,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Classic-Alfredo-Pasta-Sauce-22-oz/115523442"
 },
 {
   "_id": {
@@ -774,9 +774,9 @@
   },
   "en": "Packet of Fajita Seasoning",
   "es": "Paquete de Condimento Fajita",
-  "costPerUnit": 0,
+  "costPerUnit": 0.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Old-El-Paso-Fajita-Taco-Seasoning-1-oz/10813460"
 },
 {
   "_id": {
@@ -784,9 +784,9 @@
   },
   "en": "Garlic Cloves",
   "es": "Dientes de Ajo",
-  "costPerUnit": 0,
+  "costPerUnit": 0.72,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Garlic-Bulb-Fresh-Whole-Each/44391100"
 },
 {
   "_id": {
@@ -794,9 +794,9 @@
   },
   "en": "Head of Cabbage",
   "es": "Repollo",
-  "costPerUnit": 0,
+  "costPerUnit": 2.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Green-Cabbage-Each/44391042"
 },
 {
   "_id": {
@@ -804,9 +804,9 @@
   },
   "en": "Can of Pineapple Chunks (15oz)",
   "es": "Lata de Piña en Trozos (15oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.47,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Dole-Tropical-Gold-Pineapple-Chunks-in-100-Pineapple-Juice-15-oz-Can/2728401183"
 },
 {
   "_id": {
@@ -814,9 +814,9 @@
   },
   "en": "Bag of Shredded Mild Cheddar Cheese (8oz)",
   "es": "Bolsa de Queso Cheddar Suave Rallado (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Shredded-Mild-Cheddar-Cheese-8-oz-Bag-Plastic-Packaging/10452420"
 },
 {
   "_id": {
@@ -824,9 +824,9 @@
   },
   "en": "Slices American Cheese",
   "es": "rebanadas de queso americano",
-  "costPerUnit": 0,
+  "costPerUnit": 1.88,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Singles-American-Pasteurized-Prepared-Cheese-Product-12-oz-16-Count/10452422"
 },
 {
   "_id": {
@@ -834,9 +834,9 @@
   },
   "en": "Loaf Walmart Deli Sliced Italian Bread",
   "es": "Pan Italiano Rebanado Walmart Deli",
-  "costPerUnit": 0,
+  "costPerUnit": 1.62,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Freshness-Guaranteed-Sliced-Italian-Bread-14-oz/328869537"
 },
 {
   "_id": {
@@ -844,9 +844,9 @@
   },
   "en": "Parsley",
   "es": "Perejil",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 2.70,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Parsley-Flakes-0-4-oz/861014617"
 },
 {
   "_id": {
@@ -854,9 +854,9 @@
   },
   "en": "Garlic Powder",
   "es": "Polvo de Ajo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.318,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Garlic-Powder-3-4-oz/676979470"
 },
 {
   "_id": {
@@ -864,9 +864,9 @@
   },
   "en": "Bag of Mozzarella Cheese (8oz)",
   "es": "Bolsa de Queso Mozzarella (8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Kraft-Mozzarella-Shredded-Cheese-8-oz-Bag/47041166"
 },
 {
   "_id": {
@@ -874,9 +874,9 @@
   },
   "en": "Box of Frozen Garlic Bread",
   "es": "Caja de Pan de Ajo Congelado",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Garlic-Texas-Toast-8-Count-11-25-Ounce-Frozen/10416519"
 },
 {
   "_id": {
@@ -884,9 +884,9 @@
   },
   "en": "Box of Rigatoni (16oz)",
   "es": "Caja de Rigatoni (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Rigatoni-16-oz-Box-Shelf-Stable/10534078"
 },
 {
   "_id": {
@@ -894,9 +894,9 @@
   },
   "en": "Medium Shell Pasta (16oz box)",
   "es": "Caja de Pasta de Concha Mediana (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Shells-16-oz-Box-Shelf-Stable/10534077"
 },
 {
   "_id": {
@@ -904,9 +904,9 @@
   },
   "en": "Can of Butter Beans",
   "es": "Lata de Frijoles Blancos con Mantequilla",
-  "costPerUnit": 0,
+  "costPerUnit": 1.57,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Bush-s-Large-Butter-Beans-Beans-Canned-Butter-Beans-16-oz-Can/10306775"
 },
 {
   "_id": {
@@ -914,9 +914,9 @@
   },
   "en": "Jar of Hunt’s Four Cheese Pasta Sauce (24oz)",
   "es": "Frasco de Salsa para Pasta Hunt's de Cuatro Quesos (24oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.58,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Hunt-s-Four-Cheese-Pasta-Sauce-24-oz-Can/20554619"
 },
 {
   "_id": {
@@ -924,9 +924,9 @@
   },
   "en": "Oats",
   "es": "Avena",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.10,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Instant-100-Whole-Grain-Old-Fashioned-Oats-Cup-42-oz/10314925"
 },
 {
   "_id": {
@@ -934,9 +934,9 @@
   },
   "en": "Bag of Frozen Mixed Vegetables",
   "es": "Bolsa de Verduras Mixtas Congeladas",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Frozen-Mixed-Vegetables-12-oz-Steamable-Bag/817042496"
 },
 {
   "_id": {
@@ -944,9 +944,9 @@
   },
   "en": "Bag of Frozen Green Beans",
   "es": "Bolsa de Ejotes Congelados",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Cut-Green-Beans-12-oz-Bag-Frozen/576704015"
 },
 {
   "_id": {
@@ -954,9 +954,9 @@
   },
   "en": "Salt",
   "es": "Sal",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.029,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Plain-Salt-26-oz/10448311"
 },
 {
   "_id": {
@@ -964,9 +964,9 @@
   },
   "en": "Can of Generic Rotel Tomatoes",
   "es": "Lata de Tomates Rotel Genéricos",
-  "costPerUnit": 0,
+  "costPerUnit": 1.32,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/ROTEL-Original-Diced-Tomatoes-and-Green-Chilies-10-oz/10308581"
 },
 {
   "_id": {
@@ -974,9 +974,9 @@
   },
   "en": "Avocado",
   "es": "Aguacate",
-  "costPerUnit": 0,
+  "costPerUnit": 0.67,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Hass-Avocados-Each/44390949"
 },
 {
   "_id": {
@@ -984,9 +984,9 @@
   },
   "en": "Can of Fruit Cocktail (30oz)",
   "es": "Lata de Cóctel de Frutas (30oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 2.78,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Fruit-Cocktail-in-Heavy-Syrup-30-oz/10315436"
 },
 {
   "_id": {
@@ -994,9 +994,9 @@
   },
   "en": "Can of Black Beans",
   "es": "Lata de Frijoles Negros",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Black-Beans-15-oz-Can/10534038"
 },
 {
   "_id": {
@@ -1004,9 +1004,9 @@
   },
   "en": "Shredded Cheddar Cheese",
   "es": "Queso Cheddar Rallado",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.246,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Finely-Shredded-Mild-Cheddar-Cheese-8-oz/10452370"
 },
 {
   "_id": {
@@ -1014,9 +1014,9 @@
   },
   "en": "Box of Rotini (16oz)",
   "es": "Caja de Fideos Rotini (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Garden-Rotini-Pasta-16-oz/10534082"
 },
 {
   "_id": {
@@ -1024,9 +1024,9 @@
   },
   "en": "Microwave Macaroni & Cheese Cups (2oz)",
   "es": "Macarrones con Queso Individuales para Microondas (2oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.88,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Annie-s-Real-Aged-Cheddar-Microwavable-Mac-and-Cheese-with-Organic-Pasta-Cup-2-01-oz/36335196"
 },
 {
   "_id": {
@@ -1034,9 +1034,9 @@
   },
   "en": "Sleeve of Saltine Crackers",
   "es": "Paquete de Galletas Saladas Trituradas",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.118,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Unsalted-Tops-Saltine-Crackers-16-oz/10315397"
 },
 {
   "_id": {
@@ -1044,9 +1044,9 @@
   },
   "en": "brown sugar",
   "es": "azúcar morena",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.062,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Light-Brown-Sugar-32-oz/10315012"
 },
 {
   "_id": {
@@ -1054,9 +1054,9 @@
   },
   "en": "Can of Fire-Roasted Tomatoes",
   "es": "Lata de Tomates Asados",
-  "costPerUnit": 0,
+  "costPerUnit": 1.18,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Fire-Roasted-Tomato-Salsa-14-5-oz/15544055"
 },
 {
   "_id": {
@@ -1064,9 +1064,9 @@
   },
   "en": "Chilled Rotisserie Chicken",
   "es": "Pollo Rotisserie Frío",
-  "costPerUnit": 0,
+  "costPerUnit": 3.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Freshness-Guaranteed-Lemon-Pepper-Rotisserie-Chicken-36-oz-Chilled/416618553"
 },
 {
   "_id": {
@@ -1074,9 +1074,9 @@
   },
   "en": "Ground Beef",
   "es": "Carne Molida de Res",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 6.22,
+  "baseUnit": "lb",
+  "productLink": "https://www.walmart.com/ip/85-Lean-15-Fat-Ground-Beef-1lb-Roll-Frozen/913066002"
 },
 {
   "_id": {
@@ -1084,9 +1084,9 @@
   },
   "en": "Small Potatoes",
   "es": "Papas Pequeñas",
-  "costPerUnit": 0,
+  "costPerUnit": 3.44,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Medley-Baby-Potatoes-1-5-lb-Bag/48387918"
 },
 {
   "_id": {
@@ -1094,9 +1094,9 @@
   },
   "en": "Spanish Olives",
   "es": "Aceitunas Españolas",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.455,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Mario-Pimiento-Stuffed-Spanish-Olives-5-75-oz/10323334"
 },
 {
   "_id": {
@@ -1104,9 +1104,9 @@
   },
   "en": "Dried Onions",
   "es": "Cebolla Deshidratada",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.46,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Minced-Onion-2-35-oz/793947882"
 },
 {
   "_id": {
@@ -1114,9 +1114,9 @@
   },
   "en": "Garlic Powder",
   "es": "Ajo en Polvo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.318,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Garlic-Powder-3-4-oz/676979470"
 },
 {
   "_id": {
@@ -1124,9 +1124,9 @@
   },
   "en": "Onion Powder",
   "es": "Cebolla en Polvo",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.332,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Onion-Powder-3-25-oz/705601418"
 },
 {
   "_id": {
@@ -1134,9 +1134,9 @@
   },
   "en": "Hamburger Seasoning",
   "es": "Condimento para Hamburguesas",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.716,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/McCormick-Grill-Mates-Gluten-Free-Hamburger-Seasoning-2-75-oz-Bottle/10308956"
 },
 {
   "_id": {
@@ -1144,9 +1144,9 @@
   },
   "en": "Can of Baked Beans (28oz)",
   "es": "Lata de Frijoles (28oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.94,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Original-Baked-Beans-28-oz/10315221"
 },
 {
   "_id": {
@@ -1154,9 +1154,9 @@
   },
   "en": "Breakfast Sausage",
   "es": "Salchicha de Desayuno",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 3.98,
+  "baseUnit": "lb",
+  "productLink": "https://www.walmart.com/ip/Odom-s-Tennessee-Pride-Mild-Sausage-Breakfast-Sausage-Roll-16-oz/10293166"
 },
 {
   "_id": {
@@ -1164,9 +1164,9 @@
   },
   "en": "Vegetable Oil",
   "es": "Aceite Vegetal",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.074,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Vegetable-Oil-48-fl-oz/10451002"
 },
 {
   "_id": {
@@ -1174,9 +1174,9 @@
   },
   "en": "Bag of Frozen Broccoli Florets (12oz)",
   "es": "Bolsa de Brócoli Congelado (12oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.16,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Frozen-Broccoli-Florets-12-oz-Steamable-Bag/735585383"
 },
 {
   "_id": {
@@ -1184,9 +1184,9 @@
   },
   "en": "Soy Sauce",
   "es": "Salsa de Soja",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.105,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Naturally-Brewed-Soy-Sauce-15-fl-oz/10315653"
 },
 {
   "_id": {
@@ -1194,9 +1194,9 @@
   },
   "en": "Can of Armour Chili with Beans (14oz)",
   "es": "Lata de Chili Armour con Frijoles (14oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.72,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Armour-Star-Chili-with-Beans-Canned-Food-14-OZ/50971373"
 },
 {
   "_id": {
@@ -1204,9 +1204,9 @@
   },
   "en": "Loaf White Bread",
   "es": "Pan Blanco",
-  "costPerUnit": 0,
+  "costPerUnit": 1.48,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-White-Round-Top-Bread-Loaf-20-oz/10315355"
 },
 {
   "_id": {
@@ -1214,9 +1214,9 @@
   },
   "en": "Carrots",
   "es": "Zanahorias",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.083,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Fresh-Whole-Carrots-1-lb-Bag/44391515"
 },
 {
   "_id": {
@@ -1224,9 +1224,9 @@
   },
   "en": "Hamburger Buns",
   "es": "Panecillos para Hamburguesa",
-  "costPerUnit": 0,
+  "costPerUnit": 1.48,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Hamburger-Buns-8-Count-11-oz/10450104"
 },
 {
   "_id": {
@@ -1234,9 +1234,9 @@
   },
   "en": "Green Bell Peppers",
   "es": "Pimientos Verdes",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Green-Bell-Pepper-Each/44390945"
 },
 {
   "_id": {
@@ -1244,9 +1244,9 @@
   },
   "en": "Jar of Sauerkraut (24oz)",
   "es": "Frasco de Chucrut (24oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 6.79,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Hengstenberg-Sauerkraut-Bavarian-Style-24-3-Oz/31001312"
 },
 {
   "_id": {
@@ -1254,9 +1254,9 @@
   },
   "en": "Roma Tomatoes",
   "es": "Tomates Roma",
-  "costPerUnit": 0,
+  "costPerUnit": 0.24,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Fresh-Roma-Tomato-Each/44390944"
 },
 {
   "_id": {
@@ -1264,9 +1264,9 @@
   },
   "en": "Package of Bar S Classic Franks (8 count each)",
   "es": "Paquete de Salchichas Clásicas Bar S (8 unidades cada una)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.00,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Bar-S-Classic-Fully-Cooked-Franks-8-Count-12oz-Refrigerated/10290749"
 },
 {
   "_id": {
@@ -1274,9 +1274,9 @@
   },
   "en": "Can of Chickpeas",
   "es": "Lata de Garbanzos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Garbanzos-Chick-Peas-15-5-oz/10534041"
 },
 {
   "_id": {
@@ -1284,9 +1284,9 @@
   },
   "en": "Milk",
   "es": "Leche",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.026,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Whole-Vitamin-D-Milk-Gallon-Plastic-Jug-128-Fl-Oz/10450114"
 },
 {
   "_id": {
@@ -1294,9 +1294,9 @@
   },
   "en": "Knorr Beef Bouillon Cubes",
   "es": "Cubos de Caldo de Res Knorr",
-  "costPerUnit": 0,
+  "costPerUnit": 3.21,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Knorr-Beef-Flavor-Bouillon-Cubes-8-Pack/10291770"
 },
 {
   "_id": {
@@ -1304,9 +1304,9 @@
   },
   "en": "Plain Greek Yogurt",
   "es": "Yogur Griego Natural",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.155,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Greek-Plain-Nonfat-Yogurt-5-3-oz-Cups-Plastic-Container/166046751"
 },
 {
   "_id": {
@@ -1314,9 +1314,9 @@
   },
   "en": "Grated Parmesan Cheese",
   "es": "Queso Parmesano Rallado",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.373,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Grated-Parmesan-Cheese-8-oz-Bottle/10315402"
 },
 {
   "_id": {
@@ -1324,9 +1324,9 @@
   },
   "en": "Small Sweet Potatoes",
   "es": "Batatas Pequeñas",
-  "costPerUnit": 0,
+  "costPerUnit": 1.11,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Sweet-Potatoes-Whole-Fresh-Each-Batata-Mameya/44390964"
 },
 {
   "_id": {
@@ -1334,9 +1334,9 @@
   },
   "en": "Chili Seasoning Packet",
   "es": "Sobre de Condimento para Chile",
-  "costPerUnit": 0,
+  "costPerUnit": 1.37,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/McCormick-Chili-Seasoning-Mix-1-250-oz-Envelope/10308940"
 },
 {
   "_id": {
@@ -1344,9 +1344,9 @@
   },
   "en": "Can of Country Style Baked Beans (28oz)",
   "es": "Lata de Frijoles Horneados Estilo Campestre (28oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.94,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Country-Style-Baked-Beans-28-oz-Can/5017149856"
 },
 {
   "_id": {
@@ -1354,9 +1354,9 @@
   },
   "en": "Margarine",
   "es": "Margarina",
-  "costPerUnit": 0,
-  "baseUnit": "g",
-  "productLink": "unknown"
+  "costPerUnit": 0.078,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Imperial-Vegetable-Oil-Spread-16-oz-Box-4-Sticks-Refrigerated/10294504"
 },
 {
   "_id": {
@@ -1364,9 +1364,9 @@
   },
   "en": "Sleeve of Butter Rounds Crackers",
   "es": "Paquete de Galletas Redondas de Mantequilla",
-  "costPerUnit": 0,
-  "baseUnit": "each",
-  "productLink": "unknown"
+  "costPerUnit": 0.185,
+  "baseUnit": "oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Baked-Buttery-Round-Crackers-13-7-oz/50228527"
 },
 {
   "_id": {
@@ -1374,9 +1374,9 @@
   },
   "en": "Can of Chipotle Chile in Adobo Sauce",
   "es": "Lata de Chile Chipotle en Adobo Enlatado",
-  "costPerUnit": 0,
+  "costPerUnit": 1.63,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/La-Coste-a-Chipotle-Peppers-in-Adobo-Sauce-7-oz/13424766"
 },
 {
   "_id": {
@@ -1384,9 +1384,9 @@
   },
   "en": "Can of Hunt’s Spaghetti Sauce (24oz)",
   "es": "Lata de Salsa para Espaguetis Hunt's (24oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.58,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Hunt-s-Traditional-Pasta-Sauce-24-oz-Can/20554615"
 },
 {
   "_id": {
@@ -1394,9 +1394,9 @@
   },
   "en": "Can of Cream of Chicken Soup (low sodium)",
   "es": "Lata de Crema de Pollo (baja en sodio)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.70,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Heart-Healthy-98-Fat-Free-and-50-Less-Sodium-Cream-of-Chicken-Condensed-Soup-10-5-oz-Can/10315800"
 },
 {
   "_id": {
@@ -1404,9 +1404,9 @@
   },
   "en": "Can of Refrigerated Jumbo Biscuits (8 count)",
   "es": "Lata de Galletas Jumbo Refrigeradas (8 unidades)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.84,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Flaky-Jumbo-Buttermilk-Biscuits-8-Count/10533861"
 },
 {
   "_id": {
@@ -1414,9 +1414,9 @@
   },
   "en": "Knorr Chicken Flavored Bouillon Cube",
   "es": "Cubos de Caldo Knorr Sabor Pollo",
-  "costPerUnit": 0,
+  "costPerUnit": 1.47,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Knorr-Shelf-Stable-Cubes-Chicken-Bouillon-2-5-oz-6-Pack-Box/21786679"
 },
 {
   "_id": {
@@ -1424,9 +1424,9 @@
   },
   "en": "Box of Pasta Roni Angel Hair Pasta with Herbs (4.8oz)",
   "es": "Caja de Pasta Roni Cabello de Ángel con Hierbas (4.8oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.33,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Pasta-Roni-Angel-Hair-Pasta-with-Herbs-4-8oz-Box/10318341"
 },
 {
   "_id": {
@@ -1434,9 +1434,9 @@
   },
   "en": "Chicken Flavored Ramen Noodles",
   "es": "Fideos Ramen con Sabor a Pollo",
-  "costPerUnit": 0,
+  "costPerUnit": 0.29,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Maruchan-Ramen-Noodle-Soup-Chicken-Flavor-3-oz-Shelf-Stable-Package/15168864480"
 },
 {
   "_id": {
@@ -1444,9 +1444,9 @@
   },
   "en": "Can of Tomato Sauce (15oz)",
   "es": "Lata de Salsa de Tomate (15oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.16,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Contadina-Tomato-Sauce-15-oz-Can/10295268?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1454,9 +1454,9 @@
   },
   "en": "Box of Unsalted Beef Broth (32oz)",
   "es": "Caja de Caldo de Ternera Sin Sal (32oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.50,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Unsalted-Beef-Broth-32-oz-Carton-Shelf-Stable-Ambient-Gluten-Free/312850691?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1464,9 +1464,9 @@
   },
   "en": "Can of Pinto Beans",
   "es": "Lata de Frijoles Pintos",
-  "costPerUnit": 0,
+  "costPerUnit": 0.86,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Pinto-Beans-15-5-oz-Can/10534043?classType=VARIANT&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1474,9 +1474,9 @@
   },
   "en": "Box of Penne Pasta (16oz)",
   "es": "Caja de Penne Pasta (16oz)",
-  "costPerUnit": 0,
+  "costPerUnit": 0.98,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Penne-Pasta-16-oz-Box-Shelf-Stable/10534084"
 },
 {
   "_id": {
@@ -1484,9 +1484,9 @@
   },
   "en": "Mayonnaise",
   "es": "Mayonesa",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.105,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Mayonnaise-30-fl-oz/17056888"
 },
 {
   "_id": {
@@ -1494,9 +1494,9 @@
   },
   "en": "Package of Hot Dogs",
   "es": "Paquete de Salchichas",
-  "costPerUnit": 0,
+  "costPerUnit": 1.00,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Bar-S-Classic-Fully-Cooked-Franks-8-Count-12oz-Refrigerated/10290749"
 },
 {
   "_id": {
@@ -1504,9 +1504,9 @@
   },
   "en": "Loaf Walmart Bakery French Bread",
   "es": "Barra de Pan Francés de Walmart Bakery",
-  "costPerUnit": 0,
+  "costPerUnit": 1.62,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Freshness-Guaranteed-French-Bakery-Bread-Loaf-14-oz-1-Count/46491756?classType=REGULAR&athbdg=L1600&from=/search"
 },
 {
   "_id": {
@@ -1514,9 +1514,9 @@
   },
   "en": "Knorr Cajun Rice Sides",
   "es": "Arroz Cajún Knorr",
-  "costPerUnit": 0,
+  "costPerUnit": 1.24,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Knorr-No-Artificial-Flavors-Cajun-Chicken-Flavor-Rice-Sides-5-8-oz-Regular-Pouch/5332703673?classType=VARIANT&from=/search"
 },
 {
   "_id": {
@@ -1524,9 +1524,9 @@
   },
   "en": "Bag of Corn Chips",
   "es": "Bolsa de Chips de Maíz",
-  "costPerUnit": 0,
+  "costPerUnit": 1.97,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Original-Corn-Chips-9-25-Ounce-Bag/220510325"
 },
 {
   "_id": {
@@ -1534,9 +1534,9 @@
   },
   "en": "Olive Oil",
   "es": "Aceite de Oliva",
-  "costPerUnit": 0,
-  "baseUnit": "mL",
-  "productLink": "unknown"
+  "costPerUnit": 0.349,
+  "baseUnit": "fl oz",
+  "productLink": "https://www.walmart.com/ip/Great-Value-Classic-Olive-Oil-17-fl-oz/10315103"
 },
 {
   "_id": {
@@ -1544,7 +1544,7 @@
   },
   "en": "Box of Great Value Taco Shells (12 count)",
   "es": "Caja de tortillas para tacos de gran valor (12 unidades)",
-  "costPerUnit": 0,
+  "costPerUnit": 1.50,
   "baseUnit": "each",
-  "productLink": "unknown"
+  "productLink": "https://www.walmart.com/ip/Great-Value-Taco-Shells-4-6-oz-12-Count/1657981925"
 }]
