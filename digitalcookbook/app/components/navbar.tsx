@@ -127,7 +127,7 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/all-recipes"
+                    href="/recipes?ingredients="
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
@@ -272,7 +272,7 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/all-recipes"
+                    href="/recipes?ingredients="
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
@@ -325,7 +325,6 @@ export default function Navbar() {
             </ul>
         </div>
         <div className="navbar-end">
-<<<<<<< HEAD
             {/*Toggle Switch*/}
             {/*<input type="checkbox" defaultChecked className="toggle" />*/}
 
@@ -333,12 +332,6 @@ export default function Navbar() {
             <img src="LP_logo.png" 
             alt="LEADERSHIP PUTNAM Logo" 
             className="w-24 h-auto max-w-full -mt-4" />
-=======
-            <input type="checkbox" defaultChecked className="toggle" />
-            <img src="logo.png"
-            alt="LEADERSHIP PUTNAM LOGO"
-            className="w-24 h-auto max-w-full -mt 4" />
->>>>>>> fe4ebfd0af4efebd9e3dee34362ce4a418339ac7
         </div>
         </div>
     );

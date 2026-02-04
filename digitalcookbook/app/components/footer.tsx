@@ -13,7 +13,7 @@ export default function Footer(){
             <h6 className="footer-title">Quick Links</h6>
             
                 <Link
-                    href="/all-recipes"
+                    href="/recipes?ingredients="
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     All Recipes
@@ -26,20 +26,13 @@ export default function Footer(){
                     className="link link-hover" >
                     Tools
                 </Link>
-         
-
-                <Link
-                    href="/shopping-list"
-                    rel="noopener noreferrer"
-                    className="link link-hover" >
-                    Shopping List
-                </Link>
         </nav>
 
         {/* Resources */}
         <nav>
             <h6 className="footer-title">Resources</h6>
             <a className="link link-hover">Community Partners</a>
+            <a className="link link-hover">Community Resources</a>
         </nav>
 
         {/* Contact */}
