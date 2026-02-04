@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/app/components/languageprovider";
+import { MEASUREMENT_STRINGS } from "./measurementStrings"; // adjust path if needed
 
 export { conversionsToOz, formatMeasurement };
 
@@ -27,13 +29,13 @@ const conversionsToOz: Record<Unit, number> = {
 
 // Fractional representations for formatting
 const fractions = [
-  { value: 1/8, label: "⅛" },
-  { value: 1/6, label: "⅙" },
-  { value: 1/4, label: "¼" },
-  { value: 1/3, label: "⅓" },
-  { value: 1/2, label: "½" },
-  { value: 2/3, label: "⅔" },
-  { value: 3/4, label: "¾" },
+  { value: 1 / 8, label: "⅛" },
+  { value: 1 / 6, label: "⅙" },
+  { value: 1 / 4, label: "¼" },
+  { value: 1 / 3, label: "⅓" },
+  { value: 1 / 2, label: "½" },
+  { value: 2 / 3, label: "⅔" },
+  { value: 3 / 4, label: "¾" },
 ];
 
 // Format measurement into fractional representation
@@ -41,49 +43,37 @@ function formatMeasurement(value: number, unit: string) {
   const wholeNumber = Math.floor(value);
   const remainder = value - wholeNumber;
 
-  // Formating for ounces, makes it 0 decimal places if whole number, else 2 decimal places
-  if (unit == "oz") 
-    return remainder === 0 ? value.toFixed(0) : value.toFixed(2);
+  if (unit === "oz") return remainder === 0 ? value.toFixed(0) : value.toFixed(2);
 
-  // Find closest fraction representation to decimal part
   let best: { label: string; value: number } | null = null;
   for (const frac of fractions) {
-    if (!best || Math.abs(remainder - frac.value) < Math.abs(remainder - best.value)) { // closer fraction found, save it in best
+    if (!best || Math.abs(remainder - frac.value) < Math.abs(remainder - best.value)) {
       best = frac;
     }
   }
 
-  // Assign fraction label if decimal part is significant
-  let fractionLabel = remainder > 0.05 && best?.label ? best.label : "";
+  const fractionLabel = remainder > 0.05 && best?.label ? best.label : "";
 
-  // Construct final string
-  if (remainder >= 0.9)
-    return `${wholeNumber+1}`;
-
-  else if (fractionLabel) // whole number with fraction or just fraction
-    return wholeNumber ? `${wholeNumber} ${fractionLabel}` : fractionLabel;
-    
-  else if (remainder == 0) // whole number only if no remainder
-    return `${wholeNumber}`;
-  
-  else
-    return value.toFixed(2); // fallback to decimal representation
-
+  if (remainder >= 0.9) return `${wholeNumber + 1}`;
+  if (fractionLabel) return wholeNumber ? `${wholeNumber} ${fractionLabel}` : fractionLabel;
+  if (remainder === 0) return `${wholeNumber}`;
+  return value.toFixed(2);
 }
 
 export default function MeasurementConverter() {
-  // State for input value and unit
+  const langContext = useLang();
+  const lang = langContext?.lang ?? "en";
+  const t = MEASUREMENT_STRINGS[lang];
+
   const [value, setValue] = useState(1);
   const [unit, setUnit] = useState<Unit>("cup");
 
-  // Convert input value to ounces
   const valueInOz = value * conversionsToOz[unit];
 
-  // Render conversion results
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4 text-orange-500">
-        Measurement Converter
+        {t.title}
       </h2>
 
       {/* Input */}
@@ -94,7 +84,7 @@ export default function MeasurementConverter() {
           value={value || ""}
           onChange={(e) => setValue(Number(e.target.value))}
           className="w-1/2 p-2 border rounded text-center"
-          placeholder="0"
+          placeholder={t.placeholder}
         />
 
         <select
@@ -102,33 +92,39 @@ export default function MeasurementConverter() {
           onChange={(e) => setUnit(e.target.value as Unit)}
           className="w-1/2 p-2 border rounded"
         >
-          <option value="gallon">Gallon</option>
-          <option value="quart">Quart</option>
-          <option value="pint">Pint</option>
-          <option value="cup">Cup</option>
-          <option value="oz">Ounce</option>
-          <option value="tbsp">Tablespoon</option>
-          <option value="tsp">Teaspoon</option>
+          {(Object.keys(conversionsToOz) as Unit[]).map((u) => (
+            <option key={u} value={u}>
+              {t.units[u]}
+            </option>
+          ))}
         </select>
       </div>
 
       {/* Results */}
       <div className="grid grid-cols-2 gap-2 text-m mb-6">
-        {Object.entries(conversionsToOz).map(([key, oz]) => (
-          <div key={key} className="flex justify-between border-b pb-1">
-            <span className="capitalize">{key}</span>
-            <span>{(formatMeasurement(valueInOz / oz, key))}</span>
-          </div>
-        ))}
+        {Object.entries(conversionsToOz).map(([key, oz]) => {
+          const unitKey = key as Unit;
+          return (
+            <div key={key} className="flex justify-between border-b pb-1">
+              <span className="capitalize">{t.units[unitKey]}</span>
+              <span>{formatMeasurement(valueInOz / oz, key)}</span>
+            </div>
+          );
+        })}
       </div>
 
       {/* Notes */}
       <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 text-sm text-gray-700">
-        <p className="font-semibold mb-2 text-orange-500">Notes</p>
+        <p className="font-semibold mb-2 text-orange-500">{t.notesTitle}</p>
         <ul className="space-y-1">
-          <li><strong>TBSP</strong> = TABLESPOON = <strong>T</strong></li>
-          <li><strong>TSP</strong> = TEASPOON = <strong>t</strong></li>
-          <li><strong>1.5 CUPS</strong> = TWO <strong>2/3</strong> CUPS</li>
+          {t.notes.map((n, i) => (
+            <li key={i}>
+              <strong>{n.leftStrong}</strong>
+              {n.text}
+              <strong>{n.rightStrong}</strong>
+              {"tail" in n ? n.tail : null}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
