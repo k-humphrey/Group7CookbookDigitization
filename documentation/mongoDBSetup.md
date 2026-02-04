@@ -8,7 +8,7 @@ The previous download may have asked if you wanted to install this, if so you sh
 
     https://www.mongodb.com/try/download/compass
 ## 3. Login Info
-User Name: Your First Name (ex: Justin)
+User Name: User1
 
 Password: DB123
 
