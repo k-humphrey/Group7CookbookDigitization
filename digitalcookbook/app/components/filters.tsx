@@ -1,17 +1,44 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLang } from "@/app/components/languageprovider";
+
+type TagGroup = { healthTags: string[]; allergenTags: string[] };
+interface FiltersChange {
+  appliances: string[];
+  tags: TagGroup;
+}
 
 // Props for parent callback
 interface Props {
-  onChange: (filters: { appliances: string[]; tags: {healthTags: string[], allergenTags: string[]} }) => void; // callback to parent
+  recipes: any[];
+  onChange: (filters: FiltersChange) => void;
 }
 
-export default function Filters({ onChange }: Props) {
-  // State for filter options and selected filters
-  const [filterOptions, setFilterOptions] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});  // available filter options
-  const [selected, setSelected] = useState({ appliances: [] as string[], tags: {healthTags: [] as string[], allergenTags: [] as string[]}});  // selected filters
+const STRINGS = {
+  en: {
+    filters: "Filters",
+    appliances: "Kitchen Appliances",
+    health: "Health",
+    allergies: "Allergies",
+  },
+  es: {
+    filters: "Filtros",
+    appliances: "Electrodomésticos",
+    health: "Salud",
+    allergies: "Alergias",
+  },
+} as const;
 
+export default function Filters({ recipes, onChange }: Props) {
+  const langContext = useLang();
+  const lang = langContext?.lang ?? 'en';
+  const t = STRINGS[lang];
+
+  // State for filter options and selected filters
+  const [filterOptions, setFilterOptions] = useState<{appliances: string[]; tags: TagGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
+  const [selected, setSelected] = useState<{appliances: string[]; tags: TagGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
+  const [isOpen, setIsOpen] = useState(true);
   // Toggle filter selection
   const toggle = (category: "appliances" | "healthTags" | "allergenTags", newTag: string) => {
     let newSelected;
@@ -34,27 +61,37 @@ export default function Filters({ onChange }: Props) {
     onChange(newSelected); // update recipes
   };
 
-  const [isOpen, setIsOpen] = useState(true);
-
   // get filter options from database and display dynamically
-  useEffect(() => {
-    const fetchFilterOptions = async () => {
-      const [appliances, healthTags, allergenTags] = await Promise.all([
-        fetch('/api/appliances').then(res => res.json()),
-        fetch('/api/tags').then(res => res.json()),
-        fetch('/api/allergens').then(res => res.json()),
-      ]);
+   useEffect(() => {
+    const tagField = lang === "es" ? "espTags" : "tags";
+    const allergenField = lang === "es" ? "espAllergens" : "allergens";
 
-      setFilterOptions({ 
-        appliances, tags: {
-          healthTags,
-          allergenTags
-        }});
+    const appliancesSet = new Set<string>();
+    const healthSet = new Set<string>();
+    const allergenSet = new Set<string>();
 
-    };
+    for (const r of recipes) {
+      (r.appliances ?? []).forEach((a: any) => {
+        if (a?.[lang]) appliancesSet.add(a[lang]);
+      });
 
-    fetchFilterOptions();
-  }, []);
+      Object.entries(r?.[tagField] ?? {}).forEach(([k, v]) => {
+        if (v === true) healthSet.add(k);
+      });
+
+      Object.entries(r?.[allergenField] ?? {}).forEach(([k, v]) => {
+        if (v === true) allergenSet.add(k);
+      });
+    }
+
+    setFilterOptions({
+      appliances: Array.from(appliancesSet).sort(),
+      tags: {
+        healthTags: Array.from(healthSet).sort(),
+        allergenTags: Array.from(allergenSet).sort(),
+      },
+    });
+  }, [recipes, lang]);
   
   return (
     <section>
@@ -69,13 +106,14 @@ export default function Filters({ onChange }: Props) {
         className="collapse-title font-semibold after:start-5 after:end-auto pe-4 ps-12 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
         >
-          Filters
+          {t.filters}
         </div>
+
         <div className="collapse-content text-sm ml-2">
           <div className="h-200">
             {/* Filter 1: Kitchen Appliances */}
             <div>
-              <h3 className="font-semibold text-xs uppercase mb-2">Kitchen Appliances</h3>
+              <h3 className="font-semibold text-xs uppercase mb-2">{t.appliances}</h3>
               <div className="flex flex-col gap-1">
                 {filterOptions.appliances.map(appliance => (
                 <label key={appliance} className="flex items-center gap-2">
@@ -93,9 +131,9 @@ export default function Filters({ onChange }: Props) {
 
             {/* Filter 2: Blue Ribbon */}
             <div>
-              <h3 className="font-semibold text-xs uppercase my-2">Health</h3>
+              <h3 className="font-semibold text-xs uppercase my-2">{t.health}</h3>
               <div className="flex flex-col gap-1">
-                {filterOptions.tags.healthTags.map(tag => (
+                {filterOptions.tags.healthTags.map((tag) => (
                 <label key={tag} className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -111,9 +149,9 @@ export default function Filters({ onChange }: Props) {
 
             {/* Filter 3: Allergies */}
             <div>
-              <h3 className="font-semibold text-xs uppercase my-2">Allergies</h3>
+              <h3 className="font-semibold text-xs uppercase my-2">{t.allergies}</h3>
               <div className="flex flex-col gap-1">
-                {filterOptions.tags.allergenTags.map(tag => (
+                {filterOptions.tags.allergenTags.map((tag) => (
                 <label key={tag} className="flex items-center gap-2">
                 <input
                   type="checkbox"
