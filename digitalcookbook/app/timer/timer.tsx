@@ -11,7 +11,8 @@ const STRINGS = {
     seconds: "seconds",
     start: "Start",
     pause: "Pause",
-    reset: "Reset"
+    reset: "Reset",
+    remaining: "Time Remaining"
   },
   es: {
     hours: "horas",
@@ -19,7 +20,8 @@ const STRINGS = {
     seconds: "segundos",
     start: "Iniciar",
     pause: "Pausa",
-    reset: "Reiniciar"
+    reset: "Reiniciar",
+    remaining: "Tiempo Restante"
   }
 };
 
@@ -51,8 +53,11 @@ export default function Timer() {
 
   // Timer control handlers 
   const handleStart = () => {
-    const totalSeconds = inputHours * 3600 + inputMinutes * 60 + inputSeconds;
-    setSecondsLeft(totalSeconds);
+    if(secondsLeft == 0) {
+      const totalSeconds = inputHours * 3600 + inputMinutes * 60 + inputSeconds;
+      setSecondsLeft(totalSeconds);
+    }
+    
     setIsRunning(true);
   };
 
@@ -101,7 +106,7 @@ export default function Timer() {
       {/* Timer display */}
       <div className="card w-[44rem] bg-base-100 shadow-xl p-6 -mt-20">
         <div className="stat text-center">
-          <div className="stat-title text-xl md:text-2xl -mt-9">Time Remaining</div>
+          <div className="stat-title text-xl md:text-2xl -mt-9">{t.remaining}</div>
           <div className="stat-value text-8xl md:text-9xl font-bold text-gray-600">{formatTime(secondsLeft)}</div>
         </div>
       </div>
@@ -183,16 +188,6 @@ export default function Timer() {
             {t.reset}
           </button>
         </div>
-      </div>
-
-      {/* Buttons */}
-      <div className="flex gap-4">
-        {!isRunning ? (
-          <button onClick={handleStart} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Start</button>
-        ) : (
-          <button onClick={handlePause} className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Pause</button>
-        )}
-        <button onClick={handleReset} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Reset</button>
       </div>
     </div>
   );
