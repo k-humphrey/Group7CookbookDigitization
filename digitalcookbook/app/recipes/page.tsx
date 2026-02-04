@@ -11,6 +11,7 @@ import Searchbar from "../components/searchbar";
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
+  const [allRecipes, setAllRecipes] = useState<any[]>([]); // Store all recipes for filters
   const searchParams = useSearchParams();
 
   const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
@@ -19,6 +20,14 @@ export default function RecipeSearchPage() {
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
   const filtersRef =  useRef({ appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
+
+  useEffect(() => {
+    fetch("/api/recipes")
+      .then((r) => r.json())
+      .then((data) =>
+        setAllRecipes(Array.isArray(data?.recipes) ? data.recipes : data ?? [])
+      );
+  }, []);
 
   // Initial loading for page
   useEffect(() => {
@@ -71,7 +80,7 @@ export default function RecipeSearchPage() {
 
         {/* Filters */}
         <div className="w-64 sticky top-0 self-start shrink-0">
-          <Filters recipes={recipes} onChange={(appliances) => {
+          <Filters recipes={allRecipes} onChange={(appliances) => {
             filtersRef.current = appliances;
             handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
           }} />
