@@ -48,7 +48,7 @@ export default function RecipeSearchPage() {
 
     const res = await fetch(url);
     const data = await res.json();
-    setRecipes(data);
+    setRecipes(data.recipes ?? data ?? []);
   }
 
   return (
@@ -71,7 +71,7 @@ export default function RecipeSearchPage() {
 
         {/* Filters */}
         <div className="w-64 sticky top-0 self-start shrink-0">
-          <Filters onChange={(appliances) => {
+          <Filters recipes={recipes} onChange={(appliances) => {
             filtersRef.current = appliances;
             handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
           }} />
