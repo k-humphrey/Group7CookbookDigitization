@@ -104,7 +104,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               <ul className="mt-3 list-disc list-inside space-y-1 pl-5 text-sm ">
                 {recipe?.ingredientPlainText?.[lang] ? (
                   recipe.ingredientPlainText?.[lang]
-                    .replace(/\n(?![\d|¼|½|¾|O])/g, " ")
+                    .replace(/\n(?![\d|¼|½|¾|O|J])/g, " ")
                     .split("\n")
                     .map((line, i) => <li key={i} className="break-words">{line.trim()}</li>)
                 ) : (
