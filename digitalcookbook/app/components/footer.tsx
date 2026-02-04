@@ -1,8 +1,40 @@
 
-
+"use client";
 import Link from 'next/link';
+import { useLang } from '@/app/components/languageprovider'
 
+const STRINGS = {
+    en: {
+        quickLinks: "Quick Links",
+        resources: "Resources",
+        contact: "Contact",
+        social: "Social",
+        allRecipes: "All Recipes",
+        tools: "Tools",
+        shoppingList: "Shopping List",
+        communityPartners: "Community Partners",
+        email: "Email",
+        copyright: "Copyright © ",
+        allRightsReserved: " - All rights reserved",
+    },
+    es: {
+        quickLinks: "Enlaces Rápidos",
+        resources: "Recursos",
+        contact: "Contacto",
+        social: "Social",
+        allRecipes: "Todas las Recetas",
+        tools: "Herramientas",
+        shoppingList: "Lista de Compras",
+        communityPartners: "Socios Comunitarios",
+        email: "Correo Electrónico",
+        copyright: "Derechos de Autor © ",
+        allRightsReserved: " - Todos los derechos reservados",
+    },
+};
 export default function Footer(){
+    const langContext = useLang();
+    const lang = langContext?.lang ?? 'en';
+    const t = STRINGS[lang];
     return (
 
         <>
@@ -10,13 +42,13 @@ export default function Footer(){
 
         {/* Quick Links */}
         <nav>
-            <h6 className="footer-title">Quick Links</h6>
+            <h6 className="footer-title">{t.quickLinks}</h6>
             
                 <Link
                     href="/recipes?ingredients="
                     rel="noopener noreferrer"
                     className="link link-hover" >
-                    All Recipes
+                    {t.allRecipes}
                 </Link>
 
                
@@ -24,7 +56,7 @@ export default function Footer(){
                     href="/tools"
                     rel="noopener noreferrer"
                     className="link link-hover" >
-                    Tools
+                    {t.tools}
                 </Link>
         </nav>
 
@@ -37,13 +69,13 @@ export default function Footer(){
 
         {/* Contact */}
         <nav>
-            <h6 className="footer-title">Contact</h6>
-            <a className="link link-hover">Email</a>
+            <h6 className="footer-title">{t.contact}</h6>
+            <a className="link link-hover">{t.email}</a>
         </nav>
 
         {/* Social */}
         <nav>
-            <h6 className="footer-title">Social</h6>
+            <h6 className="footer-title">{t.social}</h6>
             <div className="flex gap-4 mt-2">
             {/* Twitter */}
             <a>
@@ -104,16 +136,9 @@ export default function Footer(){
 
         <footer className="footer sm:footer-horizontal bg-black text-white p-4 flex items-center justify-between">
             <aside className="text-center mx-auto">
-                <p>Copyright © {new Date().getFullYear()} - All rights reserved</p>
+                <p>{t.copyright}{new Date().getFullYear()}{t.allRightsReserved}</p>
             </aside>
         </footer>
-
         </>
-
-
     );
-
-
-
 }
-

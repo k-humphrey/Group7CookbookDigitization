@@ -2,14 +2,41 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLang } from "@/app/components/languageprovider";
+
+const STRINGS = {
+  en: {
+    hours: "hours",
+    minutes: "minutes",
+    seconds: "seconds",
+    start: "Start",
+    pause: "Pause",
+    reset: "Reset"
+  },
+  es: {
+    hours: "horas",
+    minutes: "minutos",
+    seconds: "segundos",
+    start: "Iniciar",
+    pause: "Pausa",
+    reset: "Reiniciar"
+  }
+};
 
 export default function Timer() {
+  // Input state
   const [inputHours, setInputHours] = useState<number>(0);
   const [inputMinutes, setInputMinutes] = useState<number>(0);
   const [inputSeconds, setInputSeconds] = useState<number>(0);
 
+  // Timer state 
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+
+  const langContext = useLang();
+  const lang = langContext?.lang ?? 'en';
+  const t = STRINGS[lang];
+  
 
   // Tick every second
   useEffect(() => {
@@ -22,12 +49,9 @@ export default function Timer() {
     return () => clearInterval(interval);
   }, [isRunning, secondsLeft]);
 
+  // Timer control handlers 
   const handleStart = () => {
-    const totalSeconds =
-      inputHours * 3600 +
-      inputMinutes * 60 +
-      inputSeconds;
-
+    const totalSeconds = inputHours * 3600 + inputMinutes * 60 + inputSeconds;
     setSecondsLeft(totalSeconds);
     setIsRunning(true);
   };
@@ -39,59 +63,47 @@ export default function Timer() {
     setSecondsLeft(0);
   };
 
+  // Format seconds into Hours:Minutes:Seconds
   const formatTime = (sec: number) => {
-    const hours = Math.floor(sec / 3600)
-      .toString()
-      .padStart(2, "0");
-
-    const minutes = Math.floor((sec % 3600) / 60)
-      .toString()
-      .padStart(2, "0");
-
-    const seconds = (sec % 60)
-      .toString()
-      .padStart(2, "0");
-
+    const hours = Math.floor(sec / 3600).toString().padStart(2, "0");
+    const minutes = Math.floor((sec % 3600) / 60).toString().padStart(2, "0");
+    const seconds = (sec % 60).toString().padStart(2, "0");
     return `${hours}:${minutes}:${seconds}`;
   };
 
-  // Generic input change handler
+  //Input handlers
   const handleInputChange = (
     value: string,
     max: number,
     setter: (val: number) => void
   ) => {
-    // Only digits
-    value = value.replace(/\D/g, "");
-
-    // Limit to 2 digits
+    value = value.replace(/\D/g, ""); //Only digits
+    //Limit to 2 digits
     if (value.length > 2) return;
-
-    // Allow empty input (visual zero)
+    //Allow empty input (visual zero)
     if (value === "") {
       setter(0);
       return;
     }
-
     const num = Math.min(max, Math.max(0, Number(value)));
     setter(num);
   };
 
-  // Generic onKeyDown handler to block letters but allow arrows/backspace/tab
+  //KeyDown handler to block letters but allow backspace/delete/arrows/tab
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (
-      ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(
-        e.key
-      )
-    )
-      return;
+    if (["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)) return;
     if (!/^\d$/.test(e.key)) e.preventDefault();
   };
 
+  //Styling
   return (
-    <>
-      <div className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-bold tracking-wider text-center">
-        {formatTime(secondsLeft)}
+    <div className="flex flex-col items-center mt-10 gap-6">
+      {/* Timer display */}
+      <div className="card w-[44rem] bg-base-100 shadow-xl p-6 -mt-20">
+        <div className="stat text-center">
+          <div className="stat-title text-xl md:text-2xl -mt-9">Time Remaining</div>
+          <div className="stat-value text-8xl md:text-9xl font-bold text-gray-600">{formatTime(secondsLeft)}</div>
+        </div>
       </div>
 
       <div className="flex flex-col items-center gap-4 mt-6">
@@ -110,7 +122,7 @@ export default function Timer() {
               onKeyDown={handleKeyDown}
               className="w-16 p-1 border rounded text-center placeholder-gray-400"
             />
-            <div className="text-sm text-gray-500">hours</div>
+            <div className="text-sm text-gray-500">{t.hours}</div>
           </div>
 
           {/* Minutes */}
@@ -126,7 +138,7 @@ export default function Timer() {
               onKeyDown={handleKeyDown}
               className="w-16 p-1 border rounded text-center placeholder-gray-400"
             />
-            <div className="text-sm text-gray-500">minutes</div>
+            <div className="text-sm text-gray-500">{t.minutes}</div>
           </div>
 
           {/* Seconds */}
@@ -142,7 +154,7 @@ export default function Timer() {
               onKeyDown={handleKeyDown}
               className="w-16 p-1 border rounded text-center placeholder-gray-400"
             />
-            <div className="text-sm text-gray-500">seconds</div>
+            <div className="text-sm text-gray-500">{t.seconds}</div>
           </div>
         </div>
 
@@ -153,14 +165,14 @@ export default function Timer() {
               onClick={handleStart}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              Start
+              {t.start}
             </button>
           ) : (
             <button
               onClick={handlePause}
               className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
             >
-              Pause
+              {t.pause}
             </button>
           )}
 
@@ -168,10 +180,22 @@ export default function Timer() {
             onClick={handleReset}
             className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
           >
-            Reset
+            {t.reset}
           </button>
         </div>
       </div>
-    </>
+
+      {/* Buttons */}
+      <div className="flex gap-4">
+        {!isRunning ? (
+          <button onClick={handleStart} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Start</button>
+        ) : (
+          <button onClick={handlePause} className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Pause</button>
+        )}
+        <button onClick={handleReset} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Reset</button>
+      </div>
+    </div>
   );
 }
+
+

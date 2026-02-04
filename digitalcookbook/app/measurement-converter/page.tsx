@@ -3,7 +3,7 @@ import MeasurementConverter from "./measurement";
 export default function MeasurementPage() {
   return (
     <main
-      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-no-repeat bg-[center_75%]"
+      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-no-repeat bg-position-[center_75%]"
       style={{
         backgroundImage: "url('/resources.png')",
         backgroundSize: "100%",
