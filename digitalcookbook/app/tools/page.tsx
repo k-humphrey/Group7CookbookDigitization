@@ -13,13 +13,13 @@ export default function ToolsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4">
                 <InfoCard
                     title="Shelf Life Guidelines"
-                    description="guidelines for food and how long you can keep it"
+                    description="Here you can find guidelines for food and how long it stays edible."
                     href="/shelf-life-guidelines"
                 />
 
                 <InfoCard
                     title="Price Finder"
-                    description="Calculate the price of different ingredients and shows you where its cheapest"
+                    description="Calculate the price of different ingredients and shows you the location where its the cheapest."
                     href="/price-finder"
                 />
 
