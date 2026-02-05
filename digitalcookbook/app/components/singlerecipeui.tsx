@@ -99,13 +99,14 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
 
           {/* Ingredients */}
           <div className="px-6 py-6 flex justify-left">
-            <section className="rounded-lg bg-[#dfe8d8] p-4">
+            <section className="rounded-lg bg-[#dfe8d8] p-4 w-1/3">
               <h2 className="text-center text-md font-bold tracking-wide">{t.ing}</h2>
-              <ul className="mt-3 list-disc space-y-1 pl-5 text-sm">
+              <ul className="mt-3 list-disc list-inside space-y-1 pl-5 text-sm ">
                 {recipe?.ingredientPlainText?.[lang] ? (
                   recipe.ingredientPlainText?.[lang]
+                    .replace(/\n(?![\d|¼|½|¾|O|J])/g, " ")
                     .split("\n")
-                    .map((line, i) => <li key={i}>{line.trim()}</li>)
+                    .map((line, i) => <li key={i} className="break-words">{line.trim()}</li>)
                 ) : (
                   <li className="text-base-content/60">No ingredients listed.</li>
                 )}
