@@ -4,8 +4,8 @@
   },
   "en": "Can of Mushrooms (4oz)",
   "es": "Lata de Champiñones (4oz)",
-  "costPerUnit": 0.395,
-  "baseUnit": "oz",
+  "costPerUnit": 1.50,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Mushrooms-Pieces-and-Stems-4-oz-Can/10315009"
 },
 {
@@ -34,9 +34,9 @@
   },
   "en": "Large Potatoes",
   "es": "Papas Grandes",
-  "costPerUnit": 0.694,
-  "baseUnit": "lb",
-  "productLink": "https://www.walmart.com/ip/Fresh-Whole-Russet-Potatoes-5lb-bag/10447837"
+  "costPerUnit": 1.07,
+  "baseUnit": "each",
+  "productLink": "hhttps://www.walmart.com/ip/Microwaveable-Russet-Potato-Whole-Fresh-Each/10449947?classType=REGULAR&from=%2Fsearch&sid=c1d2a98d-15ac-462b-8fc0-cacb42b909d8"
 },
 {
   "_id": {
@@ -65,7 +65,7 @@
   "en": "Ranch Dressing",
   "es": "Aderezo Ranch",
   "costPerUnit": 0.179,
-  "baseUnit": "fl oz",
+  "baseUnit": "oz",
   "productLink": "https://www.walmart.com/ip/Great-Value-Classic-Ranch-Dressing-Dip-8-oz/2917933728"
 },
 {
@@ -74,8 +74,8 @@
   },
   "en": "Box of Uncooked Elbow Macaroni",
   "es": "Caja de Macarrones Crudos",
-  "costPerUnit": 0.061,
-  "baseUnit": "oz",
+  "costPerUnit": 0.98,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Elbows-16-oz-Box-Shelf-Stable/10534107"
 },
 {
@@ -84,8 +84,8 @@
   },
   "en": "Can of Refried Beans",
   "es": "Lata de Frijoles refritos",
-  "costPerUnit": 0.063,
-  "baseUnit": "oz",
+  "costPerUnit": 1,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Traditional-Refried-Beans-16-oz/10534037"
 },
 {
@@ -94,8 +94,8 @@
   },
   "en": "Taco Seasoning Packet (1.25oz)",
   "es": "Sobre de Sazonador para Tacos (1.25oz)",
-  "costPerUnit": 0.456,
-  "baseUnit": "oz",
+  "costPerUnit": 0.57,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Taco-Seasoning-Mix-1-25-oz/10314963"
 },
 {
@@ -114,8 +114,8 @@
   },
   "en": "Can of Tomato Soup",
   "es": "Lata de Sopa de Tomate",
-  "costPerUnit": 0.065,
-  "baseUnit": "oz",
+  "costPerUnit": 0.70,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Tomato-Condensed-Soup-10-75-oz/10314957"
 },
 {
@@ -124,7 +124,7 @@
   },
   "en": "Stalks Celery",
   "es": "Tallos de Apio",
-  "costPerUnit": 1.97,
+  "costPerUnit": 1.54,
   "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Fresh-Celery-Stalk-Each/51259411"
 },
@@ -144,8 +144,8 @@
   },
   "en": "Box of Linguine Noodles",
   "es": "Caja de Fideos Linguini",
-  "costPerUnit": 0.061,
-  "baseUnit": "oz",
+  "costPerUnit": 0.68,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Linguine-16-oz/10534116"
 },
 {
@@ -204,8 +204,8 @@
   },
   "en": "Jar of Salsa (16 oz)",
   "es": "Frasco de Salsa (16 oz)",
-  "costPerUnit": 0.12,
-  "baseUnit": "oz",
+  "costPerUnit": 1.92,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Thick-and-Chunky-Salsa-Mild-16-oz/1959652540"
 },
 {
@@ -314,8 +314,8 @@
   },
   "en": "Bag of Frozen Peas & Carrots",
   "es": "Bolsa de Guisantes y Zanahorias Congeladas",
-  "costPerUnit": 0.082,
-  "baseUnit": "oz",
+  "costPerUnit": 0.98,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Frozen-Peas-Carrots-Gluten-Free-12-oz-Steamable-Bag/994038828"
 },
 {
@@ -464,7 +464,7 @@
   },
   "en": "Knorr Rice Sides Teriyaki Flavored",
   "es": "Knorr sabor Teriyaki",
-  "costPerUnit": 5.99,
+  "costPerUnit": 2.98,
   "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Knorr-Rice-Side-Dish-Asian-Teriyaki-5-4-oz/10307830"
 },
@@ -574,8 +574,8 @@
   },
   "en": "Bag of Egg Noodles",
   "es": "Bolsa de Fideos de Huevo",
-  "costPerUnit": 0.109,
-  "baseUnit": "oz",
+  "costPerUnit": 1.74,
+  "baseUnit": "each",
   "productLink": "https://www.walmart.com/ip/Great-Value-Wide-Egg-Noodles-16-oz/10534093"
 },
 {
@@ -1414,9 +1414,9 @@
   },
   "en": "Knorr Chicken Flavored Bouillon Cube",
   "es": "Cubos de Caldo Knorr Sabor Pollo",
-  "costPerUnit": 1.47,
+  "costPerUnit": 0.02,
   "baseUnit": "each",
-  "productLink": "https://www.walmart.com/ip/Knorr-Shelf-Stable-Cubes-Chicken-Bouillon-2-5-oz-6-Pack-Box/21786679"
+  "productLink": "set"
 },
 {
   "_id": {

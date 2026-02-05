@@ -4,6 +4,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import { useLang } from "../components/languageprovider";
 
 import Filters from "../components/filters";
 import RecipeGrid from "../components/recipecards";
@@ -13,6 +14,8 @@ export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
   const [allRecipes, setAllRecipes] = useState<any[]>([]); // Store all recipes for filters
   const searchParams = useSearchParams();
+  const langContext = useLang();
+  const lang = langContext?.lang ?? 'en';
 
   const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
   const initialTags = initialParam ? initialParam.split(",") : [];
@@ -52,13 +55,20 @@ export default function RecipeSearchPage() {
       filters.set("allergenTags", tags.allergenTags.join(","))
 
     // construct url if there are any tags
-    if(filters.size > 0)
+    if(filters.size > 0) {
+      filters.set("lang", lang);
       url = `/api/recipes/bySearch?${filters.toString()}`;
+    }
 
     const res = await fetch(url);
     const data = await res.json();
-    setRecipes(data.recipes ?? data ?? []);
+    setRecipes(Array.isArray(data) ? data : (data.recipes ?? data ?? []));
   }
+
+  useEffect(() => {
+    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   return (
     <div>

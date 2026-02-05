@@ -10,6 +10,11 @@ export async function GET(req: Request){
     // Get url
     const url = new URL(req.url);
 
+    const lang = url.searchParams.get("lang") || "en";
+    const tagField = lang === "es" ? "espTags" : "tags";
+    const allergenField = lang === "es" ? "espAllergens" : "allergens";
+
+
     // Get search parameters from url if available
     const appliancesParams = url.searchParams.get("appliances") || null;
     const ingredientsParams = url.searchParams.get("ingredients") || null;
@@ -69,23 +74,23 @@ export async function GET(req: Request){
     }
 
     // ---------- Filter by health tags
-    if(healthTagsParams) {
-        const tagsList = healthTagsParams.split(",").map(tag => tag.trim());
+    if (healthTagsParams) {
+    const tagsList = healthTagsParams.split(",").map((tag) => tag.trim());
 
-        // match if tag is true (has the health tag)
-        tagsList.forEach(tag => {
-            filters.push({[`tags.${tag}`]: true});
-        });
+    // match if tag is true (has the health tag)
+    tagsList.forEach((tag) => {
+        filters.push({ [`${tagField}.${tag}`]: true }); // tags OR espTags
+    });
     }
 
     // ---------- Filter by allergen tags
-    if(allergenTagsParams) {
-        const tagsList = allergenTagsParams.split(",").map(tag => tag.trim());
+    if (allergenTagsParams) {
+    const tagsList = allergenTagsParams.split(",").map((tag) => tag.trim());
 
-        // match if tag is false (does not have the allergen)
-        tagsList.forEach(tag => {
-            filters.push({[`allergens.${tag}`]: false});
-        });
+    // match if tag is false (does not have the allergen)
+    tagsList.forEach((tag) => {
+        filters.push({ [`${allergenField}.${tag}`]: false }); // allergens OR espAllergens
+    });
     }
 
     // ---------- Filter by Cost
