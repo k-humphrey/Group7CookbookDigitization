@@ -11,8 +11,9 @@ const STRINGS = {
         social: "Social",
         allRecipes: "All Recipes",
         tools: "Tools",
-        shoppingList: "Shopping List",
+        homepage: "Home Page",
         communityPartners: "Community Partners",
+        communityResources: "Community Resources",
         email: "Email",
         copyright: "Copyright © ",
         allRightsReserved: " - All rights reserved",
@@ -24,8 +25,9 @@ const STRINGS = {
         social: "Social",
         allRecipes: "Todas las Recetas",
         tools: "Herramientas",
-        shoppingList: "Lista de Compras",
+        homepage: "Inicio",
         communityPartners: "Socios Comunitarios",
+        communityResources: "Recursos Comunitarios",
         email: "Correo Electrónico",
         copyright: "Derechos de Autor © ",
         allRightsReserved: " - Todos los derechos reservados",
@@ -43,35 +45,45 @@ export default function Footer(){
         {/* Quick Links */}
         <nav>
             <h6 className="footer-title">{t.quickLinks}</h6>
+
+                <Link
+                    href="/"
+                    rel="noopener noreferrer"
+                    className="link link-hover"  >
+                    {t.homepage}
+                </Link>
             
                 <Link
-                    href="/recipes"
+                    href="/recipes?ingredients="
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     {t.allRecipes}
                 </Link>
 
-               
                 <Link
                     href="/tools"
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     {t.tools}
                 </Link>
-         
-
-                <Link
-                    href="/shopping-list"
-                    rel="noopener noreferrer"
-                    className="link link-hover" >
-                    {t.shoppingList}
-                </Link>
         </nav>
 
         {/* Resources */}
         <nav>
             <h6 className="footer-title">{t.resources}</h6>
-            <a className="link link-hover">{t.communityPartners}</a>
+                <Link
+                    href="/comm-partners"
+                    rel="noopener noreferrer"
+                    className="link link-hover" >
+                    {t.communityPartners}
+                </Link>
+
+                <Link
+                    href="/comm-resources"
+                    rel="noopener noreferrer"
+                    className="link link-hover" >
+                    {t.communityResources}
+                </Link>
         </nav>
 
         {/* Contact */}

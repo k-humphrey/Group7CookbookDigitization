@@ -4,7 +4,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { useLang } from "../components/languageprovider"
+import { useLang } from "../components/languageprovider";
 
 import Filters from "../components/filters";
 import RecipeGrid from "../components/recipecards";
@@ -53,8 +53,13 @@ export default function RecipeSearchPage() {
 
     const res = await fetch(url);
     const data = await res.json();
-    setRecipes(data.recipes ?? data ?? []);
+    setRecipes(Array.isArray(data) ? data : (data.recipes ?? data ?? []));
   }
+
+  useEffect(() => {
+    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   return (
     <div>

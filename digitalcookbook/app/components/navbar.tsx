@@ -172,7 +172,8 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/recipes"
+                    href="/recipes?ingredients="
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
                     {t.allRecipes}
@@ -316,7 +317,8 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/recipes"
+                    href="/recipes?ingredients="
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
                     {t.allRecipes}
@@ -369,7 +371,7 @@ export default function Navbar() {
         </div>
         <div className="navbar-end">
             <input type="checkbox" defaultChecked className="toggle" onChange={() => setLang(lang === "en" ? "es" : "en")} />
-            <img src="logo.png"
+            <img src="LP_logo.png"
             alt="LEADERSHIP PUTNAM LOGO"
             className="w-24 h-auto max-w-full -mt 4" />
         </div>
