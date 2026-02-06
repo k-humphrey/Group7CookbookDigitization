@@ -42,15 +42,11 @@ export default function Filters({ onChange }: Props) {
   // Gets all filter options
   useEffect(() => {
     const fetchFilters = async () => {
-      const [appliancesData, tagsData, allergensData] = await Promise.all([
-        fetch(`/api/appliances?lang=${lang}`).then(r => r.json()),
-        fetch(`/api/tags?lang=${lang}`).then(r => r.json()),
-        fetch(`/api/allergens?lang=${lang}`).then(r => r.json())
-      ]);
+      const filterInfo = await fetch(`/api/filters?lang=${lang}`).then(r => r.json());
 
       setFilterOptions({
-        appliances: appliancesData,
-        tags : { healthTags: tagsData, allergenTags: allergensData}
+        appliances: filterInfo.appliances,
+        tags : { healthTags: filterInfo.tags, allergenTags: filterInfo.allergens}
       });
     }
 
