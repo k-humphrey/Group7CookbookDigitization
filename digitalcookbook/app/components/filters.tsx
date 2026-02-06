@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react";
 import { useLang } from "@/app/components/languageprovider";
 
-type TagGroup = { healthTags: string[]; allergenTags: string[] };
-interface FiltersChange {
-  appliances: string[];
-  tags: TagGroup;
-}
+type IDGroup = { name: string; id: number };
+type TagIDGroup = { healthTags: IDGroup[]; allergenTags: IDGroup[] };
 
 // Props for parent callback
 interface Props {
-  onChange: (filters: FiltersChange) => void;
+  onChange: (filters: {
+    appliances: string[];
+    tags: { healthTags: string[]; allergenTags: string[] };
+  }) => void;
 }
 
 const STRINGS = {
@@ -34,9 +34,9 @@ export default function Filters({ onChange }: Props) {
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
 
-  // State for filter options and selected filters
-  const [filterOptions, setFilterOptions] = useState<{appliances: string[]; tags: TagGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
-  const [selected, setSelected] = useState<{appliances: string[]; tags: TagGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
+  // State for filter options (id, number) and selected filters (id for toggle between languages)
+  const [filterOptions, setFilterOptions] = useState<{appliances: IDGroup[]; tags: TagIDGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
+  const [selected, setSelected] = useState({appliances: [] as number[], tags: { healthTags: [] as number[], allergenTags: [] as number[]}})
   const [isOpen, setIsOpen] = useState(true);
 
   // Gets all filter options
@@ -54,25 +54,34 @@ export default function Filters({ onChange }: Props) {
   }, [lang]);
 
   // Toggle filter selection
-  const toggle = (category: "appliances" | "healthTags" | "allergenTags", newTag: string) => {
+  const toggle = (category: "appliances" | "healthTags" | "allergenTags", tagID: number) => {
     let newSelected;
 
     if(category == "appliances") {  // toggle appliances
-      if (selected.appliances.includes(newTag))
-        newSelected = {...selected, appliances: selected.appliances.filter((item) => item !== newTag)};
+      if (selected.appliances.includes(tagID))
+        newSelected = {...selected, appliances: selected.appliances.filter((item) => item !== tagID)};
       else
-        newSelected = {...selected, appliances: selected.appliances.concat(newTag)};
+        newSelected = {...selected, appliances: selected.appliances.concat(tagID)};
 
     } else {  // toggle tags
-      if (selected.tags[category].includes(newTag))
-        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].filter((item) => item !== newTag)}};
+      if (selected.tags[category].includes(tagID))
+        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].filter((item) => item !== tagID)}};
       else
-        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].concat(newTag)}};
+        newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].concat(tagID)}};
 
     }
 
-    setSelected(newSelected); // update UI
-    onChange(newSelected); // update recipes
+    // update UI
+    setSelected(newSelected); 
+
+    // update recipes, send parent only names
+    onChange({
+      appliances: newSelected.appliances.map(id => filterOptions.appliances.find(appliance => appliance.id == id)?.name ?? ""),
+      tags: {
+        healthTags: newSelected.tags.healthTags.map(id => filterOptions.tags.healthTags.find(tag => tag.id == id)?.name ?? ""),
+        allergenTags: newSelected.tags.allergenTags.map(id => filterOptions.tags.healthTags.find(tag => tag.id == id)?.name ?? "")
+      }
+    }); 
   };
   
   return (
@@ -98,14 +107,14 @@ export default function Filters({ onChange }: Props) {
               <h3 className="font-semibold text-xs uppercase mb-2">{t.appliances}</h3>
               <div className="flex flex-col gap-1">
                 {filterOptions.appliances.map(appliance => (
-                <label key={appliance} className="flex items-center gap-2">
+                <label key={appliance.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   className="checkbox checkbox-xs"
-                  checked={selected.appliances.includes(appliance)}
-                  onChange={() => toggle("appliances", appliance)}
+                  checked={selected.appliances.includes(appliance.id)}
+                  onChange={() => toggle("appliances", appliance.id)}
                 />
-                <span>{appliance}</span>
+                <span>{appliance.name}</span>
                 </label>
                 ))}
               </div>
@@ -116,14 +125,14 @@ export default function Filters({ onChange }: Props) {
               <h3 className="font-semibold text-xs uppercase my-2">{t.health}</h3>
               <div className="flex flex-col gap-1">
                 {filterOptions.tags.healthTags.map((tag) => (
-                <label key={tag} className="flex items-center gap-2">
+                <label key={tag.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   className="checkbox checkbox-xs"
-                  checked={selected.tags.healthTags.includes(tag)}
-                  onChange={() => toggle("healthTags", tag)}
+                  checked={selected.tags.healthTags.includes(tag.id)}
+                  onChange={() => toggle("healthTags", tag.id)}
                 />
-                <span>{tag}</span>
+                <span>{tag.name}</span>
                 </label>
                 ))}
               </div>
@@ -134,14 +143,14 @@ export default function Filters({ onChange }: Props) {
               <h3 className="font-semibold text-xs uppercase my-2">{t.allergies}</h3>
               <div className="flex flex-col gap-1">
                 {filterOptions.tags.allergenTags.map((tag) => (
-                <label key={tag} className="flex items-center gap-2">
+                <label key={tag.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   className="checkbox checkbox-xs"
-                  checked={selected.tags.allergenTags.includes(tag)}
-                  onChange={() => toggle("allergenTags", tag)}
+                  checked={selected.tags.allergenTags.includes(tag.id)}
+                  onChange={() => toggle("allergenTags", tag.id)}
                 />
-                <span>{tag}</span>
+                <span>{tag.name}</span>
                 </label>
                 ))}
               </div>
