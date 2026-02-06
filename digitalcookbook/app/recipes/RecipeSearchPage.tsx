@@ -12,7 +12,6 @@ import Searchbar from "../components/searchbar";
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
-  const [allRecipes, setAllRecipes] = useState<any[]>([]); // Store all recipes for filters
   const searchParams = useSearchParams();
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
@@ -22,20 +21,12 @@ export default function RecipeSearchPage() {
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const filtersRef =  useRef({ appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
-
-  useEffect(() => {
-    fetch("/api/recipes")
-      .then((r) => r.json())
-      .then((data) =>
-        setAllRecipes(Array.isArray(data?.recipes) ? data.recipes : data ?? [])
-      );
-  }, []);
+  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
 
   // Initial loading for page
   useEffect(() => {
     handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
-  }, []);
+  }, [lang]);
   
   // search for recipes in the database
   const handleSearch = async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }) => {
@@ -90,8 +81,8 @@ export default function RecipeSearchPage() {
 
         {/* Filters */}
         <div className="w-64 sticky top-0 self-start shrink-0">
-          <Filters recipes={allRecipes} onChange={(appliances) => {
-            filtersRef.current = appliances;
+          <Filters onChange={(selectedFilters) => {
+            filtersRef.current = selectedFilters;
             handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
           }} />
         </div>
