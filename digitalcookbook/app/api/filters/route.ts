@@ -14,9 +14,9 @@ export async function GET(req: Request){
     const recipe = await Recipe.findOne().lean() as any;
 
     // Get filter options from fields
-    const appliances = (await Appliance.find().select(`${lang} -_id`)).map(appliance => appliance[lang]);
-    const tags = Object.keys(lang == "es" ? recipe?.espTags : recipe?.tags || {});
-    const allergens = Object.keys(lang == "es" ? recipe?.espAllergens : recipe?.allergens || {});
+    const appliances = (await Appliance.find().select(`${lang} -_id`)).map((appliance, index) => ({id: index, name: appliance[lang]}));
+    const tags = Object.keys(lang == "es" ? recipe?.espTags : recipe?.tags || {}).map((tag, index) => ({id: index, name: tag}));
+    const allergens = Object.keys(lang == "es" ? recipe?.espAllergens : recipe?.allergens || {}).map((allergen, index) => ({id: index, name: allergen}));
 
     // return filters as array
     return NextResponse.json({appliances, tags, allergens});
