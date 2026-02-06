@@ -79,7 +79,7 @@ export default function Filters({ onChange }: Props) {
       appliances: newSelected.appliances.map(id => filterOptions.appliances.find(appliance => appliance.id == id)?.name ?? ""),
       tags: {
         healthTags: newSelected.tags.healthTags.map(id => filterOptions.tags.healthTags.find(tag => tag.id == id)?.name ?? ""),
-        allergenTags: newSelected.tags.allergenTags.map(id => filterOptions.tags.healthTags.find(tag => tag.id == id)?.name ?? "")
+        allergenTags: newSelected.tags.allergenTags.map(id => filterOptions.tags.allergenTags.find(tag => tag.id == id)?.name ?? "")
       }
     }); 
   };
