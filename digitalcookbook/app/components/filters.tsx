@@ -11,7 +11,6 @@ interface FiltersChange {
 
 // Props for parent callback
 interface Props {
-  recipes: any[];
   onChange: (filters: FiltersChange) => void;
 }
 
@@ -30,7 +29,7 @@ const STRINGS = {
   },
 } as const;
 
-export default function Filters({ recipes, onChange }: Props) {
+export default function Filters({ onChange }: Props) {
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
@@ -39,6 +38,25 @@ export default function Filters({ recipes, onChange }: Props) {
   const [filterOptions, setFilterOptions] = useState<{appliances: string[]; tags: TagGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
   const [selected, setSelected] = useState<{appliances: string[]; tags: TagGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
   const [isOpen, setIsOpen] = useState(true);
+
+  // Gets all filter options
+  useEffect(() => {
+    const fetchFilters = async () => {
+      const [appliancesData, tagsData, allergensData] = await Promise.all([
+        fetch(`/api/appliances?lang=${lang}`).then(r => r.json()),
+        fetch(`/api/tags?lang=${lang}`).then(r => r.json()),
+        fetch(`/api/allergens?lang=${lang}`).then(r => r.json())
+      ]);
+
+      setFilterOptions({
+        appliances: appliancesData,
+        tags : { healthTags: tagsData, allergenTags: allergensData}
+      });
+    }
+
+    fetchFilters();
+  }, [lang]);
+
   // Toggle filter selection
   const toggle = (category: "appliances" | "healthTags" | "allergenTags", newTag: string) => {
     let newSelected;
@@ -60,38 +78,6 @@ export default function Filters({ recipes, onChange }: Props) {
     setSelected(newSelected); // update UI
     onChange(newSelected); // update recipes
   };
-
-  // get filter options from database and display dynamically
-   useEffect(() => {
-    const tagField = lang === "es" ? "espTags" : "tags";
-    const allergenField = lang === "es" ? "espAllergens" : "allergens";
-
-    const appliancesSet = new Set<string>();
-    const healthSet = new Set<string>();
-    const allergenSet = new Set<string>();
-
-    for (const r of recipes) {
-      (r.appliances ?? []).forEach((a: any) => {
-        if (a?.[lang]) appliancesSet.add(a[lang]);
-      });
-
-      Object.entries(r?.[tagField] ?? {}).forEach(([k, v]) => {
-        if (v === true) healthSet.add(k);
-      });
-
-      Object.entries(r?.[allergenField] ?? {}).forEach(([k, v]) => {
-        if (v === true) allergenSet.add(k);
-      });
-    }
-
-    setFilterOptions({
-      appliances: Array.from(appliancesSet).sort(),
-      tags: {
-        healthTags: Array.from(healthSet).sort(),
-        allergenTags: Array.from(allergenSet).sort(),
-      },
-    });
-  }, [recipes, lang]);
   
   return (
     <section>

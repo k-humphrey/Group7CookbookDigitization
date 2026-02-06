@@ -4,6 +4,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import { useLang } from "../components/languageprovider"
 
 import Filters from "../components/filters";
 import RecipeGrid from "../components/recipecards";
@@ -11,28 +12,21 @@ import Searchbar from "../components/searchbar";
 
 export default function RecipeSearchPage() {
   const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
-  const [allRecipes, setAllRecipes] = useState<any[]>([]); // Store all recipes for filters
   const searchParams = useSearchParams();
+  const langContext = useLang();
+  const lang = langContext?.lang ?? 'en';
 
   const initialParam = searchParams.get("ingredients"); // get initial ingredients from url
   const initialTags = initialParam ? initialParam.split(",") : [];
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const filtersRef =  useRef({ appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
-
-  useEffect(() => {
-    fetch("/api/recipes")
-      .then((r) => r.json())
-      .then((data) =>
-        setAllRecipes(Array.isArray(data?.recipes) ? data.recipes : data ?? [])
-      );
-  }, []);
+  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
 
   // Initial loading for page
   useEffect(() => {
     handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
-  }, []);
+  }, [lang]);
   
   // search for recipes in the database
   const handleSearch = async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }) => {
@@ -52,8 +46,10 @@ export default function RecipeSearchPage() {
       filters.set("allergenTags", tags.allergenTags.join(","))
 
     // construct url if there are any tags
-    if(filters.size > 0)
+    if(filters.size > 0) {
+      filters.set("lang", lang);
       url = `/api/recipes/bySearch?${filters.toString()}`;
+    }
 
     const res = await fetch(url);
     const data = await res.json();
@@ -80,8 +76,8 @@ export default function RecipeSearchPage() {
 
         {/* Filters */}
         <div className="w-64 sticky top-0 self-start shrink-0">
-          <Filters recipes={allRecipes} onChange={(appliances) => {
-            filtersRef.current = appliances;
+          <Filters onChange={(selectedFilters) => {
+            filtersRef.current = selectedFilters;
             handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
           }} />
         </div>
