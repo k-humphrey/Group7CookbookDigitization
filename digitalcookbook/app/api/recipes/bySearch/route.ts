@@ -10,11 +10,6 @@ export async function GET(req: Request){
     // Get url
     const url = new URL(req.url);
 
-    const lang = url.searchParams.get("lang") || "en";
-    const tagField = lang === "es" ? "espTags" : "tags";
-    const allergenField = lang === "es" ? "espAllergens" : "allergens";
-
-
     // Get search parameters from url if available
     const appliancesParams = url.searchParams.get("appliances") || null;
     const ingredientsParams = url.searchParams.get("ingredients") || null;
@@ -79,7 +74,10 @@ export async function GET(req: Request){
 
     // match if tag is true (has the health tag)
     tagsList.forEach((tag) => {
-        filters.push({ [`${tagField}.${tag}`]: true }); // tags OR espTags
+        filters.push({ $or: [
+            {[`tags.${tag}`]: true},
+            {[`espTags.${tag}`]: true}
+        ]}); // tags OR espTags language options
     });
     }
 
@@ -89,7 +87,10 @@ export async function GET(req: Request){
 
     // match if tag is false (does not have the allergen)
     tagsList.forEach((tag) => {
-        filters.push({ [`${allergenField}.${tag}`]: false }); // allergens OR espAllergens
+        filters.push({ $or: [
+            {[`allergens.${tag}`]: false},
+            {[`espAllergens.${tag}`]: false}
+        ]}); // allergens OR espAllergens language options
     });
     }
 
