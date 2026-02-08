@@ -11,29 +11,37 @@ export default function ToolsPage() {
 
             {/* Cards Container aka Responsive Grid, should work on mobile */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4">
-                <InfoCard
-                    title="Shelf Life Guidelines"
-                    description="Here you can find guidelines for food and how long it stays edible."
-                    href="/shelf-life-guidelines"
-                />
+                <div className="flex justify-center">
+                    <InfoCard
+                        title="Shelf Life Guidelines"
+                        description="Here you can find guidelines for food and how long it stays edible."
+                        href="/shelf-life-guidelines"
+                    />
+                </div>
 
-                <InfoCard
-                    title="Price Finder"
-                    description="Calculate the price of different ingredients and shows you the location where its the cheapest."
-                    href="/price-finder"
-                />
+                <div className="flex justify-center">
+                    <InfoCard
+                        title="Price Finder"
+                        description="Calculate the price of different ingredients and shows you the location where its the cheapest."
+                        href="/price-finder"
+                    />
+                </div>
 
-                <InfoCard
-                    title="Kitchen Timer"
-                    description="Timer"
-                    href="/timer"
-                />
+                <div className="flex justify-center">
+                    <InfoCard
+                        title="Kitchen Timer"
+                        description="Timer"
+                        href="/timer"
+                    />
+                </div>
 
-                <InfoCard
-                    title="Measurement Converter"
-                    description="Cups, Ounces, Grams... what is that in a unit of measurement I understand?"
-                    href="/measurement-converter"
-                />
+                <div className="flex justify-center">
+                    <InfoCard
+                        title="Measurement Converter"
+                        description="Cups, Ounces, Grams... what is that in a unit of measurement I understand?"
+                        href="/measurement-converter"
+                    />
+                </div>
             </div>
         </main>
     );
