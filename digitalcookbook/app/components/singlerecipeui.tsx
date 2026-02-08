@@ -14,6 +14,7 @@ type Recipe = {
   totalCost?: number;
   allergens?: Record<string, boolean>;
   espAllergens?: Record<string, boolean>;
+  espTags?: Record<string, boolean>;
 };
 
 const STRINGS = {
@@ -70,11 +71,13 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 {title}
               </h1>
               <div className="flex flex-wrap items-center gap-2 text-sm">
-                {recipe.tags && Object.entries(recipe.tags).filter(([_, value]) => value == true).map(([tag]) => (
-                  <div key={tag} className={`badge ${tag == "Blue Ribbon" ? "badge-info" : "badge-success"}`}>
-                    {tag}
-                  </div>
-                ))}
+                {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
+                    return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
+                        <div key={tag} className={`badge ${tag === "Blue Ribbon" || "Cinta Azul" ? "badge-info" : "badge-success"}`}>
+                          {tag}
+                        </div>
+                      ));
+                  })()}
               </div>
             </div>
 
