@@ -13,6 +13,7 @@ type Recipe = {
   };
   totalCost?: number;
   allergens?: Record<string, boolean>;
+  espAllergens?: Record<string, boolean>;
 };
 
 const STRINGS = {
@@ -39,6 +40,8 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const lang = langContext?.lang ?? 'en';
   const title = recipe?.title?.[lang] ?? "Recipe";
   const t = STRINGS[lang];
+  const allergenField = lang === "es" ? "espAllergens" : "allergens";
+  const allergensObj = (recipe as any)?.[allergenField] as Record<string, boolean> | undefined;
   return (
     <main className="min-h-screen bg-base-100">
       <div className="mx-auto max-w-6xl px-6 pt-6">
@@ -91,10 +94,12 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           </div>
 
           {/* Allergens */}
-          <div className="px-6 pb-4 flex flex-wrap gap-2">{t.contains}
-            {recipe.allergens && Object.entries(recipe.allergens).filter(([_, value]) => value === true).map(([allergen]) => (
-                <div key={allergen} className="text-black font-bold">{allergen}</div>
-              ))}
+          <div className="px-6 pb-4 flex flex-wrap gap-2">
+            <span className="font-semibold">{t.contains}</span>
+
+            {allergensObj && Object.entries(allergensObj).filter(([_, value]) => value === true).map(([allergen]) => (
+                  <div key={allergen} className="text-black font-bold">{allergen}</div>
+                ))}
           </div> 
 
           {/* Ingredients */}
