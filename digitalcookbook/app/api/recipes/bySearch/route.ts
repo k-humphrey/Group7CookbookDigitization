@@ -16,7 +16,8 @@ export async function GET(req: Request){
     const healthTagsParams = url.searchParams.get("healthTags") || null;
     const allergenTagsParams = url.searchParams.get("allergenTags") || null;
     const titleParam = url.searchParams.get("title") || null;
-    const cost = {min: url.searchParams.get("minCost") || null, max: url.searchParams.get("maxCost") || null};
+    const cost = {min: Number(url.searchParams.get("minCost") || null), max: Number(url.searchParams.get("maxCost") || null)};
+    const pageInfo = {pageNumber: Number(url.searchParams.get("page") || 1), pageLimit: Number(url.searchParams.get("limit") || 20)};
 
     const filters: any[] = [];
 
@@ -141,16 +142,22 @@ export async function GET(req: Request){
                 }
             }},
             {
-                $sort: { relevanceScore: -1 } // order by relevance score
+                $sort: { relevanceScore: -1, _id: 1 } // order by relevance score descending, then id for consistent page order
+            },
+            {
+                $skip: (pageInfo.pageNumber - 1) * pageInfo.pageLimit // Skip recipes for previous pages
+            },
+            {
+                $limit: pageInfo.pageLimit // Limit returned recipes to page limit
             },
             {
                 $project: { relevanceScore: 0 } // exclude relevance score from results
             }
         ]);
 
-        // populate results
+        // populate results with ingredient and appliance info
         await Recipe.populate(recipes, [{ path: "appliances.appliances", model: Appliance },{ path: "ingredients", model: Ingredient }]);
-        return NextResponse.json(recipes);
+        return NextResponse.json(recipes); // return matched recipes
 
     } else
         return NextResponse.json({message: "0 recipes matching the description"});

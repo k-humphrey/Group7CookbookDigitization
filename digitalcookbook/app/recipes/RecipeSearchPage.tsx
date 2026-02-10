@@ -72,8 +72,8 @@ export default function RecipeSearchPage() {
         }}
       >
        <Searchbar onSearch={(ingredients) => {
-          ingredientsRef.current = ingredients; 
-          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
+          ingredientsRef.current = ingredients;
+          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false);
         }} initialTags={initialTags} /> 
       </div>
       
