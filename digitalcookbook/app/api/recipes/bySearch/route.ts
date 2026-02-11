@@ -109,7 +109,6 @@ export async function GET(req: Request){
 
     // return matched recipes
     if(filters.length != 0) {
-
         // Use aggregation to also calculate relevance score and order
         const recipes = await Recipe.aggregate([
             {$match: { $and: filters }},
