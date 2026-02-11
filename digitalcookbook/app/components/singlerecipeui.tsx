@@ -74,7 +74,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               <div className="flex flex-wrap items-center gap-2 text-sm">
                 {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
                     return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
-                        <div key={tag} className={`badge ${tag === "Blue Ribbon" || "Cinta Azul" ? "badge-info" : "badge-success"}`}>
+                        <div key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
                           {tag}
                         </div>
                       ));
