@@ -31,6 +31,7 @@ export default function RecipeGrid({ recipes }: Props) {
                   <img
                     src={recipe.imageURI}
                     alt={recipe.title?.[lang] ?? "Recipe image"}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -54,13 +55,12 @@ export default function RecipeGrid({ recipes }: Props) {
                 <div className="mt-3 flex flex-wrap gap-2">
                   {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
                     return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
-                        <div key={tag} className={`badge ${tag === "Blue Ribbon" || "Cinta Azul" ? "badge-info" : "badge-success"}`}>
+                        <div key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
                           {tag}
                         </div>
                       ));
                   })()}
                 </div>
-
 
                 <div className="card-actions justify-end mt-4">
                   <div className="btn btn-sm btn-success">{t.viewRecipes}</div>
