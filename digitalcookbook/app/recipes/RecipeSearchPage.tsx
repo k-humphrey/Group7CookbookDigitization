@@ -83,8 +83,10 @@ export default function RecipeSearchPage() {
     setRecipes(prev => (load ? [...prev, ...newRecipes] : newRecipes));
 
     // finished loading page, lock loading if no newRecipes, till new search (!load)
-    if(newRecipes.length > 0 || !load)
+    if(newRecipes.length > 0 || !load) {
       pageInfoRef.current.isLocked = false;
+      window.scrollBy({top: -100, behavior: 'smooth'});
+    }
     
   }, []);
 
