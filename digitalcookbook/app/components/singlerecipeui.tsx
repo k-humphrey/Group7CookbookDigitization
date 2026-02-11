@@ -43,6 +43,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const t = STRINGS[lang];
   const allergenField = lang === "es" ? "espAllergens" : "allergens";
   const allergensObj = (recipe as any)?.[allergenField] as Record<string, boolean> | undefined;
+
   return (
     <main className="min-h-screen bg-base-100">
       <div className="mx-auto max-w-6xl px-6 pt-6">
@@ -112,8 +113,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               <ul className="mt-3 list-disc list-inside space-y-1 pl-5 text-sm ">
                 {recipe?.ingredientPlainText?.[lang] ? (
                   recipe.ingredientPlainText?.[lang]
-                    .replace(/\n(?![\d|¼|½|¾|O|J])/g, " ")
-                    .split("\n")
+                    .split("|||")
                     .map((line, i) => <li key={i} className="break-words">{line.trim()}</li>)
                 ) : (
                   <li className="text-base-content/60">No ingredients listed.</li>
