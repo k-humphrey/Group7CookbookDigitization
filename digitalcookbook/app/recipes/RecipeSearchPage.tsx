@@ -84,8 +84,8 @@ export default function RecipeSearchPage() {
 
     // finished loading page, lock loading if no newRecipes, till new search (!load)
     if(newRecipes.length > 0 || !load) {
+      window.scrollBy({top: -50, behavior: 'smooth'}); // scroll up 50px
       pageInfoRef.current.isLocked = false;
-      window.scrollBy({top: -100, behavior: 'smooth'});
     }
     
   }, []);
@@ -93,11 +93,13 @@ export default function RecipeSearchPage() {
   // Scroll listener: check to see if user scrolls to bottom of page
   useEffect(() => {
     const checkScroll = () => {
-      const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 500; // 500px from bottom
-      
-      // if nearBottom and not loading then load new recipes
-      if(nearBottom && !pageInfoRef.current.isLocked)
-        handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, true);
+      window.requestAnimationFrame(() => {
+        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 500; // 500px from bottom
+        
+        // if nearBottom and not loading then load new recipes
+        if(nearBottom && !pageInfoRef.current.isLocked)
+          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, true);
+        })
     };
 
     window.addEventListener("scroll", checkScroll, { passive: true });
