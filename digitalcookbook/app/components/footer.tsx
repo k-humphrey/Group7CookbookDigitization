@@ -143,7 +143,7 @@ export default function Footer(){
         </footer>
 
         {/*Logos*/}
-        <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10 flex justify-center gap-20 pr-40">
+        <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10 flex justify-center gap-10 pr-30">
             <img src="pep_logo.png" 
             alt="LEADERSHIP PUTNAM Logo" 
             className="w-50 h-auto max-w-full" />
