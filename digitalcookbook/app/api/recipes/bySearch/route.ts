@@ -42,7 +42,7 @@ export async function GET(req: Request){
         ]);
 
         // Connect to the ingredients database and find matching ingredients ids
-        const matchingIngredients = await Ingredient.find({"$or": ingredientList}).select('_id');
+        const matchingIngredients = await Ingredient.find({"$or": ingredientList}).select('_id').lean();
         
         // Add to filters
         if(matchingIngredients.length > 0) {
@@ -60,7 +60,7 @@ export async function GET(req: Request){
         ]);
 
         // Connect to the appliances database and find matching appliances ids
-        const matchingAppliances = await Appliance.find({"$or": appliancesList}).select('_id');
+        const matchingAppliances = await Appliance.find({"$or": appliancesList}).select('_id').lean();
 
         // Add to filters
         if(matchingAppliances.length > 0) {
@@ -154,8 +154,10 @@ export async function GET(req: Request){
             }
         ]);
 
+        // ----No longer need to populate in this api-----
         // populate results with ingredient and appliance info
-        await Recipe.populate(recipes, [{ path: "appliances.appliances", model: Appliance },{ path: "ingredients", model: Ingredient }]);
+        //await Recipe.populate(recipes, [{ path: "appliances.appliances", model: Appliance },{ path: "ingredients", model: Ingredient }]);
+        
         return NextResponse.json(recipes); // return matched recipes
 
     } else
