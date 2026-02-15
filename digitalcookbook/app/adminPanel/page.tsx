@@ -12,7 +12,7 @@ export default async function AdminPanelPage() {
     <h1 className="text-2xl font-bold mb-2 ml-6">Admin Panel</h1>
     <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6">
 
-          {safeRecipes.map((recipe) => (
+          {safeRecipes.map((recipe: any) => (
                 <div key={recipe._id} className="card bg-base-100 shadow-md">
                 <figure className="h-48 overflow-hidden">
                     <img
