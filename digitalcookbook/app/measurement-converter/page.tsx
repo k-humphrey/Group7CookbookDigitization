@@ -3,18 +3,18 @@ import MeasurementConverter from "./measurement";
 export default function MeasurementPage() {
   return (
     <main
-      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-no-repeat bg-position-[center_75%]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: "url('/resources.png')",
+        backgroundImage: "url('/measurementbg.png')",
         backgroundSize: "100%",
       }}
     >
-    <div className="-mt-40 flex flex-col items-center">
-      
-      <MeasurementConverter />
-    </div>
+      {/* Color overlay */}
+      <div className="absolute  backdrop-blur-[2px]" />
+
+      <div className="relative z-10 -mt-40">
+        <MeasurementConverter />
+      </div>
     </main>
   );
 }
-
-
