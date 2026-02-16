@@ -17,6 +17,7 @@ const STRINGS = {
         email: "Email",
         copyright: "Copyright © ",
         allRightsReserved: " - All rights reserved",
+        adminPortal: "Admin Portal",
     },
     es: {
         quickLinks: "Enlaces Rápidos",
@@ -31,6 +32,7 @@ const STRINGS = {
         email: "Correo Electrónico",
         copyright: "Derechos de Autor © ",
         allRightsReserved: " - Todos los derechos reservados",
+        adminPortal: "Admin Portal",
     },
 };
 export default function Footer(){
@@ -65,6 +67,13 @@ export default function Footer(){
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     {t.tools}
+                </Link>
+
+                <Link
+                    href="/admin"
+                    rel="noopener noreferrer"
+                    className="link link-hover">
+                    {t.adminPortal}
                 </Link>
         </nav>
 
