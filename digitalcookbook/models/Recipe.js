@@ -15,24 +15,54 @@ const recipeSchema = new mongoose.Schema({
     },
     imageURI: String,
     tags: {
-        blueRibbon: Boolean,
-        vegan: Boolean,
-        vegetarian: Boolean,
+        'Blue Ribbon': Boolean,
+        'Vegan': Boolean,
+        'Vegetarian': Boolean,
     },
     ingredients: [
         {
             ingredient: { type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient', required: true },
             amount: Number,
-            unit: String
+            unit: String,
+            en: String,
+            es: String,
+            costPerUnit: Number,
+            baseUnit: String,
+            productLink: String,
+            multiplier: Number
         },
     ],
     appliances: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Appliance'
+            appliance: { type: mongoose.Schema.Types.ObjectId, ref: 'Appliance', required: true },
+            en: String,
+            es: String
         },
     ],
     totalCost: Number,
+    allergens: {
+        'Tree Nuts': Boolean,
+        'Peanuts': Boolean,
+        'Dairy': Boolean,
+        'Egg': Boolean,
+        'Wheat': Boolean,
+        'Soy': Boolean,
+        'Fish': Boolean,
+    },
+    espTags: {
+        'Cinta Azul': Boolean,
+        'Vegano': Boolean,
+        'Vegetariano': Boolean,
+    },
+    espAllergens: {
+        'Frutos Secos': Boolean,
+        'Cacahuetes': Boolean,
+        'Derechos Lácteos': Boolean,
+        'Huevo': Boolean,
+        'Trigo': Boolean,
+        'Soja': Boolean,
+        'Pescado': Boolean,
+    }
 });
 
 export default mongoose.models.Recipe || mongoose.model('Recipe', recipeSchema);
