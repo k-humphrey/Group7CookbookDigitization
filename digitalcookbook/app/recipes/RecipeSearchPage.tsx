@@ -21,15 +21,15 @@ export default function RecipeSearchPage() {
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
+  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: undefined as unknown as number});
 
   // Initial loading for page
   useEffect(() => {
-    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
+    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, filtersRef.current.maxCost);
   }, [lang]);
   
   // search for recipes in the database
-  const handleSearch = async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }) => {
+  const handleSearch = async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, maxCost: number) => {
     const filters = new URLSearchParams();
 
     // default url to return all recipes if no filters
@@ -44,6 +44,8 @@ export default function RecipeSearchPage() {
       filters.set("healthTags", tags.healthTags.join(","));
     if(tags.allergenTags.length > 0)
       filters.set("allergenTags", tags.allergenTags.join(","))
+    if (maxCost !== undefined)
+      filters.set("maxCost", String(maxCost));
 
     // construct url if there are any tags
     if(filters.size > 0) {
@@ -57,7 +59,7 @@ export default function RecipeSearchPage() {
   }
 
   useEffect(() => {
-    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
+    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, filtersRef.current.maxCost);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
@@ -73,7 +75,7 @@ export default function RecipeSearchPage() {
       >
        <Searchbar onSearch={(ingredients) => {
           ingredientsRef.current = ingredients; 
-          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
+          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, filtersRef.current.maxCost);
         }} initialTags={initialTags} /> 
       </div>
       
@@ -83,7 +85,7 @@ export default function RecipeSearchPage() {
         <div className="w-64 sticky top-0 self-start shrink-0">
           <Filters onChange={(selectedFilters) => {
             filtersRef.current = selectedFilters;
-            handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags);
+            handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, filtersRef.current.maxCost);
           }} />
         </div>
         
