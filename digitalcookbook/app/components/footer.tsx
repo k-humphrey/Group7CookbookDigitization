@@ -17,6 +17,7 @@ const STRINGS = {
         email: "Email",
         copyright: "Copyright © ",
         allRightsReserved: " - All rights reserved",
+        adminPortal: "Admin Portal",
     },
     es: {
         quickLinks: "Enlaces Rápidos",
@@ -31,6 +32,7 @@ const STRINGS = {
         email: "Correo Electrónico",
         copyright: "Derechos de Autor © ",
         allRightsReserved: " - Todos los derechos reservados",
+        adminPortal: "Admin Portal",
     },
 };
 export default function Footer(){
@@ -40,7 +42,7 @@ export default function Footer(){
     return (
 
         <>
-        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10 flex justify-center gap-40 flex-wrap">
+        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 sm:p-10 flex justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
 
         {/* Quick Links */}
         <nav>
@@ -65,6 +67,13 @@ export default function Footer(){
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     {t.tools}
+                </Link>
+
+                <Link
+                    href="/admin"
+                    rel="noopener noreferrer"
+                    className="link link-hover">
+                    {t.adminPortal}
                 </Link>
         </nav>
 
@@ -95,7 +104,7 @@ export default function Footer(){
         {/* Social */}
         <nav>
             <h6 className="footer-title">{t.social}</h6>
-            <div className="flex gap-4 mt-2">
+            <div className="flex gap-2 sm:gap-4 mt-2">
             {/* Twitter */}
             <a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="fill-current" viewBox="0 0 24 24">
@@ -143,14 +152,14 @@ export default function Footer(){
         </footer>
 
         {/*Logos*/}
-        <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10 flex justify-center gap-20 pr-40">
+        <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-5 sm:p-10 flex justify-center gap-10 sm:gap-20 pr-0 sm:pr-40">
             <img src="pep_logo.png" 
             alt="LEADERSHIP PUTNAM Logo" 
-            className="w-50 h-auto max-w-full" />
+            className="sm:w-50 w-1/2 h-auto max-w-full" />
 
             <img src="LP_logo.png" 
             alt="LEADERSHIP PUTNAM Logo" 
-            className="w-24 h-auto max-w-full -mt-4" />
+            className="sm:w-24 w-1/4 h-auto max-w-full -mt-4" />
         </footer>
 
         <footer className="footer sm:footer-horizontal bg-black text-white p-4 flex items-center justify-between">
