@@ -94,7 +94,7 @@ export default function Filters({ onChange }: Props) {
       >
         
         <div
-        className="collapse-title font-semibold after:start-5 after:end-auto pe-4 ps-12 cursor-pointer"
+        className="collapse-title font-semibold after:start-5 after:end-auto pe-1 ps-12 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
         >
           {t.filters}

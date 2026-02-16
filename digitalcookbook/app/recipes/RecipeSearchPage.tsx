@@ -126,7 +126,7 @@ export default function RecipeSearchPage() {
       <div className="flex w-full gap-6">
 
         {/* Filters */}
-        <div className="w-64 sticky top-0 self-start shrink-0">
+        <div className="w-32 sticky top-0 self-start shrink-0">
           <Filters onChange={(selectedFilters) => {
             filtersRef.current = selectedFilters;
             handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false);
