@@ -19,9 +19,18 @@ export default function RecipeSearchPage() {
   const initialParam = useSearchParams().get("ingredients");
   const initialTags = initialParam ? initialParam.split(",") : [];
 
+  type filtersType = {
+    appliances: string[];
+    tags: {
+     healthTags: string[];
+      allergenTags: string[];
+    };
+  maxCost?: number; // optional
+};
+
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: undefined as unknown as number});
+  const filtersRef =  useRef<filtersType>({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: undefined});
 
   // reference array for page info
   const pageInfoRef = useRef({page: 1, isLocked: false, limit: 15});
@@ -33,7 +42,7 @@ export default function RecipeSearchPage() {
   }, [lang]);
 
   // Get search params and return appropriate url
-  const buildURL = (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, maxCost: number) => {
+  const buildURL = (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, maxCost?: number) => {
     const filters = new URLSearchParams();
 
     // add filters to url search param if available
@@ -63,7 +72,7 @@ export default function RecipeSearchPage() {
   };
   
   // search for recipes in the database
-  const handleSearch = useCallback(async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, load: boolean, maxCost: number) => {
+  const handleSearch = useCallback(async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, load: boolean, maxCost?: number) => {
     // page loading, lock to prevent multiple loads
     pageInfoRef.current.isLocked = true;
 
