@@ -33,10 +33,24 @@ export async function POST(req: Request) {
 
 //updating, update existing recipes
 export async function PUT(req: Request) {
-    const cookieStore = await cookies(); 
+  try {
+    const body = await req.json();
 
-  if (!isAdminAuthenticated(cookieStore)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const updated = await Recipe.findByIdAndUpdate(
+      body._id,
+      body,
+      {
+        new: true,          // return updated doc
+        runValidators: true // enforce schema rules
+      }
+    );
+
+    if (!updated) {
+      return Response.json({ error: "Recipe not found" }, { status: 404 });
+    }
+
+    return Response.json({ success: true, recipe: updated });
+  } catch (err: any) {
+    return Response.json({ error: err.message }, { status: 500 });
   }
-  return NextResponse.json({ success: true });
 }
