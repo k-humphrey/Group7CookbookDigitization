@@ -11,6 +11,7 @@ interface Props {
   onChange: (filters: {
     appliances: string[];
     tags: { healthTags: string[]; allergenTags: string[] };
+    maxCost?: number;
   }) => void;
 }
 
@@ -20,12 +21,14 @@ const STRINGS = {
     appliances: "Kitchen Appliances",
     health: "Health",
     allergies: "Allergies",
+    cost: "Cost",
   },
   es: {
     filters: "Filtros",
     appliances: "Electrodomésticos",
     health: "Salud",
     allergies: "Alergias",
+    cost: "Costo",
   },
 } as const;
 
@@ -38,6 +41,8 @@ export default function Filters({ onChange }: Props) {
   const [filterOptions, setFilterOptions] = useState<{appliances: IDGroup[]; tags: TagIDGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
   const [selected, setSelected] = useState({appliances: [] as number[], tags: { healthTags: [] as number[], allergenTags: [] as number[]}})
   const [isOpen, setIsOpen] = useState(true);
+  const [maxCost, setMaxCost] = useState(50);
+  const [sliderMax, setSliderMax] = useState(0);
 
   // Gets all filter options
   useEffect(() => {
@@ -52,6 +57,17 @@ export default function Filters({ onChange }: Props) {
 
     fetchFilters();
   }, [lang]);
+
+  //Gets max cost for slider
+  useEffect(() => {
+  fetch("/api/recipes/maxCost")
+    .then(res => res.json())
+    .then(data => {
+      setSliderMax(data.maxCost);
+      setMaxCost(data.maxCost); //start slider at max cost
+    });
+}, []);
+
 
   // Toggle filter selection
   const toggle = (category: "appliances" | "healthTags" | "allergenTags", tagID: number) => {
@@ -94,7 +110,7 @@ export default function Filters({ onChange }: Props) {
       >
         
         <div
-        className="collapse-title font-semibold after:start-5 after:end-auto pe-4 ps-12 cursor-pointer"
+        className="collapse-title font-semibold after:start-5 after:end-auto pe-1 ps-12 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
         >
           {t.filters}
@@ -153,6 +169,36 @@ export default function Filters({ onChange }: Props) {
                 <span>{tag.name}</span>
                 </label>
                 ))}
+              </div>
+            </div>
+
+            {/* Filter 4: Cost */}
+            <div>
+              <h3 className="font-semibold text-xs uppercase my-2">{t.cost}</h3>
+              <div className="flex flex-col gap-1">
+                <label className="flex items-center gap-2">
+                  <input type="range" min="0" max={sliderMax} value={maxCost} className="range range-xs" onChange={(e) => {
+                      setMaxCost(+e.target.value);
+                  }}
+                  onMouseUp={() => {
+                     onChange({
+                      maxCost,
+                      appliances: selected.appliances.map(id =>
+                        filterOptions.appliances.find(a => a.id === id)?.name ?? ""
+                      ),
+                      tags: {
+                        healthTags: selected.tags.healthTags.map(id =>
+                          filterOptions.tags.healthTags.find(t => t.id === id)?.name ?? ""
+                        ),
+                        allergenTags: selected.tags.allergenTags.map(id =>
+                          filterOptions.tags.allergenTags.find(t => t.id === id)?.name ?? ""
+                        ),
+                      }
+                    });
+                  }}
+                  />
+                  <p>Max: ${maxCost}</p>
+                </label>
               </div>
             </div>
           </div>
