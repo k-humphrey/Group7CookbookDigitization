@@ -77,7 +77,6 @@ export default function RecipeSearchPage() {
 
     // build search url and get newRecipes
     const url = buildURL(ingredients, appliances, tags, maxCost);
-
     const data = await (await fetch(url)).json();
     const newRecipes = Array.isArray(data) ? data : (data.recipes ?? data ?? []);
 
