@@ -22,6 +22,7 @@ const STRINGS = {
         timer: "Timer",
         measurementConverter: "Measurement Converter",
         allRecipes: "All Recipes",
+        shoppingList: "Shopping List",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -40,6 +41,7 @@ const STRINGS = {
         timer: "Temporizador",
         measurementConverter: "Convertidor de Medidas",
         allRecipes: "Todas las Recetas",
+        shoppingList: "Lista de Compras",
     },
 };
 
@@ -222,6 +224,15 @@ export default function Navbar() {
                     </ul>
                 </details>
                 </li>
+                <li>
+                    <Link
+                        href="/shopping-list"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline">
+                            {t.shoppingList}
+                    </Link>
+            </li>
             </ul>
             </div>
         </div>
@@ -366,6 +377,16 @@ export default function Navbar() {
                     </li>
                 </ul>
             </details>
+            </li>
+            <li>
+                <Link
+                    href="/shopping-list"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline">
+                        {t.shoppingList}
+                </Link>
+
             </li>
             </ul>
         </div>
