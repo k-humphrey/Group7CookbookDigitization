@@ -1,34 +1,34 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
+import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 
-// Load environment variables from .env file
-dotenv.config({path: ".env.local"});
+let isConnected = false;
+let currentURI: string | null = null;
 
-// MongoDB connection URI from environment variables
-const URI = process.env.MONGODB_URI;
+export async function connectToDB(cookieStore: any) {
+  const isAdmin = isAdminAuthenticated(cookieStore);
 
-// Ensure the MongoDB URI is defined
-if (!URI)
-    throw new Error("Please define the MONGODB_URI variable inside .env.local");
+  const uri = isAdmin
+    ? process.env.MONGODB_ADMIN_URI
+    : process.env.MONGODB_URI;
 
-// Global connection variable
-let connection: mongoose.Mongoose | null = null;
+  if (!uri) {
+    throw new Error("Missing MongoDB URI");
+  }
 
-// Function to connect to MongoDB
-export async function connectToDB(): Promise<mongoose.Mongoose> {
-    // Return existing connection if already connected
-    if (connection) {
-        return connection;
+  // If already connected AND using the same URI, reuse it
+  if (isConnected && currentURI === uri) {
+    return mongoose;
+  }
 
-    }
-    
-    // Establish a new connection if none exists
-    try {
-        connection = await mongoose.connect(URI as string);
-        return connection;
+  // If switching from user → admin or admin → user, create a new connection
+  await mongoose.disconnect();
 
-    } catch (error) {
-        throw new Error("Error connecting to MongoDB", {cause: error as Error});
-        
-    }
+  await mongoose.connect(uri);
+
+  isConnected = true;
+  currentURI = uri;
+
+  console.log("Connected to", isAdmin ? "ADMIN" : "USER", "database");
+
+  return mongoose;
 }
