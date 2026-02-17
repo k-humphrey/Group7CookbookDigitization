@@ -2,12 +2,15 @@
 
 import { NextResponse } from "next/server";
 import {connectToDB} from "@/lib/connectToDB";
+import { cookies } from "next/headers";
 import User from "@/models/User"
 
 export async function POST(req: Request) {
     const { username, password } = await req.json();
 
-    await connectToDB();
+    const cookieStore = await cookies(); 
+
+    await connectToDB(cookieStore);
 
     const validUser = await User.findOne({ username});
 
