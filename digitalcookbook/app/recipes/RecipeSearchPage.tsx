@@ -21,7 +21,7 @@ export default function RecipeSearchPage() {
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: undefined as unknown as number});
+  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: 10});
 
   // reference array for page info
   const pageInfoRef = useRef({page: 1, isLocked: false, limit: 15});

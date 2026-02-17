@@ -11,7 +11,7 @@ interface Props {
   onChange: (filters: {
     appliances: string[];
     tags: { healthTags: string[]; allergenTags: string[] };
-    maxCost?: number;
+    maxCost: number;
   }) => void;
 }
 
@@ -96,7 +96,8 @@ export default function Filters({ onChange }: Props) {
       tags: {
         healthTags: newSelected.tags.healthTags.map(id => filterOptions.tags.healthTags.find(tag => tag.id == id)?.name ?? ""),
         allergenTags: newSelected.tags.allergenTags.map(id => filterOptions.tags.allergenTags.find(tag => tag.id == id)?.name ?? "")
-      }
+      },
+      maxCost
     }); 
   };
   
