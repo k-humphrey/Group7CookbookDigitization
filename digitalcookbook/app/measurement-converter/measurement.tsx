@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useLang } from "@/app/components/languageprovider";
-import { MEASUREMENT_STRINGS } from "./measurementStrings";
+import { decimalToFraction } from "@/lib/fractionConverter";
+import { MEASUREMENT_STRINGS } from "./measurementStrings"; // adjust path if needed
 
-// export conversion factor and format function 
-export { conversionsToOz, formatMeasurement };
+export { conversionsToOz };
 
 // Unit type
 type Unit =
@@ -28,44 +28,7 @@ const conversionsToOz: Record<Unit, number> = {
   tsp: 1 / 6,
 };
 
-// Fractional representations
-const fractions = [
-  { value: 1 / 8, label: "⅛" },
-  { value: 1 / 6, label: "⅙" },
-  { value: 1 / 4, label: "¼" },
-  { value: 1 / 3, label: "⅓" },
-  { value: 1 / 2, label: "½" },
-  { value: 2 / 3, label: "⅔" },
-  { value: 3 / 4, label: "¾" },
-];
-
-// Format measurement into fractions
-function formatMeasurement(value: number, unit: Unit) {
-  const whole = Math.floor(value);
-  const remainder = value - whole;
-  // Ounces are shown as decimals
-  if (unit === "oz") {
-    return remainder === 0 ? value.toFixed(0) : value.toFixed(2);
-  }
-
-  let best: { label: string; value: number } | null = null;
-  //finds closest fraction to decimal remainder
-  for (const f of fractions) {
-    if (!best || Math.abs(remainder - f.value) < Math.abs(remainder - best.value)) {
-      best = f;
-    }
-  }
-
-  const fraction = remainder > 0.05 && best?.label ? best.label : "";
-
-  if (remainder >= 0.9) return `${whole + 1}`;
-  if (fraction) return whole ? `${whole} ${fraction}` : fraction;
-  if (remainder === 0) return `${whole}`;
-  return value.toFixed(2);
-}
-
-export default function Measurement() {
-  //Language setup 
+export default function MeasurementConverter() {
   const langContext = useLang();
   const lang = langContext?.lang ?? "en";
   const t = MEASUREMENT_STRINGS[lang];
@@ -124,25 +87,9 @@ export default function Measurement() {
           const isActive = key === unit;
 
           return (
-            <div
-              key={key}
-              className={`
-                flex justify-between items-center
-                px-3 py-2 rounded-xl border-2
-                transition-all duration-200 ease-out
-                ${
-                  isActive
-                    ? "bg-orange-200 border-orange-400 shadow-lg scale-105"
-                    : "bg-orange-50 border-orange-200 hover:bg-orange-100 hover:border-orange-300 hover:shadow-md hover:-translate-y-1 hover:scale-105"
-                }
-              `}
-            >
-              <span className="font-medium">
-                {t.units[key]}
-              </span>
-              <span className="font-bold text-orange-500">
-                {formatMeasurement(valueInOz / oz, key)}
-              </span>
+            <div key={key} className="flex justify-between border-b pb-1">
+              <span className="capitalize">{t.units[unitKey]}</span>
+              <span>{decimalToFraction(valueInOz / oz, key)}</span>
             </div>
           );
         })}
