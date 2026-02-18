@@ -2,9 +2,12 @@ import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import Appliance from "@/models/Appliance";
 import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
 
 export async function GET(req: Request){
-    await connectToDB();
+    const cookieStore = await cookies(); 
+    
+    await connectToDB(cookieStore);
 
     // get language option
     const url = new URL(req.url);

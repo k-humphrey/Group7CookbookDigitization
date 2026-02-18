@@ -1,11 +1,14 @@
 import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
 //import Ingredient from "@/models/Ingredient";
 //import Appliance from "@/models/Appliance";
 
 export async function GET(req: Request){
-    await connectToDB();
+    const cookieStore = await cookies(); 
+    
+    await connectToDB(cookieStore);
 
     // Get page info
     const url = new URL(req.url);

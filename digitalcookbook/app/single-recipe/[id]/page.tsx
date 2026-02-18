@@ -5,6 +5,7 @@ import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import Appliance from "@/models/Appliance";
 import SingleRecipeUI from "@/app/components/singlerecipeui";
+import { cookies } from "next/headers";
 
 export default async function Page({
   params,
@@ -16,7 +17,9 @@ export default async function Page({
   
   if (!mongoose.Types.ObjectId.isValid(id)) notFound();
 
-  await connectToDB();
+  const cookieStore = await cookies(); 
+
+  await connectToDB(cookieStore);
 
   const recipe = await Recipe.findById(id)
     .populate({ path: "appliances", model: Appliance })

@@ -1,8 +1,11 @@
 import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
+import { cookies } from "next/headers";
 
 export default async function AdminPanelPage() {
-  await connectToDB();
+  const cookieStore = await cookies(); 
+
+  await connectToDB(cookieStore);
 
   const recipes = await Recipe.find().lean();
   const safeRecipes = JSON.parse(JSON.stringify(recipes));

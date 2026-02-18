@@ -4,7 +4,7 @@ import Navbar from "./components/navbar";
 import { LanguageProvider } from "@/app/components/languageprovider";
 
 export const metadata = {
-  title: "My App",
+  title: "Thrifty Bites",
   description: "",
 };
 
