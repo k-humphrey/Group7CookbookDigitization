@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { useLang } from "@/app/components/languageprovider";
+import { decimalToFraction } from "@/lib/fractionConverter";
 import { MEASUREMENT_STRINGS } from "./measurementStrings"; // adjust path if needed
 
-export { conversionsToOz, formatMeasurement };
+export { conversionsToOz };
 
 // Define measurement units
 type Unit =
@@ -26,39 +27,6 @@ const conversionsToOz: Record<Unit, number> = {
   tbsp: 0.5,
   tsp: 1 / 6,
 };
-
-// Fractional representations for formatting
-const fractions = [
-  { value: 1 / 8, label: "⅛" },
-  { value: 1 / 6, label: "⅙" },
-  { value: 1 / 4, label: "¼" },
-  { value: 1 / 3, label: "⅓" },
-  { value: 1 / 2, label: "½" },
-  { value: 2 / 3, label: "⅔" },
-  { value: 3 / 4, label: "¾" },
-];
-
-// Format measurement into fractional representation
-function formatMeasurement(value: number, unit: string) {
-  const wholeNumber = Math.floor(value);
-  const remainder = value - wholeNumber;
-
-  if (unit === "oz") return remainder === 0 ? value.toFixed(0) : value.toFixed(2);
-
-  let best: { label: string; value: number } | null = null;
-  for (const frac of fractions) {
-    if (!best || Math.abs(remainder - frac.value) < Math.abs(remainder - best.value)) {
-      best = frac;
-    }
-  }
-
-  const fractionLabel = remainder > 0.05 && best?.label ? best.label : "";
-
-  if (remainder >= 0.9) return `${wholeNumber + 1}`;
-  if (fractionLabel) return wholeNumber ? `${wholeNumber} ${fractionLabel}` : fractionLabel;
-  if (remainder === 0) return `${wholeNumber}`;
-  return value.toFixed(2);
-}
 
 export default function MeasurementConverter() {
   const langContext = useLang();
@@ -107,7 +75,7 @@ export default function MeasurementConverter() {
           return (
             <div key={key} className="flex justify-between border-b pb-1">
               <span className="capitalize">{t.units[unitKey]}</span>
-              <span>{formatMeasurement(valueInOz / oz, key)}</span>
+              <span>{decimalToFraction(valueInOz / oz, key)}</span>
             </div>
           );
         })}

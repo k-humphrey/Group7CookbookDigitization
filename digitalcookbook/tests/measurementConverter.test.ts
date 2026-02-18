@@ -1,6 +1,7 @@
 /// <reference types="jest" />
 
-import { conversionsToOz, formatMeasurement } from "../app/measurement-converter/measurement";
+import { conversionsToOz } from "../app/measurement-converter/measurement";
+import { decimalToFraction } from "@/lib/fractionConverter";
 
 // Test suite for Measurement Converter
 describe("Test Measurement Converter", () => {
@@ -11,13 +12,13 @@ describe("Test Measurement Converter", () => {
         const gallons = oz / conversionsToOz.gallon;
 
         // Check conversions to all units
-        expect(formatMeasurement(oz / conversionsToOz.cup, "cup")).toBe("4");
-        expect(formatMeasurement(oz / conversionsToOz.gallon, "gallon")).toBe("¼");
-        expect(formatMeasurement(oz / conversionsToOz.quart, "quart")).toBe("1");
-        expect(formatMeasurement(oz / conversionsToOz.pint, "pint")).toBe("2");
-        expect(formatMeasurement(oz / conversionsToOz.tbsp, "tbsp")).toBe("64");
-        expect(formatMeasurement(oz / conversionsToOz.tsp, "tsp")).toBe("192");
-        expect(formatMeasurement(oz / conversionsToOz.oz, "oz")).toBe("32");
+        expect(decimalToFraction(oz / conversionsToOz.cup, "cup")).toBe("4");
+        expect(decimalToFraction(oz / conversionsToOz.gallon, "gallon")).toBe("¼");
+        expect(decimalToFraction(oz / conversionsToOz.quart, "quart")).toBe("1");
+        expect(decimalToFraction(oz / conversionsToOz.pint, "pint")).toBe("2");
+        expect(decimalToFraction(oz / conversionsToOz.tbsp, "tbsp")).toBe("64");
+        expect(decimalToFraction(oz / conversionsToOz.tsp, "tsp")).toBe("192");
+        expect(decimalToFraction(oz / conversionsToOz.oz, "oz")).toBe("32");
         
     });
 
@@ -26,13 +27,13 @@ describe("Test Measurement Converter", () => {
         const oz = 0;
 
         // Check conversions to all units
-        expect(formatMeasurement(oz / conversionsToOz.cup, "cup")).toBe("0");
-        expect(formatMeasurement(oz / conversionsToOz.gallon, "gallon")).toBe("0");
-        expect(formatMeasurement(oz / conversionsToOz.quart, "quart")).toBe("0");
-        expect(formatMeasurement(oz / conversionsToOz.pint, "pint")).toBe("0");
-        expect(formatMeasurement(oz / conversionsToOz.tbsp, "tbsp")).toBe("0");
-        expect(formatMeasurement(oz / conversionsToOz.tsp, "tsp")).toBe("0");
-        expect(formatMeasurement(oz / conversionsToOz.oz, "oz")).toBe("0");
+        expect(decimalToFraction(oz / conversionsToOz.cup, "cup")).toBe("0");
+        expect(decimalToFraction(oz / conversionsToOz.gallon, "gallon")).toBe("0");
+        expect(decimalToFraction(oz / conversionsToOz.quart, "quart")).toBe("0");
+        expect(decimalToFraction(oz / conversionsToOz.pint, "pint")).toBe("0");
+        expect(decimalToFraction(oz / conversionsToOz.tbsp, "tbsp")).toBe("0");
+        expect(decimalToFraction(oz / conversionsToOz.tsp, "tsp")).toBe("0");
+        expect(decimalToFraction(oz / conversionsToOz.oz, "oz")).toBe("0");
     });
 
     // Test conversion of mixed fraction to all units
@@ -40,13 +41,13 @@ describe("Test Measurement Converter", () => {
         const oz = 1.5 * conversionsToOz.cup;
 
         // Check conversions to all units
-        expect(formatMeasurement(oz / conversionsToOz.cup, "cup")).toBe("1 ½");
-        expect(formatMeasurement(oz / conversionsToOz.gallon, "gallon")).toBe("⅛");
-        expect(formatMeasurement(oz / conversionsToOz.quart, "quart")).toBe("⅓");
-        expect(formatMeasurement(oz / conversionsToOz.pint, "pint")).toBe("¾");
-        expect(formatMeasurement(oz / conversionsToOz.tbsp, "tbsp")).toBe("24");
-        expect(formatMeasurement(oz / conversionsToOz.tsp, "tsp")).toBe("72");
-        expect(formatMeasurement(oz / conversionsToOz.oz, "oz")).toBe("12");
+        expect(decimalToFraction(oz / conversionsToOz.cup, "cup")).toBe("1 ½");
+        expect(decimalToFraction(oz / conversionsToOz.gallon, "gallon")).toBe("⅛");
+        expect(decimalToFraction(oz / conversionsToOz.quart, "quart")).toBe("⅓");
+        expect(decimalToFraction(oz / conversionsToOz.pint, "pint")).toBe("¾");
+        expect(decimalToFraction(oz / conversionsToOz.tbsp, "tbsp")).toBe("24");
+        expect(decimalToFraction(oz / conversionsToOz.tsp, "tsp")).toBe("72");
+        expect(decimalToFraction(oz / conversionsToOz.oz, "oz")).toBe("12");
     });
 
 });
