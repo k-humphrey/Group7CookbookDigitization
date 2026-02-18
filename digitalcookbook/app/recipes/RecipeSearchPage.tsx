@@ -21,19 +21,19 @@ export default function RecipeSearchPage() {
 
   // reference arrays for search
   const ingredientsRef = useRef<string[]>(initialTags);
-  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}});
+  const filtersRef =  useRef({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: 10});
 
   // reference array for page info
   const pageInfoRef = useRef({page: 1, isLocked: false, limit: 15});
 
   // Initial loading for page and after language change
   useEffect(() => {
-    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false);
+    handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false, filtersRef.current.maxCost);
 
   }, [lang]);
 
   // Get search params and return appropriate url
-  const buildURL = (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }) => {
+  const buildURL = (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, maxCost: number) => {
     const filters = new URLSearchParams();
 
     // add filters to url search param if available
@@ -45,6 +45,8 @@ export default function RecipeSearchPage() {
       filters.set("healthTags", tags.healthTags.join(","));
     if(tags.allergenTags.length > 0)
       filters.set("allergenTags", tags.allergenTags.join(","))
+    if (maxCost !== undefined)
+      filters.set("maxCost", String(maxCost));
 
     // if no filters return all on current page
     if(filters.size === 0)
@@ -61,7 +63,7 @@ export default function RecipeSearchPage() {
   };
   
   // search for recipes in the database
-  const handleSearch = useCallback(async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, load: boolean) => {
+  const handleSearch = useCallback(async (ingredients: string[], appliances: string[], tags: { healthTags: string[], allergenTags: string[] }, load: boolean, maxCost: number) => {
     // page loading, lock to prevent multiple loads
     pageInfoRef.current.isLocked = true;
 
@@ -74,8 +76,7 @@ export default function RecipeSearchPage() {
     }
 
     // build search url and get newRecipes
-    const url = buildURL(ingredients, appliances, tags);
-
+    const url = buildURL(ingredients, appliances, tags, maxCost);
     const data = await (await fetch(url)).json();
     const newRecipes = Array.isArray(data) ? data : (data.recipes ?? data ?? []);
 
@@ -98,7 +99,7 @@ export default function RecipeSearchPage() {
         
         // if nearBottom and not loading then load new recipes
         if(nearBottom && !pageInfoRef.current.isLocked)
-          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, true);
+          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, true, filtersRef.current.maxCost);
         })
     };
 
@@ -119,17 +120,17 @@ export default function RecipeSearchPage() {
       >
        <Searchbar onSearch={(ingredients) => {
           ingredientsRef.current = ingredients;
-          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false);
+          handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false, filtersRef.current.maxCost);
         }} initialTags={initialTags} /> 
       </div>
       
       <div className="flex w-full gap-6">
 
         {/* Filters */}
-        <div className="w-64 sticky top-0 self-start shrink-0">
+        <div className="w-52 sticky top-0 self-start shrink-0">
           <Filters onChange={(selectedFilters) => {
             filtersRef.current = selectedFilters;
-            handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false);
+            handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false, filtersRef.current.maxCost);
           }} />
         </div>
         
