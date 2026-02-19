@@ -51,7 +51,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
         <div className="border border-base-300 bg-base-100">
           
           {/* Image */}
-          <div className="h-48 w-full overflow-hidden ">
+          <div className="h-48 w-full overflow-hidden bg-base-200 print:object-contain ">
             {recipe?.imageURI ? (
               <img
                 src={recipe.imageURI}

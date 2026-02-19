@@ -46,9 +46,9 @@ body {
 
   /* Zoom out recipe content for print */
   .printable {
-    transform: scale(1);       /* shrink everything to 70% */
-    transform-origin: top left;   /* align top-left so it prints nicely */
-    width: 100%;                  /* container keeps full width */
+    transform: scale(1);       /* shrink to 100% */
+    transform-origin: top left;   /* align top-left */
+    width: 100%;                  /* full width container*/
   }
 
   /*shrink margins for more space */
