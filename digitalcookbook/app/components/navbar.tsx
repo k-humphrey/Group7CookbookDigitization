@@ -3,6 +3,8 @@
 "use client";
 import Link from "next/link";
 import { useLang } from "@/app/components/languageprovider"; 
+import Image from 'next/image'
+
 
 const STRINGS = {
     en: {
@@ -56,10 +58,11 @@ export default function Navbar() {
         <div className="navbar-start">
             <Link href="/">
                 <div className="p-2 hover:bg-gray-100 rounded">
-                    <img 
-                    src="pep_logo.png" 
+                    <Image 
+                    src="/pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
                     className="h-18 w-42"
+                    preload={true}
                     />
                 </div>
             </Link>
@@ -392,9 +395,12 @@ export default function Navbar() {
         </div>
         <div className="navbar-end">
             <input type="checkbox" defaultChecked className="toggle" onChange={() => setLang(lang === "en" ? "es" : "en")} />
-            <img src="LP_logo.png"
-            alt="LEADERSHIP PUTNAM LOGO"
-            className="w-24 h-auto max-w-full -mt 4" />
+            <Image 
+                src="LP_logo.png"
+                alt="LEADERSHIP PUTNAM LOGO"
+                className="w-24 h-auto max-w-full -mt 4"
+                preload={true} 
+            />
         </div>
         </div>
     );
