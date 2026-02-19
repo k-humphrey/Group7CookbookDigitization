@@ -1,5 +1,33 @@
 import { scaleCost } from "@/lib/scaleRecipe";
-import { SelectedRecipe, Ingredient } from "@/app/backpack-planner/page";
+
+// Type for ingredient
+export type Ingredient = {
+    ingredient: string;
+    amount: number;
+    unit: string;
+    en: string;
+    es: string;
+    costPerUnit: number;
+    baseUnit: string;
+    productLink: string;
+    multiplier: number;
+};
+
+// Type for recipe
+export type Recipe = {
+    _id: string;
+    title: {en: string; es: string};
+    totalCost: number;
+    ingredients: Ingredient[];
+    ingredientPlainText: {en: string; es: string};
+    imageURI: string;
+};
+
+// Type for selected recipe with servings
+export type SelectedRecipe = {
+    recipe: Recipe;
+    servings: number;
+}
 
 // Type definition for combined ingredient details
 export type CombinedIngredient = {
