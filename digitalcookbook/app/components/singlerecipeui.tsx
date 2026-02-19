@@ -1,8 +1,7 @@
 //app/components/singlerecipeui.tsx
 "use client";
-import { useState } from "react";
 import { useLang } from "./languageprovider";
-import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
+import PrintButton from "@/app/components/printbutton";
 
 type Recipe = {
   title?: { en?: string; es?: string };
@@ -45,20 +44,14 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const t = STRINGS[lang];
   const allergenField = lang === "es" ? "espAllergens" : "allergens";
   const allergensObj = (recipe as any)?.[allergenField] as Record<string, boolean> | undefined;
-  
-  // State for servings, default to 4
-  const [servings, setServings] = useState(4);
-
-  // Calculate scaled cost based on servings
-  const {scaleFactor, scaledCost} = recipe?.totalCost != null ? scaleCost(recipe.totalCost, servings) : {scaleFactor: 1, scaledCost: 0.00};
 
   return (
-    <main className="min-h-screen bg-base-100">
-      <div className="mx-auto max-w-6xl px-6 pt-6">
+    <main className="min-h-screen bg-base-100 ">
+      <div className="mx-auto max-w-6xl px-6 pt-6 printable print:block">
         <div className="border border-base-300 bg-base-100">
           
           {/* Image */}
-          <div className="h-48 w-full overflow-hidden bg-base-200">
+          <div className="h-48 w-full overflow-hidden ">
             {recipe?.imageURI ? (
               <img
                 src={recipe.imageURI}
@@ -91,27 +84,23 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
             </div>
 
             {/* Row 2: Time, Servings, and Cost */}
-            <div className="md:flex md:flex-row items-start mt-24 md:gap-10 sm:grid">
-              <div className="font-semibold">{t.prep}</div>
-              <div className="font-semibold">{t.cook}</div>
-              <div className="font-semibold">
-                {t.servings}
-                <input
-                  type="number"
-                  min={0}
-                  step={1}
-                  value={servings || ""}
-                  placeholder="0"
-                  onChange={(e) => setServings(Number(e.target.value))}
-                  className="ml-2 w-16 input input-sm input-bordered"
-                />
+            <div className="flex items-center justify-between">
+              <div className="md:flex md:flex-row items-start mt-24 md:gap-10 sm:grid ">
+                <div className="font-semibold">{t.prep}</div>
+                <div className="font-semibold">{t.cook}</div>
+                <div className="font-semibold">{t.servings}</div>
+                <span className="font-semibold">
+                  {t.total}
+                  {recipe?.totalCost != null ? recipe.totalCost.toFixed(2) : "0.00"}
+                </span>
+        
               </div>
-              <span className="font-semibold">
-                {t.total}
-                {scaledCost.toFixed(2)}
-              </span>
-            </div>
-
+            {/*Print Button */}
+              <div className="print:hidden mt-24">
+                <PrintButton />
+              </div>
+            </div>     
+     
           {/* Divider */}
           <div className="mt-4 border-t border-base-900" />
           </div>
@@ -119,6 +108,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           {/* Allergens */}
           <div className="px-6 pb-4 flex flex-wrap gap-2">
             <span className="font-semibold">{t.contains}</span>
+            
 
             {allergensObj && Object.entries(allergensObj).filter(([_, value]) => value === true).map(([allergen]) => (
                   <div key={allergen} className="text-black font-bold">{allergen}</div>
@@ -127,13 +117,13 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
 
           {/* Ingredients */}
           <div className="px-6 py-6 flex justify-left">
-            <section className="rounded-lg bg-[#dfe8d8] p-4 w-1/3">
+            <section className="rounded-lg bg-[#dfe8d8] p-4 w-1/3 print:w-2/3"> 
               <h2 className="text-center text-md font-bold tracking-wide">{t.ing}</h2>
               <ul className="mt-3 list-disc list-inside space-y-1 pl-5 text-sm ">
                 {recipe?.ingredientPlainText?.[lang] ? (
                   recipe.ingredientPlainText?.[lang]
                     .split("|||")
-                    .map((line, i) => <li key={i} className="break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>)
+                    .map((line, i) => <li key={i} className="break-words">{line.trim()}</li>)
                 ) : (
                   <li className="text-base-content/60">No ingredients listed.</li>
                 )}
