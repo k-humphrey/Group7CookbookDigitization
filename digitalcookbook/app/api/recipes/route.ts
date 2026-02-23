@@ -17,14 +17,16 @@ export async function GET(req: Request){
     let recipes;
     if(pageInfo.pageLimit) { // if limit return recipes limited
         recipes = await Recipe.find({})
+        .sort({_id: 1})
         .skip((pageInfo.pageNumber - 1) * pageInfo.pageLimit)
-        .limit(pageInfo.pageLimit)
+        .limit(pageInfo.pageLimit);
         //---no longer need to populate this api---
         //.populate({ path: "appliances", model: Appliance })
         //.populate({ path: "ingredients.ingredient", model: Ingredient });
 
     } else { // else return all recipes
         recipes = await Recipe.find({})
+        .sort({_id: 1});
         //---no longer need to populate this api---
         //.populate({ path: "appliances", model: Appliance })
         //.populate({ path: "ingredients.ingredient", model: Ingredient });
