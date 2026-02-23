@@ -179,7 +179,6 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes?ingredients="
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
                     {t.allRecipes}
