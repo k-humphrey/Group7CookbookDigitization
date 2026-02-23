@@ -21,6 +21,7 @@ const STRINGS = {
         priceFinder: "Price Finder",
         timer: "Timer",
         measurementConverter: "Measurement Converter",
+        mealPlanner: "Meal Planner",
         allRecipes: "All Recipes",
     },
     es: {
@@ -39,6 +40,7 @@ const STRINGS = {
         priceFinder: "Buscador de Precios",
         timer: "Temporizador",
         measurementConverter: "Convertidor de Medidas",
+        mealPlanner: "Planificador de comidas",
         allRecipes: "Todas las Recetas",
     },
 };
@@ -219,6 +221,15 @@ export default function Navbar() {
                             {t.measurementConverter}
                         </Link>
                     </li>
+                    <li>
+                        <Link
+                            href="/meal-planner"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            {t.mealPlanner}
+                        </Link>
+                    </li>
                     </ul>
                 </details>
                 </li>
@@ -362,6 +373,15 @@ export default function Navbar() {
                             rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.measurementConverter}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/meal-planner"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline" >
+                            {t.mealPlanner}
                         </Link>
                     </li>
                 </ul>
