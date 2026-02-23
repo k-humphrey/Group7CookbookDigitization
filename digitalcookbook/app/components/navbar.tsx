@@ -4,6 +4,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider"; 
+import Image from 'next/image'
+
 
 const STRINGS = {
     en: {
@@ -57,6 +59,8 @@ export default function Navbar() {
         <div className="navbar-start">
             <Link href="/">
                 <div className="p-2 hover:bg-gray-100 rounded">
+                    <Image 
+                    src="/pep_logo.png" 
                     <Image 
                     src="/pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
