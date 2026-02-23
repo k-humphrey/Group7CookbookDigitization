@@ -1,6 +1,7 @@
 
 "use client";
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLang } from '@/app/components/languageprovider'
 
 const STRINGS = {
@@ -17,6 +18,7 @@ const STRINGS = {
         email: "Email",
         copyright: "Copyright © ",
         allRightsReserved: " - All rights reserved",
+        adminPortal: "Admin Portal",
     },
     es: {
         quickLinks: "Enlaces Rápidos",
@@ -31,6 +33,7 @@ const STRINGS = {
         email: "Correo Electrónico",
         copyright: "Derechos de Autor © ",
         allRightsReserved: " - Todos los derechos reservados",
+        adminPortal: "Admin Portal",
     },
 };
 export default function Footer(){
@@ -40,7 +43,7 @@ export default function Footer(){
     return (
 
         <>
-        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 sm:p-10 flex justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
+        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
 
         {/* Quick Links */}
         <nav>
@@ -65,6 +68,13 @@ export default function Footer(){
                     rel="noopener noreferrer"
                     className="link link-hover" >
                     {t.tools}
+                </Link>
+
+                <Link
+                    href="/admin"
+                    rel="noopener noreferrer"
+                    className="link link-hover">
+                    {t.adminPortal}
                 </Link>
         </nav>
 
@@ -143,14 +153,25 @@ export default function Footer(){
         </footer>
 
         {/*Logos*/}
-        <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-5 sm:p-10 flex justify-center gap-10 sm:gap-20 pr-0 sm:pr-40">
-            <img src="pep_logo.png" 
+        <footer className="footer sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
+            <Image 
+            src="/pep_logo.png" 
             alt="LEADERSHIP PUTNAM Logo" 
-            className="sm:w-50 w-1/2 h-auto max-w-full" />
+            className="h-auto pt-px max-w-full" 
+            height={72}
+            width={168}
+            preload={true}
+            />
 
-            <img src="LP_logo.png" 
+            <Image 
+            src="/LP_logo.png" 
             alt="LEADERSHIP PUTNAM Logo" 
-            className="sm:w-24 w-1/4 h-auto max-w-full -mt-4" />
+            className="w-24 max-w-full -mt-1" 
+            height={72}
+            width={168}
+            preload={true}
+            />
+
         </footer>
 
         <footer className="footer sm:footer-horizontal bg-black text-white p-4 flex items-center justify-between">

@@ -57,10 +57,10 @@ export default function Home() {
 
       {/* Background picture */}
       <div 
-        className="w-full bg-cover bg-center bg-no-repeat py-30 flex flex-col items-center"  
+        className="w-full bg-cover bg-center py-30 flex flex-col items-center"  
         style={{
           backgroundSize: "110%", 
-          backgroundImage: "url('/searchbackground.jpg')"
+          backgroundImage: "url('/searchbackground2.0.png')"
           }}
       >
 
@@ -71,9 +71,10 @@ export default function Home() {
           <p className="mt-5 pt-5 text-base max-w-3xl md:text-2xl text-slate-950">{t.search}</p>
         </div>
 
+        <div className="w-11/12 md:w-full">
         {/* Searchbar */}
         <Searchbar onSearch={handleSearch} />
-      
+        </div>
 
         {/* Featured Recipes */}
         <section className="w-full max-w-7xl px-6 mt-40 mb-20">

@@ -7,7 +7,7 @@ import { MEASUREMENT_STRINGS } from "./measurementStrings"; // adjust path if ne
 
 export { conversionsToOz };
 
-// Define measurement units
+// Unit type
 type Unit =
   | "gallon"
   | "quart"
@@ -17,7 +17,7 @@ type Unit =
   | "tbsp"
   | "tsp";
 
-// Conversion factors to ounces
+// Conversion factors to ounces. Stores ounces in each unit
 const conversionsToOz: Record<Unit, number> = {
   gallon: 128,
   quart: 32,
@@ -33,14 +33,16 @@ export default function MeasurementConverter() {
   const lang = langContext?.lang ?? "en";
   const t = MEASUREMENT_STRINGS[lang];
 
-  const [value, setValue] = useState(1);
+  //Stores value and select unit
+  const [value, setValue] = useState<number>(1);
   const [unit, setUnit] = useState<Unit>("cup");
-
+  //convert to ounces
   const valueInOz = value * conversionsToOz[unit];
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-center mb-4 text-orange-500">
+    <div className="bg-white border-4 border-blue-900 rounded-[32px] shadow-2xl p-6 w-[360px]">
+      {/* Title */}
+      <h2 className="text-2xl font-extrabold text-center mb-5 text-red-500">
         {t.title}
       </h2>
 
@@ -50,15 +52,24 @@ export default function MeasurementConverter() {
           type="number"
           min={0}
           value={value || ""}
-          onChange={(e) => setValue(Number(e.target.value))}
-          className="w-1/2 p-2 border rounded text-center"
           placeholder={t.placeholder}
+          onChange={(e) => setValue(Number(e.target.value))}
+          className="
+            w-1/2 p-3 text-lg text-center
+            border-4 border-orange-200 rounded-2xl
+            focus:outline-none focus:border-orange-400
+            focus:ring-2 focus:ring-orange-200
+          "
         />
-
+        {/*Unit Dropdown */}
         <select
           value={unit}
           onChange={(e) => setUnit(e.target.value as Unit)}
-          className="w-1/2 p-2 border rounded"
+          className="
+            w-1/2 p-3
+            border-4 border-orange-200 rounded-2xl
+            focus:outline-none focus:border-orange-400
+          "
         >
           {(Object.keys(conversionsToOz) as Unit[]).map((u) => (
             <option key={u} value={u}>
@@ -69,9 +80,12 @@ export default function MeasurementConverter() {
       </div>
 
       {/* Results */}
-      <div className="grid grid-cols-2 gap-2 text-m mb-6">
-        {Object.entries(conversionsToOz).map(([key, oz]) => {
-          const unitKey = key as Unit;
+      <div className="grid grid-cols-2 gap-3 mb-6 text-sm">
+        {/*Loops through all units and convert */}
+        {(Object.entries(conversionsToOz) as [Unit, number][]).map(([key, oz]) => {
+          {/*Highlight the selected unit */}
+          const isActive = key === unit;
+
           return (
             <div key={key} className="flex justify-between border-b pb-1">
               <span className="capitalize">{t.units[unitKey]}</span>
@@ -81,9 +95,11 @@ export default function MeasurementConverter() {
         })}
       </div>
 
-      {/* Notes */}
-      <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 text-sm text-gray-700">
-        <p className="font-semibold mb-2 text-orange-500">{t.notesTitle}</p>
+      {/* Cooking notes */}
+      <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 text-sm text-gray-700">
+        <p className="font-bold mb-2 text-orange-500">
+          {t.notesTitle}
+        </p>
         <ul className="space-y-1">
           {t.notes.map((n, i) => (
             <li key={i}>

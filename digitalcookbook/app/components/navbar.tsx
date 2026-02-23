@@ -2,7 +2,9 @@
 //import React from "react";
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider"; 
+
 
 const STRINGS = {
     en: {
@@ -23,6 +25,7 @@ const STRINGS = {
         measurementConverter: "Measurement Converter",
         mealPlanner: "Meal Planner",
         allRecipes: "All Recipes",
+        shoppingList: "Shopping List",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -42,6 +45,7 @@ const STRINGS = {
         measurementConverter: "Convertidor de Medidas",
         mealPlanner: "Planificador de comidas",
         allRecipes: "Todas las Recetas",
+        shoppingList: "Lista de Compras",
     },
 };
 
@@ -56,10 +60,12 @@ export default function Navbar() {
         <div className="navbar-start">
             <Link href="/">
                 <div className="p-2 hover:bg-gray-100 rounded">
-                    <img 
-                    src="pep_logo.png" 
+                    <Image 
+                    src="/pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
-                    className="h-18 w-42"
+                    height={72}
+                    width={168}
+                    className="object-contain"
                     />
                 </div>
             </Link>
@@ -175,7 +181,6 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes?ingredients="
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
                     {t.allRecipes}
@@ -233,6 +238,15 @@ export default function Navbar() {
                     </ul>
                 </details>
                 </li>
+                <li>
+                    <Link
+                        href="/shopping-list"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline">
+                            {t.shoppingList}
+                    </Link>
+            </li>
             </ul>
             </div>
         </div>
@@ -329,7 +343,6 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes?ingredients="
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
                     {t.allRecipes}
@@ -387,13 +400,27 @@ export default function Navbar() {
                 </ul>
             </details>
             </li>
+            <li>
+                <Link
+                    href="/shopping-list"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline">
+                        {t.shoppingList}
+                </Link>
+
+            </li>
             </ul>
         </div>
         <div className="navbar-end">
             <input type="checkbox" defaultChecked className="toggle" onChange={() => setLang(lang === "en" ? "es" : "en")} />
-            <img src="LP_logo.png"
+            <Image 
+            src="/LP_logo.png"
             alt="LEADERSHIP PUTNAM LOGO"
-            className="w-24 h-auto max-w-full -mt 4" />
+            className="w-24 h-auto max-w-full object-contain" 
+            height={72}
+            width={168}
+            />
         </div>
         </div>
     );

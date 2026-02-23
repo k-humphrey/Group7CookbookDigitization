@@ -13,3 +13,47 @@ body {
   color: var(--foreground);
   margin: 0;
 }
+
+@media print {
+  /* Hide nav, header, and footer */
+  .navbar,
+  header,
+  footer,
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* Ensure colors and images print correctly */
+  body, body * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1, h2, section, ul {
+    page-break-inside: avoid;
+  }
+
+  li {
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: auto;
+  }
+
+  /* Zoom out recipe content for print */
+  .printable {
+    transform: scale(1);       /* shrink to 100% */
+    transform-origin: top left;   /* align top-left */
+    width: 100%;                  /* full width container*/
+  }
+
+  /*shrink margins for more space */
+  @page {
+    size: auto;
+    margin: 0.3in;
+  }
+}
