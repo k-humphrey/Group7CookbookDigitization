@@ -42,6 +42,14 @@ export default function ToolsPage() {
                         href="/measurement-converter"
                     />
                 </div>
+
+                <div className="flex justify-center">
+                    <InfoCard
+                        title="Meal Planner"
+                        description="Choose recipes, adjust servings, and see ingredients and costs automatically."
+                        href="/meal-planner"
+                    />
+                </div>
             </div>
         </main>
     );

@@ -21,7 +21,7 @@ export async function GET(req: Request){
     const allergenTagsParams = url.searchParams.get("allergenTags") || null;
     const titleParam = url.searchParams.get("title") || null;
     const cost = {min: Number(url.searchParams.get("minCost") || null), max: Number(url.searchParams.get("maxCost") || null)};
-    const pageInfo = {pageNumber: Number(url.searchParams.get("page") || 1), pageLimit: Number(url.searchParams.get("limit") || 20)};
+    const pageInfo = {pageNumber: Number(url.searchParams.get("page") || 1), pageLimit: Number(url.searchParams.get("limit") || 15)};
 
     const filters: any[] = [];
 
@@ -125,10 +125,10 @@ export async function GET(req: Request){
                         {$size: {
                             $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                         }},
-                        { $sum: {
-                             $map: {
-                                 input: {
-                                     $filter: {
+                        {$sum: {
+                            $map: {
+                                input: {
+                                    $filter: {
                                         input: "$ingredients",
                                         as: "i",
                                         cond: {
@@ -137,10 +137,9 @@ export async function GET(req: Request){
                                     } 
                                 },
                                 as: "matched",
-                                in: "$$matched.amount" }
-                             }
+                                in: "$$matched.amount"
                             }
-                        
+                        }}
                     ]
                 }
             }},
