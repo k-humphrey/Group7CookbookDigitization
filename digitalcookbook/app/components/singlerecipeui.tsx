@@ -1,6 +1,9 @@
 //app/components/singlerecipeui.tsx
 "use client";
+
+import { useState } from "react";
 import { useLang } from "./languageprovider";
+import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
 import PrintButton from "@/app/components/printbutton";
 
 type Recipe = {
@@ -45,6 +48,12 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const allergenField = lang === "es" ? "espAllergens" : "allergens";
   const allergensObj = (recipe as any)?.[allergenField] as Record<string, boolean> | undefined;
 
+  // State for servings, default to 4
+  const [servings, setServings] = useState(4);
+
+  // Calculate scaled cost based on servings
+  const {scaleFactor, scaledCost} = recipe?.totalCost != null ? scaleCost(recipe.totalCost, servings) : {scaleFactor: 1, scaledCost: 0.00};
+
   return (
     <main className="min-h-screen bg-base-100 ">
       <div className="mx-auto max-w-6xl px-6 pt-6 printable print:block">
@@ -88,10 +97,21 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               <div className="md:flex md:flex-row items-start mt-24 md:gap-10 sm:grid ">
                 <div className="font-semibold">{t.prep}</div>
                 <div className="font-semibold">{t.cook}</div>
-                <div className="font-semibold">{t.servings}</div>
+                <div className="font-semibold">
+                  {t.servings}
+                  <input
+                    type="number"
+                    min={0}
+                    step={1}
+                    value={servings || ""}
+                    placeholder="0"
+                    onChange={(e) => setServings(Number(e.target.value))}
+                    className="ml-2 w-16 input input-sm input-bordered"
+                  />
+                </div>
                 <span className="font-semibold">
                   {t.total}
-                  {recipe?.totalCost != null ? recipe.totalCost.toFixed(2) : "0.00"}
+                  {scaledCost.toFixed(2)}
                 </span>
         
               </div>
@@ -123,7 +143,9 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 {recipe?.ingredientPlainText?.[lang] ? (
                   recipe.ingredientPlainText?.[lang]
                     .split("|||")
-                    .map((line, i) => <li key={i} className="break-words">{line.trim()}</li>)
+                    .map((line, i) => 
+                      <li key={i} className="break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
+                    )
                 ) : (
                   <li className="text-base-content/60">No ingredients listed.</li>
                 )}
