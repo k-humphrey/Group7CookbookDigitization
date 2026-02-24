@@ -88,7 +88,7 @@ export default function MeasurementConverter() {
 
           return (
             <div key={key} className="flex justify-between border-b pb-1">
-              <span className="capitalize">{t.units[unitKey]}</span>
+              <span className="capitalize">{t.units[key]}</span>
               <span>{decimalToFraction(valueInOz / oz, key)}</span>
             </div>
           );

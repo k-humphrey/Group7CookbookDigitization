@@ -41,7 +41,7 @@ export default function Filters({ onChange }: Props) {
   const [filterOptions, setFilterOptions] = useState<{appliances: IDGroup[]; tags: TagIDGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
   const [selected, setSelected] = useState({appliances: [] as number[], tags: { healthTags: [] as number[], allergenTags: [] as number[]}})
   const [isOpen, setIsOpen] = useState(true);
-  const [maxCost, setMaxCost] = useState(50);
+  const [maxCost, setMaxCost] = useState(10);
   const [sliderMax, setSliderMax] = useState(0);
 
   // Gets all filter options
@@ -63,10 +63,11 @@ export default function Filters({ onChange }: Props) {
   fetch("/api/recipes/maxCost")
     .then(res => res.json())
     .then(data => {
+      data.maxCost = Math.ceil(data.maxCost);
       setSliderMax(data.maxCost);
       setMaxCost(data.maxCost); //start slider at max cost
     });
-}, []);
+  }, []);
 
 
   // Toggle filter selection
