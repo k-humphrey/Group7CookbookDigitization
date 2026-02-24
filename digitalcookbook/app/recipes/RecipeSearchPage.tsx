@@ -58,12 +58,13 @@ export default function RecipeSearchPage() {
         backgroundImage: "url('/searchbackground.jpg')"
         }}
       >
-       <Searchbar onSearch={(ingredients) => {
-          setIngredients(ingredients);
-          handleSearch(false);
-        }} initialTags={initialTags} /> 
+        <div className="w-11/12 md:w-full">
+        <Searchbar onSearch={(ingredients) => {
+            setIngredients(ingredients);
+            handleSearch(false);
+          }} initialTags={initialTags} /> 
+        </div>
       </div>
-      
       <div className="flex w-full">
         {/* Filters */}
         <div className="sticky top-0 self-start shrink-0">

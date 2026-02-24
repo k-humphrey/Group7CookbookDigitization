@@ -107,7 +107,7 @@ export default function Filters({ onChange }: Props) {
     className={[
       "mt-6 mx-3 bg-gray-200 border border-base-300 rounded-xl",
       "transition-all duration-300",
-      isOpen ? "w-50 sm:w-55" : "w-10", // open vs collapsed width
+      isOpen ? "w-40 sm:w-55" : "w-10", // open vs collapsed width
       "h-full shrink-0 relative",
     ].join(" ")}
   >
