@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
     await connectToDB(cookieStore);
 
-    const validUser = await User.findOne({ username});
+    const validUser = await User.findOne({ username });
 
     if (!validUser || validUser.password !== password) {
         return NextResponse.json(

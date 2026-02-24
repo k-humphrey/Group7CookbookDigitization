@@ -25,8 +25,8 @@ export default function AdminLoginPage() {
             setError("Invalid username or password");
             return;
         }
-
-        router.push("/admin");
+        {/*Route to page after login*/}    
+        router.push("/admin-panel");
     }
 
     return (
