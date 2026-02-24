@@ -112,7 +112,7 @@ export default function RecipeSearchPage() {
     <div>
       {/* Background Image */}
       <div 
-        className="w-full bg-cover bg-center bg-no-repeat pt-15 pb-5 flex flex-col items-center"  
+        className="w-full bg-cover bg-center bg-no-repeat py-6 flex flex-col items-center"  
         style={{
         backgroundSize: "110%", 
         backgroundImage: "url('/searchbackground.jpg')"
@@ -124,10 +124,9 @@ export default function RecipeSearchPage() {
         }} initialTags={initialTags} /> 
       </div>
       
-      <div className="flex w-full gap-6">
-
+      <div className="flex w-full">
         {/* Filters */}
-        <div className="w-52 sticky top-0 self-start shrink-0">
+        <div className="sticky top-0 self-start shrink-0">
           <Filters onChange={(selectedFilters) => {
             filtersRef.current = selectedFilters;
             handleSearch(ingredientsRef.current, filtersRef.current.appliances, filtersRef.current.tags, false, filtersRef.current.maxCost);
