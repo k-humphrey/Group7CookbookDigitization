@@ -18,8 +18,8 @@ export async function GET(req: Request){
 
     // Get filter options from fields (id, name) - id for ordering
     const appliances = (await Appliance.find().select(`${lang} -_id`)).map((appliance, index) => ({id: index, name: appliance[lang]}));
-    const tags = Object.keys(lang === "es" ? recipe?.espTags || {} : recipe?.tags || {}).map((tag, index) => ({id: index, name: tag}));
-    const allergens = Object.keys(lang === "es" ? recipe?.espAllergens || {} : recipe?.allergens || {}).map((allergen, index) => ({id: index, name: allergen}));
+    const tags = Object.keys(lang === "es" ? recipe?.espTags || {} : recipe?.tags || {}).sort((a, b) => a.localeCompare(b, lang)).map((tag, index) => ({id: index, name: tag}));
+    const allergens = Object.keys(lang === "es" ? recipe?.espAllergens || {} : recipe?.allergens || {}).sort((a, b) => a.localeCompare(b, lang)).map((allergen, index) => ({id: index, name: allergen}));
 
     // return filters as array
     return NextResponse.json({appliances, tags, allergens});
