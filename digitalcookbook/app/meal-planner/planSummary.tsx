@@ -37,8 +37,8 @@ export default function PlanSummary({ selectedRecipes }: Props) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
 
                 {/* PLAN TOTALS */}
-                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-1 lg:h-50"}>
-                    <div className="card-body text-lg">
+                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-1 h-50"} tabIndex={0}>
+                    <div className="card-body text-lg overflow-y-auto">
                         <h2 className="card-title text-2xl font-bold mb-4">{t.planTotals}</h2>
 
                         <ul>
@@ -49,7 +49,7 @@ export default function PlanSummary({ selectedRecipes }: Props) {
                 </div>
 
                 {/* TOTAL INGREDIENTS */}
-                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-2 lg:h-50"}>
+                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-2 h-50"}>
                     <div className="card-body overflow-y-auto">
                         <h2 className="card-title text-2xl font-bold mb-4">{t.totalIngredients}</h2>
 

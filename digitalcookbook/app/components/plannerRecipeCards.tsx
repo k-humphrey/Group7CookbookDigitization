@@ -19,7 +19,7 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
     const t = PLANNER_STRINGS[lang];
 
     return (
-        <div key={recipe._id} className="card bg-base-100 shadow-xl">
+        <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
 
             {/* Image */}
             <figure className="h-40 overflow-hidden">
@@ -63,7 +63,7 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                             min={1}
                             value={selected.servings}
                             onChange={(e) => updateServings(recipe._id, Number(e.target.value))}
-                            className="input input-bordered w-20"
+                            className="input input-bordered w-full md:w-20"
                         />
                     </div>
                 )}
