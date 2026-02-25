@@ -10,7 +10,7 @@ interface Props {
     updateServings: (recipeID: string, servings: number) => void;
 }
 
-const focusClasses = "focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2   focus-visible:ring-neutral focus-visible:rounded-md hover:shadow-lx"
+const focusClasses = "focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-neutral focus-visible:rounded-md hover:shadow-lx"
 
 export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, updateServings}: Props) {
     // Lang settings
@@ -63,7 +63,7 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                             min={1}
                             value={selected.servings}
                             onChange={(e) => updateServings(recipe._id, Number(e.target.value))}
-                            className="input input-bordered w-full md:w-20"
+                            className="input input-bordered w-full lg:w-20"
                         />
                     </div>
                 )}
