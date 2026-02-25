@@ -87,52 +87,52 @@ export default function EmergencyNumbersPage() {
 
       {/* City Services Table */}
       <div className="overflow-x-auto w-full max-w-5xl">
-        <table className="table table-bordered">
+        <table className="table table-bordered p-5">
           <thead>
             <tr>
-              <th>{t.call911}</th>
-              <th>Cookeville</th>
-              <th>Algood</th>
-              <th>Baxter</th>
-              <th>Monterey</th>
+              <th scope="col">{t.call911}</th>
+              <th scope="col">Cookeville</th>
+              <th scope="col">Algood</th>
+              <th scope="col">Baxter</th>
+              <th scope="col">Monterey</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>{t.nonEmergency}</th>
-              <td>(931) 526-2125</td>
-              <td>(931) 537-6830</td>
-              <td>(931) 858-4111</td>
-              <td>(931) 839-3770</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.nonEmergency}</th>
+                <td>(931) 526-2125</td>
+                <td>(931) 537-6830</td>
+                <td>(931) 858-4111</td>
+                <td>(931) 839-3770</td>
             </tr>
-            <tr>
-              <th>{t.fireRoutine}</th>
-              <td>(931) 520-5255</td>
-              <td>(931) 537-6357</td>
-              <td>(931) 858-2621</td>
-              <td>(931) 839-2323</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.fireRoutine}</th>
+                <td>(931) 520-5255</td>
+                <td>(931) 537-6357</td>
+                <td>(931) 858-2621</td>
+                <td>(931) 839-2323</td>
             </tr>
-            <tr>
-              <th>{t.cityHall}</th>
-              <td>(931) 526-9591</td>
-              <td>(931) 537-9545</td>
-              <td>(931) 858-4111</td>
-              <td>(931) 839-3770</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.cityHall}</th>
+                <td>(931) 526-9591</td>
+                <td>(931) 537-9545</td>
+                <td>(931) 858-4111</td>
+                <td>(931) 839-3770</td>
             </tr>
-            <tr>
-              <th>{t.publicWorks}</th>
-              <td>(931) 537-9545</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.publicWorks}</th>
+                <td>(931) 537-9545</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
             </tr>
-            <tr>
-              <th>{t.sheriffsOffice}</th>
-              <td>(931) 528-8484</td>
-              <td>(931) 528-8484</td>
-              <td>(931) 528-8484</td>
-              <td>(931) 839-8200
-                (Sub-station)</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.sheriffsOffice}</th>
+                <td>(931) 528-8484</td>
+                <td>(931) 528-8484</td>
+                <td>(931) 528-8484</td>
+                <td>(931) 839-8200
+                  (Sub-station)</td>
             </tr>
           </tbody>
         </table>
@@ -158,16 +158,16 @@ export default function EmergencyNumbersPage() {
         {/* Utilities & Help */}
         <div className="card border p-4 mx-auto max-w-md text-center">
           <ul className="space-y-3">
-            <li>
+            <li className="hover:bg-gray-50">
               <strong>{t.poison}</strong> 1-800-222-1222
             </li>
-            <li>
+            <li className="hover:bg-gray-50">
               <strong>{t.crimeStoppers}</strong> (931) 520-7867
             </li>
-            <li>
+            <li className="hover:bg-gray-50">
               <strong>{t.gasLeaks}</strong> (931) 520-4427 or (931) 526-9591
             </li>
-            <li>
+            <li className="hover:bg-gray-50">
               <strong>{t.waterSewer}</strong> (931) 520-5227 or (931) 528-5533
             </li>
           </ul>
@@ -176,59 +176,59 @@ export default function EmergencyNumbersPage() {
 
       {/* National Hotlines */}
       <div className="overflow-x-auto w-full max-w-5xl">
-        <table className="table table-bordered">
+        <table className="table table-bordered p-5">
           <thead>
             <tr>
-              <th>{t.serviceSupport}</th>
-              <th>{t.phoneNumber}</th>
-              <th>{t.availability}</th>
+              <th scope="col">{t.serviceSupport}</th>
+              <th scope="col">{t.phoneNumber}</th>
+              <th scope="col">{t.availability}</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>{t.suicideCrisis}</th>
-              <td>📞 988</td>
-              <td>{t.avail247CallText}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.suicideCrisis}</th>
+                <td>📞 988</td>
+                <td>{t.avail247CallText}</td>
             </tr>
-            <tr>
-              <th>{t.poisonControlCenter}</th>
-              <td>1-800-222-1222</td>
-              <td>{t.avail247FreeConf}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.poisonControlCenter}</th>
+                <td>1-800-222-1222</td>
+                <td>{t.avail247FreeConf}</td>
             </tr>
-            <tr>
-              <th>{t.domesticViolence}</th>
-              <td>1-800-799-SAFE (7233)</td>
-              <td>{t.avail247AnonHelp}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.domesticViolence}</th>
+                <td>1-800-799-SAFE (7233)</td>
+                <td>{t.avail247AnonHelp}</td>
             </tr>
-            <tr>
-              <th>{t.humanTrafficking}</th>
-              <td>1-888-373-7888</td>
-              <td>{t.availTextHelp}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.humanTrafficking}</th>
+                <td>1-888-373-7888</td>
+                <td>{t.availTextHelp}</td>
             </tr>
-            <tr>
-              <th>{t.veteransCrisis}</th>
-              <td>988, press 1</td>
-              <td>{t.availVetsFamilies}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.veteransCrisis}</th>
+                <td>988, press 1</td>
+                <td>{t.availVetsFamilies}</td>
             </tr>
-            <tr>
-              <th>{t.substanceAbuse}</th>
-              <td>1-800-662-HELP (4357)</td>
-              <td>{t.availConfSupport}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.substanceAbuse}</th>
+                <td>1-800-662-HELP (4357)</td>
+                <td>{t.availConfSupport}</td>
             </tr>
-            <tr>
-              <th>{t.childhelp}</th>
-              <td>1-800-4-A-CHILD (422-4453)</td>
-              <td>{t.availChildrenAdults}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.childhelp}</th>
+                <td>1-800-4-A-CHILD (422-4453)</td>
+                <td>{t.availChildrenAdults}</td>
             </tr>
-            <tr>
-              <th>{t.elderAbuse}</th>
-              <td>1-800-677-1116</td>
-              <td>{t.availReferralsGuidance}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.elderAbuse}</th>
+                <td>1-800-677-1116</td>
+                <td>{t.availReferralsGuidance}</td>
             </tr>
-            <tr>
-              <th>{t.runawaySafeline}</th>
-              <td>1-800-RUNAWAY (786-2929)</td>
-              <td>{t.avail247Teens}</td>
+            <tr className="hover:bg-gray-50">
+              <th scope="row">{t.runawaySafeline}</th>
+                <td>1-800-RUNAWAY (786-2929)</td>
+                <td>{t.avail247Teens}</td>
             </tr>
           </tbody>
         </table>

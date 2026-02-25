@@ -64,7 +64,7 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
   };
 
   return (
-    <section className="w-full flex flex-col items-center">
+    <form className="w-full flex flex-col items-center">
       
       {/* Selected Ingredients Box */}
       <div className="w-full max-w-3xl mb-2">
@@ -73,7 +73,7 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           {/* Tag Area */}
           <div className="flex-1">
             <h2 className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</h2>
-            <div className="mt-2 flex flex-wrap gap-2 text-slate-950">
+            <div role="list" aria-live="polite" className="mt-2 flex flex-wrap gap-2 text-slate-950">
               {tags.length === 0 ? (
                 <span className="text-xs opacity-70">{t.placeholder}</span>
               ) : (
@@ -81,11 +81,13 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
                   <span
                     key={tag}
                     className="badge badge-outline gap-1 px-3 py-2 text-xs"
+                    role="listitem"
                   >
                     {tag}
                     <button
                       type="button"
-                      className="ml-1 text-[10px]"
+                      aria-label={`Remove ${tag}`}
+                      className="ml-1 text-[10px] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded"
                       onClick={() => removeTag(tag)}
                     >
                       ✕
@@ -97,13 +99,20 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           </div>
 
           {/* Search Button */}
-          <button className="btn btn-warning btn-sm md:btn-md shrink-0 text-slate-950" onClick={handleSearchClick}>{t.search}</button>
+          <button 
+            className="btn btn-warning btn-sm md:btn-md shrink-0 text-slate-950 focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2" 
+            type="button" 
+            onClick={handleSearchClick}>{t.search}
+          </button>
         </div>
       </div>
 
       {/* Search Bar */}
       <div className="w-full max-w-3xl">
-        <label className="input input-bordered rounded-full w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6]">
+        <label htmlFor="ingredient-search" className="input input-bordered rounded-full w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6] focus-within:ring-1 focus-within:ring-neutral">
+          
+          <span className="sr-only">{t.search}</span>
+          
           {/* Search Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -119,6 +128,7 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
 
           {/* Input */}
           <input
+            id="ingredient-search"
             type="text"
             className="grow placeholder:text-slate-950 bg-transparent outline-none"
             placeholder={t.placeholder2}
@@ -128,6 +138,6 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           />
         </label>
       </div>
-    </section>
+    </form>
   );
 }

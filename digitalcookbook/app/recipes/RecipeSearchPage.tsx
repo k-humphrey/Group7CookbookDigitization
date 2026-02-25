@@ -50,6 +50,9 @@ export default function RecipeSearchPage() {
 
   return (
     <div>
+
+      <a href="#recipes" className="sr-only">Skip to recipes</a>
+
       {/* Background Image */}
       <div 
         className="w-full bg-cover bg-center bg-no-repeat pt-15 pb-5 flex flex-col items-center"  
@@ -58,16 +61,16 @@ export default function RecipeSearchPage() {
         backgroundImage: "url('/searchbackground.jpg')"
         }}
       >
-       <Searchbar onSearch={(ingredients) => {
-          setIngredients(ingredients);
-          handleSearch(false);
-        }} initialTags={initialTags} /> 
+        <div className="w-11/12 md:w-full">
+          <Searchbar onSearch={(ingredients) => {
+              setIngredients(ingredients);
+              handleSearch(false);
+            }} initialTags={initialTags} /> 
+        </div>
       </div>
-      
-      <div className="flex w-full gap-6">
-
+      <div className="flex w-full">
         {/* Filters */}
-        <div className="w-52 sticky top-0 self-start shrink-0">
+        <div className="sticky top-0 self-start shrink-0">
           <Filters onChange={(selectedFilters) => {
             setFilters(selectedFilters);
             handleSearch(false);
@@ -75,7 +78,7 @@ export default function RecipeSearchPage() {
         </div>
         
         {/* Recipes */}
-        <div className="flex-1">
+        <div id="recipes" className="flex-1">
           <RecipeGrid recipes={recipes} />
         </div>
       </div>
