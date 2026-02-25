@@ -32,7 +32,7 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
     return (
 
-        <div key={recipe._id} className="bg-base-100 shadow-xl rounded-xl p-6 flex flex-col md:flex-row gap-6">
+        <div key={recipe._id} className="bg-base-100 shadow-xl rounded-xl p-4 md:p-6 flex flex-col md:flex-row md:gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded" tabIndex={0}>
 
             {/* Ingredients */}
             <div className="flex-1">
@@ -52,7 +52,7 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
             {/* Image */}
             {recipe.imageURI && (
-                <div className="flex-none w-100 h-80 rounded-lg overflow-hidden">
+                <div className="flex-1 rounded-lg overflow-hidden">
                     <img
                         src={recipe.imageURI}
                         alt={recipe.title?.[lang]}
