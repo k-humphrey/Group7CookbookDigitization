@@ -1,3 +1,5 @@
+//app/api/edit-recipes/route.ts
+
 import { cookies } from "next/headers";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import { NextResponse } from "next/server";
