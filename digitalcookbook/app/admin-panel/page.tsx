@@ -4,7 +4,7 @@
 import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import { cookies } from "next/headers";
-import InfoCard from "../components/infocard";
+import AdminPanelClient from "../components/adminPanelClient";
 
 export default async function AdminPanelPage() {
 	const cookieStore = await cookies(); 
@@ -15,29 +15,11 @@ export default async function AdminPanelPage() {
 	const safeRecipes = JSON.parse(JSON.stringify(recipes));
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center py-12">
-      <h1 className="text-2xl font-bold mb-6 ml-6">
-        Admin Panel
-      </h1>
-
-      <div className="w-full max-w-6xl mx-auto">
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6">
-          	{safeRecipes.map((recipe: any) => (
-				<InfoCard
-				key={recipe._id}
-				title={recipe.title.en}
-				description=""
-				href="#"
-				imageSrc={recipe.imageURI}
-				action = {
-					<button className="btn btn-primary btn-sm">
-						Edit
-					</button>
-				}
-				/>
-		    ))}
-        </div>
-      </div>
+     <main className="min-h-screen w-full flex flex-col items-center py-12">
+      	<h1 className="text-2xl font-bold mb-6 ml-6">Admin Panel</h1>
+			<div className="w-full max-w-6xl mx-auto">
+        		<AdminPanelClient recipes={safeRecipes} />
+        	</div>
     </main>
   );
 }
