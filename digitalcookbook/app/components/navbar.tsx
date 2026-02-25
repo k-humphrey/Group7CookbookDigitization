@@ -59,12 +59,11 @@ export default function Navbar() {
 
         <div className="navbar-start">
             <Link href="/">
-                <div className="p-2 hover:bg-gray-100 rounded">
+                <div className="p-2 hover:bg-gray-100 rounded-lg relative w-[168px] h-[72px]">
                     <Image 
                     src="/pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
-                    height={72}
-                    width={168}
+                    fill
                     className="object-contain"
                     />
                 </div>

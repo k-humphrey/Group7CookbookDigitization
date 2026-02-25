@@ -1,5 +1,6 @@
 import { Recipe, SelectedRecipe } from "@/app/meal-planner/page";
 import { useLang } from "@/app/components/languageprovider";
+import Image from "next/image";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 
 // Props needed to render planner recipe cards
@@ -20,12 +21,13 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
         <div key={recipe._id} className="card bg-base-100 shadow-xl">
 
             {/* Image */}
-            <figure className="h-40 overflow-hidden">
+            <figure className="h-40 overflow-hidden relative">
                 {recipe.imageURI ? (
-                    <img
-                        src={recipe.imageURI}
+                    <Image
+                        src={recipe.imageURI.trimEnd()}
                         alt={recipe.title?.[lang]}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                     />
                 ) : (
                     <div className="flex items-center justify-center w-full h-full">

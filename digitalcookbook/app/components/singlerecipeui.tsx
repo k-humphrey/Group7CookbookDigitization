@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useLang } from "./languageprovider";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
 import PrintButton from "@/app/components/printbutton";
@@ -60,12 +61,13 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
         <div className="border border-base-300 bg-base-100">
           
           {/* Image */}
-          <div className="h-48 w-full overflow-hidden bg-base-200 print:object-contain ">
+          <div className="h-48 w-full overflow-hidden bg-base-200 print:flex print:justify-center relative">
             {recipe?.imageURI ? (
-              <img
-                src={recipe.imageURI}
+              <Image
+                src={recipe.imageURI.trimEnd()}
                 alt={title}
-                className="h-full w-full object-cover"
+                fill
+                className="object-cover print:mx-auto print:block"
               />
             ) : (
               <div className="flex h-full items-center justify-center text-sm text-base-content/60">
@@ -93,11 +95,11 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
             </div>
 
             {/* Row 2: Time, Servings, and Cost */}
-            <div className="flex items-center justify-between">
-              <div className="md:flex md:flex-row items-start mt-24 md:gap-10 sm:grid ">
+            <div className="flex flex-row items-end justify-between mt-24">
+              <div className="md:flex md:flex-row items-start md:gap-10 grid print:flex print:flex-row print:gap-10 print:items-start">
                 <div className="font-semibold">{t.prep}</div>
                 <div className="font-semibold">{t.cook}</div>
-                <div className="font-semibold">
+                <div className="font-semibold -mt-0.5">
                   {t.servings}
                   <input
                     type="number"
@@ -113,14 +115,13 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                   {t.total}
                   {scaledCost.toFixed(2)}
                 </span>
-        
               </div>
-            {/*Print Button */}
-              <div className="print:hidden mt-24">
-                <PrintButton />
-              </div>
-            </div>     
-     
+              {/*Print Button */}
+                <div className="print:hidden">
+                  <PrintButton />
+                </div>
+            </div> 
+
           {/* Divider */}
           <div className="mt-4 border-t border-base-900" />
           </div>
@@ -136,15 +137,15 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           </div> 
 
           {/* Ingredients */}
-          <div className="px-6 py-6 flex justify-left">
-            <section className="rounded-lg bg-[#dfe8d8] p-4 w-1/3 print:w-2/3"> 
+          <div className="p-6 flex justify-left">
+            <section className="rounded-lg bg-[#dfe8d8] p-4 w-auto print:w-auto"> 
               <h2 className="text-center text-md font-bold tracking-wide">{t.ing}</h2>
               <ul className="mt-3 list-disc list-inside space-y-1 pl-5 text-sm ">
                 {recipe?.ingredientPlainText?.[lang] ? (
                   recipe.ingredientPlainText?.[lang]
                     .split("|||")
                     .map((line, i) => 
-                      <li key={i} className="break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
+                      <li key={i} className="wrap-break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
                     )
                 ) : (
                   <li className="text-base-content/60">No ingredients listed.</li>

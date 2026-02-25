@@ -50,7 +50,7 @@ export default function BackpackPlannerPage() {
             {/* Background Image */}
             <div 
                 className="w-full bg-cover bg-center pt-15 pb-5 flex flex-col items-center"  
-                style={{ backgroundSize: "110%", backgroundImage: "url('/searchbackground.jpg')" }}
+                style={{ backgroundSize: "110%", backgroundImage: "url('/searchbackground2.0.png')" }}
             >
                     
             <div className="mx-auto w-full px-6 pt-6 pb-10">

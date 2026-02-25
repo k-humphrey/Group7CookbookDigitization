@@ -29,21 +29,20 @@ export default function RecipeGrid({ recipes }: Props) {
   try {
     return (
     <div>
-      <div className="mt-6 mr-3 grid gap-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {recipes.map((recipe: any) => (
           <Link key={recipe._id} href={`/single-recipe/${recipe._id}`} className="block">
             <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
               
               {/* Image */}
-              <figure className="h-48 overflow-hidden bg-base-200">
+              <figure className="h-48 overflow-hidden bg-base-200 relative">
                 {recipe.imageURI ? (
                   <Image
                     src={recipe.imageURI.trimEnd()}
                     alt={recipe.title?.[lang] ?? "Recipe image"}
                     loading="lazy"
-                    width={400}
-                    height={300}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-sm text-slate-500">

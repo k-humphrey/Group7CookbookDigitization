@@ -82,7 +82,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
             <div className="flex w-full gap-6">
 
                 {/* Filters */}
-                <div className="w-64 sticky top-0 self-start shrink-0">
+                <div className="w-auto sticky top-0 self-start shrink-0">
                     <Filters onChange={(selectedFilters) => {
                         setFilters(selectedFilters);
                         handleSearch(false);
