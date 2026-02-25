@@ -55,17 +55,17 @@ export default function RecipeSearchPage() {
 
       {/* Background Image */}
       <div 
-        className="w-full bg-cover bg-center bg-no-repeat pt-15 pb-5 flex flex-col items-center"  
+        className="w-full bg-cover bg-center bg-no-repeat py-6 flex flex-col items-center"  
         style={{
         backgroundSize: "110%", 
         backgroundImage: "url('/searchbackground.jpg')"
         }}
       >
         <div className="w-11/12 md:w-full">
-          <Searchbar onSearch={(ingredients) => {
-              setIngredients(ingredients);
-              handleSearch(false);
-            }} initialTags={initialTags} /> 
+        <Searchbar onSearch={(ingredients) => {
+            setIngredients(ingredients);
+            handleSearch(false);
+          }} initialTags={initialTags} /> 
         </div>
       </div>
       <div className="flex w-full">

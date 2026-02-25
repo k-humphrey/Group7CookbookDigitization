@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider";
 import { useState } from "react";
 import Toast from "@/app/components/toast";
@@ -28,18 +29,20 @@ export default function RecipeGrid({ recipes }: Props) {
   try {
     return (
     <div>
-      <div className="mt-6 grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-6 mr-3 grid gap-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {recipes.map((recipe: any) => (
           <Link key={recipe._id} href={`/single-recipe/${recipe._id}`} className="block focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded" aria-label={`View recipe ${recipe.title?.[lang]}`}>
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
               
               {/* Image */}
               <figure className="h-48 overflow-hidden bg-base-200">
                 {recipe.imageURI ? (
-                  <img
-                    src={recipe.imageURI}
+                  <Image
+                    src={recipe.imageURI.trimEnd()}
                     alt={recipe.title?.[lang] ?? "Recipe image"}
                     loading="lazy"
+                    width={400}
+                    height={300}
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -50,17 +53,13 @@ export default function RecipeGrid({ recipes }: Props) {
               </figure>
 
               {/* Content */}
-              <div className="card-body">
-                <h2 className="card-title text-lg">
+              <div className="card-body flex-1 flex flex-col -m-1">
+                <h2 className="card-title text-lg line-clamp-2 min-h-14">
                   {recipe.title?.[lang]}
                 </h2>
 
-                <p className="text-sm text-slate-600 line-clamp-3">
-                  {recipe.instructions?.[lang]}
-                </p>
-
                 {/* Tags */}
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-1 flex flex-wrap gap-2 min-h-7">
                   {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
                     return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
                         <div key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
@@ -70,7 +69,7 @@ export default function RecipeGrid({ recipes }: Props) {
                   })()}
                 </div>
 
-                <div className="card-actions justify-end mt-4 flex gap-2">
+                <div className="card-actions justify-end mt-2 flex gap-2">
                     {/* View Recipe Button */}
                     <span className="btn btn-sm btn-success pointer-events-none">{t.viewRecipes}</span>
 

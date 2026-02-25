@@ -103,23 +103,34 @@ export default function Filters({ onChange }: Props) {
   };
   
   return (
-    <section>
-      {/* Filters */}
-      <div
-        className={`mt-6 collapse collapse-arrow bg-gray-200 border-base-300 border mx-3 ${
-          isOpen ? "collapse-open" : "collapse-close"
-        }`}
-      >
-        
-        <div
-        className="collapse-title font-semibold after:start-5 after:end-auto pe-1 ps-12 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-        >
-          {t.filters}
-        </div>
-
-        <div className="collapse-content text-sm ml-2">
-          <div className="h-200">
+    <aside
+    className={[
+      "mt-6 mx-3 bg-gray-200 border border-base-300 rounded-xl",
+      "transition-all duration-300",
+      isOpen ? "w-40 sm:w-55" : "w-10", // open vs collapsed width
+      "h-full shrink-0 relative",
+    ].join(" ")}
+  >
+    {/* Filters */}
+    <div className={isOpen ? "flex flex-row items-center justify-between p-4 font-semibold" : "opacity-0"}>
+      {t.filters}
+    </div>
+    {/* Arrow sliver */}
+    <button type="button" onClick={() => setIsOpen(!isOpen)}
+      className={[
+        "absolute top-3 right-2",
+        "btn btn-ghost btn-xs",
+        "p-0 w-6 h-6 min-h-0",
+      ].join(" ")}
+      aria-label={isOpen ? "Collapse filters" : "Expand filters"}
+    >
+      <span className={isOpen ? "inline-block" : "inline-block rotate-180"}>
+        ❮
+      </span>
+    </button>
+    {/* Content */}
+    <div className={isOpen ? "p-4 -mt-2 text-sm ml-1" : "p-4 text-sm ml-1 opacity-0 pointer-events-none"}>
+          <div className="flex flex-col gap-2">
             {/* Filter 1: Kitchen Appliances */}
             <div>
               <h3 className="font-semibold text-xs uppercase mb-2">{t.appliances}</h3>
@@ -205,7 +216,6 @@ export default function Filters({ onChange }: Props) {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </aside>
   );
 }
