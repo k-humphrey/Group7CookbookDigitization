@@ -5,10 +5,16 @@ import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import { cookies } from "next/headers";
 import AdminPanelClient from "../components/adminPanelClient";
+import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
+import { NextResponse } from 'next/server';
+
+
 
 export default async function AdminPanelPage() {
 	const cookieStore = await cookies(); 
-
+	if (!isAdminAuthenticated(cookieStore)) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+	}
 	await connectToDB();
 
 	const recipes = await Recipe.find().lean();
