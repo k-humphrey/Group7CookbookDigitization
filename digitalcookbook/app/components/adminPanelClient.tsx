@@ -122,7 +122,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 						...selectedRecipe,
 						ingredientPlainText: {
 						...selectedRecipe.ingredientPlainText,
-						en: e.target.value,
+						es: e.target.value,
 						},
 					})
 				}
@@ -158,7 +158,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 						...selectedRecipe,
 						instructions: {
 						...selectedRecipe.instructions,
-						en: e.target.value,
+						es: e.target.value,
 						},
 					})
 				}
@@ -195,7 +195,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 					onChange={(e) =>
 						setSelectedRecipe({
 							...selectedRecipe,
-							tags: {
+							espTags: {
 							...selectedRecipe.espTags,
 							[tag]: e.target.checked,
 							},
@@ -244,7 +244,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 					onChange={(e) =>
 						setSelectedRecipe({
 						...selectedRecipe,
-						allergens: {
+						espAllergens: {
 							...selectedRecipe.espAllergens,
 							[allergen]: e.target.checked,
 						},
