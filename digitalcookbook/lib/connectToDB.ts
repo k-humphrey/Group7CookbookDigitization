@@ -1,34 +1,23 @@
+// lib/connectToDB.ts
 import mongoose from "mongoose";
-import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
-
+//single global connection variable
 let isConnected = false;
-let currentURI: string | null = null;
 
-export async function connectToDB(cookieStore: any) {
-  const isAdmin = isAdminAuthenticated(cookieStore);
+export async function connectToDB() {
+  //if we are already connected, return the connection
+  if (isConnected) return mongoose;
 
-  const uri = isAdmin
-    ? process.env.MONGODB_ADMIN_URI
-    : process.env.MONGODB_URI;
+  //if not, connect using MONGODB_URI
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error("Missing MONGODB_URI");
+  await mongoose.connect(uri, {
+    dbName: "thriftyBitsDB", 
+  });
 
-  if (!uri) {
-    throw new Error("Missing MongoDB URI");
-  }
-
-  // If already connected AND using the same URI, reuse it
-  if (isConnected && currentURI === uri) {
-    return mongoose;
-  }
-
-  // If switching from user → admin or admin → user, create a new connection
-  await mongoose.disconnect();
-
-  await mongoose.connect(uri);
-
+  //set the global connection variable to true now, and log it
   isConnected = true;
-  currentURI = uri;
+  console.log("Connected to MongoDB");
 
-  console.log("Connected to", isAdmin ? "ADMIN" : "USER", "database");
-
+  //return the connection
   return mongoose;
 }

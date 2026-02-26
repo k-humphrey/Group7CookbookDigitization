@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try{
-    await connectToDB(cookieStore);
+    await connectToDB();
 
     const data = await req.json();
 

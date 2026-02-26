@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
     const cookieStore = await cookies(); 
 
-    await connectToDB(cookieStore);
+    await connectToDB();
 
     const validUser = await User.findOne({ username });
 

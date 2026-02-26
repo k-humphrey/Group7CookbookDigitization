@@ -1,12 +1,10 @@
 import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import { NextResponse } from 'next/server';
-import { cookies } from "next/headers";
 
 export async function GET(req: Request){
-    const cookieStore = await cookies(); 
 
-  await connectToDB(cookieStore);
+  await connectToDB();
     
     // find highest cost from database
     const result = await Recipe.aggregate([{

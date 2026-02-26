@@ -9,7 +9,7 @@ import InfoCard from "../components/infocard";
 export default async function AdminPanelPage() {
 	const cookieStore = await cookies(); 
 
-	await connectToDB(cookieStore);
+	await connectToDB();
 
 	const recipes = await Recipe.find().lean();
 	const safeRecipes = JSON.parse(JSON.stringify(recipes));
