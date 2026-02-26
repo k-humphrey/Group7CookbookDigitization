@@ -50,6 +50,9 @@ export default function RecipeSearchPage() {
 
   return (
     <div>
+
+      <a href="#recipes" className="sr-only">Skip to recipes</a>
+
       {/* Background Image */}
       <div 
         className="w-full bg-cover bg-center bg-no-repeat py-6 flex flex-col items-center"  
@@ -75,7 +78,7 @@ export default function RecipeSearchPage() {
         </div>
         
         {/* Recipes */}
-        <div className="flex-1">
+        <div id="recipes" className="flex-1">
           <RecipeGrid recipes={recipes} />
         </div>
       </div>

@@ -106,7 +106,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                     value={servings || ""}
                     placeholder="0"
                     onChange={(e) => setServings(Number(e.target.value))}
-                    className="ml-2 w-16 input input-sm input-bordered"
+                    className="ml-2 w-16 input input-sm input-bordered focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:rounded-md"
                   />
                 </div>
                 <span className="font-semibold">
@@ -137,7 +137,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
 
           {/* Ingredients */}
           <div className="px-6 py-6 flex justify-left">
-            <section className="rounded-lg bg-[#dfe8d8] p-4 w-1/3 print:w-2/3"> 
+            <section className="rounded-lg bg-[#dfe8d8] p-4 lg:w-1/3 print:w-2/3"> 
               <h2 className="text-center text-md font-bold tracking-wide">{t.ing}</h2>
               <ul className="mt-3 list-disc list-inside space-y-1 pl-5 text-sm ">
                 {recipe?.ingredientPlainText?.[lang] ? (

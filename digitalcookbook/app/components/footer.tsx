@@ -36,6 +36,11 @@ const STRINGS = {
         adminPortal: "Admin Portal",
     },
 };
+
+// className for focus
+const focusClasses =
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2   focus-visible:ring-neutral focus-visible:rounded-md hover:shadow-lx";
+
 export default function Footer(){
     const langContext = useLang();
     const lang = langContext?.lang ?? 'en';
@@ -52,28 +57,28 @@ export default function Footer(){
                 <Link
                     href="/"
                     rel="noopener noreferrer"
-                    className="link link-hover"  >
+                    className={focusClasses + " link link-hover"}>
                     {t.homepage}
                 </Link>
             
                 <Link
                     href="/recipes?ingredients="
                     rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.allRecipes}
                 </Link>
 
                 <Link
                     href="/tools"
                     rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.tools}
                 </Link>
 
                 <Link
                     href="/admin-login"
                     rel="noopener noreferrer"
-                    className="link link-hover">
+                    className={focusClasses + " link link-hover"}>
                     {t.adminPortal}
                 </Link>
         </nav>
@@ -84,14 +89,14 @@ export default function Footer(){
                 <Link
                     href="/comm-partners"
                     rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.communityPartners}
                 </Link>
 
                 <Link
                     href="/comm-resources"
                     rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.communityResources}
                 </Link>
         </nav>
@@ -99,7 +104,7 @@ export default function Footer(){
         {/* Contact */}
         <nav>
             <h6 className="footer-title">{t.contact}</h6>
-            <a className="link link-hover">{t.email}</a>
+            <a href="mailto:Katelyn.steakley@pcsstn.com" rel="noopener noreferrer" className={focusClasses + " link link-hover"}>{t.email}</a>
         </nav>
 
         {/* Social */}
