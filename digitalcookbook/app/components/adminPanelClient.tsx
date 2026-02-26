@@ -293,7 +293,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 					className="btn btn-primary flex-1"
 					onClick={async () => {
 						await fetch(
-						`/api/recipes/${selectedRecipe._id}`,
+						`/api/edit-recipes/`,
 							{
 								method: "PUT",
 								headers: {
