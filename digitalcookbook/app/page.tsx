@@ -15,7 +15,7 @@ const STRINGS = {
     featured: "Featured Recipes",
   },
   es: {
-    thrifyBites: "Bocados Económicos",
+    thrifyBites: "Mordidas Económicos",
     search: "Busca por ingredientes que tienes o encuentra la receta perfecta",
     featured: "Recetas Destacadas",
   },

@@ -1,3 +1,5 @@
+//app/api/edit-recipes/route.ts
+
 import { cookies } from "next/headers";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import { NextResponse } from "next/server";
@@ -12,7 +14,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try{
-    await connectToDB(cookieStore);
+    await connectToDB();
 
     const data = await req.json();
 

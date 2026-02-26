@@ -76,7 +76,7 @@ export default function Footer(){
                 </Link>
 
                 <Link
-                    href="/admin"
+                    href="/admin-login"
                     rel="noopener noreferrer"
                     className={focusClasses + " link link-hover"}>
                     {t.adminPortal}
