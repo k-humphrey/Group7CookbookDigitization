@@ -1,9 +1,8 @@
-//app/admin/page.tsx
-
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+
 
 export default function AdminLoginPage() {
     const router = useRouter();
@@ -12,6 +11,23 @@ export default function AdminLoginPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
+    // Check if already authenticated
+    useEffect(() => {
+        async function checkAuth() {
+            const res = await fetch("/api/checkLogin", {
+                method: "GET",
+                credentials: "include", // send cookies
+            });
+
+            if (res.status === 200) { //if already authenticated, route to admin panel
+                router.push("/admin-panel");
+            }
+        }
+
+        checkAuth();
+    }, [router]);
+
+    //once button is pressed, call login to check if they have logged in correctly 
     async function handleLogin(e: React.FormEvent) {
         e.preventDefault();
 
@@ -25,8 +41,7 @@ export default function AdminLoginPage() {
             setError("Invalid username or password");
             return;
         }
-
-        router.push("/admin");
+        router.push("/admin-panel");
     }
 
     return (

@@ -10,9 +10,9 @@ export async function POST(req: Request) {
 
     const cookieStore = await cookies(); 
 
-    await connectToDB(cookieStore);
+    await connectToDB();
 
-    const validUser = await User.findOne({ username});
+    const validUser = await User.findOne({ username });
 
     if (!validUser || validUser.password !== password) {
         return NextResponse.json(

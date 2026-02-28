@@ -50,6 +50,7 @@ export default function MeasurementConverter() {
       <div className="flex gap-4 mb-6">
         <input
           type="number"
+          inputMode="decimal"
           min={0}
           value={value || ""}
           placeholder={t.placeholder}

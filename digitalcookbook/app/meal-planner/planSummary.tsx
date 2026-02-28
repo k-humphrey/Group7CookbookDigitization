@@ -15,6 +15,8 @@ interface Props {
     selectedRecipes: SelectedRecipe[];
 }
 
+const focusClasses = "focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded";
+
 // Component to show summary of selected recipes, total costs, and scaled ingredients
 export default function PlanSummary({ selectedRecipes }: Props) {
     // Lang settings
@@ -34,25 +36,31 @@ export default function PlanSummary({ selectedRecipes }: Props) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
 
                 {/* PLAN TOTALS */}
-                <div className="bg-base-200 p-6 rounded-xl shadow lg:col-span-1 lg:h-50">
-                    <h2 className="text-2xl font-bold mb-4">{t.planTotals}</h2>
-                    <p className="text-lg">{t.totalServings}: <b>{totalServings}</b></p>
-                    <p className="text-lg">{t.totalCost}: <b>${totalRecipesCost}</b></p>
+                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-1 h-50"} tabIndex={0}>
+                    <div className="card-body text-lg overflow-y-auto">
+                        <h2 className="card-title text-2xl font-bold mb-4">{t.planTotals}</h2>
+
+                        <ul>
+                            <li>{t.totalServings}: <b>{totalServings}</b></li>
+                            <li>{t.totalCost}: <b>${totalRecipesCost}</b></li>
+                        </ul>
+                    </div>
                 </div>
 
                 {/* TOTAL INGREDIENTS */}
-                <div className="bg-base-200 p-6 rounded-xl shadow lg:col-span-2 lg:h-50 overflow-y-auto">
-                    <h2 className="text-2xl font-bold mb-4">{t.totalIngredients}</h2>
+                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-2 h-50"}>
+                    <div className="card-body overflow-y-auto">
+                        <h2 className="card-title text-2xl font-bold mb-4">{t.totalIngredients}</h2>
 
-                    <ul className="list-disc ml-6 space-y-2">
-                        {combinedIngredients.map((item, index) => (
-
-                            <li key={index}>
-                                <b>{decimalToFraction(item.totalAmount, item.ingredient.unit)} {item.ingredient.unit.toLowerCase() === "each" ? "" : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit} {item.ingredient?.[lang] ?? item.ingredient.ingredient}</b>
-                                {} — ${item.ingredient.costPerUnit.toFixed(2)} per {item.ingredient.baseUnit} {} (${item.totalCost.toFixed(2)})
-                            </li>
-                        ))}
-                    </ul>
+                        <ul className="list-disc ml-6 space-y-2">
+                            {combinedIngredients.map((item, index) => (
+                                <li key={index}>
+                                    <b>{decimalToFraction(item.totalAmount, item.ingredient.unit)} {item.ingredient.unit.toLowerCase() === "each" ? "" : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit} {item.ingredient?.[lang] ?? item.ingredient.ingredient}</b>
+                                    {} — ${item.ingredient.costPerUnit.toFixed(2)} per {item.ingredient.baseUnit} {} (${item.totalCost.toFixed(2)})
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
 

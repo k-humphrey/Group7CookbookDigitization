@@ -1,3 +1,5 @@
+//app/api/edit-recipes/route.ts
+
 import { cookies } from "next/headers";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import { NextResponse } from "next/server";
@@ -8,21 +10,25 @@ import Recipe from "@/models/Recipe";
 export async function POST(req: Request) {
   const cookieStore = await cookies(); 
 
+  //check authentication
   if (!isAdminAuthenticated(cookieStore)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try{
-    await connectToDB(cookieStore);
+    await connectToDB();
 
+    //get json recipe as data
     const data = await req.json();
-
+    //cast data to the recipe model, add to the db
     const recipe = await Recipe.create(data);
 
+    //return if successful
     return NextResponse.json(
       { success: true, recipe },
       { status: 201 }
     );
   } catch(err: any){
+    //if anything broke, print error
     console.error("POST /api/edit-recipes error:", err);
     return NextResponse.json(
       { error: err.message },

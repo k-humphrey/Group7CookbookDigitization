@@ -11,6 +11,8 @@ interface Props {
     updateServings: (recipeID: string, servings: number) => void;
 }
 
+const focusClasses = "focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-neutral focus-visible:rounded-md hover:shadow-lx"
+
 export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, updateServings}: Props) {
     // Lang settings
     const langContext = useLang();
@@ -18,7 +20,7 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
     const t = PLANNER_STRINGS[lang];
 
     return (
-        <div key={recipe._id} className="card bg-base-100 shadow-xl">
+        <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
 
             {/* Image */}
             <figure className="h-40 overflow-hidden relative">
@@ -49,7 +51,7 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                 </p>
 
                 {/* Add / Remove Button */}
-                <button className={`btn ${selected ? "btn-error" : "btn-success"}`} onClick={() => toggleRecipe(recipe)}>
+                <button className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`} onClick={() => toggleRecipe(recipe)}>
                     {selected ? t.remove : t.addToPlan}
                 </button>
 
@@ -59,10 +61,11 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                         <span>{t.servings}:</span>
                         <input
                             type="number"
+                            inputMode="numeric"
                             min={1}
                             value={selected.servings}
                             onChange={(e) => updateServings(recipe._id, Number(e.target.value))}
-                            className="input input-bordered w-20"
+                            className="input input-bordered w-full lg:w-20"
                         />
                     </div>
                 )}

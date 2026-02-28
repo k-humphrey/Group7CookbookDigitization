@@ -3,12 +3,10 @@ import Recipe from "@/models/Recipe";
 import Ingredient from "@/models/Ingredient";
 import Appliance from "@/models/Appliance";
 import { NextResponse } from 'next/server';
-import { cookies } from "next/headers";
 
 export async function GET(req: Request) {
-  const cookieStore = await cookies(); 
 
-  await connectToDB(cookieStore);
+  await connectToDB();
 
   const url = new URL(req.url);
   const appliancesParams = url.searchParams.get("appliances");

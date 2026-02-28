@@ -25,6 +25,8 @@ const STRINGS = {
   }
 };
 
+const focusClasses = "focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2";
+
 export default function Timer() {
   // Input state
   const [inputHours, setInputHours] = useState<number>(0);
@@ -94,12 +96,6 @@ export default function Timer() {
     setter(num);
   };
 
-  //KeyDown handler to block letters but allow backspace/delete/arrows/tab
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)) return;
-    if (!/^\d$/.test(e.key)) e.preventDefault();
-  };
-
   //Styling
   return (
     <div className="flex flex-col items-center mt-5 gap-6">
@@ -117,49 +113,58 @@ export default function Timer() {
           {/* Hours */}
           <div>
             <input
+              id="hours"
               type="number"
+              inputMode="numeric"
               max={24}
               value={inputHours === 0 ? "" : inputHours}
               placeholder="0"
               onChange={(e) =>
                 handleInputChange(e.target.value, 24, setInputHours)
               }
-              onKeyDown={handleKeyDown}
-              className="w-16 p-1 border rounded text-center placeholder-gray-400"
+              className={focusClasses + " w-16 p-1 border rounded text-center placeholder-gray-400"}
             />
-            <div className="text-sm text-gray-500">{t.hours}</div>
+            <div>
+              <label htmlFor="hours" className="text-sm text-gray-500">{t.hours}</label>
+            </div>
           </div>
 
           {/* Minutes */}
           <div>
             <input
+              id="minutes"
               type="number"
+              inputMode="numeric"
               max={60}
               value={inputMinutes === 0 ? "" : inputMinutes}
               placeholder="0"
               onChange={(e) =>
                 handleInputChange(e.target.value, 60, setInputMinutes)
               }
-              onKeyDown={handleKeyDown}
-              className="w-16 p-1 border rounded text-center placeholder-gray-400"
+              className={focusClasses + " w-16 p-1 border rounded text-center placeholder-gray-400"}
             />
-            <div className="text-sm text-gray-500">{t.minutes}</div>
+            <div>
+              <label htmlFor="minutes" className="text-sm text-gray-500">{t.minutes}</label>
+            </div>
           </div>
 
           {/* Seconds */}
           <div>
             <input
+              id="seconds"
               type="number"
+              inputMode="numeric"
               max={60}
               value={inputSeconds === 0 ? "" : inputSeconds}
               placeholder="0"
               onChange={(e) =>
                 handleInputChange(e.target.value, 60, setInputSeconds)
               }
-              onKeyDown={handleKeyDown}
-              className="w-16 p-1 border rounded text-center placeholder-gray-400"
+              className={focusClasses + " w-16 p-1 border rounded text-center placeholder-gray-400"}
             />
-            <div className="text-sm text-gray-500">{t.seconds}</div>
+            <div>
+              <label htmlFor="seconds" className="text-sm text-gray-500">{t.seconds}</label>
+            </div>
           </div>
         </div>
 
@@ -168,14 +173,14 @@ export default function Timer() {
           {!isRunning ? (
             <button
               onClick={handleStart}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className={focusClasses + " px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"}
             >
               {t.start}
             </button>
           ) : (
             <button
               onClick={handlePause}
-              className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+              className={focusClasses + " px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"}
             >
               {t.pause}
             </button>
@@ -183,7 +188,7 @@ export default function Timer() {
 
           <button
             onClick={handleReset}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+            className={focusClasses + " px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"}
           >
             {t.reset}
           </button>
@@ -192,5 +197,3 @@ export default function Timer() {
     </div>
   );
 }
-
-

@@ -108,7 +108,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                     value={servings || ""}
                     placeholder="0"
                     onChange={(e) => setServings(Number(e.target.value))}
-                    className="ml-2 w-16 input input-sm input-bordered"
+                    className="ml-2 w-16 input input-sm input-bordered focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:rounded-md"
                   />
                 </div>
                 <span className="font-semibold">
