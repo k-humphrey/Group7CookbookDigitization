@@ -102,16 +102,16 @@ export default function Timer() {
 
   //Styling
   return (
-    <div className="flex flex-col items-center mt-10 gap-6">
+    <div className="flex flex-col items-center mt-5 gap-6">
       {/* Timer display */}
-      <div className="card w-[44rem] bg-base-100 shadow-xl p-6 -mt-20">
+      <div className="card w-full max-w-3xl bg-base-100 shadow-xl p-4 sm:p-6">
         <div className="stat text-center">
           <div className="stat-title text-xl md:text-2xl -mt-9">{t.remaining}</div>
-          <div className="stat-value text-8xl md:text-9xl font-bold text-gray-600">{formatTime(secondsLeft)}</div>
+          <div className="stat-value text-7xl md:text-9xl font-bold text-gray-600">{formatTime(secondsLeft)}</div>
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-4 mt-6">
+      <div className="flex flex-col items-center gap-4 mt-4 mb-5">
         {/* Inputs with labels */}
         <div className="flex gap-4 text-center">
           {/* Hours */}
