@@ -4,6 +4,7 @@ import { SelectedRecipe } from "@/app/meal-planner/page";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
 import { useLang } from "@/app/components/languageprovider";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
+import Image from "next/image";
 
 // Props needed to render recipe breakdown card
 interface Props {
@@ -52,11 +53,12 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
             {/* Image */}
             {recipe.imageURI && (
-                <div className="flex-none w-100 h-80 rounded-lg overflow-hidden">
-                    <img
-                        src={recipe.imageURI}
+                <div className="w-full md:w-100 h-80 rounded-lg overflow-hidden relative shrink-0">
+                    <Image
+                        src={recipe.imageURI.trimEnd()}
                         alt={recipe.title?.[lang]}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                     />
                 </div>
             )}

@@ -70,17 +70,16 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
 
     // Render recipe cards with add/remove button and servings input if selected
     return (
-        <div>
+        <div className="pt-15 pb-2 flex flex-col gap-3">
             {/* Searchbar */}
-            <div className="w-full pt-15 pb-5 flex flex-col items-center">
+            <div>
                 <Searchbar onSearch={(ingredients) => {
                     setIngredients(ingredients);
                     handleSearch(false);
                 }} /> 
             </div>
 
-            <div className="flex w-full gap-6">
-
+            <div className="flex gap-3">
                 {/* Filters */}
                 <div className="w-auto sticky top-0 self-start shrink-0">
                     <Filters onChange={(selectedFilters) => {
@@ -90,7 +89,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
                 </div>
 
                 {/* Recipe Grid */}
-                <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
                     {recipes.map((recipe: Recipe) => {
                         const selected = selectedRecipes.find(r => r.recipe._id === recipe._id);
 
@@ -101,8 +100,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
                                 selected={selected}
                                 toggleRecipe={toggleRecipe}
                                 updateServings={updateServings}
-                            />
-                            
+                            />  
                         );
                     })}
                 </div>
