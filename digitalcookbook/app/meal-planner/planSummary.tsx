@@ -4,7 +4,6 @@ import { SelectedRecipe } from "@/app/meal-planner/page"
 import { useLang } from "@/app/components/languageprovider";
 import { combineIngredients } from "@/lib/combineIngredients";
 import { decimalToFraction } from "@/lib/fractionConverter";
-
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStrings"; 
 
@@ -33,8 +32,8 @@ export default function PlanSummary({ selectedRecipes }: Props) {
     
     // Render summary of plan totals and breakdown for each selected recipe
     return (
-        <div className="mt-16 space-y-10">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <div className="mt-15 gap-3 flex flex-col">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
 
                 {/* PLAN TOTALS */}
                 <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-1 h-50"} tabIndex={0}>

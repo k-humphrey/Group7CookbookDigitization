@@ -105,7 +105,7 @@ export default function Filters({ onChange }: Props) {
   return (
     <aside
     className={[
-      "mt-6 mx-3 bg-gray-200 border border-base-300 rounded-xl",
+      "bg-gray-200 border border-base-300 rounded-xl",
       "transition-all duration-300",
       isOpen ? "w-40 sm:w-55" : "w-10", // open vs collapsed width
       "h-full shrink-0 relative",

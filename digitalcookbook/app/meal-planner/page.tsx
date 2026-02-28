@@ -49,35 +49,34 @@ export default function BackpackPlannerPage() {
         <main className="min-h-screen bg-base-100">
             {/* Background Image */}
             <div 
-                className="w-full bg-cover bg-center pt-15 pb-5 flex flex-col items-center"  
-                style={{ backgroundSize: "110%", backgroundImage: "url('/searchbackground.jpg')" }}
+                className="w-full bg-cover bg-center pt-14 pb-5 flex flex-col items-center"  
+                style={{ backgroundSize: "110%", backgroundImage: "url('/searchbackground2.0.png')" }}
             >
                     
-            <div className="mx-auto w-full px-6 pt-6 pb-10">
+                <div className="mx-auto w-full px-3">
 
-                {/* PAGE HEADER */}
-                <div>
-                    <h1 className="text-3xl font-bold text-center">{t.pageTitle}</h1>
-                    <p className="text-base-content/70 mt-5 text-center">
-                        {t.pageDescription}
-                    </p>
-                </div>
-
-                {/* MAIN GRID */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-                    {/* RECIPE PICKER */}
-                    <div className="order-2 lg:order-1 lg:col-span-1">
-                        <RecipePicker selectedRecipes={selectedRecipes} setSelectedRecipes={setSelectedRecipes} />
+                    {/* PAGE HEADER */}
+                    <div className="flex flex-col gap-5 text-center">
+                        <h1 className="text-3xl md:text-7xl font-bold">{t.pageTitle}</h1>
+                        <p className="text-lg">
+                            {t.pageDescription}
+                        </p>
                     </div>
 
-                    {/* SUMMARY PANEL */}
-                    <div className="order-1 lg:order-2 lg:col-span-1">
-                        <PlanSummary selectedRecipes={selectedRecipes} />
-                    </div>
+                    {/* MAIN GRID */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
+                        {/* RECIPE PICKER */}
+                        <div className="order-2 lg:order-1 lg:col-span-1">
+                            <RecipePicker selectedRecipes={selectedRecipes} setSelectedRecipes={setSelectedRecipes} />
+                        </div>
+
+                        {/* SUMMARY PANEL */}
+                        <div className="order-1 lg:order-2 lg:col-span-1">
+                            <PlanSummary selectedRecipes={selectedRecipes} />
+                        </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </main>
     );

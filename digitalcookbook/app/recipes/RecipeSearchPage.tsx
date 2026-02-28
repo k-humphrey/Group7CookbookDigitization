@@ -58,7 +58,7 @@ export default function RecipeSearchPage() {
         className="w-full bg-cover bg-center bg-no-repeat py-6 flex flex-col items-center"  
         style={{
         backgroundSize: "110%", 
-        backgroundImage: "url('/searchbackground.jpg')"
+        backgroundImage: "url('/searchbackground2.0.png')"
         }}
       >
         <div className="w-11/12 md:w-full">
@@ -68,7 +68,7 @@ export default function RecipeSearchPage() {
           }} initialTags={initialTags} /> 
         </div>
       </div>
-      <div className="flex w-full">
+      <div className="flex w-full p-3 gap-3">
         {/* Filters */}
         <div className="sticky top-0 self-start shrink-0">
           <Filters onChange={(selectedFilters) => {
@@ -78,7 +78,7 @@ export default function RecipeSearchPage() {
         </div>
         
         {/* Recipes */}
-        <div id="recipes" className="flex-1">
+        <div id="recipes" className="flex-1 min-w-0">
           <RecipeGrid recipes={recipes} />
         </div>
       </div>
