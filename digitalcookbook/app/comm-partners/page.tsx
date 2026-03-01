@@ -8,9 +8,11 @@ import InfoCard from "../components/infocard";
 const STRINGS = {
     en: {
         communityPartners: "Community Partners",
+        partnerList: "Partner List",
     },
     es: {
         communityPartners: "Socios Comunitarios",
+        partnerList: "Lista de Socios",
     },
 };
 
@@ -21,7 +23,7 @@ export default function CommPartnersPage() {
     const t = STRINGS[lang];
     
     return (
-        <main className="relative min-h-screen flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat"
+        <main aria-label={t.communityPartners} className="relative min-h-screen flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat"
 			style={{
 				backgroundImage: "url('/cutting-board.png')",
 			}}
@@ -35,8 +37,8 @@ export default function CommPartnersPage() {
 			</div>
 
             {/* Cards Container aka Responsive Grid, works on mobile */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20">
-                <div className="flex justify-center">
+            <ul aria-label={t.partnerList} className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20">
+                <li className="flex justify-center">
                     <InfoCard
                         title="Kiwanis"
                         description="From Kiwanis.org: Kids need adults who care. That's why people join Kiwanis clubs. 
@@ -48,9 +50,9 @@ export default function CommPartnersPage() {
                         us most."
                         href="https://www.kiwanis.org/"
                     />
-                </div>
+                </li>
                 
-                <div className="flex justify-center">
+                <li className="flex justify-center">
                     <InfoCard
                         title="Enbridge"
                         description="At Enbridge, our goal is to be the first-choice energy delivery company 
@@ -62,17 +64,17 @@ export default function CommPartnersPage() {
                         footprint of the energy we deliver, and to achieving net-zero emissions from our operations by 2050.1, 2"
                         href="https://www.enbridge.com/"
                     />
-                </div>
+                </li>
 
-                <div className="flex justify-center">
+                <li className="flex justify-center">
                     <InfoCard
                         title="Power of Putnam"
                         description="Who We Are: Power of Putnam is a coalition that brings together community members concerned about the issue of substance misuse to work together in the development of strategies and in finding ways of implementing those strategies into the community.
                         Our Mission: Our mission is to partner with the diverse elements of Putnam County in a united substance misuse prevention effort designed to empower individuals, strengthen families, and build character and resiliency resulting in drug-free children and youth."
                         href="https://www.powerofputnam.org/"
                     />
-                </div>
-            </div>
+                </li>
+            </ul>
         </main>
     );
 }

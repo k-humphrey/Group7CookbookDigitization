@@ -16,8 +16,6 @@ export default async function Page({
   
   if (!mongoose.Types.ObjectId.isValid(id)) notFound();
 
- 
-
   await connectToDB();
 
   const recipe = await Recipe.findById(id)

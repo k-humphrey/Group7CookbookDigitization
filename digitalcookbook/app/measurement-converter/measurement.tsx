@@ -5,8 +5,6 @@ import { useLang } from "@/app/components/languageprovider";
 import { decimalToFraction } from "@/lib/fractionConverter";
 import { MEASUREMENT_STRINGS } from "./measurementStrings"; // adjust path if needed
 
-export { conversionsToOz };
-
 // Unit type
 type Unit =
   | "gallon"
@@ -18,7 +16,7 @@ type Unit =
   | "tsp";
 
 // Conversion factors to ounces. Stores ounces in each unit
-const conversionsToOz: Record<Unit, number> = {
+export const conversionsToOz: Record<Unit, number> = {
   gallon: 128,
   quart: 32,
   pint: 16,
@@ -40,7 +38,7 @@ export default function MeasurementConverter() {
   const valueInOz = value * conversionsToOz[unit];
 
   return (
-    <div className="bg-white border-4 border-blue-900 rounded-[32px] shadow-2xl p-6 w-[360px]">
+    <div className="bg-white border-4 border-blue-900 rounded-4xl shadow-2xl p-6 w-[360px]">
       {/* Title */}
       <h2 className="text-2xl font-extrabold text-center mb-5 text-red-500">
         {t.title}
@@ -48,7 +46,11 @@ export default function MeasurementConverter() {
 
       {/* Input */}
       <div className="flex gap-4 mb-6">
+        <label htmlFor="measurement-value" className="sr-only">
+          {t.title}
+        </label>
         <input
+          id="measurement-value"
           type="number"
           inputMode="decimal"
           min={0}
@@ -63,7 +65,11 @@ export default function MeasurementConverter() {
           "
         />
         {/*Unit Dropdown */}
+        <label htmlFor="measurement-unit" className="sr-only">
+          {t.unitLabel}
+        </label>
         <select
+          id="measurement-unit"
           value={unit}
           onChange={(e) => setUnit(e.target.value as Unit)}
           className="
@@ -81,14 +87,14 @@ export default function MeasurementConverter() {
       </div>
 
       {/* Results */}
-      <div className="grid grid-cols-2 gap-3 mb-6 text-sm">
+      <div role="status" aria-live="polite" aria-atomic="true" className="grid grid-cols-2 gap-3 mb-6 text-sm">
         {/*Loops through all units and convert */}
         {(Object.entries(conversionsToOz) as [Unit, number][]).map(([key, oz]) => {
           {/*Highlight the selected unit */}
           const isActive = key === unit;
 
           return (
-            <div key={key} className="flex justify-between border-b pb-1">
+            <div aria-current={isActive ? "true" : undefined} key={key} className="flex justify-between border-b pb-1">
               <span className="capitalize">{t.units[key]}</span>
               <span>{decimalToFraction(valueInOz / oz, key)}</span>
             </div>

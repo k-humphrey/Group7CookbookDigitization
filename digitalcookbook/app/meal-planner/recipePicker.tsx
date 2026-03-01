@@ -81,7 +81,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
 
             <div className="flex gap-3">
                 {/* Filters */}
-                <div className="w-auto sticky top-0 self-start shrink-0">
+                <div className="w-auto sticky top-3 self-start shrink-0">
                     <Filters onChange={(selectedFilters) => {
                         setFilters(selectedFilters);
                         handleSearch(false);
@@ -89,21 +89,23 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
                 </div>
 
                 {/* Recipe Grid */}
-                <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
+                <ul className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3" aria-label={t.recipeGridSection}>
                     {recipes.map((recipe: Recipe) => {
                         const selected = selectedRecipes.find(r => r.recipe._id === recipe._id);
 
                         return (
-                            <PlannerRecipeCards
-                                key={recipe._id}
-                                recipe={recipe}
-                                selected={selected}
-                                toggleRecipe={toggleRecipe}
-                                updateServings={updateServings}
-                            />  
+                            <li key={recipe._id}>
+                                <PlannerRecipeCards
+                                    key={recipe._id}
+                                    recipe={recipe}
+                                    selected={selected}
+                                    toggleRecipe={toggleRecipe}
+                                    updateServings={updateServings}
+                                />  
+                            </li>
                         );
                     })}
-                </div>
+                </ul>
             </div>
         </div>
     );

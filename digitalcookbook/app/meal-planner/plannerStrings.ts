@@ -11,8 +11,13 @@ export const PLANNER_STRINGS = {
         ingredientsNeeded: "Ingredients Needed",
         servings: "Servings",
         addToPlan: "Add to Plan",
-        remove: "Remove"
-
+        remove: "Remove",
+        recipePickerSection: "Recipe selection area",
+        summaryPanelSection: "Meal plan summary and totals area",
+        recipeGridSection: "Recipe selection grid with recipe cards, each with image, title, cost, and add/remove button",
+        planTotalsSection: "Section showing total servings and total cost for the meal plan",
+        totalIngredientsSection: "Section showing combined list of all ingredients needed for the meal plan with total amounts and costs",
+        recipeBreakdownCardsSection: "Section with breakdown cards for each selected recipe showing scaled ingredient amounts and costs"
     },
     es: {
         pageTitle: "Planificador de comidas",
@@ -25,6 +30,12 @@ export const PLANNER_STRINGS = {
         ingredientsNeeded: "Ingredientes necesarios",
         servings: "Porciones",
         addToPlan: "Agregar al plan",
-        remove: "Eliminar"
+        remove: "Eliminar",
+        recipePickerSection: "Área de selección de recetas",
+        summaryPanelSection: "Resumen del plan de comidas y área de totales",
+        recipeGridSection: "Cuadrícula de selección de recetas con tarjetas de recetas, cada una con imagen, título, costo y botón de agregar/eliminar",
+        planTotalsSection: "Sección que muestra las porciones totales y el costo total para el plan de comidas",
+        totalIngredientsSection: "Sección que muestra la lista combinada de todos los ingredientes necesarios para el plan de comidas con cantidades totales y costos",
+        recipeBreakdownCardsSection: "Sección con tarjetas de desglose para cada receta seleccionada que muestra las cantidades e costos de ingredientes ajustados"
     }
 } as const;

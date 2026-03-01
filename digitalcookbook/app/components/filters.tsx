@@ -22,6 +22,9 @@ const STRINGS = {
     health: "Health",
     allergies: "Allergies",
     cost: "Cost",
+    collapse: "Collapse filters",
+    expand: "Expand filters",
+    maxCostLabel: "Max cost",
   },
   es: {
     filters: "Filtros",
@@ -29,6 +32,9 @@ const STRINGS = {
     health: "Salud",
     allergies: "Alergias",
     cost: "Costo",
+    collapse: "Colapsar filtros",
+    expand: "Expandir filtros",
+    maxCostLabel: "Costo máximo",
   },
 } as const;
 
@@ -122,14 +128,15 @@ export default function Filters({ onChange }: Props) {
         "btn btn-ghost btn-xs",
         "p-0 w-6 h-6 min-h-0",
       ].join(" ")}
-      aria-label={isOpen ? "Collapse filters" : "Expand filters"}
+      aria-label={isOpen ? t.collapse : t.expand}
+      aria-expanded={isOpen}
     >
       <span className={isOpen ? "inline-block" : "inline-block rotate-180"}>
         ❮
       </span>
     </button>
     {/* Content */}
-    <div className={isOpen ? "p-4 -mt-2 text-sm ml-1" : "p-4 text-sm ml-1 opacity-0 pointer-events-none"}>
+    <div aria-hidden={!isOpen} className={isOpen ? "p-4 -mt-2 text-sm ml-1" : "p-4 text-sm ml-1 opacity-0 pointer-events-none"}>
           <div className="flex flex-col gap-2">
             {/* Filter 1: Kitchen Appliances */}
             <div>
@@ -190,10 +197,10 @@ export default function Filters({ onChange }: Props) {
               <h3 className="font-semibold text-xs uppercase my-2">{t.cost}</h3>
               <div className="flex flex-col gap-1">
                 <label className="flex items-center gap-2">
-                  <input type="range" min="0" max={sliderMax} value={maxCost} className="range range-xs" onChange={(e) => {
+                  <input type="range" aria-label={t.maxCostLabel} min="0" max={sliderMax} value={maxCost} className="range range-xs" onChange={(e) => {
                       setMaxCost(+e.target.value);
                   }}
-                  onMouseUp={() => {
+                  onPointerUp={() => {
                      onChange({
                       maxCost,
                       appliances: selected.appliances.map(id =>
