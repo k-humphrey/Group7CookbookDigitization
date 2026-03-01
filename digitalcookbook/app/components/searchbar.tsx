@@ -15,12 +15,14 @@ const STRINGS = {
     placeholder: "(Your selected ingredients will appear here)",
     search: "Search Recipes",
     placeholder2: "Type an ingredient and press Enter...",
+    removetag: "Remove"
   },
   es: {
     selectedIngredients: "Ingredientes seleccionados:",
     placeholder: "(Tus ingredientes seleccionados aparecerán aquí)",
     search: "Buscar recetas",
     placeholder2: "Escribe un ingrediente y presiona Enter...",
+    removetag: "Eliminar"
   },
 };
 
@@ -64,7 +66,7 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
   };
 
   return (
-    <form className="w-full flex flex-col items-center">
+    <form role="search" onSubmit={(e) => e.preventDefault()} className="w-full flex flex-col items-center">
       
       {/* Selected Ingredients Box */}
       <div className="w-full max-w-3xl mb-2">
@@ -72,30 +74,26 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
 
           {/* Tag Area */}
           <div className="flex-1">
-            <h2 className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</h2>
-            <div role="list" aria-live="polite" className="mt-2 flex flex-wrap gap-2 text-slate-950">
+            <p className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</p>
+            <ul aria-live="polite" aria-atomic="true" className="mt-2 flex flex-wrap gap-2 text-slate-950">
               {tags.length === 0 ? (
-                <span className="text-xs opacity-70">{t.placeholder}</span>
+                <li className="text-xs opacity-70">{t.placeholder}</li>
               ) : (
                 tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="badge badge-outline gap-1 px-3 py-2 text-xs"
-                    role="listitem"
-                  >
+                  <li key={tag} className="badge badge-outline gap-1 px-3 py-2 text-xs">
                     {tag}
                     <button
                       type="button"
-                      aria-label={`Remove ${tag}`}
+                      aria-label={`${t.removetag} ${tag}`}
                       className="ml-1 text-[10px] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded"
                       onClick={() => removeTag(tag)}
                     >
                       ✕
                     </button>
-                  </span>
+                  </li>
                 ))
               )}
-            </div>
+            </ul>
           </div>
 
           {/* Search Button */}
@@ -109,10 +107,8 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
 
       {/* Search Bar */}
       <div className="w-full max-w-3xl">
+        <p id="ingredient-help" className="sr-only">{t.placeholder2}</p>
         <label htmlFor="ingredient-search" className="input input-bordered rounded-full w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6] focus-within:ring-1 focus-within:ring-neutral">
-          
-          <span className="sr-only">{t.search}</span>
-          
           {/* Search Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -130,11 +126,13 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           <input
             id="ingredient-search"
             type="text"
+            aria-label={t.search}
             className="grow placeholder:text-slate-950 bg-transparent outline-none"
             placeholder={t.placeholder2}
             value={input}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
+            aria-describedby="ingredient-help"
           />
         </label>
       </div>

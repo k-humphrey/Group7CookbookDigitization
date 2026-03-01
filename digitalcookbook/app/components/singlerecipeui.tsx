@@ -30,6 +30,11 @@ const STRINGS = {
     total: "Total Cost: $",
     ing: "Ingredients",
     contains: "This Recipe Contains:",
+    servingsLabel: "Servings",
+    tagsLabel: "Tags",
+    allergensLabel: "Allergens",
+    noImage: "No image",
+    noIngredients: "No ingredients listed.",
   },
   es: {
     prep: "Tiempo de preparación:",
@@ -38,6 +43,11 @@ const STRINGS = {
     total: "Costo total: $",
     ing: "Ingredientes",
     contains: "Esta receta contiene:",
+    servingsLabel: "Porciones",
+    tagsLabel: "Etiquetas",
+    allergensLabel: "Alérgenos",
+    noImage: "Sin imagen",
+    noIngredients: "No hay ingredientes listados.",
   },
 };
 
@@ -71,7 +81,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               />
             ) : (
               <div className="flex h-full items-center justify-center text-sm text-base-content/60">
-                No image
+                {t.noImage}
               </div>
             )}
           </div>
@@ -83,15 +93,16 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               <h1 className="text-lg font-bold leading-tight wrap-break-word">
                 {title}
               </h1>
-              <div className="flex flex-wrap items-center gap-2 text-sm">
+
+              <ul aria-label={t.tagsLabel} className="flex flex-wrap items-center gap-2 text-sm">
                 {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
                     return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
-                        <div key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
+                        <li key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
                           {tag}
-                        </div>
+                        </li>
                       ));
                   })()}
-              </div>
+              </ul>
             </div>
 
             {/* Row 2: Time, Servings, and Cost */}
@@ -100,8 +111,11 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 <div className="font-semibold">{t.prep}</div>
                 <div className="font-semibold">{t.cook}</div>
                 <div className="font-semibold -mt-0.5">
-                  {t.servings}
+                  <label htmlFor="servings-input">
+                    {t.servings}
+                  </label>
                   <input
+                    id="servings-input"
                     type="number"
                     min={0}
                     step={1}
@@ -109,6 +123,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                     placeholder="0"
                     onChange={(e) => setServings(Number(e.target.value))}
                     className="ml-2 w-16 input input-sm input-bordered focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:rounded-md"
+                    aria-label={t.servingsLabel}
                   />
                 </div>
                 <span className="font-semibold">
@@ -127,14 +142,13 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           </div>
 
           {/* Allergens */}
-          <div className="px-6 pb-4 flex flex-wrap gap-2">
+          <ul aria-label={t.allergensLabel} className="px-6 pb-4 flex flex-wrap gap-2">
             <span className="font-semibold">{t.contains}</span>
             
-
             {allergensObj && Object.entries(allergensObj).filter(([_, value]) => value === true).map(([allergen]) => (
-                  <div key={allergen} className="text-black font-bold">{allergen}</div>
+                  <li key={allergen} className="text-black font-bold">{allergen}</li>
                 ))}
-          </div> 
+          </ul> 
 
           {/* Ingredients */}
           <div className="p-6 flex justify-left">
@@ -148,7 +162,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                       <li key={i} className="wrap-break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
                     )
                 ) : (
-                  <li className="text-base-content/60">No ingredients listed.</li>
+                  <li className="text-base-content/60">{t.noIngredients}</li>
                 )}
               </ul>
             </section>

@@ -1,7 +1,8 @@
 // app/components/infocard.tsx
 
 import Link from "next/link";
-import { ReactNode } from "react";
+import Image from "next/image";
+import { ReactNode, useId } from "react";
 
 export default function InfoCard(
 {
@@ -23,27 +24,30 @@ export default function InfoCard(
 {
   	const isExternal = href.startsWith("http");
 
+	const descriptionId = useId();
+
   	const cardClasses =
-    	"card bg-white shadow-md border overflow-hidden " +
-    	"hover:shadow-lg transition-shadow cursor-pointer block";
+    	"card bg-white shadow-md border overflow-hidden block transition-shadow " +
+	   	"hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 	
 	const content = (
 		<>
 			{/* Image (optional) */}
 			{imageSrc && (
-				<figure className="h-40 w-full overflow-hidden">
-					<img
+				<figure className="h-40 w-full overflow-hidden relative">
+					<Image
 						src={imageSrc}
 						alt={imageAlt || title}
-						className="w-full h-full object-cover"
+						className="object-cover"
+						fill
 					/>
 				</figure>
 			)}
 
 			{/* Text Content */}
 			<div className="p-5">
-				<h2 className="text-xl font-bold mb-2">{title}</h2>
-				<p className="text-gray-700">{description}</p>
+				<p className="text-xl font-bold mb-2">{title}</p>
+				<p id={descriptionId} className="text-gray-700">{description}</p>
 				{ action && 
 					<div className="mt-2">{action}</div>
 				}
@@ -57,11 +61,13 @@ export default function InfoCard(
 			target="_blank"
 			rel="noopener noreferrer"
 			className={cardClasses}
+			aria-label={`${title} (opens in a new tab)`}
+			aria-describedby={descriptionId}
     	>
 		{content}
     	</a>
   	) : (
-    	<Link href={href} className={cardClasses}>
+    	<Link href={href} className={cardClasses} aria-describedby={descriptionId}>
 			{content}
     	</Link>
   	);

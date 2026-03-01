@@ -13,6 +13,7 @@ export default function PrintButton() {
 
   return (
     <button
+      type="button"
       onClick={handlePrint}
       className="px-3 py-2 bg-black text-white rounded-lg hover:bg-gray-800 print:hidden focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:rounded-md">
       {lang === "es" ? "Imprimir" : "Print"}

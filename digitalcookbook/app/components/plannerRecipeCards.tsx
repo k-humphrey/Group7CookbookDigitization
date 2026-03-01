@@ -51,15 +51,16 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                 </p>
 
                 {/* Add / Remove Button */}
-                <button className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`} onClick={() => toggleRecipe(recipe)}>
+                <button type="button" aria-pressed={!!selected} className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`} onClick={() => toggleRecipe(recipe)}>
                     {selected ? t.remove : t.addToPlan}
                 </button>
 
                 {/* Serving input */}
                 {selected && (
                     <div className="flex items-center gap-1 mt-2">
-                        <span>{t.servings}:</span>
+                        <label htmlFor={`servings-${recipe._id}`}>{t.servings}:</label>
                         <input
+                            id={`servings-${recipe._id}`}
                             type="number"
                             inputMode="numeric"
                             min={1}

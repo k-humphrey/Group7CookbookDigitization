@@ -46,7 +46,7 @@ export default function BackpackPlannerPage() {
     const t = PLANNER_STRINGS[lang];
 
     return (
-        <main className="min-h-screen bg-base-100">
+        <main aria-label={t.pageTitle} className="min-h-screen bg-base-100">
             {/* Background Image */}
             <div 
                 className="w-full bg-cover bg-center pt-14 pb-5 flex flex-col items-center"  
@@ -67,14 +67,14 @@ export default function BackpackPlannerPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
                         {/* RECIPE PICKER */}
-                        <div className="order-2 lg:order-1 lg:col-span-1">
+                        <section aria-label={t.recipePickerSection} className="order-2 lg:order-1 lg:col-span-1">
                             <RecipePicker selectedRecipes={selectedRecipes} setSelectedRecipes={setSelectedRecipes} />
-                        </div>
+                        </section>
 
                         {/* SUMMARY PANEL */}
-                        <div className="order-1 lg:order-2 lg:col-span-1">
+                        <section aria-label={t.summaryPanelSection} className="order-1 lg:order-2 lg:col-span-1">
                             <PlanSummary selectedRecipes={selectedRecipes} />
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>

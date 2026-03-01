@@ -1,93 +1,26 @@
 //../app/emergency-numbers/page.tsx
 "use client";
 import { useLang } from "@/app/components/languageprovider";
-
-const STRINGS = {
-  en: {
-    emergencyNumbers: "Emergency Numbers",
-    call911: "Call 911 for Emergencies Only",
-    nonEmergency: "Police (Non-Emergency)",
-    fireRoutine: "Fire (Routine)",
-    cityHall: "City Hall / Admin",
-    publicWorks: "Public Works",
-    sheriffsOffice: "Sheriff's Office",
-    poison: "Poison Control:",
-    crimeStoppers: "Crime Stoppers (Cookeville):",
-    gasLeaks: "Gas Leaks (Cookeville):",
-    waterSewer: "Water / Sewer Issues (Cookeville):",
-    serviceSupport: "Service / Support Area",
-    phoneNumber: "Phone Number",
-    availability: "Availability",
-    suicideCrisis: "Suicide & Crisis Lifeline",
-    poisonControlCenter: "Poison Control Center",
-    domesticViolence: "Domestic Violence Hotline",
-    humanTrafficking: "National Human Trafficking Hotline",
-    veteransCrisis: "Veterans Crisis Line",
-    substanceAbuse: "Substance Abuse (SAMHSA Helpline)",
-    childhelp: "Childhelp National Abuse Hotline",
-    elderAbuse: "Elder Abuse Hotline",
-    runawaySafeline: "Runaway Safeline / Youth Crisis Line",
-    avail247CallText: "24/7 call or text",
-    avail247FreeConf: "24/7 free & confidential",
-    avail247AnonHelp: "24/7 anonymous help",
-    availTextHelp: 'Text "HELP" to 233733',
-    availVetsFamilies: "24/7 for Veterans & families",
-    availConfSupport: "24/7 confidential support",
-    availChildrenAdults: "Support for children and adults",
-    availReferralsGuidance: "Referrals & guidance",
-    avail247Teens: "24/7 for teens",
-  },
-  es: {
-    emergencyNumbers: "Números de Emergencia",
-    call911: "Llame al 911 solo para emergencias",
-    nonEmergency: "Policía (No Emergencia)",
-    fireRoutine: "Bomberos (Rutina)",
-    cityHall: "Ayuntamiento / Administración",
-    publicWorks: "Obras Públicas",
-    sheriffsOffice: "Oficina del Sheriff",
-    poison: "Control de Envenenamientos:",
-    crimeStoppers: "Crime Stoppers (Cookeville):",
-    gasLeaks: "Fugas de Gas (Cookeville):",
-    waterSewer: "Problemas de Agua / Alcantarillado (Cookeville):",
-    serviceSupport: "Área de Servicio / Apoyo",
-    phoneNumber: "Número de Teléfono",
-    availability: "Disponibilidad",
-    suicideCrisis: "Línea de Prevención del Suicidio y Crisis",
-    poisonControlCenter: "Centro de Control de Envenenamientos",
-    domesticViolence: "Línea de Ayuda contra la Violencia Doméstica",
-    humanTrafficking: "Línea Nacional contra la Trata de Personas",
-    veteransCrisis: "Línea de Crisis para Veteranos",
-    substanceAbuse: "Abuso de Sustancias (Línea SAMHSA)",
-    childhelp: "Línea Nacional Childhelp contra el Abuso",
-    elderAbuse: "Línea de Ayuda por Abuso a Personas Mayores",
-    runawaySafeline: "Línea para Jóvenes en Crisis / Fuga",
-    avail247CallText: "24/7 llamada o texto",
-    avail247FreeConf: "24/7 gratis y confidencial",
-    avail247AnonHelp: "24/7 ayuda anónima",
-    availTextHelp: 'Envíe "HELP" al 233733',
-    availVetsFamilies: "24/7 para veteranos y familias",
-    availConfSupport: "24/7 apoyo confidencial",
-    availChildrenAdults: "Apoyo para niños y adultos",
-    availReferralsGuidance: "Referencias y orientación",
-    avail247Teens: "24/7 para adolescentes",
-  },
-};
-
+import { EMERGENCY_STRINGS } from "@/app/emergency-numbers/emergencyStrings";
+ 
 export default function EmergencyNumbersPage() {
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
-  const t = STRINGS[lang];
+  const t = EMERGENCY_STRINGS[lang];
   return (
     <main className="min-h-screen p-8 flex flex-col items-center gap-10">
       
       {/* Title */}
-      <div className="badge bg-red-800 text-white text-4x1 font-extrabold px-20 py-6 rounded-full">
+      <h1 className="badge bg-red-800 text-white text-4xl font-extrabold px-20 py-7 rounded-full">
         {t.emergencyNumbers}
-      </div>
+      </h1>
 
       {/* City Services Table */}
       <div className="overflow-x-auto w-full max-w-5xl">
         <table className="table table-bordered p-5">
+          <caption className="sr-only">
+            {t.localEmergencyNumbers}
+          </caption>
           <thead>
             <tr>
               <th scope="col">{t.call911}</th>
@@ -156,7 +89,8 @@ export default function EmergencyNumbersPage() {
         </div>   */}
 
         {/* Utilities & Help */}
-        <div className="card border p-4 mx-auto max-w-md text-center">
+        <section className="card border p-4 mx-auto max-w-md text-center">
+          <h2 className="sr-only">{t.utilitiesAndHelp}</h2>
           <ul className="space-y-3">
             <li className="hover:bg-gray-50">
               <strong>{t.poison}</strong> 1-800-222-1222
@@ -171,12 +105,15 @@ export default function EmergencyNumbersPage() {
               <strong>{t.waterSewer}</strong> (931) 520-5227 or (931) 528-5533
             </li>
           </ul>
-        </div>
+        </section>
       </div>
 
       {/* National Hotlines */}
       <div className="overflow-x-auto w-full max-w-5xl">
         <table className="table table-bordered p-5">
+          <caption className="sr-only">
+            {t.nationalSupportHotlines}
+          </caption>
           <thead>
             <tr>
               <th scope="col">{t.serviceSupport}</th>
