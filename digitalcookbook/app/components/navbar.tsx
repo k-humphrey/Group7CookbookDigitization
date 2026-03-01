@@ -25,6 +25,7 @@ const STRINGS = {
         measurementConverter: "Measurement Converter",
         mealPlanner: "Meal Planner",
         allRecipes: "All Recipes",
+        savedRecipe: "Saved Recipe",
         shoppingList: "Shopping List",
     },
     es: {
@@ -45,6 +46,7 @@ const STRINGS = {
         measurementConverter: "Convertidor de Medidas",
         mealPlanner: "Planificador de comidas",
         allRecipes: "Todas las Recetas",
+        savedRecipe: "Receta guardada",
         shoppingList: "Lista de Compras",
     },
 };
@@ -399,6 +401,16 @@ export default function Navbar() {
                     </li>
                 </ul>
             </details>
+            </li>
+            <li>
+                <Link
+                    href="/saved-recipe"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline">
+                        {t.savedRecipe}
+                </Link>
+
             </li>
             <li>
                 <Link
