@@ -133,7 +133,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               </div>
               {/*Print Button */}
                 <div className="print:hidden">
-                  <PrintButton />
+                  <PrintButton label={lang === "es" ? "Imprimir Receta" : "Print Recipe"} />
                 </div>
             </div> 
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider";
 import { useState } from "react";
 import Toast from "@/app/components/toast";
+import { Recipe, SelectedRecipe } from "@/app/meal-planner/page";
 
 interface Props {
   recipes: any[];
@@ -13,11 +14,15 @@ interface Props {
 const STRINGS = {
   en: {
     viewRecipes: "View Recipe",
-    noRecipes: "No recipes found."
+    noRecipes: "No recipes found.",
+    saveRecipe: "Save Recipe",
+    addToShopping: "Add to Shopping"
   },
   es: {
     viewRecipes: "Ver receta",
-    noRecipes: "No se encontraron recetas."
+    noRecipes: "No se encontraron recetas.",
+    saveRecipe: "Guardar receta",
+    addToShopping: "Agregar a compras"
   }
 };
 export default function RecipeGrid({ recipes }: Props) {
@@ -72,37 +77,61 @@ export default function RecipeGrid({ recipes }: Props) {
                 })()}
               </div>
 
-              <div className="card-actions justify-end mt-2 flex gap-2">
+              <div className="mt-2 flex flex-row flex-nowrap gap-2 justify-end">
                   {/* View Recipe Button */}
                   <span className="btn btn-sm btn-success pointer-events-none">{t.viewRecipes}</span>
 
-                  {/* Add to List Button */}
+                  {/* Add to saved recipe */}
                   <button
                     className="btn btn-sm btn-primary focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2"
                     onClick={(e) => {
                       e.preventDefault();
-                      // prevent navigating to recipe page
+                      // prevent navigating to single recipe page
                       e.stopPropagation(); 
-                      //looks for shooping list in browser
-                      const saved = localStorage.getItem("shoppingList");
+                      //looks for saved recipe in browser
+                      const saved = localStorage.getItem("savedRecipe");
                       const list = saved ? JSON.parse(saved) : [];
-                      //checks if the recipe is already on the list
+                      //checks if the recipe is already on the saved recipe
                       if (!list.find((item: any) => item._id === recipe._id)) {
-                        //adds the recipe if its not already on the list
+                        //adds the recipe if its not already on the saved recipe
                         list.push({
                           _id: recipe._id,
                           title: recipe.title?.[lang],
                           imageURI: recipe.imageURI,
                         });
                         //saves updated list back to browser
-                        localStorage.setItem("shoppingList", JSON.stringify(list));
+                        localStorage.setItem("savedRecipe", JSON.stringify(list));
                         //message
+                        setToastMessage(`${recipe.title?.[lang]} added to Saved Recipe`);
+                      }
+                    }}
+                  >
+                    {t.saveRecipe}
+                  </button>
+                  {/* ADD TO SHOPPING */}
+                  <button
+                    className="btn btn-sm btn-secondary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+
+                      const saved = localStorage.getItem("shoppingList");
+                      const list: SelectedRecipe[] = saved ? JSON.parse(saved) : [];
+
+                      if (!list.find((item) => item.recipe._id === recipe._id)) {
+                        list.push({
+                          recipe: recipe,
+                          servings: 4
+                        });
+
+                        localStorage.setItem("shoppingList", JSON.stringify(list));
                         setToastMessage(`${recipe.title?.[lang]} added to Shopping List`);
                       }
                     }}
                   >
-                    Add to List
+                    {t.addToShopping}
                   </button>
+
                 </div>
             </div>
           </div>
