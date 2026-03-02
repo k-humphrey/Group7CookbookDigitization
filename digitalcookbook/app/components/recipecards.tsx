@@ -77,7 +77,7 @@ export default function RecipeGrid({ recipes }: Props) {
                 })()}
               </div>
 
-              <div className="mt-2 flex flex-row flex-nowrap gap-2 justify-end">
+              <div className="mt-2 lg:flex lg:flex-row lg:flex-nowrap grid grid-cols-2 gap-2 justify-end">
                   {/* View Recipe Button */}
                   <span className="btn btn-sm btn-success pointer-events-none">{t.viewRecipes}</span>
 
