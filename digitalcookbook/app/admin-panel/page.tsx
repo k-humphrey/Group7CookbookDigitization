@@ -1,6 +1,8 @@
 //app/admin-panel/page.tsx
 //Page for admin to view, edit, add, and delete recipes once logged in via the admin portal  
 
+"use client";
+
 import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import { cookies } from "next/headers";
