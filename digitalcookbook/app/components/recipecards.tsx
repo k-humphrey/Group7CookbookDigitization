@@ -40,7 +40,7 @@ export default function RecipeGrid({ recipes }: Props) {
   <div>
     <div className="grid gap-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
       {recipes.map((recipe: any) => (
-        <Link key={recipe._id} href={`/single-recipe/${recipe._id}`} className="block focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded" aria-label={`View recipe ${recipe.title?.[lang]}`}>
+        <Link key={recipe._id} href={`/single-recipe/${recipe._id}`} className="group block focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded" aria-label={`View recipe ${recipe.title?.[lang]}`}>
           <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
             
             {/* Image */}
@@ -79,11 +79,11 @@ export default function RecipeGrid({ recipes }: Props) {
 
               <div className="mt-2 lg:flex lg:flex-row lg:flex-nowrap grid grid-cols-2 gap-2 justify-end">
                   {/* View Recipe Button */}
-                  <span className="btn btn-sm btn-success pointer-events-none">{t.viewRecipes}</span>
+                  <span className="btn btn-sm btn-success pointer-events-none group-focus-visible:ring-3 group-focus-visible:ring-neutral group-focus-visible:ring-offset-2">{t.viewRecipes}</span>
 
                   {/* Add to saved recipe */}
                   <button
-                    className="btn btn-sm btn-primary focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2"
+                    className="btn btn-sm btn-primary focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2"
                     onClick={(e) => {
                       e.preventDefault();
                       // prevent navigating to single recipe page
@@ -110,7 +110,7 @@ export default function RecipeGrid({ recipes }: Props) {
                   </button>
                   {/* ADD TO SHOPPING */}
                   <button
-                    className="btn btn-sm btn-secondary"
+                    className="btn btn-sm btn-secondary focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
