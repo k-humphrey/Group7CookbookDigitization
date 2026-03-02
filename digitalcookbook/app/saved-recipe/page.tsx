@@ -46,7 +46,7 @@ export default function SavedRecipePage() {
         {savedRecipe.map((recipe) => (
           <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow relative">
             {/* Clickable image or title to go to single-recipe page */}
-            <Link href={`/single-recipe/${recipe._id}`} className="block">
+            <Link href={`/single-recipe/${recipe._id}`} className="block focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary rounded">
               <figure className="h-48 overflow-hidden bg-base-200">
                 {recipe.imageURI ? (
                   <img
@@ -72,7 +72,7 @@ export default function SavedRecipePage() {
 
             {/* Remove button */}
             <button
-              className="absolute top-2 right-2 btn btn-sm btn-error"
+              className="absolute top-2 right-2 btn btn-sm btn-error focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-1 focus-visible:ring-primary"
               onClick={() => removeItem(recipe._id)}
             >
               {t.remove}
