@@ -75,7 +75,7 @@ export default function ShoppingListPage() {
         <div className="flex gap-4 flex-wrap items-center print:flex print:gap-4">
           {/* Clear All */}
           <button
-            className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 print:hidden"
+            className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 print:hidden focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary"
             onClick={clearAll}
           >
             {t.clearAll}
@@ -103,7 +103,7 @@ export default function ShoppingListPage() {
             {visibleIngredients.map((item, index) => (
               <li key={index}>
                 {decimalToFraction(item.totalAmount, item.ingredient.unit)}{" "}
-                {units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
+                {item.ingredient.unit.toLowerCase() === "each" ? "" : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
                 {item.ingredient?.[lang]}
               </li>
             ))}
@@ -114,7 +114,7 @@ export default function ShoppingListPage() {
             {combinedIngredients.map((item, index) => (
               <li key={index}>
                 {decimalToFraction(item.totalAmount, item.ingredient.unit)}{" "}
-                {units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
+                {item.ingredient.unit.toLowerCase() === "each" ? "" : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
                 {item.ingredient?.[lang]}
               </li>
             ))}
@@ -123,7 +123,7 @@ export default function ShoppingListPage() {
           {/* See More or See Less button  */}
           {combinedIngredients.length > MAX_VISIBLE_INGREDIENTS && (
             <button
-              className="mt-2 text-sm text-blue-600 hover:underline print:hidden"
+              className="mt-2 text-sm text-blue-600 hover:underline print:hidden focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary rounded"
               onClick={() => setShowAllIngredients(!showAllIngredients)}
             >
               {showAllIngredients
@@ -154,7 +154,7 @@ export default function ShoppingListPage() {
 
               {/* Remove Recipe Button */}
               <button
-                className="absolute top-4 right-4 btn btn-sm btn-error print:hidden"
+                className="absolute top-4 right-4 btn btn-sm btn-error print:hidden focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-neutral"
                 onClick={() => removeRecipe(recipe._id)}
               >
                 {t.remove}
