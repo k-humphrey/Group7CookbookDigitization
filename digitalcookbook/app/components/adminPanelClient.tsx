@@ -256,29 +256,48 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				)
 			)}
 
-
-			{/* APPLIANCES (simple editable list) */}
-			<h4 className="font-bold mt-6 mb-2">
-				Appliances (comma separated in English)
-			</h4>
-			<input
-				className="input input-bordered w-full mb-6"
-				value={
-				selectedRecipe.appliances
-					?.map((a: any) => a.en)
-					.join(", ") || ""
-				}
-				onChange={(e) =>
-					setSelectedRecipe({
-						...selectedRecipe,
-						appliances: e.target.value
-						.split(",")
-						.map((name: string) => ({
-							en: name.trim(),
-						})),
-					})
-				}
-			/>
+			{/* APPLIANCES BOTH ENGLISH AND SPANISH */}
+			<h4 className="font-bold mt-6 mb-2">Appliances</h4>
+			{[
+				{ _id: "695ec4c6b0379ee832d8a867", en: "Microwave", es: "Microondas" },
+				{ _id: "695ec4c6b0379ee832d8a866", en: "Oven", es: "Horno" },
+				{ _id: "695ec4c6b0379ee832d8a86a", en: "Skillet/Frying Pan", es: "Sartén/Sartén" },
+				{ _id: "695ec4c6b0379ee832d8a869", en: "Stockpot/Dutch Oven", es: "olla/horno holandés" },
+				{ _id: "695ec4c6b0379ee832d8a86b", en: "Saucepan with Lid", es: "Cacerola con Tapa" },
+				{ _id: "695ec4c6b0379ee832d8a868", en: "Slow Cooker", es: "Olla de Cocción Lenta" },
+				{ _id: "695ec4c6b0379ee832d8a86c", en: "Stockpot and Skillet", es: "Olla y Sartén" },
+			].map((appliance) => {
+				const isChecked = (selectedRecipe.appliances || []).some(
+					(a: any) => String(a.appliance) === String(appliance._id)
+				);
+				return (
+					<label key={appliance._id} className="flex gap-2 mb-2">
+						<input
+							type="checkbox"
+							checked={isChecked}
+							onChange={(e) => {
+								if (e.target.checked) {
+									setSelectedRecipe({
+										...selectedRecipe,
+										appliances: [
+											...(selectedRecipe.appliances || []),
+											{ appliance: appliance._id, en: appliance.en, es: appliance.es },
+										],
+									});
+								} else {
+									setSelectedRecipe({
+										...selectedRecipe,
+										appliances: (selectedRecipe.appliances || []).filter(
+											(a: any) => String(a.appliance) !== String(appliance._id)
+										),
+									});
+								}
+							}}
+						/>
+						<span>{appliance.en} / {appliance.es}</span>
+					</label>
+				);
+			})}
 
 			{/* SAVE BUTTONS */}
 			<div className="flex gap-4 mt-8">
