@@ -1,4 +1,4 @@
-// app/components/infocard.tsx
+//app/components/infocard.tsx
 
 import Link from "next/link";
 import Image from "next/image";

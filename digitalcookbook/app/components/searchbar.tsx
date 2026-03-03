@@ -1,4 +1,5 @@
-// components/searchbar.tsx
+//app/components/searchbar.tsx
+
 "use client";
 
 import { useState, KeyboardEvent, ChangeEvent } from "react";
