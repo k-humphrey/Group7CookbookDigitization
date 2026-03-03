@@ -374,8 +374,6 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/saved-recipe"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="hover:underline">
                         {t.savedRecipe}
                 </Link>
