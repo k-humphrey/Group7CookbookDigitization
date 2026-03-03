@@ -10,33 +10,33 @@ export default function AdminNavBar(){
             <nav>
                 <summary>Edit/Add Website Data</summary>
                 <Link
-                    href="/app/admin/EditResources"
+                    href="/admin/editResources"
                     className="hover:underline" >
                     Edit/Add Community Resources
                 </Link>
                 <Link 
-                    href="/app/admin/EditPartners"
+                    href="/admin/editPartners"
                     target="_blank"
                     rel="noopener noreferrer" 
                     className="hover:underline" >
                     Edit/Add Community Partners
                 </Link>
                 <Link 
-                    href="/app/admin/EditAdvertisements"
+                    href="/admin/editAdvertisements"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
                     Edit/Add Advertisements
                 </Link>
                 <Link 
-                    href="/app/admin/EditRecipes"
+                    href="/admin/editRecipes"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
                     Edit/Add Recipes
                 </Link>
                 <Link
-                    href="/app/admin/Logout"
+                    href="/admin/logout"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline" >
