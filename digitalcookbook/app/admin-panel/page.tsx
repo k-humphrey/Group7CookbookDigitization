@@ -1,8 +1,6 @@
 //app/admin-panel/page.tsx
 //Page for admin to view, edit, add, and delete recipes once logged in via the admin portal  
 
-"use client";
-
 import { cookies } from "next/headers";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import AdminLoginPage from "../admin-login/page";

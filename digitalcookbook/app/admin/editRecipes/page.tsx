@@ -14,7 +14,6 @@ import AdminNavBar from "../../components/adminNavBar";
 export default async function AdminPanelPage() {
     //get cookies
     const cookieStore = await cookies(); 
-
     //check authentication
     if (!isAdminAuthenticated(cookieStore)) {
             //return login page back
@@ -28,11 +27,12 @@ export default async function AdminPanelPage() {
     const safeRecipes = JSON.parse(JSON.stringify(recipes));
     //return the recipe view
   return (
-    <main>
+     <main className="min-h-screen w-full flex flex-col items-center py-12">
+        <h1 className="text-2xl font-bold mb-6 ml-6">Admin Panel</h1>
         <AdminNavBar/>
-        <div className="w-full max-w-6xl mx-auto">
-            <AdminPanelClient recipes={safeRecipes} />
-        </div>
+            <div className="w-full max-w-6xl mx-auto">
+                <AdminPanelClient recipes={safeRecipes} />
+            </div>
     </main>
   );
 }
