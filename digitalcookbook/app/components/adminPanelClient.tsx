@@ -254,6 +254,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				</label>
 				)
 			)}
+			{/* ADD NEW ALLERGEN */}
 			<div className="flex gap-2 mt-2">
 			<input
 				className="input input-bordered input-sm flex-1"
@@ -299,10 +300,11 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 					{allergen}
 				</label>
 			))}
+			{/* ADD NEW ALLERGEN */}
 			<div className="flex gap-2 mt-2">
 				<input
 					className="input input-bordered input-sm flex-1"
-					placeholder="Nuevo alérgeno..."
+					placeholder="Add new allergen (Spanish)"
 					value={newAllergenEs}
 					onChange={(e) => setNewAllergenEs(e.target.value)}
 				/>
