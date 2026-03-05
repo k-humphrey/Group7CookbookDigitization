@@ -7,9 +7,33 @@ import InfoCard from "./infocard";
 
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	const [selectedRecipe, setSelectedRecipe] = useState<any | null>(null);
+	const [newAllergenEn, setNewAllergenEn] = useState("");
+	const [newAllergenEs, setNewAllergenEs] = useState("");
+	const emptyRecipe = {
+		title: { en: "", es: "" },
+		ingredientPlainText: { en: "", es: "" },
+		instructions: { en: "", es: "" },
+		imageURI: "",
+		tags: {},
+		ingredients: [],
+		appliances: [],
+		allergens: {},
+	};
 
   	return (
     <>
+	<div className="flex justify-between items-center px-6 mb-4">
+		<h2 className="text-xl font-semibold">
+			Recipes
+		</h2>
+
+			<button
+				className="btn btn-success"
+				onClick={() => setSelectedRecipe({ ...emptyRecipe })}
+			>
+				+ Create New Recipe
+			</button>
+	</div>
 	<div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6">
 		{recipes.map((recipe) => (
 			<InfoCard
@@ -223,38 +247,82 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 							...selectedRecipe.allergens,
 							[allergen]: e.target.checked,
 						},
-						})
+					})
 					}
 					/>
 					{allergen}
 				</label>
 				)
 			)}
+			<div className="flex gap-2 mt-2">
+			<input
+				className="input input-bordered input-sm flex-1"
+				placeholder="New allergen..."
+				value={newAllergenEn}
+				onChange={(e) => setNewAllergenEn(e.target.value)}
+			/>
+				<button
+					className="btn btn-sm btn-outline"
+					onClick={() => {
+						if (!newAllergenEn.trim()) return;
+						setSelectedRecipe({
+							...selectedRecipe,
+							allergens: {
+								...selectedRecipe.allergens,
+								[newAllergenEn.trim()]: true,
+							},
+						});
+						setNewAllergenEn("");
+					}}
+				>
+					Add
+				</button>
+			</div>
 
 			{/* ALLERGENS ES */}
 			<h4 className="font-bold mt-6 mb-2">Allergens (Spanish)</h4>
-			{Object.keys(selectedRecipe.espAllergens || {}).map(
-				(allergen) => (
+			{Object.keys(selectedRecipe.espAllergens || {}).map((allergen) => (
 				<label key={allergen} className="flex gap-2 mb-2">
 					<input
-					type="checkbox"
-					checked={
-						selectedRecipe.espAllergens[allergen]
-					}
-					onChange={(e) =>
-						setSelectedRecipe({
-						...selectedRecipe,
-						espAllergens: {
-							...selectedRecipe.espAllergens,
-							[allergen]: e.target.checked,
-						},
-						})
-					}
+						type="checkbox"
+						checked={selectedRecipe.espAllergens[allergen]}
+						onChange={(e) =>
+							setSelectedRecipe({
+								...selectedRecipe,
+								espAllergens: {
+									...selectedRecipe.espAllergens,
+									[allergen]: e.target.checked,
+								},
+							})
+						}
 					/>
 					{allergen}
 				</label>
-				)
-			)}
+			))}
+			<div className="flex gap-2 mt-2">
+				<input
+					className="input input-bordered input-sm flex-1"
+					placeholder="Nuevo alérgeno..."
+					value={newAllergenEs}
+					onChange={(e) => setNewAllergenEs(e.target.value)}
+				/>
+				<button
+					className="btn btn-sm btn-outline"
+					onClick={() => {
+						if (!newAllergenEs.trim()) return;
+						setSelectedRecipe({
+							...selectedRecipe,
+							espAllergens: {
+								...selectedRecipe.espAllergens,
+								[newAllergenEs.trim()]: true,
+							},
+						});
+						setNewAllergenEs("");
+					}}
+				>
+					Add
+				</button>
+			</div>
 
 			{/* APPLIANCES BOTH ENGLISH AND SPANISH */}
 			<h4 className="font-bold mt-6 mb-2">Appliances</h4>

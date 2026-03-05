@@ -23,12 +23,12 @@ export default async function AdminPanelPage() {
 	const recipes = await Recipe.find().lean();
 	const safeRecipes = JSON.parse(JSON.stringify(recipes));
 	//return the recipe view
-  return (
-     <main className="min-h-screen w-full flex flex-col items-center py-12">
-      	<h1 className="text-2xl font-bold mb-6 ml-6">Admin Panel</h1>
-			<div className="w-full max-w-6xl mx-auto">
-        		<AdminPanelClient recipes={safeRecipes} />
-        	</div>
-    </main>
-  );
+  	return (
+     	<main className="min-h-screen w-full flex flex-col items-center py-12">
+      		<h1 className="text-2xl font-bold mb-6 ml-6">Admin Panel</h1>
+				<div className="w-full max-w-6xl mx-auto">
+					<AdminPanelClient recipes={safeRecipes} />
+				</div>`
+    	</main>
+  	);
 }
