@@ -1,30 +1,23 @@
 //app/api/login/route.ts
 
 import { NextResponse } from "next/server";
+import {connectToDB} from "@/lib/connectToDB";
+import { cookies } from "next/headers";
+import User from "@/models/User"
 
 export async function POST(req: Request) {
     const { username, password } = await req.json();
 
-    const admins = [
-        {
-        username: process.env.ADMIN_USER1,
-        password: process.env.ADMIN_PASS1,
-        },
-        {
-        username: process.env.ADMIN_USER2,
-        password: process.env.ADMIN_PASS2,
-        },
-    ];
+    const cookieStore = await cookies(); 
 
-    const validUser = admins.find (
-        (admin) =>
-        admin.username === username && admin.password === password
-    );
+    await connectToDB();
 
-    if (!validUser) {
-        return NextResponse.json (
-        { error: "Invalid credentials" },
-        { status: 401 }
+    const validUser = await User.findOne({ username });
+
+    if (!validUser || validUser.password !== password) {
+        return NextResponse.json(
+            { error: "Invalid credentials" },
+            { status: 401 }
         );
     }
 

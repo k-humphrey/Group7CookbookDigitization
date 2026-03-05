@@ -3,6 +3,7 @@ export const MEASUREMENT_STRINGS = {
     title: "Measurement Converter",
     placeholder: "0",
     notesTitle: "Notes",
+    unitLabel: "Unit",
 
     units: {
       gallon: "Gallon",
@@ -25,6 +26,7 @@ export const MEASUREMENT_STRINGS = {
     title: "Convertidor de Medidas",
     placeholder: "0",
     notesTitle: "Notas",
+    unitLabel: "Unidad",
 
     units: {
       gallon: "Galón",

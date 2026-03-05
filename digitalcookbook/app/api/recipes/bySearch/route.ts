@@ -4,7 +4,9 @@ import Ingredient from "@/models/Ingredient";
 import Appliance from "@/models/Appliance";
 import { NextResponse } from 'next/server';
 
+
 export async function GET(req: Request){
+    
     await connectToDB();
 
     // Get url
@@ -15,9 +17,8 @@ export async function GET(req: Request){
     const ingredientsParams = url.searchParams.get("ingredients") || null;
     const healthTagsParams = url.searchParams.get("healthTags") || null;
     const allergenTagsParams = url.searchParams.get("allergenTags") || null;
-    const titleParam = url.searchParams.get("title") || null;
     const cost = {min: Number(url.searchParams.get("minCost") || null), max: Number(url.searchParams.get("maxCost") || null)};
-    const pageInfo = {pageNumber: Number(url.searchParams.get("page") || 1), pageLimit: Number(url.searchParams.get("limit") || 20)};
+    const pageInfo = {pageNumber: Number(url.searchParams.get("page") || 1), pageLimit: Number(url.searchParams.get("limit") || 15)};
 
     const filters: any[] = [];
 
@@ -25,18 +26,13 @@ export async function GET(req: Request){
     let ingredientIds: any[] = [];
     let applianceIds: any[] = [];
 
-    // ---------- Filter by title
-    if(titleParam) {
-        filters.push({$or: [
-            {"title.en": {$regex: titleParam, $options: 'i'}},
-            {"title.es": {$regex: titleParam, $options: 'i'}},
-        ]});
-    }
+    // Get possible titles from ingredientparams
+    const titles = ingredientsParams?.split(",").map(item => item.replace(/\s+and\s+/gi, " & "));
 
     // ---------- Filter by ingredients
     if(ingredientsParams) {
-        // Convert ingredients array into string so regex can be used
-        const ingredientList = ingredientsParams.split(",").map(ingredient => ingredient.trim()).flatMap(ingredient => [
+        // Convert ingredients array into string so regex can be used (Split ingredients into word parts)
+        const ingredientList = ingredientsParams.split(",").flatMap(item => item.split(" ")).filter(Boolean).flatMap(ingredient => [
             {"en": {$regex: ingredient, $options: 'i'}},
             {"es": {$regex: ingredient, $options: 'i'}},
         ]);
@@ -121,10 +117,10 @@ export async function GET(req: Request){
                         {$size: {
                             $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                         }},
-                        { $sum: {
-                             $map: {
-                                 input: {
-                                     $filter: {
+                        /*{$sum: {
+                            $map: {
+                                input: {
+                                    $filter: {
                                         input: "$ingredients",
                                         as: "i",
                                         cond: {
@@ -133,10 +129,17 @@ export async function GET(req: Request){
                                     } 
                                 },
                                 as: "matched",
-                                in: "$$matched.amount" }
-                             }
+                                in: "$$matched.amount"
                             }
-                        
+                        }},*/
+                        {$cond: [
+                            {$or: titles?.map(title => (
+                                {$or: [
+                                    { $regexMatch: { input: "$title.en", regex: title, options: "i" } },
+                                    { $regexMatch: { input: "$title.es", regex: title, options: "i" } }
+                                ]}
+                            )) || []}, 10, 0 // add 10 if title matches
+                        ]}
                     ]
                 }
             }},

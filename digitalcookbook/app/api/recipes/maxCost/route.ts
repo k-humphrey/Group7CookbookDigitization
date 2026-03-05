@@ -3,7 +3,8 @@ import Recipe from "@/models/Recipe";
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request){
-    await connectToDB();
+
+  await connectToDB();
     
     // find highest cost from database
     const result = await Recipe.aggregate([{

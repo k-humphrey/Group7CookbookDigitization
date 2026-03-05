@@ -1,7 +1,7 @@
 // app/components/navbar.tsx
-//import React from "react";
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider"; 
 
 const STRINGS = {
@@ -21,8 +21,12 @@ const STRINGS = {
         priceFinder: "Price Finder",
         timer: "Timer",
         measurementConverter: "Measurement Converter",
+        mealPlanner: "Meal Planner",
         allRecipes: "All Recipes",
+        savedRecipe: "Saved Recipe",
         shoppingList: "Shopping List",
+        openMenu: "Open Menu",
+        languageToggle: "Toggle Language",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -40,9 +44,13 @@ const STRINGS = {
         priceFinder: "Buscador de Precios",
         timer: "Temporizador",
         measurementConverter: "Convertidor de Medidas",
+        mealPlanner: "Planificador de comidas",
         allRecipes: "Todas las Recetas",
+        savedRecipe: "Receta guardada",
         shoppingList: "Lista de Compras",
-    },
+        openMenu: "Abrir Menú",
+        languageToggle: "Cambiar Idioma",
+    } as const
 };
 
 export default function Navbar() {
@@ -55,17 +63,18 @@ export default function Navbar() {
 
         <div className="navbar-start">
             <Link href="/">
-                <div className="p-2 hover:bg-gray-100 rounded">
-                    <img 
-                    src="pep_logo.png" 
+                <div className="p-2 hover:bg-gray-100 rounded-lg relative w-[168px] h-[72px]">
+                    <Image 
+                    src="/pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
-                    className="h-18 w-42"
+                    fill
+                    className="object-contain"
                     />
                 </div>
             </Link>
 
             <div className="dropdown relative">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div aria-label={t.openMenu} aria-haspopup="menu" tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -93,8 +102,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/safety"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.safety}
                         </Link>
@@ -129,8 +136,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/emergency-numbers"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.emergencyNumbers}
                         </Link>
@@ -175,8 +180,6 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes?ingredients="
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="hover:underline" >
                     {t.allRecipes}
                 </Link>
@@ -188,8 +191,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/shelf-life-guidelines"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.shelfLife}
                         </Link>
@@ -197,8 +198,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/price-finder"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.priceFinder}
                         </Link>
@@ -206,8 +205,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/timer"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.timer}
                         </Link>
@@ -215,10 +212,15 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/measurement-converter"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.measurementConverter}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/meal-planner"
+                            className="hover:underline" >
+                            {t.mealPlanner}
                         </Link>
                     </li>
                     </ul>
@@ -227,8 +229,6 @@ export default function Navbar() {
                 <li>
                     <Link
                         href="/shopping-list"
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="hover:underline">
                             {t.shoppingList}
                     </Link>
@@ -247,8 +247,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/safety"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.safety}
                         </Link>
@@ -283,8 +281,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/emergency-numbers"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.emergencyNumbers}
                         </Link>
@@ -329,8 +325,6 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes?ingredients="
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="hover:underline" >
                     {t.allRecipes}
                 </Link>
@@ -342,8 +336,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/shelf-life-guidelines"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.shelfLife}
                         </Link>
@@ -351,8 +343,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/price-finder"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.priceFinder}
                         </Link>
@@ -360,8 +350,6 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/timer"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.timer}
                         </Link>
@@ -369,10 +357,15 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/measurement-converter"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:underline" >
                             {t.measurementConverter}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/meal-planner"
+                            className="hover:underline" >
+                            {t.mealPlanner}
                         </Link>
                     </li>
                 </ul>
@@ -380,9 +373,15 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
+                    href="/saved-recipe"
+                    className="hover:underline">
+                        {t.savedRecipe}
+                </Link>
+
+            </li>
+            <li>
+                <Link
                     href="/shopping-list"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="hover:underline">
                         {t.shoppingList}
                 </Link>
@@ -391,10 +390,14 @@ export default function Navbar() {
             </ul>
         </div>
         <div className="navbar-end">
-            <input type="checkbox" defaultChecked className="toggle" onChange={() => setLang(lang === "en" ? "es" : "en")} />
-            <img src="LP_logo.png"
+            <input type="checkbox" aria-label={t.languageToggle} className="toggle" onChange={() => setLang(lang === "en" ? "es" : "en")} />
+            <Image 
+            src="/LP_logo.png"
             alt="LEADERSHIP PUTNAM LOGO"
-            className="w-24 h-auto max-w-full -mt 4" />
+            className="w-24 h-auto max-w-full object-contain" 
+            height={72}
+            width={168}
+            />
         </div>
         </div>
     );

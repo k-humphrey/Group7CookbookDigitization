@@ -1,6 +1,7 @@
 
 "use client";
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLang } from '@/app/components/languageprovider'
 
 const STRINGS = {
@@ -35,6 +36,11 @@ const STRINGS = {
         adminPortal: "Admin Portal",
     },
 };
+
+// className for focus
+const focusClasses =
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2   focus-visible:ring-neutral focus-visible:rounded-md hover:shadow-lx";
+
 export default function Footer(){
     const langContext = useLang();
     const lang = langContext?.lang ?? 'en';
@@ -42,68 +48,62 @@ export default function Footer(){
     return (
 
         <>
-        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 sm:p-10 flex justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
+        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
 
         {/* Quick Links */}
         <nav>
-            <h6 className="footer-title">{t.quickLinks}</h6>
+            <h2 className="footer-title">{t.quickLinks}</h2>
 
                 <Link
                     href="/"
-                    rel="noopener noreferrer"
-                    className="link link-hover"  >
+                    className={focusClasses + " link link-hover"}>
                     {t.homepage}
                 </Link>
             
                 <Link
                     href="/recipes?ingredients="
-                    rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.allRecipes}
                 </Link>
 
                 <Link
                     href="/tools"
-                    rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.tools}
                 </Link>
 
                 <Link
-                    href="/admin"
-                    rel="noopener noreferrer"
-                    className="link link-hover">
+                    href="/admin-login"
+                    className={focusClasses + " link link-hover"}>
                     {t.adminPortal}
                 </Link>
         </nav>
 
         {/* Resources */}
         <nav>
-            <h6 className="footer-title">{t.resources}</h6>
+            <h2 className="footer-title">{t.resources}</h2>
                 <Link
                     href="/comm-partners"
-                    rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.communityPartners}
                 </Link>
 
                 <Link
                     href="/comm-resources"
-                    rel="noopener noreferrer"
-                    className="link link-hover" >
+                    className={focusClasses + " link link-hover"}>
                     {t.communityResources}
                 </Link>
         </nav>
 
         {/* Contact */}
         <nav>
-            <h6 className="footer-title">{t.contact}</h6>
-            <a className="link link-hover">{t.email}</a>
+            <h2 className="footer-title">{t.contact}</h2>
+            <a href="mailto:Katelyn.steakley@pcsstn.com" className={focusClasses + " link link-hover"}>{t.email}</a>
         </nav>
 
         {/* Social */}
         <nav>
-            <h6 className="footer-title">{t.social}</h6>
+            <h2 className="footer-title">{t.social}</h2>
             <div className="flex gap-2 sm:gap-4 mt-2">
             {/* Twitter */}
             <a>
@@ -152,14 +152,25 @@ export default function Footer(){
         </footer>
 
         {/*Logos*/}
-        <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-5 sm:p-10 flex justify-center gap-10 sm:gap-20 pr-0 sm:pr-40">
-            <img src="pep_logo.png" 
-            alt="LEADERSHIP PUTNAM Logo" 
-            className="sm:w-50 w-1/2 h-auto max-w-full" />
+        <footer className="footer sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
+            <Image 
+            src="/pep_logo.png" 
+            alt="PUTNAM EDUCATION PARTNERSHIP FOUNDATION Logo" 
+            className="h-auto pt-px max-w-full" 
+            height={72}
+            width={168}
+            priority
+            />
 
-            <img src="LP_logo.png" 
+            <Image 
+            src="/LP_logo.png" 
             alt="LEADERSHIP PUTNAM Logo" 
-            className="sm:w-24 w-1/4 h-auto max-w-full -mt-4" />
+            className="w-24 max-w-full -mt-1" 
+            height={72}
+            width={168}
+            priority
+            />
+
         </footer>
 
         <footer className="footer sm:footer-horizontal bg-black text-white p-4 flex items-center justify-between">

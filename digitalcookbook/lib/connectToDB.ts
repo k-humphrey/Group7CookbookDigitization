@@ -1,34 +1,23 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+// lib/connectToDB.ts
+import mongoose from "mongoose";
+//single global connection variable
+let isConnected = false;
 
-// Load environment variables from .env file
-dotenv.config({path: ".env.local"});
+export async function connectToDB() {
+  //if we are already connected, return the connection
+  if (isConnected) return mongoose;
 
-// MongoDB connection URI from environment variables
-const URI = process.env.MONGODB_URI;
+  //if not, connect using MONGODB_URI
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error("Missing MONGODB_URI");
+  await mongoose.connect(uri, {
+    dbName: "thriftyBitsDB", 
+  });
 
-// Ensure the MongoDB URI is defined
-if (!URI)
-    throw new Error("Please define the MONGODB_URI variable inside .env.local");
+  //set the global connection variable to true now, and log it
+  isConnected = true;
+  console.log("Connected to MongoDB");
 
-// Global connection variable
-let connection: mongoose.Mongoose | null = null;
-
-// Function to connect to MongoDB
-export async function connectToDB(): Promise<mongoose.Mongoose> {
-    // Return existing connection if already connected
-    if (connection) {
-        return connection;
-
-    }
-    
-    // Establish a new connection if none exists
-    try {
-        connection = await mongoose.connect(URI as string);
-        return connection;
-
-    } catch (error) {
-        throw new Error("Error connecting to MongoDB", {cause: error as Error});
-        
-    }
+  //return the connection
+  return mongoose;
 }

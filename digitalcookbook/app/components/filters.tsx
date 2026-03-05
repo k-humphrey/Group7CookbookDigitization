@@ -11,7 +11,7 @@ interface Props {
   onChange: (filters: {
     appliances: string[];
     tags: { healthTags: string[]; allergenTags: string[] };
-    maxCost?: number;
+    maxCost: number;
   }) => void;
 }
 
@@ -22,6 +22,9 @@ const STRINGS = {
     health: "Health",
     allergies: "Allergies",
     cost: "Cost",
+    collapse: "Collapse filters",
+    expand: "Expand filters",
+    maxCostLabel: "Max cost",
   },
   es: {
     filters: "Filtros",
@@ -29,6 +32,9 @@ const STRINGS = {
     health: "Salud",
     allergies: "Alergias",
     cost: "Costo",
+    collapse: "Colapsar filtros",
+    expand: "Expandir filtros",
+    maxCostLabel: "Costo máximo",
   },
 } as const;
 
@@ -41,7 +47,7 @@ export default function Filters({ onChange }: Props) {
   const [filterOptions, setFilterOptions] = useState<{appliances: IDGroup[]; tags: TagIDGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
   const [selected, setSelected] = useState({appliances: [] as number[], tags: { healthTags: [] as number[], allergenTags: [] as number[]}})
   const [isOpen, setIsOpen] = useState(true);
-  const [maxCost, setMaxCost] = useState(50);
+  const [maxCost, setMaxCost] = useState(10);
   const [sliderMax, setSliderMax] = useState(0);
 
   // Gets all filter options
@@ -63,10 +69,11 @@ export default function Filters({ onChange }: Props) {
   fetch("/api/recipes/maxCost")
     .then(res => res.json())
     .then(data => {
+      data.maxCost = Math.ceil(data.maxCost);
       setSliderMax(data.maxCost);
       setMaxCost(data.maxCost); //start slider at max cost
     });
-}, []);
+  }, []);
 
 
   // Toggle filter selection
@@ -96,28 +103,41 @@ export default function Filters({ onChange }: Props) {
       tags: {
         healthTags: newSelected.tags.healthTags.map(id => filterOptions.tags.healthTags.find(tag => tag.id == id)?.name ?? ""),
         allergenTags: newSelected.tags.allergenTags.map(id => filterOptions.tags.allergenTags.find(tag => tag.id == id)?.name ?? "")
-      }
+      },
+      maxCost
     }); 
   };
   
   return (
-    <section>
-      {/* Filters */}
-      <div
-        className={`mt-6 collapse collapse-arrow bg-gray-200 border-base-300 border mx-3 ${
-          isOpen ? "collapse-open" : "collapse-close"
-        }`}
-      >
-        
-        <div
-        className="collapse-title font-semibold after:start-5 after:end-auto pe-1 ps-12 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-        >
-          {t.filters}
-        </div>
-
-        <div className="collapse-content text-sm ml-2">
-          <div className="h-200">
+    <aside
+    className={[
+      "bg-gray-200 border border-base-300 rounded-xl",
+      "transition-all duration-300",
+      isOpen ? "w-40 sm:w-55" : "w-10", // open vs collapsed width
+      "h-full shrink-0 relative",
+    ].join(" ")}
+  >
+    {/* Filters */}
+    <div className={isOpen ? "flex flex-row items-center justify-between p-4 font-semibold" : "opacity-0"}>
+      {t.filters}
+    </div>
+    {/* Arrow sliver */}
+    <button type="button" onClick={() => setIsOpen(!isOpen)}
+      className={[
+        "absolute top-3 right-2",
+        "btn btn-ghost btn-xs",
+        "p-0 w-6 h-6 min-h-0",
+      ].join(" ")}
+      aria-label={isOpen ? t.collapse : t.expand}
+      aria-expanded={isOpen}
+    >
+      <span className={isOpen ? "inline-block" : "inline-block rotate-180"}>
+        ❮
+      </span>
+    </button>
+    {/* Content */}
+    <div aria-hidden={!isOpen} className={isOpen ? "p-4 -mt-2 text-sm ml-1" : "p-4 text-sm ml-1 opacity-0 pointer-events-none"}>
+          <div className="flex flex-col gap-2">
             {/* Filter 1: Kitchen Appliances */}
             <div>
               <h3 className="font-semibold text-xs uppercase mb-2">{t.appliances}</h3>
@@ -177,10 +197,10 @@ export default function Filters({ onChange }: Props) {
               <h3 className="font-semibold text-xs uppercase my-2">{t.cost}</h3>
               <div className="flex flex-col gap-1">
                 <label className="flex items-center gap-2">
-                  <input type="range" min="0" max={sliderMax} value={maxCost} className="range range-xs" onChange={(e) => {
+                  <input type="range" aria-label={t.maxCostLabel} min="0" max={sliderMax} value={maxCost} className="range range-xs" onChange={(e) => {
                       setMaxCost(+e.target.value);
                   }}
-                  onMouseUp={() => {
+                  onPointerUp={() => {
                      onChange({
                       maxCost,
                       appliances: selected.appliances.map(id =>
@@ -203,7 +223,6 @@ export default function Filters({ onChange }: Props) {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </aside>
   );
 }
