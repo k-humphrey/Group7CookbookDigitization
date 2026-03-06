@@ -7,12 +7,14 @@ import { useLang } from "@/app/components/languageprovider";
 const STRINGS = {
     en: {
         communityResources: "Community Resources",
+        aboutCommRes: "About Our Community Resources",
         safety: "Safety",
         putnumHealthDept: "Putnam County Health Department",
         ucAssist: "UCAssist.org",
         elPuente: "El Puente - Hispanic Community Center",
         emergencyNumbers: "Emergency Numbers",
         partners: "Partners",
+        aboutPartners: "About Our Partners", 
         kwianis: "Kiwanis",
         enbridge: "Enbridge",
         powerOfPutnam: "Power of Putnam",
@@ -30,12 +32,14 @@ const STRINGS = {
     },
     es: {
         communityResources: "Recursos Comunitarios",
+        aboutCommRes: "Información Sobre Nuestros Recursos Comunitarios",
         safety: "Seguridad",
         putnumHealthDept: "Departamento de Salud del Condado de Putnam",
         ucAssist: "UCAssist.org",
         elPuente: "El Puente - Centro Comunitario Hispano",
         emergencyNumbers: "Números de Emergencia",
         partners: "Socios",
+        aboutPartners: "Información Sobre Nuestros Socios Comunitarios", 
         kwianis: "Kiwanis",
         enbridge: "Enbridge",
         powerOfPutnam: "Power of Putnam",
@@ -249,6 +253,12 @@ export default function Navbar() {
                                 transition-all duration-200 z-50">
 
                     <li>
+                    <Link href="/comm-resources" className="block px-4 py-2 hover:bg-gray-100">
+                        {t.aboutCommRes}
+                    </Link>
+                    </li>
+
+                    <li>
                     <Link href="/safety" className="block px-4 py-2 hover:bg-gray-100">
                         {t.safety}
                     </Link>
@@ -301,6 +311,13 @@ export default function Navbar() {
                                 opacity-0 invisible translate-y-2
                                 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
                                 transition-all duration-200 z-50">
+
+                    <li>
+                    <Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">
+                        {t.aboutPartners}
+                    </Link>
+                    </li>
+
                     <li>
                         <Link
                             href="https://www.kiwanis.org/"
