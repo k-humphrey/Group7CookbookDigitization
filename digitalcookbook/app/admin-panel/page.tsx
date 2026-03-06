@@ -1,6 +1,4 @@
 //app/admin-panel/page.tsx
-<<<<<<< HEAD
-
 
 import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
