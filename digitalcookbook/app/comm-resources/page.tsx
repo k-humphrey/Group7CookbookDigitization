@@ -4,6 +4,7 @@
 
 import { useLang } from "@/app/components/languageprovider"; 
 import InfoCard from "../components/infocard";
+import Image from "next/image";
 
 const STRINGS = {
     en: {
@@ -21,21 +22,27 @@ export default function CommResourcesPage() {
     const t = STRINGS[lang];
 
     return (
-        <main aria-label={t.communityResources} className="relative min-h-screen flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat"
-			style={{
-				backgroundImage: "url('/community-background.png')",
-			}}
-		>
-			<div className="text-center mt-10 mb-20">
-				<div className="inline-block bg-white shadow-md rounded p-5">
+		<section aria-label={t.communityResources} className="relative min-h-screen flex flex-col items-center justify-start">
+
+			{/* Background picture */}
+			<Image
+				src="/community-background.png"
+				alt=""
+				fill
+				priority
+				className="object-cover scale-110"
+			/>
+			
+			<div className="text-center mt-10 mb-20 relative z-10">
+				<div className="inline-block bg-white shadow-md rounded-lg p-5">
 					<h1 className="text-2xl md:text-[5rem] font-bold text-black">
 					{t.communityResources}
 					</h1>
 				</div>
 			</div>
 
-            {/* Cards Container aka Responsive Grid, works on mobile */}
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20">
+			{/* Cards Container aka Responsive Grid, works on mobile */}
+			<ul className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20 items-stretch">
 				<li className="flex justify-center">
 					<InfoCard
 						title="Safety"
@@ -76,7 +83,7 @@ export default function CommResourcesPage() {
 					/>
 				</li>
 
-            </ul>
-        </main>
+			</ul>
+		</section>
     );
 }

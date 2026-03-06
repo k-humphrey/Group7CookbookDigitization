@@ -4,6 +4,7 @@
 
 import { useLang } from "@/app/components/languageprovider"; 
 import InfoCard from "../components/infocard";
+import Image from "next/image";
 
 const STRINGS = {
     en: {
@@ -23,21 +24,26 @@ export default function CommPartnersPage() {
     const t = STRINGS[lang];
     
     return (
-        <main aria-label={t.communityPartners} className="relative min-h-screen flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat"
-			style={{
-				backgroundImage: "url('/cutting-board.png')",
-			}}
-		>
-			<div className="text-center mt-10 mb-20">
-				<div className="inline-block bg-white shadow-md rounded p-5">
-					<h1 className="text-2xl md:text-[5rem] font-bold text-black">
-					{t.communityPartners}
-					</h1>
-				</div>
-			</div>
+        <section aria-label={t.communityPartners} className="relative min-h-screen flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat">
+            {/* Background picture */}
+            <Image
+                src="/cutting-board.png"
+                alt=""
+                fill
+                priority
+                className="object-cover scale-110"
+            />
+
+            <div className="text-center mt-10 mb-20 relative z-10">
+                <div className="inline-block bg-white shadow-md rounded p-5 rounded-lg">
+                    <h1 className="text-2xl md:text-[5rem] font-bold text-black">
+                    {t.communityPartners}
+                    </h1>
+                </div>
+            </div>
 
             {/* Cards Container aka Responsive Grid, works on mobile */}
-            <ul aria-label={t.partnerList} className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20">
+            <ul aria-label={t.partnerList} className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20 relative z-10">
                 <li className="flex justify-center">
                     <InfoCard
                         title="Kiwanis"
@@ -75,6 +81,6 @@ export default function CommPartnersPage() {
                     />
                 </li>
             </ul>
-        </main>
+        </section>
     );
 }

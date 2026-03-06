@@ -62,7 +62,7 @@ export default function ShoppingListPage() {
     : combinedIngredients.slice(0, MAX_VISIBLE_INGREDIENTS);
 
   return (
-    <main className="min-h-screen bg-base-100">
+    <section className="min-h-screen bg-base-100">
 
       {/* Header */}
       <div className="w-full bg-black flex justify-center py-6">
@@ -204,6 +204,6 @@ export default function ShoppingListPage() {
           );
         })}
       </div>
-    </main>
+    </section>
   );
 }

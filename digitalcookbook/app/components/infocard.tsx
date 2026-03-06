@@ -27,8 +27,8 @@ export default function InfoCard(
 	const descriptionId = useId();
 
   	const cardClasses =
-    	"card bg-white shadow-md border overflow-hidden block transition-shadow " +
-	   	"hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+    	"card bg-white shadow-md border overflow-hidden block transition-shadow" +
+	   	"hover:shadow-lg focus:outline-none focus-visible:ring-primary focus-visible:ring-3 focus-visible:ring-offset-2";
 	
 	const content = (
 		<>

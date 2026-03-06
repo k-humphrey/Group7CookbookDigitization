@@ -20,7 +20,7 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
     const t = PLANNER_STRINGS[lang];
 
     return (
-        <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
+        <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col h-full">
 
             {/* Image */}
             <figure className="h-40 overflow-hidden relative">
@@ -29,6 +29,8 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                         src={recipe.imageURI.trimEnd()}
                         alt={recipe.title?.[lang]}
                         fill
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                         className="object-cover"
                     />
                 ) : (

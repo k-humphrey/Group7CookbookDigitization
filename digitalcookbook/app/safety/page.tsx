@@ -52,7 +52,7 @@ export default function SafetyPage() {
 	const t = STRINGS[lang];
 
 	return (
-		<main aria-label={t.title} className="min-h-screen flex flex-col items-center justify-start">
+		<section aria-label={t.title} className="min-h-screen flex flex-col items-center justify-start">
 			<div className="text-center mb-5">
 				<h1 className="text-3xl md:text-[5rem] font-bold">{t.title}</h1>
 			</div>
@@ -92,6 +92,6 @@ export default function SafetyPage() {
 					/>
 				</li>
 			</ul>
-		</main>
+		</section>
   	);
 }
