@@ -71,7 +71,9 @@ export default function Navbar() {
                     <Image 
                     src="/pep_logo.png" 
                     alt="LEADERSHIP PUTNAM Logo" 
-                    fill
+                    priority
+                    height={72}
+                    width={168}
                     className="object-contain"
                     />
                 </div>
@@ -416,13 +418,20 @@ export default function Navbar() {
             </ul>
         </div>
         <div className="navbar-end">
-            <input type="checkbox" aria-label={t.languageToggle} className="toggle" onChange={() => setLang(lang === "en" ? "es" : "en")} />
+            <input 
+                type="checkbox"
+                id="languageToggle"
+                aria-label={t.languageToggle}
+                className="toggle"
+                onChange={() => setLang(lang === "en" ? "es" : "en")}
+            />
             <Image 
-            src="/LP_logo.png"
-            alt="LEADERSHIP PUTNAM LOGO"
-            className="w-24 h-auto max-w-full object-contain" 
-            height={72}
-            width={168}
+                src="/LP_logo.png"
+                alt="LEADERSHIP PUTNAM LOGO"
+                priority
+                className="w-24 h-auto max-w-full object-contain" 
+                height={72}
+                width={168}
             />
         </div>
         </div>

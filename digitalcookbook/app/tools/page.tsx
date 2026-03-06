@@ -4,7 +4,7 @@ import InfoCard from "../components/infocard";
 
 export default function ToolsPage() {
     return (
-        <main className="min-h-screen flex flex-col items-center justify-start">
+        <section className="min-h-screen flex flex-col items-center justify-start">
             <a href="#tools-grid" className="sr-only">
                 Skip to tools
             </a>
@@ -56,6 +56,6 @@ export default function ToolsPage() {
                     />
                 </div>
             </div>
-        </main>
+        </section>
     );
 }

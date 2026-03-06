@@ -8,7 +8,7 @@ export default function EmergencyNumbersPage() {
   const lang = langContext?.lang ?? 'en';
   const t = EMERGENCY_STRINGS[lang];
   return (
-    <main className="min-h-screen p-8 flex flex-col items-center gap-10">
+    <section className="min-h-screen p-8 flex flex-col items-center gap-10">
       
       {/* Title */}
       <h1 className="badge bg-red-800 text-white text-4xl font-extrabold px-20 py-7 rounded-full">
@@ -170,6 +170,6 @@ export default function EmergencyNumbersPage() {
           </tbody>
         </table>
       </div>
-    </main>
+    </section>
   );
 }

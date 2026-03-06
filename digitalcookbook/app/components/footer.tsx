@@ -48,7 +48,7 @@ export default function Footer(){
     return (
 
         <>
-        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
+        <footer className="relative z-10 footer sm:footer-horizontal bg-base-200 text-base-content p-5 justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
 
         {/* Quick Links */}
         <nav>
@@ -152,23 +152,23 @@ export default function Footer(){
         </footer>
 
         {/*Logos*/}
-        <footer className="footer sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
+        <footer className="footer relative z-10 sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
             <Image 
-            src="/pep_logo.png" 
-            alt="PUTNAM EDUCATION PARTNERSHIP FOUNDATION Logo" 
-            className="h-auto pt-px max-w-full" 
-            height={72}
-            width={168}
-            priority
+                src="/pep_logo.png" 
+                alt="PUTNAM EDUCATION PARTNERSHIP FOUNDATION Logo" 
+                className="h-auto pt-px max-w-full" 
+                height={72}
+                width={168}
+                priority
             />
 
             <Image 
-            src="/LP_logo.png" 
-            alt="LEADERSHIP PUTNAM Logo" 
-            className="w-24 max-w-full -mt-1" 
-            height={72}
-            width={168}
-            priority
+                src="/LP_logo.png" 
+                alt="LEADERSHIP PUTNAM Logo" 
+                className="w-24 max-w-full -mt-1" 
+                height={72}
+                width={168}
+                priority
             />
 
         </footer>

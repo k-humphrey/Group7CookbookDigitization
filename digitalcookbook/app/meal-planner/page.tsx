@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 import RecipePicker from "@/app/meal-planner/recipePicker";
 import PlanSummary from "@/app/meal-planner/planSummary";
@@ -46,19 +47,27 @@ export default function BackpackPlannerPage() {
     const t = PLANNER_STRINGS[lang];
 
     return (
-        <main aria-label={t.pageTitle} className="min-h-screen bg-base-100">
-            {/* Background Image */}
-            <div 
-                className="w-full bg-cover bg-center pt-14 pb-5 flex flex-col items-center"  
-                style={{ backgroundSize: "110%", backgroundImage: "url('/searchbackground2.0.png')" }}
-            >
-                    
-                <div className="mx-auto w-full px-3">
+        <section aria-label={t.pageTitle} className="relative bg-base-100">
+
+            {/* Background picture */}
+            <div className="fixed inset-0 top-0 bottom-[75px]">
+                <Image
+                    src="/searchbackground2.0.webp"
+                    alt=""
+                    fill
+                    priority
+                    className="object-cover scale-105"
+                />
+            </div>
+
+            <div className="relative z-10 w-full pt-14 pb-5 flex flex-col items-center">
+
+                <div className="relative mx-auto w-full px-3">
 
                     {/* PAGE HEADER */}
-                    <div className="flex flex-col gap-5 text-center">
+                    <div className="flex flex-col items-center gap-5 text-center">
                         <h1 className="text-3xl md:text-7xl font-bold">{t.pageTitle}</h1>
-                        <p className="text-lg">
+                        <p className="text-lg bg-base-100/85 p-2 inline-block rounded-md">
                             {t.pageDescription}
                         </p>
                     </div>
@@ -78,6 +87,6 @@ export default function BackpackPlannerPage() {
                     </div>
                 </div>
             </div>
-        </main>
+        </section>
     );
 }

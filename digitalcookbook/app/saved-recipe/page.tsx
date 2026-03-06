@@ -27,7 +27,7 @@ export default function SavedRecipePage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-start w-full">
+    <section className="min-h-screen flex flex-col items-center justify-start w-full">
       {/* Title */}
       <div className="w-full bg-black flex justify-center py-6">
         <h1 className="text-4xl md:text-5xl font-black text-white leading-none">
@@ -80,6 +80,6 @@ export default function SavedRecipePage() {
           </div>
         ))}
       </div>
-    </main>
+    </section>
   );
 }
