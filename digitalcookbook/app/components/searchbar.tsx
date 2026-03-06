@@ -47,7 +47,6 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
       // Add new tag and send to parent
       const update = [...tags, value];
       setTags(update);
-      onSearch(update); // update recipes on page on enter
 
       setInput("");
     }
@@ -75,23 +74,33 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           {/* Tag Area */}
           <div className="flex-1">
             <p className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</p>
-            <ul aria-live="polite" aria-atomic="true" className="mt-2 flex flex-wrap gap-2 text-slate-950">
+            <ul aria-live="polite" aria-atomic="true" className="pt-2 flex flex-wrap gap-2 text-slate-950">
               {tags.length === 0 ? (
                 <li className="text-xs opacity-70">{t.placeholder}</li>
               ) : (
-                tags.map((tag) => (
-                  <li key={tag} className="badge badge-outline gap-1 px-3 py-2 text-xs">
-                    {tag}
-                    <button
-                      type="button"
-                      aria-label={`${t.removetag} ${tag}`}
-                      className="ml-1 text-[10px] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded"
-                      onClick={() => removeTag(tag)}
-                    >
-                      ✕
-                    </button>
-                  </li>
-                ))
+                tags.map((tag, index) => {
+                  const colorClasses = [
+                    "badge-info",
+                    "badge-warning",
+                    "badge-error",
+                  ];
+
+                  const color = colorClasses[index % 3];
+
+                  return (
+                    <li key={tag} className={`badge font-semibold gap-1 px-3 py-2 text-xs ${color}`}>
+                      {tag}
+                      <button
+                        type="button"
+                        aria-label={`${t.removetag} ${tag}`}
+                        className="ml-1 text-[10px] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded"
+                        onClick={() => removeTag(tag)}
+                      >
+                        ✕
+                      </button>
+                    </li>
+                  );
+                })
               )}
             </ul>
           </div>
@@ -108,7 +117,7 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
       {/* Search Bar */}
       <div className="w-full max-w-3xl">
         <p id="ingredient-help" className="sr-only">{t.placeholder2}</p>
-        <label htmlFor="ingredient-search" className="input input-bordered rounded-full w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6] focus-within:ring-1 focus-within:ring-neutral">
+        <label htmlFor="ingredient-search" className="input input-bordered rounded-full w-full flex items-center gap-3 h-12 px-6 bg-[#C3CDA7] focus-within:ring-1 focus-within:ring-neutral">
           {/* Search Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
