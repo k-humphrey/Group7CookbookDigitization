@@ -169,7 +169,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
         </label>
 
         {open && filteredSuggestions.length > 0 && (
-          <ul className="absolute w-full bg-white border rounded-xl mt-1 shadow-lg z-10 max-h-48 overflow-y-auto">
+          <ul className="absolute w-full bg-white border rounded-xl mt-1 shadow-lg z-50 max-h-40 overflow-y-auto">
             {filteredSuggestions.map((s) => (
               <li
                 key={s}

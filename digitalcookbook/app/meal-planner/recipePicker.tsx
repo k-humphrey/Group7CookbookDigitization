@@ -53,7 +53,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
         ...new Set(
         recipes.flatMap((r: any) =>
             r.ingredients?.map((i: any) =>
-            typeof i === "string" ? i : i[lang]
+            (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
             ) || []
         )
         )

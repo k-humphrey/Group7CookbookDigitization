@@ -53,7 +53,7 @@ export default function RecipeSearchPage() {
     ...new Set(
       recipes.flatMap((r: any) =>
         r.ingredients?.map((i: any) =>
-          typeof i === "string" ? i : i[lang]
+          (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
         ) || []
       )
     )
@@ -65,7 +65,7 @@ export default function RecipeSearchPage() {
       <a href="#recipes" className="sr-only">Skip to recipes</a>
 
       {/* Background Image */}
-      <div className="relative w-full py-6 flex flex-col items-center">
+      <div className="relative w-full py-5 flex flex-col items-center">
 
         {/* Background picture */}
         <Image
@@ -83,9 +83,9 @@ export default function RecipeSearchPage() {
             }} initialTags={initialTags} /> 
         </div>
       </div>
-      <div className="flex w-full p-3 gap-3">
+      <div className="flex w-full px-3 pb-3 gap-3">
         {/* Filters */}
-        <div className="sticky top-0 self-start shrink-0">
+        <div className="sticky top-0 self-start shrink-0 pt-3">
           <Filters onChange={(selectedFilters) => {
             setFilters(selectedFilters);
             handleSearch(false);
@@ -93,7 +93,7 @@ export default function RecipeSearchPage() {
         </div>
         
         {/* Recipes */}
-        <div id="recipes" className="flex-1 min-w-0">
+        <div id="recipes" className="flex-1 min-w-0 pt-3">
           <RecipeGrid recipes={recipes} />
         </div>
       </div>

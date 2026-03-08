@@ -56,7 +56,7 @@ export default function Home() {
     ...new Set(
       recipes.flatMap((r: any) =>
         r.ingredients?.map((i: any) =>
-          typeof i === "string" ? i : i[lang]
+          (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
         ) || []
       )
     )
@@ -93,7 +93,7 @@ export default function Home() {
         <p className="mt-5 pt-5 text-base max-w-3xl md:text-2xl text-slate-950">{t.search}</p>
       </div>
 
-      <div id="searchbar" className="w-11/12 w-md-full">
+      <div id="searchbar" className="w-11/12 w-md-full z-10">
         {/* Searchbar */}
         <Searchbar onSearch={handleSearch} suggestionsSource={ingredientSuggestions} />
       </div>
