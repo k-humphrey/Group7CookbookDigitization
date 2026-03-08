@@ -71,16 +71,26 @@ export function useRecipeSearch(lang: string) {
 
         // build search url and get newRecipes
         const url = buildURL(ingredientsRef.current, filtersRef.current);
+        try {
 
-        const data = await (await fetch(url)).json();
-        const newRecipes = Array.isArray(data) ? data : Array.isArray(data?.recipes) ? data.recipes : [];
+            // Fetch data
+            const response =  await fetch(url);
+            const data = await response.json();
 
-        // append newRecipes if load, else: new search, reset recipes to newRecipes
-        setRecipes(prev => (load ? [...prev, ...newRecipes] : newRecipes));
+            // Get new recipes from data
+            const newRecipes = Array.isArray(data) ? data : Array.isArray(data?.recipes) ? data.recipes : [];
 
-        // finished loading page, lock loading if no newRecipes, till new search (!load)
-        if(newRecipes.length > 0 || !load) {
-            window.scrollBy({top: -50, behavior: 'smooth'}); // scroll up 50px
+            // append newRecipes if load, else: new search, reset recipes to newRecipes
+            setRecipes(prev => (load ? [...prev, ...newRecipes] : newRecipes));
+
+            // finished loading page, lock loading if no newRecipes, till new search (!load)
+            if(newRecipes.length > 0 || !load) {
+                window.scrollBy({top: -50, behavior: 'smooth'}); // scroll up 50px
+                pageInfoRef.current.isLocked = false;
+            }
+
+        } catch(e) {
+            console.warn("Failed to fetch recipes: ", e);
             pageInfoRef.current.isLocked = false;
         }
     };

@@ -71,7 +71,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const {scaleFactor, scaledCost} = recipe?.totalCost != null ? scaleCost(recipe.totalCost, servings) : {scaleFactor: 1, scaledCost: 0.00};
 
   return (
-    <main className="min-h-screen bg-base-100 ">
+    <section className="min-h-screen bg-base-100 ">
       <div className="mx-auto max-w-6xl px-6 pt-6 printable print:block">
         <div className="border border-base-300 bg-base-100">
           
@@ -199,6 +199,6 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           </section>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

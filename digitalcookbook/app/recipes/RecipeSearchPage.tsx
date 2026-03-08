@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLang } from "../components/languageprovider";
 import { useRecipeSearch } from "@/hooks/useRecipeSearch";
+import Image from "next/image";
 
 // Components
 import Filters from "@/app/components/filters";
@@ -59,23 +60,27 @@ export default function RecipeSearchPage() {
   ];
 
   return (
-    <div>
+    <section>
 
       <a href="#recipes" className="sr-only">Skip to recipes</a>
 
       {/* Background Image */}
-      <div 
-        className="w-full bg-cover bg-center bg-no-repeat py-6 flex flex-col items-center"  
-        style={{
-        backgroundSize: "110%", 
-        backgroundImage: "url('/searchbackground2.0.png')"
-        }}
-      >
-        <div className="w-11/12 md:w-full">
-        <Searchbar suggestionsSource={ingredientSuggestions} onSearch={(ingredients) => {
-            setIngredients(ingredients);
-            handleSearch(false);
-          }} initialTags={initialTags} /> 
+      <div className="relative w-full py-6 flex flex-col items-center">
+
+        {/* Background picture */}
+        <Image
+          src="/searchbackground2.0.webp"
+          alt=""
+          fill
+          priority
+          className="object-cover scale-110"
+        />
+
+        <div className="w-11/12 w-md-full z-10">
+          <Searchbar suggestionsSource={ingredientSuggestions} onSearch={(ingredients) => {
+              setIngredients(ingredients);
+              handleSearch(false);
+            }} initialTags={initialTags} /> 
         </div>
       </div>
       <div className="flex w-full p-3 gap-3">
@@ -92,6 +97,6 @@ export default function RecipeSearchPage() {
           <RecipeGrid recipes={recipes} />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

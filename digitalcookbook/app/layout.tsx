@@ -5,7 +5,7 @@ import { LanguageProvider } from "@/app/components/languageprovider";
 
 export const metadata = {
   title: "Thrifty Bites",
-  description: "",
+  description: "Discover budget-friendly recipes, plan meals, and track ingredients with ease.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -13,9 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <LanguageProvider>
-        <Navbar/>
-        {children}
-        <Footer />
+          <Navbar/>
+          <main>
+            {children}
+          </main>
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

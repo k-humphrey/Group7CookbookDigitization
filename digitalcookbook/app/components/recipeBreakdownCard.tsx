@@ -33,7 +33,7 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
     return (
 
-        <div key={recipe._id} className="bg-base-100 shadow-xl rounded-xl p-4 md:p-6 flex flex-col md:flex-row md:gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1" tabIndex={0}>
+        <div key={recipe._id} className="mt-4 bg-base-100 shadow-xl rounded-xl p-4 md:p-6 flex flex-col md:flex-row md:gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1" tabIndex={0}>
 
             {/* Ingredients */}
             <div className="flex-1">
@@ -58,6 +58,7 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
                         src={recipe.imageURI.trimEnd()}
                         alt={recipe.title?.[lang]}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover"
                     />
                 </div>

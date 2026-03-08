@@ -38,7 +38,7 @@ export default function MeasurementConverter() {
   const valueInOz = value * conversionsToOz[unit];
 
   return (
-    <div className="bg-white border-4 border-blue-900 rounded-4xl shadow-2xl p-6 w-[360px]">
+    <section className="bg-white border-4 border-blue-900 rounded-4xl shadow-2xl p-6 w-[360px]">
       {/* Title */}
       <h2 className="text-2xl font-extrabold text-center mb-5 text-red-500">
         {t.title}
@@ -118,6 +118,6 @@ export default function MeasurementConverter() {
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 }
