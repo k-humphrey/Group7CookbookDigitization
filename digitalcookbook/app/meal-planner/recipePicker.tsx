@@ -49,6 +49,16 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
 
     }, []);
 
+    const ingredientSuggestions = [
+        ...new Set(
+        recipes.flatMap((r: any) =>
+            r.ingredients?.map((i: any) =>
+            typeof i === "string" ? i : i[lang]
+            ) || []
+        )
+        )
+    ];
+
     // Toggle recipe selection in parent state
     function toggleRecipe(recipe: Recipe) {
         const isSelected = selectedRecipes.find(r => r.recipe._id === recipe._id);
@@ -76,7 +86,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
                 <Searchbar onSearch={(ingredients) => {
                     setIngredients(ingredients);
                     handleSearch(false);
-                }} /> 
+                }} suggestionsSource={ingredientSuggestions} /> 
             </div>
 
             <div className="flex gap-3">

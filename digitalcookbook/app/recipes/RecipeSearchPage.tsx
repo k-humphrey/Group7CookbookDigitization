@@ -48,6 +48,16 @@ export default function RecipeSearchPage() {
 
   }, []);
 
+  const ingredientSuggestions = [
+    ...new Set(
+      recipes.flatMap((r: any) =>
+        r.ingredients?.map((i: any) =>
+          typeof i === "string" ? i : i[lang]
+        ) || []
+      )
+    )
+  ];
+
   return (
     <div>
 
@@ -62,7 +72,7 @@ export default function RecipeSearchPage() {
         }}
       >
         <div className="w-11/12 md:w-full">
-        <Searchbar onSearch={(ingredients) => {
+        <Searchbar suggestionsSource={ingredientSuggestions} onSearch={(ingredients) => {
             setIngredients(ingredients);
             handleSearch(false);
           }} initialTags={initialTags} /> 

@@ -10,6 +10,7 @@ import PrintButton from "@/app/components/printbutton";
 type Recipe = {
   title?: { en?: string; es?: string };
   ingredientPlainText?: { en?: string; es?: string };
+  instructions?: { en?: string; es?: string };
   imageURI?: string;
   tags?: {
     'Blue Ribbon'?: boolean;
@@ -29,12 +30,14 @@ const STRINGS = {
     servings: "Servings:",
     total: "Total Cost: $",
     ing: "Ingredients",
-    contains: "This Recipe Contains:",
+    contains: "This recipe contains the following allergens:",
     servingsLabel: "Servings",
     tagsLabel: "Tags",
     allergensLabel: "Allergens",
     noImage: "No image",
     noIngredients: "No ingredients listed.",
+    directions: "Directions",
+    noDirections: "No directions provided."
   },
   es: {
     prep: "Tiempo de preparación:",
@@ -48,6 +51,8 @@ const STRINGS = {
     allergensLabel: "Alérgenos",
     noImage: "Sin imagen",
     noIngredients: "No hay ingredientes listados.",
+    directions: "Instrucciones",
+    noDirections: "No se proporcionaron instrucciones."
   },
 };
 
@@ -71,7 +76,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
         <div className="border border-base-300 bg-base-100">
           
           {/* Image */}
-          <div className="h-48 w-full overflow-hidden bg-base-200 print:flex print:justify-center relative">
+          <div className="h-90 w-full overflow-hidden bg-base-200 print:flex print:justify-center relative">
             {recipe?.imageURI ? (
               <Image
                 src={recipe.imageURI.trimEnd()}
@@ -145,28 +150,53 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           <ul aria-label={t.allergensLabel} className="px-6 pb-4 flex flex-wrap gap-2">
             <span className="font-semibold">{t.contains}</span>
             
-            {allergensObj && Object.entries(allergensObj).filter(([_, value]) => value === true).map(([allergen]) => (
-                  <li key={allergen} className="text-black font-bold">{allergen}</li>
+            {allergensObj && Object.entries(allergensObj).filter(([, value]) => value === true).map(([allergen]) => (
+                  <li key={allergen} className="badge badge-error font-semibold text-black">{allergen}</li>
                 ))}
           </ul> 
 
-          {/* Ingredients */}
-          <div className="p-6 flex justify-left">
-            <section className="rounded-lg bg-[#dfe8d8] p-4 w-auto print:w-auto"> 
-              <h2 className="text-center text-md font-bold tracking-wide">{t.ing}</h2>
-              <ul className="mt-3 list-disc list-inside space-y-1 pl-5 text-sm ">
-                {recipe?.ingredientPlainText?.[lang] ? (
-                  recipe.ingredientPlainText?.[lang]
-                    .split("|||")
-                    .map((line, i) => 
-                      <li key={i} className="wrap-break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
-                    )
-                ) : (
-                  <li className="text-base-content/60">{t.noIngredients}</li>
-                )}
-              </ul>
-            </section>
-          </div>
+          <section className="flex flex-col-reverse sm:flex-row justify-between print:flex-col">
+            {/* Directions */}
+            <div className="p-4 flex">
+              <section className="rounded-lg bg-[#dfe8d8] p-4 w-full print:w-auto print:h-auto">
+                <h2 className="text-lg lg:text-2xl font-bold mb-3 text-center">{t.directions}</h2>
+                  <ul className="pt-4 space-y-3 text-sm leading-relaxed list-decimal pl-6">
+                    {recipe?.instructions?.[lang] ? (
+                    recipe.instructions?.[lang]
+                      .split("|||")
+                      .map((line, i) => 
+                        <li key={i} className="wrap-break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
+                      )
+                  ) : (
+                    <li className="text-base-content/60">{t.noDirections  }</li>
+                  )}
+                </ul>
+              </section>
+            </div>
+
+            {/* Ingredients */}
+            <div className="py-4 pr-4 flex justify-center sm:justify-right">
+              <section className="rounded-lg bg-[#f0f0f0] p-4 w-auto print:w-auto print:h-auto"> 
+                <h2 className="text-lg lg:text-2xl font-bold mb-3 text-center">{t.ing}</h2>
+                  <ul className="mt-4 space-y-2 text-sm leading-relaxed"> 
+                    {recipe?.ingredientPlainText?.[lang] ? (
+                    recipe.ingredientPlainText?.[lang]
+                      .split("|||")
+                      .map((line, i) => 
+                        <li key={i} className="flex gap-2">
+                          <span className="text-primary font-extrabold">•</span>
+                          <span className="wrap-break-words">
+                            {scaleIngredient(line.trim(), scaleFactor)}
+                          </span>
+                        </li>                      
+                        )
+                  ) : (
+                    <li className="text-base-content/60">{t.noIngredients}</li>
+                  )}
+                </ul>
+              </section>
+            </div>
+          </section>
         </div>
       </div>
     </main>

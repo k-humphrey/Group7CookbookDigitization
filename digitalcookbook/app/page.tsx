@@ -49,6 +49,18 @@ export default function Home() {
     })();
   }, []);
 
+  const ingredientSuggestions = useMemo(() => {
+    return [
+      ...new Set(
+        recipes.flatMap((r: any) =>
+          r.ingredients?.map((i: any) =>
+            typeof i === "string" ? i : i?.[lang]
+          ) || []
+        )
+      )
+    ];
+  }, [recipes, lang]);
+
   // select 3 random recipes
   const featuredRecipes = useMemo(() => {
     return recipes.length
@@ -83,7 +95,7 @@ export default function Home() {
 
         <div id="searchbar" className="w-11/12 md:w-full">
           {/* Searchbar */}
-          <Searchbar onSearch={handleSearch} />
+          <Searchbar onSearch={handleSearch} suggestionsSource={ingredientSuggestions} />
         </div>
 
         {/* Featured Recipes */}

@@ -7,6 +7,7 @@ import { useLang } from "@/app/components/languageprovider";
 interface Props {
   onSearch: (tags: string[]) => void; // parent callback
   initialTags ?: string[]; // initial tags
+  suggestionsSource: string[]; // list of all possible ingredients for autocomplete
 }
 
 const STRINGS = {
@@ -26,17 +27,34 @@ const STRINGS = {
   },
 };
 
-export default function Searchbar({ onSearch, initialTags }: Props) {
+export default function Searchbar({ onSearch, initialTags, suggestionsSource = [] }: Props) {
+  // Language context
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
+
+  // State for dropdown
+  const [open, setOpen] = useState(false);
+
+  // State for input and selected tags
   const [input, setInput] = useState("");
   const [tags, setTags] = useState<string[]>(initialTags || []); // store selected ingredients
+  
+  // Filter suggestions based on input and exclude already selected tags
+  const filteredSuggestions = suggestionsSource
+    .filter((s) => typeof s === "string")
+    .filter((s) => s.toLowerCase().includes(input.toLowerCase()))
+    .filter((s) => !tags.includes(s))
+    .slice(0, 6);
 
+  // Handle input change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    const value = e.target.value;
+    setInput(value);
+    setOpen(value.length > 0);
   };
 
+  // Handle Enter key to add tag
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -67,10 +85,10 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
   return (
     <form role="search" onSubmit={(e) => e.preventDefault()} className="w-full flex flex-col items-center">
       
-      {/* Selected Ingredients Box */}
-      <div className="w-full max-w-3xl mb-2">
-        <div className="rounded-3xl bg-[#DEE4D6] px-4 py-3 flex items-center gap-4">
-
+      {tags.length > 0 && (
+        <div className="w-full max-w-3xl">
+          <div className="rounded-t-3xl bg-[#DEE4D6] px-4 py-3 flex items-center gap-4">
+            
           {/* Tag Area */}
           <div className="flex-1">
             <p className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</p>
@@ -113,11 +131,16 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
           </button>
         </div>
       </div>
+      )}
 
       {/* Search Bar */}
-      <div className="w-full max-w-3xl">
+      <div className="w-full max-w-3xl relative">
         <p id="ingredient-help" className="sr-only">{t.placeholder2}</p>
-        <label htmlFor="ingredient-search" className="input input-bordered rounded-full w-full flex items-center gap-3 h-12 px-6 bg-[#C3CDA7] focus-within:ring-1 focus-within:ring-neutral">
+        <label 
+          htmlFor="ingredient-search" 
+          className={`input input-bordered ${
+          tags.length > 0 ? "rounded-b-3xl rounded-t-none" : "rounded-full"}
+          w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6] focus-within:ring-1 focus-within:ring-neutral`}>
           {/* Search Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -144,6 +167,25 @@ export default function Searchbar({ onSearch, initialTags }: Props) {
             aria-describedby="ingredient-help"
           />
         </label>
+
+        {open && filteredSuggestions.length > 0 && (
+          <ul className="absolute w-full bg-white border rounded-xl mt-1 shadow-lg z-10 max-h-48 overflow-y-auto">
+            {filteredSuggestions.map((s) => (
+              <li
+                key={s}
+                className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                onMouseDown={() => {
+                  const update = [...tags, s];
+                  setTags(update);
+                  setInput("");
+                  setOpen(false);
+                }}
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </form>
   );
