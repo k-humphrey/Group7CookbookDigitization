@@ -9,15 +9,48 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	const [selectedRecipe, setSelectedRecipe] = useState<any | null>(null);
 	const [newAllergenEn, setNewAllergenEn] = useState("");
 	const [newAllergenEs, setNewAllergenEs] = useState("");
+	const TAGS_ENG = {
+		"Blue Ribbon": false,
+		Vegan: false,
+		Vegetarian: false,
+	};
+
+	const TAGS_SP = {
+		"Cinta Azul": false,
+		Vegano: false,
+		Vegetariano: false,
+	};
+
+	const ALLERGENS_ENG = {
+		"Tree Nuts": true,
+		Peanuts: true,
+		Dairy: true,
+		Egg: true,
+		Wheat: true,
+		Soy: true,
+		Fish: true,
+	};
+
+	const ALLERGENS_SP = {
+		"Frutos Secos": true,
+		Cacahuetes: true,
+		"Derechos Lácteos": true,
+		Huevo: true,
+		Trigo: true,
+		Soja: true,
+		Pescado: true,
+	};
 	const emptyRecipe = {
 		title: { en: "", es: "" },
 		ingredientPlainText: { en: "", es: "" },
 		instructions: { en: "", es: "" },
 		imageURI: "",
-		tags: {},
+		tags: TAGS_ENG,
+		espTags: TAGS_SP,
 		ingredients: [],
 		appliances: [],
-		allergens: {},
+		allergens: ALLERGENS_ENG, 
+		espAllergens: ALLERGENS_SP,
 	};
 
   	return (
