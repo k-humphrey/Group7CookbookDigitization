@@ -82,13 +82,6 @@ export default function RecipeSearchPage() {
         <div id="recipes" className="flex-1 min-w-0">
           <RecipeGrid recipes={recipes} />
         </div>
-        <Image
-        src="/example_png.png"
-        alt="ADVERTISEMENT EXAMPLE"
-        className="w-48 -mt-1"
-        height={566}
-        width={850}
-        /> 
       </div>
     </div>
   );
