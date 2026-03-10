@@ -173,6 +173,15 @@ export default function Footer(){
             priority
             />
 
+            <Image
+            src="/example_png.png"
+            alt="ADVERTISEMENT EXAMPLE"
+            className="w-24 -mt-1"
+            height={566}
+            width={850}
+            />
+
+
         </footer>
 
         <footer className="footer sm:footer-horizontal bg-black text-white p-4 flex items-center justify-between">
