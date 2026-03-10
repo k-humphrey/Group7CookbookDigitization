@@ -90,14 +90,6 @@ export default function ShoppingListPage() {
           />
         </div>
 
-        <Image
-          src="/example_png.png"
-          alt="ADVERTISEMENT EXAMPLE"
-          className="w-48 -mt-1"
-          height={566}
-          width={850}
-        /> 
-
         {/* Combined Ingredients Box */}
         <div
           id="print-ingredients"
@@ -146,6 +138,14 @@ export default function ShoppingListPage() {
             {t.totalCost}: ${totalCost}
           </div>
         </div>
+
+        <Image
+          src="/example_png.png"
+          alt="ADVERTISEMENT EXAMPLE"
+          className="w-48 -mt-1"
+          height={566}
+          width={850}
+        /> 
 
         {/* Recipe Cards */}
         {selectedRecipes.map((item) => {
