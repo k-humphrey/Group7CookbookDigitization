@@ -59,10 +59,11 @@ export async function PUT(req: Request) {
       );
     }
 
+     const { _id, ...updateData } = body; //remove id from data (you can't set an id in mongo)
     //try to update the recipe in the db
     const updated = await Recipe.findByIdAndUpdate(
-      body._id,
-      body,
+      _id,
+      updateData,
       { new: true, runValidators: true }
     );
 
