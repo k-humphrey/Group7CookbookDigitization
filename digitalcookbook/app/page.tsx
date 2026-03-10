@@ -92,14 +92,14 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-6 flex justify-center">{t.featured}</h2>
           <RecipeGrid recipes={featuredRecipes} />
         </section> 
+        <Image
+          src="/example_png.png"
+          alt="ADVERTISEMENT EXAMPLE"
+          className="w-64 -mt-1"
+          height={566}
+          width={850}
+        /> 
       </div>
-      <Image
-        src="/example_png.png"
-        alt="ADVERTISEMENT EXAMPLE"
-        className="w-48 -mt-1"
-        height={566}
-        width={850}
-      /> 
     </main>
   );
 }

@@ -10,6 +10,7 @@ import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStri
 import { SHOPPING_LIST_STRINGS } from "./shoppingListStrings";
 import { SelectedRecipe } from "@/app/meal-planner/page";
 import PrintButton from "@/app/components/printbutton";
+import Image from 'next/image';
 
 export default function ShoppingListPage() {
   // store recipes selected by the user
@@ -88,6 +89,14 @@ export default function ShoppingListPage() {
             className="px-4 py-2 rounded-md"
           />
         </div>
+
+        <Image
+          src="/example_png.png"
+          alt="ADVERTISEMENT EXAMPLE"
+          className="w-48 -mt-1"
+          height={566}
+          width={850}
+        /> 
 
         {/* Combined Ingredients Box */}
         <div

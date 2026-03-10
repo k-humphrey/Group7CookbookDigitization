@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLang } from "../components/languageprovider";
 import { useRecipeSearch } from "@/hooks/useRecipeSearch";
+import Image from 'next/image';
 
 // Components
 import Filters from "@/app/components/filters";
@@ -81,6 +82,13 @@ export default function RecipeSearchPage() {
         <div id="recipes" className="flex-1 min-w-0">
           <RecipeGrid recipes={recipes} />
         </div>
+        <Image
+        src="/example_png.png"
+        alt="ADVERTISEMENT EXAMPLE"
+        className="w-48 -mt-1"
+        height={566}
+        width={850}
+        /> 
       </div>
     </div>
   );
