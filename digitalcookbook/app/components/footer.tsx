@@ -52,6 +52,14 @@ export default function Footer(){
         <>
         <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
 
+        <Image
+            src="/example_png.png"
+            alt="ADVERTISEMENT EXAMPLE"
+            className="w-24 -mt-1"
+            height={566}
+            width={850}
+        />
+        
         {/* Quick Links */}
         <nav>
             <h2 className="footer-title">{t.quickLinks}</h2>
@@ -171,14 +179,6 @@ export default function Footer(){
             height={72}
             width={168}
             priority
-            />
-
-            <Image
-            src="/example_png.png"
-            alt="ADVERTISEMENT EXAMPLE"
-            className="w-24 -mt-1"
-            height={566}
-            width={850}
             />
 
 
