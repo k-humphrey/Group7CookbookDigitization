@@ -4,6 +4,7 @@ import { SelectedRecipe } from "@/app/meal-planner/page";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
 import { useLang } from "@/app/components/languageprovider";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
+import Image from "next/image";
 
 // Props needed to render recipe breakdown card
 interface Props {
@@ -32,7 +33,7 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
     return (
 
-        <div key={recipe._id} className="bg-base-100 shadow-xl rounded-xl p-4 md:p-6 flex flex-col md:flex-row md:gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded" tabIndex={0}>
+        <div key={recipe._id} className="mt-4 bg-base-100 shadow-xl rounded-xl p-4 md:p-6 flex flex-col md:flex-row md:gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1" tabIndex={0}>
 
             {/* Ingredients */}
             <div className="flex-1">
@@ -52,11 +53,13 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
             {/* Image */}
             {recipe.imageURI && (
-                <div className="flex-1 rounded-lg overflow-hidden">
-                    <img
-                        src={recipe.imageURI}
+                <div className="w-full md:flex-1 h-80 md:h-auto rounded-lg overflow-hidden relative shrink-0 mt-3">
+                    <Image
+                        src={recipe.imageURI.trimEnd()}
                         alt={recipe.title?.[lang]}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover"
                     />
                 </div>
             )}

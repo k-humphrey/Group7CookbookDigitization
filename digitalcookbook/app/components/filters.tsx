@@ -22,6 +22,9 @@ const STRINGS = {
     health: "Health",
     allergies: "Allergies",
     cost: "Cost",
+    collapse: "Collapse filters",
+    expand: "Expand filters",
+    maxCostLabel: "Max cost",
   },
   es: {
     filters: "Filtros",
@@ -29,6 +32,9 @@ const STRINGS = {
     health: "Salud",
     allergies: "Alergias",
     cost: "Costo",
+    collapse: "Colapsar filtros",
+    expand: "Expandir filtros",
+    maxCostLabel: "Costo máximo",
   },
 } as const;
 
@@ -46,27 +52,30 @@ export default function Filters({ onChange }: Props) {
 
   // Gets all filter options
   useEffect(() => {
-    const fetchFilters = async () => {
-      const filterInfo = await fetch(`/api/filters?lang=${lang}`).then(r => r.json());
-
+    fetch(`/api/filters?lang=${lang}`)
+    .then(response => response.json())
+    .then(filterInfo => { // set filter options for UI
+      // Set filter options for appliances and tags
       setFilterOptions({
-        appliances: filterInfo.appliances,
-        tags : { healthTags: filterInfo.tags, allergenTags: filterInfo.allergens}
+        appliances: filterInfo.appliances || [],
+        tags : { healthTags: filterInfo.tags || [], allergenTags: filterInfo.allergens || []}
       });
-    }
+      
+    }).catch(error => console.warn(`Failed to fetch Filters API: ${error}`)); // catch fetch errors
 
-    fetchFilters();
   }, [lang]);
 
   //Gets max cost for slider
   useEffect(() => {
   fetch("/api/recipes/maxCost")
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
-      data.maxCost = Math.ceil(data.maxCost);
+      data.maxCost = Math.ceil(data.maxCost); // round to nearest full number
       setSliderMax(data.maxCost);
       setMaxCost(data.maxCost); //start slider at max cost
-    });
+
+    }).catch(error => console.warn(`Failed to fetch maxCost API: ${error}`)); // catch fetch errors
+
   }, []);
 
 
@@ -105,7 +114,7 @@ export default function Filters({ onChange }: Props) {
   return (
     <aside
     className={[
-      "mt-6 mx-3 bg-gray-200 border border-base-300 rounded-xl",
+      "bg-gray-200 border border-base-300 rounded-xl",
       "transition-all duration-300",
       isOpen ? "w-40 sm:w-55" : "w-10", // open vs collapsed width
       "h-full shrink-0 relative",
@@ -113,7 +122,7 @@ export default function Filters({ onChange }: Props) {
   >
     {/* Filters */}
     <div className={isOpen ? "flex flex-row items-center justify-between p-4 font-semibold" : "opacity-0"}>
-      {t.filters}
+      <h2>{t.filters}</h2>
     </div>
     {/* Arrow sliver */}
     <button type="button" onClick={() => setIsOpen(!isOpen)}
@@ -122,14 +131,15 @@ export default function Filters({ onChange }: Props) {
         "btn btn-ghost btn-xs",
         "p-0 w-6 h-6 min-h-0",
       ].join(" ")}
-      aria-label={isOpen ? "Collapse filters" : "Expand filters"}
+      aria-label={isOpen ? t.collapse : t.expand}
+      aria-expanded={isOpen}
     >
       <span className={isOpen ? "inline-block" : "inline-block rotate-180"}>
         ❮
       </span>
     </button>
     {/* Content */}
-    <div className={isOpen ? "p-4 -mt-2 text-sm ml-1" : "p-4 text-sm ml-1 opacity-0 pointer-events-none"}>
+    <div aria-hidden={!isOpen} className={isOpen ? "p-4 -mt-2 text-sm ml-1" : "p-4 text-sm ml-1 opacity-0 pointer-events-none"}>
           <div className="flex flex-col gap-2">
             {/* Filter 1: Kitchen Appliances */}
             <div>
@@ -139,6 +149,7 @@ export default function Filters({ onChange }: Props) {
                 <label key={appliance.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
+                  id={`appliance-${appliance.id}`}
                   className="checkbox checkbox-xs"
                   checked={selected.appliances.includes(appliance.id)}
                   onChange={() => toggle("appliances", appliance.id)}
@@ -157,6 +168,7 @@ export default function Filters({ onChange }: Props) {
                 <label key={tag.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
+                  id={`healthTag-${tag.id}`}
                   className="checkbox checkbox-xs"
                   checked={selected.tags.healthTags.includes(tag.id)}
                   onChange={() => toggle("healthTags", tag.id)}
@@ -175,6 +187,7 @@ export default function Filters({ onChange }: Props) {
                 <label key={tag.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
+                  id={`allergenTag-${tag.id}`}
                   className="checkbox checkbox-xs"
                   checked={selected.tags.allergenTags.includes(tag.id)}
                   onChange={() => toggle("allergenTags", tag.id)}
@@ -190,10 +203,17 @@ export default function Filters({ onChange }: Props) {
               <h3 className="font-semibold text-xs uppercase my-2">{t.cost}</h3>
               <div className="flex flex-col gap-1">
                 <label className="flex items-center gap-2">
-                  <input type="range" min="0" max={sliderMax} value={maxCost} className="range range-xs" onChange={(e) => {
+                  <input 
+                    type="range"
+                    id="maxCost"
+                    aria-label={t.maxCostLabel}
+                    min="0" max={sliderMax}
+                    value={maxCost}
+                    className="range range-xs"
+                    onChange={(e) => {
                       setMaxCost(+e.target.value);
                   }}
-                  onMouseUp={() => {
+                  onPointerUp={() => {
                      onChange({
                       maxCost,
                       appliances: selected.appliances.map(id =>

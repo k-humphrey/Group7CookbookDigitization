@@ -1,5 +1,6 @@
 import { Recipe, SelectedRecipe } from "@/app/meal-planner/page";
 import { useLang } from "@/app/components/languageprovider";
+import Image from "next/image";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 
 // Props needed to render planner recipe cards
@@ -19,15 +20,18 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
     const t = PLANNER_STRINGS[lang];
 
     return (
-        <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
+        <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col h-full">
 
             {/* Image */}
-            <figure className="h-40 overflow-hidden">
+            <figure className="h-40 overflow-hidden relative">
                 {recipe.imageURI ? (
-                    <img
-                        src={recipe.imageURI}
+                    <Image
+                        src={recipe.imageURI.trimEnd()}
                         alt={recipe.title?.[lang]}
-                        className="w-full h-full object-cover"
+                        fill
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="object-cover"
                     />
                 ) : (
                     <div className="flex items-center justify-center w-full h-full">
@@ -49,15 +53,16 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                 </p>
 
                 {/* Add / Remove Button */}
-                <button className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`} onClick={() => toggleRecipe(recipe)}>
+                <button type="button" aria-pressed={!!selected} className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`} onClick={() => toggleRecipe(recipe)}>
                     {selected ? t.remove : t.addToPlan}
                 </button>
 
                 {/* Serving input */}
                 {selected && (
                     <div className="flex items-center gap-1 mt-2">
-                        <span>{t.servings}:</span>
+                        <label htmlFor={`servings-${recipe._id}`}>{t.servings}:</label>
                         <input
+                            id={`servings-${recipe._id}`}
                             type="number"
                             inputMode="numeric"
                             min={1}

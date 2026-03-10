@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLang } from "../components/languageprovider";
 import { useRecipeSearch } from "@/hooks/useRecipeSearch";
+import Image from "next/image";
 
 // Components
 import Filters from "@/app/components/filters";
@@ -48,29 +49,43 @@ export default function RecipeSearchPage() {
 
   }, []);
 
+  const ingredientSuggestions = [
+    ...new Set(
+      recipes.flatMap((r: any) =>
+        r.ingredients?.map((i: any) =>
+          (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
+        ) || []
+      )
+    )
+  ];
+
   return (
-    <div>
+    <section>
 
       <a href="#recipes" className="sr-only">Skip to recipes</a>
 
       {/* Background Image */}
-      <div 
-        className="w-full bg-cover bg-center bg-no-repeat py-6 flex flex-col items-center"  
-        style={{
-        backgroundSize: "110%", 
-        backgroundImage: "url('/searchbackground.jpg')"
-        }}
-      >
-        <div className="w-11/12 md:w-full">
-        <Searchbar onSearch={(ingredients) => {
-            setIngredients(ingredients);
-            handleSearch(false);
-          }} initialTags={initialTags} /> 
+      <div className="relative w-full py-5 flex flex-col items-center">
+
+        {/* Background picture */}
+        <Image
+          src="/searchbackground2.0.webp"
+          alt=""
+          fill
+          priority
+          className="object-cover scale-110"
+        />
+
+        <div className="w-11/12 w-md-full z-10">
+          <Searchbar suggestionsSource={ingredientSuggestions} onSearch={(ingredients) => {
+              setIngredients(ingredients);
+              handleSearch(false);
+            }} initialTags={initialTags} /> 
         </div>
       </div>
-      <div className="flex w-full">
+      <div className="flex w-full px-3 pb-3 gap-3">
         {/* Filters */}
-        <div className="sticky top-0 self-start shrink-0">
+        <div className="sticky top-0 self-start shrink-0 pt-3">
           <Filters onChange={(selectedFilters) => {
             setFilters(selectedFilters);
             handleSearch(false);
@@ -78,10 +93,10 @@ export default function RecipeSearchPage() {
         </div>
         
         {/* Recipes */}
-        <div id="recipes" className="flex-1">
+        <div id="recipes" className="flex-1 min-w-0 pt-3">
           <RecipeGrid recipes={recipes} />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

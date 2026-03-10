@@ -4,7 +4,6 @@ import { SelectedRecipe } from "@/app/meal-planner/page"
 import { useLang } from "@/app/components/languageprovider";
 import { combineIngredients } from "@/lib/combineIngredients";
 import { decimalToFraction } from "@/lib/fractionConverter";
-
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStrings"; 
 
@@ -33,11 +32,11 @@ export default function PlanSummary({ selectedRecipes }: Props) {
     
     // Render summary of plan totals and breakdown for each selected recipe
     return (
-        <div className="mt-16 space-y-10">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <div className="mt-15 gap-3 flex flex-col">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
 
                 {/* PLAN TOTALS */}
-                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-1 h-50"} tabIndex={0}>
+                <section aria-label={t.planTotalsSection} className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-1 h-50"} tabIndex={0}>
                     <div className="card-body text-lg overflow-y-auto">
                         <h2 className="card-title text-2xl font-bold mb-4">{t.planTotals}</h2>
 
@@ -46,10 +45,10 @@ export default function PlanSummary({ selectedRecipes }: Props) {
                             <li>{t.totalCost}: <b>${totalRecipesCost}</b></li>
                         </ul>
                     </div>
-                </div>
+                </section>
 
                 {/* TOTAL INGREDIENTS */}
-                <div className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-2 h-50"}>
+                <section aria-label={t.totalIngredientsSection} className={focusClasses + " card bg-base-200 rounded-xl shadow lg:col-span-2 h-50"} tabIndex={0}>
                     <div className="card-body overflow-y-auto">
                         <h2 className="card-title text-2xl font-bold mb-4">{t.totalIngredients}</h2>
 
@@ -62,10 +61,11 @@ export default function PlanSummary({ selectedRecipes }: Props) {
                             ))}
                         </ul>
                     </div>
-                </div>
+                </section>
             </div>
 
             {/* RECIPE BREAKDOWN CARDS */}
+            <section aria-label={t.recipeBreakdownCardsSection}>
             {selectedRecipes.map((item) => {
                 return (
                     <RecipeBreakdownCard
@@ -74,7 +74,7 @@ export default function PlanSummary({ selectedRecipes }: Props) {
                     />
                 );
             })}
-
+            </section>
         </div>
     );
 }

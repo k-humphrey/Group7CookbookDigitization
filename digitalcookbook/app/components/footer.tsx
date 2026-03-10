@@ -48,36 +48,32 @@ export default function Footer(){
     return (
 
         <>
-        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-5 justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
+        <footer className="relative z-10 footer sm:footer-horizontal bg-base-200 text-base-content p-5 justify-center gap-10 sm:gap-40 flex-wrap grid grid-cols-2 md:grid-cols-none mx-auto justify-items-start">
 
         {/* Quick Links */}
         <nav>
-            <h6 className="footer-title">{t.quickLinks}</h6>
+            <h2 className="footer-title">{t.quickLinks}</h2>
 
                 <Link
                     href="/"
-                    rel="noopener noreferrer"
                     className={focusClasses + " link link-hover"}>
                     {t.homepage}
                 </Link>
             
                 <Link
                     href="/recipes?ingredients="
-                    rel="noopener noreferrer"
                     className={focusClasses + " link link-hover"}>
                     {t.allRecipes}
                 </Link>
 
                 <Link
                     href="/tools"
-                    rel="noopener noreferrer"
                     className={focusClasses + " link link-hover"}>
                     {t.tools}
                 </Link>
 
                 <Link
                     href="/admin-login"
-                    rel="noopener noreferrer"
                     className={focusClasses + " link link-hover"}>
                     {t.adminPortal}
                 </Link>
@@ -85,17 +81,15 @@ export default function Footer(){
 
         {/* Resources */}
         <nav>
-            <h6 className="footer-title">{t.resources}</h6>
+            <h2 className="footer-title">{t.resources}</h2>
                 <Link
                     href="/comm-partners"
-                    rel="noopener noreferrer"
                     className={focusClasses + " link link-hover"}>
                     {t.communityPartners}
                 </Link>
 
                 <Link
                     href="/comm-resources"
-                    rel="noopener noreferrer"
                     className={focusClasses + " link link-hover"}>
                     {t.communityResources}
                 </Link>
@@ -103,13 +97,13 @@ export default function Footer(){
 
         {/* Contact */}
         <nav>
-            <h6 className="footer-title">{t.contact}</h6>
-            <a href="mailto:Katelyn.steakley@pcsstn.com" rel="noopener noreferrer" className={focusClasses + " link link-hover"}>{t.email}</a>
+            <h2 className="footer-title">{t.contact}</h2>
+            <a href="mailto:Katelyn.steakley@pcsstn.com" className={focusClasses + " link link-hover"}>{t.email}</a>
         </nav>
 
         {/* Social */}
         <nav>
-            <h6 className="footer-title">{t.social}</h6>
+            <h2 className="footer-title">{t.social}</h2>
             <div className="flex gap-2 sm:gap-4 mt-2">
             {/* Twitter */}
             <a>
@@ -158,23 +152,23 @@ export default function Footer(){
         </footer>
 
         {/*Logos*/}
-        <footer className="footer sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
+        <footer className="footer relative z-10 sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
             <Image 
-            src="/pep_logo.png" 
-            alt="LEADERSHIP PUTNAM Logo" 
-            className="h-auto pt-px max-w-full" 
-            height={72}
-            width={168}
-            preload={true}
+                src="/pep_logo.png" 
+                alt="PUTNAM EDUCATION PARTNERSHIP FOUNDATION Logo" 
+                className="h-auto pt-px max-w-full" 
+                height={72}
+                width={168}
+                priority
             />
 
             <Image 
-            src="/LP_logo.png" 
-            alt="LEADERSHIP PUTNAM Logo" 
-            className="w-24 max-w-full -mt-1" 
-            height={72}
-            width={168}
-            preload={true}
+                src="/LP_logo.png" 
+                alt="LEADERSHIP PUTNAM Logo" 
+                className="w-24 max-w-full -mt-1" 
+                height={72}
+                width={168}
+                priority
             />
 
         </footer>
