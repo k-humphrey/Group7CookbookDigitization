@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import Searchbar from "./components/searchbar";
 import RecipeGrid from "./components/recipecards";  
 import { useLang } from "@/app/components/languageprovider";
+import Image from 'next/image';
 
 const STRINGS = {
   en: {
@@ -91,7 +92,14 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-6 flex justify-center">{t.featured}</h2>
           <RecipeGrid recipes={featuredRecipes} />
         </section> 
-      </div> 
+      </div>
+      <Image
+        src="/example_png.png"
+        alt="ADVERTISEMENT EXAMPLE"
+        className="w-48 -mt-1"
+        height={566}
+        width={850}
+      /> 
     </main>
   );
 }

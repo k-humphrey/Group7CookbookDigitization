@@ -55,7 +55,7 @@ export default function Footer(){
         <Image
             src="/example_png.png"
             alt="ADVERTISEMENT EXAMPLE"
-            className="w-24 -mt-1"
+            className="w-32 -mt-1"
             height={566}
             width={850}
         />
