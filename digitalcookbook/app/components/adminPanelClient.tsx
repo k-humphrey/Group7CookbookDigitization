@@ -6,9 +6,9 @@ import { useState } from "react";
 import InfoCard from "./infocard";
 
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
-  	const [selectedRecipe, setSelectedRecipe] = useState<any | null>(null);
-	const [newAllergenEn, setNewAllergenEn] = useState("");
-	const [newAllergenEs, setNewAllergenEs] = useState("");
+  	const [selectedRecipe, setSelectedRecipe] = useState< any | null >(null);
+	//const [newAllergenEn, setNewAllergenEn] = useState("");
+	//const [newAllergenEs, setNewAllergenEs] = useState("");
 	const TAGS_EN = {
 		"Blue Ribbon": false,
 		Vegan: false,
@@ -105,6 +105,13 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				Edit Recipe
 			</h3>
 
+			{/* TOTAL COST */}
+			<div className="flex items-center justify-end gap-3 mb-6">
+				<span className="font-semibold">Total Cost:</span>
+				<div className="badge badge-md badge-neutral text-base px-4 py-3">
+					{selectedRecipe.totalCost != null ? `$${Number(selectedRecipe.totalCost).toFixed(2)}` : "N/A"}
+				</div>
+			</div>
 			{/* IMAGE */}
 			<label className="font-semibold">Image URL</label>
 			<input
@@ -409,10 +416,10 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				<button
 					className="btn btn-primary flex-1"
 					onClick={async () => {
-						const isNew = !selectedRecipe._id;
+						const isNew = !selectedRecipe._id;  //check if _id exists, if not uses POST 
 
 						await fetch("/api/edit-recipes/", {
-						method: isNew ? "POST" : "PUT",
+						method: isNew? "POST" : "PUT",
 						headers: {
 							"Content-Type": "application/json",
 						},
@@ -420,10 +427,10 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 						});
 
 						setSelectedRecipe(null);
-						location.reload();
+						location.reload();     
 					}}
 				>
-					
+					Save
 				</button>
 			</div>
 			</div>
