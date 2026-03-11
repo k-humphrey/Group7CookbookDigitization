@@ -9,15 +9,49 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	const [selectedRecipe, setSelectedRecipe] = useState<any | null>(null);
 	const [newAllergenEn, setNewAllergenEn] = useState("");
 	const [newAllergenEs, setNewAllergenEs] = useState("");
+	const TAGS_EN = {
+		"Blue Ribbon": false,
+		Vegan: false,
+		Vegetarian: false,
+	};
+
+	const TAGS_ES = {
+		"Cinta Azul": false,
+		Vegano: false,
+		Vegetariano: false,
+	};
+
+	const ALLERGENS_EN = {
+		"Tree Nuts": true,
+		Peanuts: true,
+		Dairy: true,
+		Egg: true,
+		Wheat: true,
+		Soy: true,
+		Fish: true,
+	};
+
+	const ALLERGENS_ES = {
+		"Frutos Secos": true,
+		Cacahuetes: true,
+		"Derechos Lácteos": true,
+		Huevo: true,
+		Trigo: true,
+		Soja: true,
+		Pescado: true,
+	};
+
 	const emptyRecipe = {
 		title: { en: "", es: "" },
 		ingredientPlainText: { en: "", es: "" },
 		instructions: { en: "", es: "" },
 		imageURI: "",
-		tags: {},
+		tags: TAGS_EN,
+		espTags: TAGS_ES,
 		ingredients: [],
 		appliances: [],
-		allergens: {},
+		allergens: ALLERGENS_EN,
+		espAllergens: ALLERGENS_ES,
 	};
 
   	return (
@@ -41,7 +75,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				title={ recipe.title.en }
 				description=""
 				href="#"
-				imageSrc={ recipe.imageURI }
+				imageSrc={ recipe.imageURI?.startsWith("http") ? recipe.imageURI : undefined }
 				action={
 				<button
 					className="btn btn-primary btn-sm"
@@ -117,75 +151,67 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 			/>
 
 			{/* INGREDIENTS PLAIN TEXT EN */}
-			<label className="font-semibold">
-				Ingredients (English)
-			</label>
+			<label className="font-semibold">Ingredients (English)</label>
 			<textarea
-				className="textarea textarea-bordered w-full mb-4"
-				value={selectedRecipe.ingredientPlainText?.en || ""}
-				onChange={(e) =>
-					setSelectedRecipe({
-						...selectedRecipe,
-						ingredientPlainText: {
-						...selectedRecipe.ingredientPlainText,
-						en: e.target.value,
-						},
-					})
-				}
+			className="textarea textarea-bordered w-full mb-4"
+			value={(selectedRecipe.ingredientPlainText?.en || "").replaceAll("|||", "\n")} //remove |||
+			onChange={(e) =>
+				setSelectedRecipe({
+				...selectedRecipe,
+				ingredientPlainText: {
+					...selectedRecipe.ingredientPlainText,
+					en: e.target.value.replaceAll("\n", "|||"), //add back in
+				},
+				})
+			}
 			/>
 
 			{/* INGREDIENTS PLAIN TEXT ES */}
-			<label className="font-semibold">
-				Ingredients (Spanish)
-			</label>
+			<label className="font-semibold">Ingredients (Spanish)</label>
 			<textarea
-				className="textarea textarea-bordered w-full mb-4"
-				value={selectedRecipe.ingredientPlainText?.es || ""}
-				onChange={(e) =>
-					setSelectedRecipe({
-						...selectedRecipe,
-						ingredientPlainText: {
-						...selectedRecipe.ingredientPlainText,
-						es: e.target.value,
-						},
-					})
-				}
+			className="textarea textarea-bordered w-full mb-4"
+			value={(selectedRecipe.ingredientPlainText?.es || "").replaceAll("|||", "\n")}
+			onChange={(e) =>
+				setSelectedRecipe({
+				...selectedRecipe,
+				ingredientPlainText: {
+					...selectedRecipe.ingredientPlainText,
+					es: e.target.value.replaceAll("\n", "|||"),
+				},
+				})
+			}
 			/>
 
 			{/* INSTRUCTIONS EN */}
-			<label className="font-semibold">
-				Instructions (English)
-			</label>
+			<label className="font-semibold">Instructions (English)</label>
 			<textarea
-				className="textarea textarea-bordered w-full mb-4"
-				value={selectedRecipe.instructions?.en || ""}
-				onChange={(e) =>
-					setSelectedRecipe({
-						...selectedRecipe,
-						instructions: {
-						...selectedRecipe.instructions,
-						en: e.target.value,
-						},
-					})
-				}
+			className="textarea textarea-bordered w-full mb-4"
+			value={(selectedRecipe.instructions?.en || "").replaceAll("|||", "\n")}
+			onChange={(e) =>
+				setSelectedRecipe({
+				...selectedRecipe,
+				instructions: {
+					...selectedRecipe.instructions,
+					en: e.target.value.replaceAll("\n", "|||"),
+				},
+				})
+			}
 			/>
 
 			{/* INSTRUCTIONS ES */}
-			<label className="font-semibold">
-				Instructions (Spanish)
-			</label>
+			<label className="font-semibold">Instructions (Spanish)</label>
 			<textarea
-				className="textarea textarea-bordered w-full mb-4"
-				value={selectedRecipe.instructions?.es || ""}
-				onChange={(e) =>
-					setSelectedRecipe({
-						...selectedRecipe,
-						instructions: {
-						...selectedRecipe.instructions,
-						es: e.target.value,
-						},
-					})
-				}
+			className="textarea textarea-bordered w-full mb-4"
+			value={(selectedRecipe.instructions?.es || "").replaceAll("|||", "\n")}
+			onChange={(e) =>
+				setSelectedRecipe({
+				...selectedRecipe,
+				instructions: {
+					...selectedRecipe.instructions,
+					es: e.target.value.replaceAll("\n", "|||"),
+				},
+				})
+			}
 			/>
 
 			{/* TAGS EN */}
@@ -255,6 +281,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				)
 			)}
 			{/* ADD NEW ALLERGEN */}
+			{/*
 			<div className="flex gap-2 mt-2">
 			<input
 				className="input input-bordered input-sm flex-1"
@@ -278,7 +305,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				>
 					Add
 				</button>
-			</div>
+			</div> */}
 
 			{/* ALLERGENS ES */}
 			<h4 className="font-bold mt-6 mb-2">Allergens (Spanish)</h4>
@@ -301,6 +328,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				</label>
 			))}
 			{/* ADD NEW ALLERGEN */}
+			{/*
 			<div className="flex gap-2 mt-2">
 				<input
 					className="input input-bordered input-sm flex-1"
@@ -324,7 +352,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				>
 					Add
 				</button>
-			</div>
+			</div> */}
 
 			{/* APPLIANCES BOTH ENGLISH AND SPANISH */}
 			<h4 className="font-bold mt-6 mb-2">Appliances</h4>
@@ -381,22 +409,21 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				<button
 					className="btn btn-primary flex-1"
 					onClick={async () => {
-						await fetch(
-						`/api/edit-recipes/`,
-							{
-								method: "PUT",
-								headers: {
-									"Content-Type": "application/json",
-								},
-								body: JSON.stringify(selectedRecipe),
-							}
-						);
+						const isNew = !selectedRecipe._id;
 
-					setSelectedRecipe(null);
-					location.reload();
+						await fetch("/api/edit-recipes/", {
+						method: isNew ? "POST" : "PUT",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(selectedRecipe),
+						});
+
+						setSelectedRecipe(null);
+						location.reload();
 					}}
 				>
-				Save Changes
+					
 				</button>
 			</div>
 			</div>
