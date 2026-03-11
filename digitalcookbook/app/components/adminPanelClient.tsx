@@ -75,7 +75,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				title={ recipe.title.en }
 				description=""
 				href="#"
-				imageSrc={ recipe.imageURI?.startsWith("http") ? recipe.imageURI : undefined }
+				imageSrc={recipe.imageURI.trimEnd()}
 				action={
 				<button
 					className="btn btn-primary btn-sm"
