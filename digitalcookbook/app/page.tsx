@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import Searchbar from "@/app/components/searchbar";
 import RecipeGrid from "@/app/components/recipecards";  
 import { useLang } from "@/app/components/languageprovider";
-import RootLayout from "@/app/layout";
 import Image from "next/image";
 
 const STRINGS = {
