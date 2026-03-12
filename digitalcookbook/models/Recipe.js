@@ -14,6 +14,7 @@ const recipeSchema = new mongoose.Schema({
         es: String,
     },
     imageURI: String,
+    public_id: String,
     tags: {
         'Blue Ribbon': Boolean,
         'Vegan': Boolean,
