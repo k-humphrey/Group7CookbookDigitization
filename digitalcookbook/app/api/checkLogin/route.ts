@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request){
     const cookieStore = await cookies(); 
-    if (!isAdminAuthenticated(cookieStore)) {
+    if (!(await isAdminAuthenticated(cookieStore))) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     else{
