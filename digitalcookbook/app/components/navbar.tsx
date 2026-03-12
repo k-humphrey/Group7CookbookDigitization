@@ -106,9 +106,16 @@ export default function Navbar() {
                     <summary>{t.communityResources}</summary>
                     <ul className="p-2">
                     <li>
+                        <Link 
+                            href="/comm-resources" 
+                            className="block px-4 py-2 hover:bg-gray-100">
+                            {t.aboutCommRes}
+                        </Link>
+                    </li>
+                    <li>
                         <Link
                             href="/safety"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.safety}
                         </Link>
                     </li>
@@ -117,7 +124,7 @@ export default function Navbar() {
                             href="https://www.putnamcountytnhealthdept.com/"
                             target="_blank"
                             rel="noopener noreferrer" 
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.putnumHealthDept}
                         </Link>
                     </li>
@@ -126,7 +133,7 @@ export default function Navbar() {
                             href="https://UCAssist.org"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.ucAssist}
                         </Link>
                     </li>
@@ -135,14 +142,14 @@ export default function Navbar() {
                             href="https://www.elpuentecookeville.org"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.elPuente}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/emergency-numbers"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.emergencyNumbers}
                         </Link>
                     </li>
@@ -154,11 +161,18 @@ export default function Navbar() {
                 <summary>{t.partners}</summary>
                 <ul className="p-2">
                     <li>
+                        <Link   
+                            href="/comm-partners" 
+                            className="block px-4 py-2 hover:bg-gray-100">
+                            {t.aboutPartners}
+                        </Link>
+                    </li>
+                    <li>
                         <Link
                             href="https://www.kiwanis.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.kwianis}
                         </Link>
                     </li>
@@ -167,7 +181,7 @@ export default function Navbar() {
                             href="https://www.enbridge.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >                                
+                            className="block px-4 py-2 hover:bg-gray-100" >                                
                             {t.enbridge}
                         </Link>
                     </li>
@@ -176,7 +190,7 @@ export default function Navbar() {
                             href="https://www.powerofputnam.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.powerOfPutnam}
                         </Link>
                     </li>
@@ -186,7 +200,7 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes?ingredients="
-                    className="hover:underline" >
+                    className="block px-4 py-2 hover:bg-gray-100" >
                     {t.allRecipes}
                 </Link>
             </li>
@@ -197,35 +211,35 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/shelf-life-guidelines"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.shelfLife}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/price-finder"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.priceFinder}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/timer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.timer}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/measurement-converter"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.measurementConverter}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/meal-planner"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.mealPlanner}
                         </Link>
                     </li>
@@ -235,7 +249,7 @@ export default function Navbar() {
                 <li>
                     <Link
                         href="/shopping-list"
-                        className="hover:underline">
+                        className="block px-4 py-2 hover:bg-gray-100">
                             {t.shoppingList}
                     </Link>
             </li>
@@ -262,7 +276,9 @@ export default function Navbar() {
                     </li>
 */}
                     <li>
-                    <Link href="/safety" className="block px-4 py-2 hover:bg-gray-100">
+                    <Link 
+                        href="/safety" 
+                        className="block px-4 py-2 hover:bg-gray-100">
                         {t.safety}
                     </Link>
                     </li>
@@ -301,7 +317,9 @@ export default function Navbar() {
                     </li>
 
                     <li>
-                    <Link href="/emergency-numbers" className="block px-4 py-2 hover:bg-gray-100">
+                    <Link 
+                        href="/emergency-numbers" 
+                        className="block px-4 py-2 hover:bg-gray-100">
                         {t.emergencyNumbers}
                     </Link>
                     </li>
