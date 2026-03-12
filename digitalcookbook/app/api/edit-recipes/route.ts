@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   const cookieStore = await cookies(); 
 
   //check authentication
-  if (!isAdminAuthenticated(cookieStore)) {
+  if (!(await isAdminAuthenticated(cookieStore))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try{
@@ -42,7 +42,7 @@ export async function PUT(req: Request) {
   const cookieStore = await cookies(); 
 
   //check authentication
-  if (!isAdminAuthenticated(cookieStore)) {
+  if (!(await isAdminAuthenticated(cookieStore))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
