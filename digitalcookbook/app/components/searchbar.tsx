@@ -67,6 +67,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
       setTags(update);
 
       setInput("");
+      setOpen(false);
     }
   };
 
@@ -85,18 +86,16 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
   return (
     <form role="search" onSubmit={(e) => e.preventDefault()} className="w-full flex flex-col items-center">
       
-      {tags.length > 0 && (
-        <div className="w-full max-w-3xl">
+      <div
+        className={`w-full max-w-3xl overflow-hidden transition-all duration-300 ease-in-out
+        ${tags.length > 0 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="rounded-t-3xl bg-[#DEE4D6] px-4 py-3 flex items-center gap-4">
             
           {/* Tag Area */}
           <div className="flex-1">
             <p className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</p>
             <ul aria-live="polite" aria-atomic="true" className="pt-2 flex flex-wrap gap-2 text-slate-950">
-              {tags.length === 0 ? (
-                <li className="text-xs opacity-70">{t.placeholder}</li>
-              ) : (
-                tags.map((tag, index) => {
+              {tags.map((tag, index) => {
                   const colorClasses = [
                     "badge-info",
                     "badge-warning",
@@ -119,7 +118,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
                     </li>
                   );
                 })
-              )}
+              }
             </ul>
           </div>
 
@@ -131,14 +130,13 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
           </button>
         </div>
       </div>
-      )}
 
       {/* Search Bar */}
       <div className="w-full max-w-3xl relative">
         <p id="ingredient-help" className="sr-only">{t.placeholder2}</p>
         <label 
           htmlFor="ingredient-search" 
-          className={`input input-bordered ${
+          className={`input input-bordered transition-all duration-100 ${
           tags.length > 0 ? "rounded-b-3xl rounded-t-none" : "rounded-full"}
           w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6] focus-within:ring-1 focus-within:ring-neutral`}>
           {/* Search Icon */}
