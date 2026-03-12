@@ -247,19 +247,20 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 gap-2">
             <li className="relative group">
-                <span className="cursor-pointer">{t.communityResources}</span>
-
+                <Link href="/comm-resources" className="cursor-pointer block px-4 py-2 hover:bg-gray-100">
+                    {t.communityResources}
+                </Link>
                 <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
                                 opacity-0 invisible translate-y-2
                                 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
                                 transition-all duration-200 z-50">
-
+{/*
                     <li>
                     <Link href="/comm-resources" className="block px-4 py-2 hover:bg-gray-100">
                         {t.aboutCommRes}
                     </Link>
                     </li>
-
+*/}
                     <li>
                     <Link href="/safety" className="block px-4 py-2 hover:bg-gray-100">
                         {t.safety}
@@ -307,19 +308,21 @@ export default function Navbar() {
                 </ul>
             </li>
             <li className="relative group">
-                <span className="cursor-pointer">{t.partners}</span>
+                <Link href="/comm-partners" className="cursor-pointer block px-4 py-2 hover:bg-gray-100">
+                    {t.partners}
+                </Link>
 
                 <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
                                 opacity-0 invisible translate-y-2
                                 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
                                 transition-all duration-200 z-50">
-
+{/*
                     <li>
                     <Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">
                         {t.aboutPartners}
                     </Link>
                     </li>
-
+*/}
                     <li>
                         <Link
                             href="https://www.kiwanis.org/"
