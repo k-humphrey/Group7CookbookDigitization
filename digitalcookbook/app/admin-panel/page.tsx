@@ -12,7 +12,7 @@ export default async function AdminPanelPage() {
 	//get cookies
 	const cookieStore = await cookies(); 
 	//check authentication
-	if (!isAdminAuthenticated(cookieStore)) {
+	if (!(await isAdminAuthenticated(cookieStore))) {
 			//return login page back
 			return <AdminLoginPage />
 	}

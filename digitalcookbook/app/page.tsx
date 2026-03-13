@@ -54,6 +54,16 @@ export default function Home() {
     })();
   }, []);
 
+  const ingredientSuggestions = [
+    ...new Set(
+      recipes.flatMap((r: any) =>
+        r.ingredients?.map((i: any) =>
+          (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
+        ) || []
+      )
+    )
+  ];
+
   // select 3 random recipes for featured recipes
   useEffect(() => {
     setFeaturedRecipes(recipes.length ? [...recipes].sort(() => Math.random() - 0.5).slice(0, 3) : []);
@@ -87,7 +97,7 @@ export default function Home() {
 
       <div id="searchbar" className="w-11/12 w-md-full z-10">
         {/* Searchbar */}
-        <Searchbar key={sessionTags.join(",")} onSearch={handleSearch} initialTags={sessionTags}/>
+        <Searchbar key={sessionTags.join(",")} onSearch={handleSearch} initialTags={sessionTags} suggestionsSource={ingredientSuggestions} />
       </div>
 
       {/* Featured Recipes */}

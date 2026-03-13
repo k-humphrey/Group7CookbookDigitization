@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   const cookieStore = await cookies(); 
 
   //check authentication
-  if (!isAdminAuthenticated(cookieStore)) {
+  if (!(await isAdminAuthenticated(cookieStore))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try{
@@ -39,24 +39,49 @@ export async function POST(req: Request) {
 
 //updating, update existing recipes
 export async function PUT(req: Request) {
+  const cookieStore = await cookies(); 
+
+  //check authentication
+  if (!(await isAdminAuthenticated(cookieStore))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   try {
+    //connect to db if not
+    await connectToDB();
+    //get data back from request
     const body = await req.json();
 
-    const updated = await Recipe.findByIdAndUpdate(
-      body._id,
-      body,
-      {
-        new: true,          // return updated doc
-        runValidators: true // enforce schema rules
-      }
-    );
-
-    if (!updated) {
-      return Response.json({ error: "Recipe not found" }, { status: 404 });
+    //if there is no recipe id, don't update
+    if (!body._id) {
+      return Response.json(
+        { error: "Missing _id" },
+        { status: 400 }
+      );
     }
 
+     const { _id, ...updateData } = body; //remove id from data (you can't set an id in mongo)
+    //try to update the recipe in the db
+    const updated = await Recipe.findByIdAndUpdate(
+      _id,
+      updateData,
+      { new: true, runValidators: true }
+    );
+
+    //if it didn't work, print that out
+    if (!updated) {
+      return Response.json(
+        { error: "Recipe not found" },
+        { status: 404 }
+      );
+    }
+    //if it worked, print that out too
     return Response.json({ success: true, recipe: updated });
-  } catch (err: any) {
-    return Response.json({ error: err.message }, { status: 500 });
+
+  } catch (err: any) { //catch all other errors
+    console.error("PUT error:", err);
+    return Response.json(
+      { error: err.message },
+      { status: 500 }
+    );
   }
 }
