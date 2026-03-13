@@ -17,7 +17,7 @@ export async function GET(req: Request){
         const ingredientsParams = url.searchParams.get("ingredients") || null;
         const healthTagsParams = url.searchParams.get("healthTags") || null;
         const allergenTagsParams = url.searchParams.get("allergenTags") || null;
-        const cost = {min: Number(url.searchParams.get("minCost") || null), max: Number(url.searchParams.get("maxCost") || null)};
+        const cost = {min: Number(url.searchParams.get("minCost") || null), max: Number(url.searchParams.get("maxCost") || 100)};
         const pageInfo = {pageNumber: Number(url.searchParams.get("page") || 1), pageLimit: Number(url.searchParams.get("limit") || 15)};
 
         const filters: any[] = [];
@@ -49,8 +49,10 @@ export async function GET(req: Request){
             const partialMatchingIngredients = await Ingredient.find({"$or": ingredientParts}).select('_id').lean();
             
             // prepare for aggregation relevance scoring
-            ingredientIds = matchingIngredients.map(ingredient => ingredient._id);
-            ingredientWords = partialMatchingIngredients.map(ingredient => ingredient._id);
+            if(matchingIngredients.length > 0)
+                ingredientIds = matchingIngredients.map(ingredient => ingredient._id);
+            if(partialMatchingIngredients.length > 0)
+                ingredientWords = partialMatchingIngredients.map(ingredient => ingredient._id);
 
         } 
 
@@ -145,7 +147,7 @@ export async function GET(req: Request){
                                     as: "ingredient",
                                     cond: { $in: ["$$ingredient.ingredient", ingredientWords] }
                                 }
-                            }},
+                            }}, // add 1 for partial match
                             {$size: {
                                 $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                             }},
