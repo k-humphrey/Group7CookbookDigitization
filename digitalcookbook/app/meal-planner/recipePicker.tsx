@@ -23,14 +23,26 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
     const lang = langContext?.lang ?? 'en';
     const t = PLANNER_STRINGS[lang];
 
+    // Session storage for ingredients and filters
+    const sessionIngredients = typeof window !== "undefined" ? sessionStorage.getItem("recipeIngredients") : null;
+    const sessionFilters = typeof window !== "undefined" ? sessionStorage.getItem("recipeFilters") : null;
+
     // Hook to get recipes, search function, and page info ref for pagination
-    const { recipes, handleSearch, setIngredients, setFilters, pageInfoRef } = useRecipeSearch(lang);
+    const { recipes, handleSearch, setIngredients, setFilters, pageInfoRef, ingredientsRef, filtersRef } = useRecipeSearch(lang);
 
-    // Initial loading for page and after language change
+    // Initial loading for page
     useEffect(() => {
-        handleSearch(false);
+        // Set ingredients based on url params and session storage
+        if(sessionIngredients)
+            setIngredients(JSON.parse(sessionIngredients));
 
-    }, [lang]);
+        // Set filters based on session storage
+        if(sessionFilters)
+            setFilters(JSON.parse(sessionFilters));
+
+        // new Search
+        handleSearch(false);
+    }, []);
 
     // Scroll listener: check to see if user scrolls to bottom of page
     useEffect(() => {
@@ -75,8 +87,9 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
             <div>
                 <Searchbar onSearch={(ingredients) => {
                     setIngredients(ingredients);
+                    sessionStorage.setItem("recipeIngredients", JSON.stringify(ingredientsRef.current));
                     handleSearch(false);
-                }} /> 
+                }} initialTags={typeof window !== "undefined" && sessionIngredients ? JSON.parse(sessionIngredients) : []} /> 
             </div>
 
             <div className="flex gap-3">
@@ -84,6 +97,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
                 <div className="w-auto sticky top-3 self-start shrink-0">
                     <Filters onChange={(selectedFilters) => {
                         setFilters(selectedFilters);
+                        sessionStorage.setItem("recipeFilters", JSON.stringify(filtersRef.current));
                         handleSearch(false);
                     }} />
                 </div>

@@ -61,7 +61,7 @@ export default function Footer(){
                 </Link>
             
                 <Link
-                    href="/recipes?ingredients="
+                    href="/recipes"
                     className={focusClasses + " link link-hover"}>
                     {t.allRecipes}
                 </Link>

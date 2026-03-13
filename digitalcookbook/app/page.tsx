@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import Searchbar from "@/app/components/searchbar";
 import RecipeGrid from "@/app/components/recipecards";  
 import { useLang } from "@/app/components/languageprovider";
-import RootLayout from "@/app/layout";
 import Image from "next/image";
 
 const STRINGS = {
@@ -34,17 +33,20 @@ export default function Home() {
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
+  const [sessionTags, setSessionTags] = useState<any[]>([]);
 
   // routes to the recipes page
   const handleSearch = (tags: string[]) => {
-    if(tags)
-      router.push(`/recipes?ingredients=${tags.join(",")}`);
-    else
-      router.push('/recipes');
+    sessionStorage.setItem("recipeIngredients", JSON.stringify(tags || []));
+
+    router.push('/recipes');
   };
 
   // fetch all recipes - NOT VERY PERFORMANT - 
   useEffect(() => {
+    // get last session to restore
+    setSessionTags(JSON.parse(sessionStorage.getItem("recipeIngredients") || "[]"));
+
     (async () => {
       const res = await fetch("/api/recipes");
       const data = await res.json();
@@ -85,7 +87,7 @@ export default function Home() {
 
       <div id="searchbar" className="w-11/12 w-md-full z-10">
         {/* Searchbar */}
-        <Searchbar onSearch={handleSearch} />
+        <Searchbar key={sessionTags.join(",")} onSearch={handleSearch} initialTags={sessionTags}/>
       </div>
 
       {/* Featured Recipes */}

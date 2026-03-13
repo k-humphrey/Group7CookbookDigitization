@@ -181,7 +181,7 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/recipes?ingredients="
+                    href="/recipes"
                     className="hover:underline" >
                     {t.allRecipes}
                 </Link>
@@ -326,7 +326,7 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/recipes?ingredients="
+                    href="/recipes"
                     className="hover:underline" >
                     {t.allRecipes}
                 </Link>

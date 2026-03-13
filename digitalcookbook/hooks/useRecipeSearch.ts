@@ -39,7 +39,7 @@ export function useRecipeSearch(lang: string) {
             params.set("healthTags", filters.tags.healthTags.join(","));
         if(filters.tags.allergenTags.length > 0)
             params.set("allergenTags", filters.tags.allergenTags.join(","))
-        if (filters.maxCost !== undefined && filters.maxCost !== Infinity)
+        if (filters.maxCost !== null && filters.maxCost !== Infinity)
             params.set("maxCost", String(filters.maxCost));
 
         // if no filters return all on current page
@@ -105,5 +105,5 @@ export function useRecipeSearch(lang: string) {
     };
 
     // return recipes and handleSearch function to be used in the RecipeSearchPage component, along with setters for ingredients and filters, and pageInfoRef for Pagination
-    return {recipes, handleSearch, setIngredients, setFilters, pageInfoRef};
+    return {recipes, handleSearch, setIngredients, setFilters, pageInfoRef, filtersRef, ingredientsRef};
 }
