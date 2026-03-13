@@ -199,7 +199,7 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/recipes?ingredients="
+                    href="/recipes"
                     className="block px-4 py-2 hover:bg-gray-100" >
                     {t.allRecipes}
                 </Link>
@@ -372,8 +372,8 @@ export default function Navbar() {
             </li>
             <li>
                 <Link
-                    href="/recipes?ingredients="
-                    className="hover">
+                    href="/recipes"
+                    className="hover" >
                     {t.allRecipes}
                 </Link>
             </li>

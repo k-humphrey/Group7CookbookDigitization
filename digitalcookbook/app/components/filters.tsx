@@ -39,16 +39,24 @@ const STRINGS = {
 } as const;
 
 export default function Filters({ onChange }: Props) {
+  // Language settings
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
 
-  // State for filter options (id, number) and selected filters (id for toggle between languages)
+  // State for filter options (id, number) and filter toggles
   const [filterOptions, setFilterOptions] = useState<{appliances: IDGroup[]; tags: TagIDGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
-  const [selected, setSelected] = useState({appliances: [] as number[], tags: { healthTags: [] as number[], allergenTags: [] as number[]}})
   const [isOpen, setIsOpen] = useState(true);
+  
+  // States for maxCost slider
   const [maxCost, setMaxCost] = useState(10);
   const [sliderMax, setSliderMax] = useState(0);
+  
+  // State for selected filters (id for toggle between languages)
+  const [selected, setSelected] = useState(() => {
+    const sessionFilterIds: {appliances?: number[]; tags?: {healthTags: number[]; allergenTags: number[] }} = typeof window !== "undefined" ? JSON.parse(sessionStorage.getItem("recipeFilterIds") || "{}") : {};
+    return {appliances: sessionFilterIds.appliances || [], tags: sessionFilterIds.tags || { healthTags: [], allergenTags: []}};
+  });
 
   // Gets all filter options
   useEffect(() => {
@@ -65,6 +73,11 @@ export default function Filters({ onChange }: Props) {
 
   }, [lang]);
 
+  // Save selected filter IDs and maxCost to sessionStorage whenever selected or maxCost changes
+  useEffect(() => {
+    sessionStorage.setItem("recipeFilterIds", JSON.stringify(selected));
+  }, [selected]);
+
   //Gets max cost for slider
   useEffect(() => {
   fetch("/api/recipes/maxCost")
@@ -72,7 +85,9 @@ export default function Filters({ onChange }: Props) {
     .then(data => {
       data.maxCost = Math.ceil(data.maxCost); // round to nearest full number
       setSliderMax(data.maxCost);
-      setMaxCost(data.maxCost); //start slider at max cost
+
+      const sessionMaxCost = typeof window !== "undefined" ? JSON.parse(sessionStorage.getItem("recipeMaxCost") || "null") : null;
+      setMaxCost(sessionMaxCost ?? data.maxCost); //start slider at max cost or max cost from session storage
 
     }).catch(error => console.warn(`Failed to fetch maxCost API: ${error}`)); // catch fetch errors
 
@@ -207,11 +222,12 @@ export default function Filters({ onChange }: Props) {
                     type="range"
                     id="maxCost"
                     aria-label={t.maxCostLabel}
-                    min="0" max={sliderMax}
+                    min={0} max={sliderMax}
                     value={maxCost}
                     className="range range-xs"
                     onChange={(e) => {
                       setMaxCost(+e.target.value);
+                      sessionStorage.setItem("recipeMaxCost", JSON.stringify(+e.target.value));
                   }}
                   onPointerUp={() => {
                      onChange({
@@ -230,7 +246,7 @@ export default function Filters({ onChange }: Props) {
                     });
                   }}
                   />
-                  <p>Max: ${maxCost}</p>
+                  <p>Max: ${maxCost ?? sliderMax}</p>
                 </label>
               </div>
             </div>

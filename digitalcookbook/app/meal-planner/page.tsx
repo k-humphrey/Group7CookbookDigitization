@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import RecipePicker from "@/app/meal-planner/recipePicker";
@@ -39,12 +39,21 @@ export type SelectedRecipe = {
 
 export default function BackpackPlannerPage() {
     // State for selected recipes and their servings
-    const [selectedRecipes, setSelectedRecipes] = useState<SelectedRecipe[]>([])
+    const [selectedRecipes, setSelectedRecipes] = useState<SelectedRecipe[]>(() => {
+        const sessionPlannerRecipes = typeof window !== "undefined" ? JSON.parse(sessionStorage.getItem("plannerRecipes") || "[]") : [];
+        return sessionPlannerRecipes;
+    });
 
     // Lang settings
     const langContext = useLang();
     const lang = langContext?.lang ?? 'en';
     const t = PLANNER_STRINGS[lang];
+
+    // Save selected recipes to session storage
+    useEffect(() => {
+        sessionStorage.setItem("plannerRecipes", JSON.stringify(selectedRecipes));
+
+    }, [selectedRecipes]);
 
     return (
         <section aria-label={t.pageTitle} className="relative bg-base-100">

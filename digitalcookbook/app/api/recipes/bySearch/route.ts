@@ -32,7 +32,7 @@ export async function GET(req: Request){
         // ---------- Filter by ingredients
         if(ingredientsParams) {
             // Convert ingredients array into string so regex can be used (Split ingredients into word parts)
-            const ingredientList = ingredientsParams.split(",").map(item => item.trim()).filter(Boolean).filter(word => word.length > 3).flatMap(ingredient => [
+            const ingredientList = ingredientsParams.split(",").map(item => item.trim()).filter(Boolean).flatMap(ingredient => [
                 {"en": {$regex: ingredient, $options: 'i'}},
                 {"es": {$regex: ingredient, $options: 'i'}},
             ]);
@@ -142,7 +142,7 @@ export async function GET(req: Request){
                                         { $regexMatch: { input: "$title.en", regex: title, options: "i" } },
                                         { $regexMatch: { input: "$title.es", regex: title, options: "i" } }
                                     ]}
-                                )) || []}, 10, 0 // add 10 if title matches
+                                )) || []}, 5, 0 // add 5 if title matches
                             ]}
                         ]
                     }
