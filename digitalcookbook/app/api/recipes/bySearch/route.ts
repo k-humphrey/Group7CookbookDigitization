@@ -32,13 +32,13 @@ export async function GET(req: Request){
 
         // ---------- Filter by ingredients
         if(ingredientsParams) {
-            // Convert ingredients array into string so regex can be used
+            // Find exact ingredient matches
             const ingredientList = ingredientsParams.split(",").map(item => item.trim()).filter(Boolean).flatMap(ingredient => [
                 {"en": {$regex: ingredient, $options: 'i'}},
                 {"es": {$regex: ingredient, $options: 'i'}},
             ]);
 
-            // split ingredient strings into words, convert to string so regex can be used
+            // split ingredient strings into words for partial matches, convert to string so regex can be used
             const ingredientParts = ingredientsParams.split(",").map(item => item.trim()).filter(Boolean).flatMap(item => item.split(/\s+/)).filter(item => item.length > 2).flatMap(ingredient => [
                 {"en": {$regex: ingredient, $options: 'i'}},
                 {"es": {$regex: ingredient, $options: 'i'}},
@@ -126,7 +126,7 @@ export async function GET(req: Request){
                                         cond: { $in: ["$$ingredient.ingredient", ingredientIds] }
                                     }
                                 }},
-                                3   // Add 3 for each matching ingredient
+                                5   // Add 5 for each matching ingredient
                             ]},
                             {$multiply: [
                                 {$divide: [
