@@ -7,10 +7,9 @@ export type Ingredient = {
     unit: string;
     en: string;
     es: string;
-    costPerUnit: number;
     baseUnit: string;
     productLink: string;
-    multiplier: number;
+    ingredientCost: number;
 };
 
 // Type for recipe
@@ -53,14 +52,14 @@ export function combineIngredients(selectedRecipes: SelectedRecipe[]) {
                 ingredientsMap.set(ingredient.ingredient, {
                     ingredient: ingredient,
                     totalAmount: existingIngredient.totalAmount + (ingredient.amount * scaleFactor),
-                    totalCost: existingIngredient.totalCost + (ingredient.amount * scaleFactor * ingredient.costPerUnit * ingredient.multiplier)
+                    totalCost: existingIngredient.totalCost + (scaleFactor * ingredient.ingredientCost)
                 });
                 
             } else // Else, add new ingredient to map
                 ingredientsMap.set(ingredient.ingredient, {
                     ingredient: ingredient,
                     totalAmount: (ingredient.amount * scaleFactor),
-                    totalCost: (ingredient.amount * scaleFactor * ingredient.costPerUnit * ingredient.multiplier)
+                    totalCost: (scaleFactor * ingredient.ingredientCost)
                 });
         });
     });
