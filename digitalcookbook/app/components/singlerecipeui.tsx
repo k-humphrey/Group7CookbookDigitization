@@ -37,7 +37,7 @@ const STRINGS = {
     allergensLabel: "Allergens",
     noImage: "No image",
     noIngredients: "No ingredients listed.",
-    directions: "Directions",
+    directions: "Directions (4 Servings)",
     noDirections: "No directions provided."
   },
   es: {
@@ -163,7 +163,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 <ul className="pt-4 space-y-3 text-sm leading-relaxed list-decimal pl-6">
                   {recipe?.instructions?.[lang] ? (
                     recipe.instructions?.[lang].split("|||").map((line, i) =>
-                      <li key={i} className="wrap-break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
+                      <li key={i} className="wrap-break-words">{line}</li>
                     )
                   ) : (
                     <li className="text-base-content/60">{t.noDirections}</li>
