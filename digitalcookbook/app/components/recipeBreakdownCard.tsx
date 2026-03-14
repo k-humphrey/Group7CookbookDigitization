@@ -28,7 +28,7 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
     // Store recipe information
     const { recipe, servings } = selectedRecipe;
-    const { scaledCost, scaleFactor } = scaleCost(recipe.totalCost, servings);
+    const { scaledCost } = scaleCost(recipe.totalCost, servings);
     const ingredients = getScaledIngredients(recipe, servings);
 
     return (

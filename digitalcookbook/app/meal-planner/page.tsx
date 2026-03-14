@@ -15,10 +15,9 @@ export type Ingredient = {
     unit: string;
     en: string;
     es: string;
-    costPerUnit: number;
     baseUnit: string;
     productLink: string;
-    multiplier: number;
+    ingredientCost: number;
 };
 
 // Type for recipe

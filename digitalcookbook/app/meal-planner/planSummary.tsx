@@ -3,6 +3,7 @@
 import { SelectedRecipe } from "@/app/meal-planner/page"
 import { useLang } from "@/app/components/languageprovider";
 import { combineIngredients } from "@/lib/combineIngredients";
+import { scaleCost } from "@/lib/scaleRecipe";
 import { decimalToFraction } from "@/lib/fractionConverter";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStrings"; 
@@ -28,7 +29,7 @@ export default function PlanSummary({ selectedRecipes }: Props) {
     // Combine ingredients and calculate totals
     const combinedIngredients = combineIngredients(selectedRecipes);
     const totalServings = selectedRecipes.reduce((total, item) => total + item.servings, 0);
-    const totalRecipesCost = combinedIngredients.reduce((total, item) => total + item.totalCost, 0).toFixed(2);
+    const totalRecipesCost = selectedRecipes.reduce((total, {recipe, servings}) => total + scaleCost(recipe.totalCost, servings).scaledCost, 0).toFixed(2);
     
     // Render summary of plan totals and breakdown for each selected recipe
     return (
@@ -53,10 +54,10 @@ export default function PlanSummary({ selectedRecipes }: Props) {
                         <h2 className="card-title text-2xl font-bold mb-4">{t.totalIngredients}</h2>
 
                         <ul className="list-disc ml-6 space-y-2">
-                            {combinedIngredients.map((item, index) => (
-                                <li key={index}>
+                            {combinedIngredients.map((item) => (
+                                <li key={item.ingredient.ingredient}>
                                     <b>{decimalToFraction(item.totalAmount, item.ingredient.unit)} {item.ingredient.unit.toLowerCase() === "each" ? "" : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit} {item.ingredient?.[lang] ?? item.ingredient.ingredient}</b>
-                                    {} — ${item.ingredient.costPerUnit.toFixed(2)} per {item.ingredient.baseUnit} {} (${item.totalCost.toFixed(2)})
+                                    {item.totalCost >= 0.01 && <> — ${item.totalCost.toFixed(2)}</>}
                                 </li>
                             ))}
                         </ul>
