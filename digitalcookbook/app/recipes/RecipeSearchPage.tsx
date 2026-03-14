@@ -54,13 +54,23 @@ export default function RecipeSearchPage() {
 
   }, []);
 
+  const ingredientSuggestions = [
+    ...new Set(
+      recipes.flatMap((r: any) =>
+        r.ingredients?.map((i: any) =>
+          (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
+        ) || []
+      )
+    )
+  ];
+
   return (
     <section>
 
       <a href="#recipes" className="sr-only">Skip to recipes</a>
 
       {/* Background Image */}
-      <div className="relative overflow-hidden w-full py-6 flex flex-col items-center">
+      <div className="relative w-full py-5 flex flex-col items-center">
 
         {/* Background picture */}
         <Image
@@ -72,16 +82,16 @@ export default function RecipeSearchPage() {
         />
 
         <div className="w-11/12 w-md-full z-10">
-          <Searchbar onSearch={(ingredients) => {
+          <Searchbar suggestionsSource={ingredientSuggestions} onSearch={(ingredients) => {
               setIngredients(ingredients);
               sessionStorage.setItem("recipeIngredients", JSON.stringify(ingredientsRef.current));
               handleSearch(false);
             }} initialTags={typeof window !== "undefined" && sessionIngredients ? JSON.parse(sessionIngredients) : []} /> 
         </div>
       </div>
-      <div className="flex w-full p-3 gap-3">
+      <div className="flex w-full px-3 pb-3 gap-3">
         {/* Filters */}
-        <div className="sticky top-0 self-start shrink-0">
+        <div className="sticky top-0 self-start shrink-0 pt-3">
           <Filters onChange={(selectedFilters) => {
             setFilters(selectedFilters);
             sessionStorage.setItem("recipeFilters", JSON.stringify(filtersRef.current));
@@ -90,8 +100,8 @@ export default function RecipeSearchPage() {
         </div>
         
         {/* Recipes */}
-        <div id="recipes" className="flex-1 min-w-0">
-          <RecipeGrid recipes={recipes}/>
+        <div id="recipes" className="flex-1 min-w-0 pt-3">
+          <RecipeGrid recipes={recipes} />
         </div>
       </div>
     </section>

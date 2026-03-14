@@ -33,13 +33,14 @@ export default function InfoCard(
 	const content = (
 		<>
 			{/* Image (optional) */}
-			{imageSrc && (
+			{imageSrc && imageSrc.startsWith("http") && (
 				<figure className="h-40 w-full overflow-hidden relative">
 					<Image
 						src={imageSrc}
 						alt={imageAlt || title}
 						className="object-cover"
 						fill
+						sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
 					/>
 				</figure>
 			)}
