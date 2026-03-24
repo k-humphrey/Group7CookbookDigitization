@@ -8,6 +8,7 @@ export const SHOPPING_LIST_STRINGS = {
     seeLess: "See Less",
     more: "more",
     totalCost: "Total Cost",
+    cost: "Cost",
   },
   es: {
     title: "Lista de Compras",
@@ -18,5 +19,6 @@ export const SHOPPING_LIST_STRINGS = {
     seeLess: "Ver Menos",
     more: "más",
     totalCost: "Costo Total",
+    cost: "Costo",
   },
 };

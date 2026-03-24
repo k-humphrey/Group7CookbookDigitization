@@ -14,6 +14,7 @@ const recipeSchema = new mongoose.Schema({
         es: String,
     },
     imageURI: String,
+    public_id: String,
     tags: {
         'Blue Ribbon': Boolean,
         'Vegan': Boolean,
@@ -21,7 +22,7 @@ const recipeSchema = new mongoose.Schema({
     },
     ingredients: [
         {
-            ingredient: { type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient', required: true },
+            ingredient: { type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient',  required: false},
             amount: Number,
             unit: String,
             en: String,
@@ -34,7 +35,7 @@ const recipeSchema = new mongoose.Schema({
     ],
     appliances: [
         {
-            appliance: { type: mongoose.Schema.Types.ObjectId, ref: 'Appliance', required: true },
+            appliance: { type: mongoose.Schema.Types.ObjectId, ref: 'Appliance',  required: false},
             en: String,
             es: String
         },

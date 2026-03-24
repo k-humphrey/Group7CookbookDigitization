@@ -7,12 +7,14 @@ import { useLang } from "@/app/components/languageprovider";
 const STRINGS = {
     en: {
         communityResources: "Community Resources",
+        aboutCommRes: "About Our Community Resources",
         safety: "Safety",
         putnumHealthDept: "Putnam County Health Department",
         ucAssist: "UCAssist.org",
         elPuente: "El Puente - Hispanic Community Center",
         emergencyNumbers: "Emergency Numbers",
         partners: "Partners",
+        aboutPartners: "About Our Partners", 
         kwianis: "Kiwanis",
         enbridge: "Enbridge",
         powerOfPutnam: "Power of Putnam",
@@ -30,12 +32,14 @@ const STRINGS = {
     },
     es: {
         communityResources: "Recursos Comunitarios",
+        aboutCommRes: "Información Sobre Nuestros Recursos Comunitarios",
         safety: "Seguridad",
         putnumHealthDept: "Departamento de Salud del Condado de Putnam",
         ucAssist: "UCAssist.org",
         elPuente: "El Puente - Centro Comunitario Hispano",
         emergencyNumbers: "Números de Emergencia",
         partners: "Socios",
+        aboutPartners: "Información Sobre Nuestros Socios Comunitarios", 
         kwianis: "Kiwanis",
         enbridge: "Enbridge",
         powerOfPutnam: "Power of Putnam",
@@ -102,9 +106,16 @@ export default function Navbar() {
                     <summary>{t.communityResources}</summary>
                     <ul className="p-2">
                     <li>
+                        <Link 
+                            href="/comm-resources" 
+                            className="block px-4 py-2 hover:bg-gray-100">
+                            {t.aboutCommRes}
+                        </Link>
+                    </li>
+                    <li>
                         <Link
                             href="/safety"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.safety}
                         </Link>
                     </li>
@@ -113,7 +124,7 @@ export default function Navbar() {
                             href="https://www.putnamcountytnhealthdept.com/"
                             target="_blank"
                             rel="noopener noreferrer" 
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.putnumHealthDept}
                         </Link>
                     </li>
@@ -122,7 +133,7 @@ export default function Navbar() {
                             href="https://UCAssist.org"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.ucAssist}
                         </Link>
                     </li>
@@ -131,14 +142,14 @@ export default function Navbar() {
                             href="https://www.elpuentecookeville.org"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.elPuente}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/emergency-numbers"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.emergencyNumbers}
                         </Link>
                     </li>
@@ -150,11 +161,18 @@ export default function Navbar() {
                 <summary>{t.partners}</summary>
                 <ul className="p-2">
                     <li>
+                        <Link   
+                            href="/comm-partners" 
+                            className="block px-4 py-2 hover:bg-gray-100">
+                            {t.aboutPartners}
+                        </Link>
+                    </li>
+                    <li>
                         <Link
                             href="https://www.kiwanis.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.kwianis}
                         </Link>
                     </li>
@@ -163,7 +181,7 @@ export default function Navbar() {
                             href="https://www.enbridge.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >                                
+                            className="block px-4 py-2 hover:bg-gray-100" >                                
                             {t.enbridge}
                         </Link>
                     </li>
@@ -172,7 +190,7 @@ export default function Navbar() {
                             href="https://www.powerofputnam.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.powerOfPutnam}
                         </Link>
                     </li>
@@ -182,7 +200,7 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes"
-                    className="hover:underline" >
+                    className="block px-4 py-2 hover:bg-gray-100" >
                     {t.allRecipes}
                 </Link>
             </li>
@@ -193,35 +211,35 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/shelf-life-guidelines"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.shelfLife}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/price-finder"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.priceFinder}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/timer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.timer}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/measurement-converter"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.measurementConverter}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/meal-planner"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.mealPlanner}
                         </Link>
                     </li>
@@ -231,7 +249,7 @@ export default function Navbar() {
                 <li>
                     <Link
                         href="/shopping-list"
-                        className="hover:underline">
+                        className="block px-4 py-2 hover:bg-gray-100">
                             {t.shoppingList}
                     </Link>
             </li>
@@ -241,65 +259,94 @@ export default function Navbar() {
 
         {/*Menu when not small*/}
         <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-            <li>
-            <details>
-                <summary>{t.communityResources}</summary>
-                <ul className="p-2">
+            <ul className="menu menu-horizontal px-1 gap-2">
+            <li className="relative group">
+                <Link href="/comm-resources" className="cursor-pointer block px-4 py-2 hover:bg-gray-100">
+                    {t.communityResources}
+                </Link>
+                <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
+                                opacity-0 invisible translate-y-2
+                                group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                                transition-all duration-200 z-50">
+{/*
                     <li>
-                        <Link
-                            href="/safety"
-                            className="hover:underline" >
-                            {t.safety}
-                        </Link>
+                    <Link href="/comm-resources" className="block px-4 py-2 hover:bg-gray-100">
+                        {t.aboutCommRes}
+                    </Link>
                     </li>
+*/}
                     <li>
-                        <Link 
-                            href="https://www.putnamcountytnhealthdept.com/"
-                            target="_blank"
-                            rel="noopener noreferrer" 
-                            className="hover:underline" >
-                            {t.putnumHealthDept}
-                        </Link>
+                    <Link 
+                        href="/safety" 
+                        className="block px-4 py-2 hover:bg-gray-100">
+                        {t.safety}
+                    </Link>
                     </li>
+
                     <li>
-                        <Link 
-                            href="https://UCAssist.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline" >
-                            {t.ucAssist}
-                        </Link>
+                    <Link
+                        href="https://www.putnamcountytnhealthdept.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                        {t.putnumHealthDept}
+                    </Link>
                     </li>
+
                     <li>
-                        <Link 
-                            href="https://www.elpuentecookeville.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline" >
-                            {t.elPuente}
-                        </Link>
+                    <Link
+                        href="https://UCAssist.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                        {t.ucAssist}
+                    </Link>
                     </li>
+
                     <li>
-                        <Link
-                            href="/emergency-numbers"
-                            className="hover:underline" >
-                            {t.emergencyNumbers}
-                        </Link>
+                    <Link
+                        href="https://www.elpuentecookeville.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                        {t.elPuente}
+                    </Link>
+                    </li>
+
+                    <li>
+                    <Link 
+                        href="/emergency-numbers" 
+                        className="block px-4 py-2 hover:bg-gray-100">
+                        {t.emergencyNumbers}
+                    </Link>
                     </li>
                 </ul>
-            </details>
             </li>
-            <li>
-            <details>
-                <summary>{t.partners}</summary>
-                <ul className="p-2">
+            <li className="relative group">
+                <Link href="/comm-partners" className="cursor-pointer block px-4 py-2 hover:bg-gray-100">
+                    {t.partners}
+                </Link>
+
+                <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
+                                opacity-0 invisible translate-y-2
+                                group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                                transition-all duration-200 z-50">
+{/*
+                    <li>
+                    <Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">
+                        {t.aboutPartners}
+                    </Link>
+                    </li>
+*/}
                     <li>
                         <Link
                             href="https://www.kiwanis.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.kwianis}
                         </Link>
                     </li>
@@ -308,7 +355,7 @@ export default function Navbar() {
                             href="https://www.enbridge.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >                                
+                            className="block px-4 py-2 hover:bg-gray-100" >                                
                             {t.enbridge}
                         </Link>
                     </li>
@@ -317,68 +364,66 @@ export default function Navbar() {
                             href="https://www.powerofputnam.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.powerOfPutnam}
                         </Link>
                     </li>
                 </ul>
-            </details>
             </li>
             <li>
                 <Link
                     href="/recipes"
-                    className="hover:underline" >
+                    className="hover" >
                     {t.allRecipes}
                 </Link>
             </li>
-            <li>
-            <details>
-                <summary>{t.tools}</summary>
-                <ul className="p-2">
+            <li className="relative group">
+            <span className="cursor-pointer">{t.tools}</span>
+                <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
+                                opacity-0 invisible translate-y-2
+                                group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                                transition-all duration-200 z-50">
                     <li>
                         <Link
                             href="/shelf-life-guidelines"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100">
                             {t.shelfLife}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/price-finder"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100" >
                             {t.priceFinder}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/timer"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100">
                             {t.timer}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/measurement-converter"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100">
                             {t.measurementConverter}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href="/meal-planner"
-                            className="hover:underline" >
+                            className="block px-4 py-2 hover:bg-gray-100">
                             {t.mealPlanner}
                         </Link>
                     </li>
                 </ul>
-            </details>
             </li>
             <li>
                 <Link
                     href="/saved-recipe"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline">
+                    className="hover">
                         {t.savedRecipe}
                 </Link>
 
@@ -386,7 +431,7 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/shopping-list"
-                    className="hover:underline">
+                    className="hover">
                         {t.shoppingList}
                 </Link>
 
