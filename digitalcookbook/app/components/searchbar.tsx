@@ -89,7 +89,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
       <div
         className={`w-full max-w-3xl overflow-hidden transition-all duration-300 ease-in-out
         ${tags.length > 0 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="rounded-t-3xl bg-[#DEE4D6] px-4 py-3 flex items-center gap-4">
+          <div className="rounded-t-3xl bg-[#f0f0f0] px-4 py-3 flex items-center gap-4">
             
           {/* Tag Area */}
           <div className="flex-1">
@@ -138,7 +138,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
           htmlFor="ingredient-search" 
           className={`input input-bordered transition-all duration-100 ${
           tags.length > 0 ? "rounded-b-3xl rounded-t-none" : "rounded-full"}
-          w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6] focus-within:ring-1 focus-within:ring-neutral`}>
+          w-full flex items-center gap-3 h-12 px-6 bg-[#f0f0f0] focus-within:ring-1 focus-within:ring-neutral`}>
           {/* Search Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
