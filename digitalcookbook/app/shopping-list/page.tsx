@@ -3,24 +3,24 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
-import { combineIngredients } from "@/lib/combineIngredients";
-import { decimalToFraction } from "@/lib/fractionConverter";
+import { combineIngredients, SelectedRecipe } from "@/lib/combineIngredients";
+import { ingredientShoppingConverter } from "@/lib/ingredientShoppingConverter";
+import { IngredientPriceInfo } from "../api/ingredients/byIDsGetIngredientPriceInfo/route";
 import { useLang } from "@/app/components/languageprovider";
-import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStrings";
 import { SHOPPING_LIST_STRINGS } from "./shoppingListStrings";
-import { SelectedRecipe } from "@/app/meal-planner/page";
 import PrintButton from "@/app/components/printbutton";
+import { decimalToFraction } from "@/lib/fractionConverter";
 
 export default function ShoppingListPage() {
   const router = useRouter();
   const [selectedRecipes, setSelectedRecipes] = useState<SelectedRecipe[]>([]);
   const [showAllIngredients, setShowAllIngredients] = useState(false);
   const [combinedIngredientsState, setCombinedIngredientsState] = useState<any[]>([]);
+  const [ingredientPriceInfo, setIngredientPriceInfo] = useState<Record<string, IngredientPriceInfo>>({});
   const langContext = useLang();
   const lang = langContext?.lang ?? "en";
   const t = SHOPPING_LIST_STRINGS[lang];
-  const plannerT = PLANNER_STRINGS[lang];
   const units: Record<string, string> = MEASUREMENT_STRINGS[lang].units;
 
   // Load saved shopping list from localStorage
@@ -29,13 +29,17 @@ export default function ShoppingListPage() {
     if (saved) {
       const recipes = JSON.parse(saved);
       setSelectedRecipes(recipes);
-      setCombinedIngredientsState(combineIngredients(recipes));
     }
   }, []);
 
-  // Update combined ingredients when selected recipes change
+  // Update combined ingredients when selected recipes change and get ingredient price info
   useEffect(() => {
     setCombinedIngredientsState(combineIngredients(selectedRecipes));
+
+    fetch(`/api/ingredients/byIDsGetIngredientPriceInfo?ids=${Array.from(new Set(selectedRecipes.flatMap(recipes => recipes.recipe.ingredients.map(ingredient => ingredient.ingredient)))).filter(Boolean).join(",")}`)
+    .then(res => res.json())
+    .then((data: Record<string, IngredientPriceInfo>) => setIngredientPriceInfo(data));
+
   }, [selectedRecipes]);
 
   //remove a recipe from shopping list by its id
@@ -47,9 +51,11 @@ export default function ShoppingListPage() {
 
   //update the number of servings for a given recipe
   const updateServings = (recipeID: string, servings: number) => {
-    const updated = selectedRecipes.map((item) =>
-      item.recipe._id === recipeID ? { ...item, servings } : item
-    );
+    const updated = selectedRecipes.map((item) => {
+      if(servings < 1)
+        servings = 1;
+      return item.recipe._id === recipeID ? { ...item, servings } : item
+  });
     setSelectedRecipes(updated);
     localStorage.setItem("shoppingList", JSON.stringify(updated));
   };
@@ -60,22 +66,26 @@ export default function ShoppingListPage() {
     setCombinedIngredientsState([]);
     localStorage.removeItem("shoppingList");
   };
+
   // Remove specific ingredinet form the combined ingredients list
   const removeIngredient = (ingredientId: string) => {
     setCombinedIngredientsState(prev =>
-      prev.filter(item => item.ingredient._id !== ingredientId)
+      prev.filter(item => item.ingredient.ingredient !== ingredientId)
     );
   };
-  //Total cost of all combined ingredients
-  const totalCost = combinedIngredientsState
-    .reduce((total, item) => total + item.totalCost, 0)
-    .toFixed(2);
+
+  // Convert to shoppingList
+  const shoppingList = ingredientShoppingConverter(combinedIngredientsState, ingredientPriceInfo, lang);
+
+  //Total cost of all shoppingList Items
+  const totalCost = shoppingList.totalShoppingCost.toFixed(2);
+
   // Number of ingredients to show before "See more "
   const MAX_VISIBLE_INGREDIENTS = 5;
 
   const visibleIngredients = showAllIngredients
-    ? combinedIngredientsState
-    : combinedIngredientsState.slice(0, MAX_VISIBLE_INGREDIENTS);
+    ? shoppingList.shoppingList
+    : shoppingList.shoppingList.slice(0, MAX_VISIBLE_INGREDIENTS);
 
   return (
     <main className="min-h-screen bg-base-100">
@@ -94,7 +104,7 @@ export default function ShoppingListPage() {
           >
             {t.clearAll}
           </button>
-          {/*Print only the combined ingredients */}
+          {/*Print only the shopping list ingredients */}
           <PrintButton
             targetId="print-ingredients"
             label={lang === "es" ? "Imprimir Ingredientes" : "Print Ingredients"}
@@ -107,33 +117,30 @@ export default function ShoppingListPage() {
           />
         </div>
 
-        {/* Combined Ingredients*/}
+        {/* Shopping List Ingredients*/}
         <div
           id="print-ingredients"
           className="bg-base-200 p-6 rounded-xl shadow print:block print:p-0 print:shadow-none print:mt-0"
         >
           <h2 className="text-2xl font-bold mb-4 print:text-black print:text-xl">
-            {plannerT.totalIngredients}
+            {t.ingredientShoppingList}
           </h2>
 
           {/* visable ingredients */}
           <ul className="screen-only print:hidden">
-            {visibleIngredients.map((item) => (
+            {visibleIngredients.filter(ingredient => ingredient.ingredientName).map((item) => (
               <li
-                key={item.ingredient._id}
+                key={item.ingredientName}
                 className="flex justify-start items-center gap-2 p-1 group"
               >
                 <span>
-                  {decimalToFraction(item.totalAmount, item.ingredient.unit)}{" "}
-                  {item.ingredient.unit.toLowerCase() === "each"
-                    ? ""
-                    : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
-                  {item.ingredient?.[lang]}
+                  {item.packagesNeeded > 0 && `${decimalToFraction(item.packagesNeeded, units[item.ingredientName])} x ${item.storeName}`}
+                  {item.totalCost > 0 && ` - $${item.totalCost.toFixed(2)}`}
                 </span>
                 
-                {/* samll button "x" to remove ingredient */}
+                {/* small button "x" to remove ingredient */}
                 <button
-                  onClick={() => removeIngredient(item.ingredient._id)}
+                  onClick={() => removeIngredient(item.ingredientName)}
                   className="text-red-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity select-none"
                   title="Remove ingredient"
                 >
@@ -145,27 +152,24 @@ export default function ShoppingListPage() {
 
           {/* visible ingredients when printing */}
           <ul className="hidden print:block">
-            {combinedIngredientsState.map((item) => (
+            {shoppingList.shoppingList.filter(ingredient => ingredient.ingredientName).map((item) => (
               <li
-                key={item.ingredient._id}
+                key={item.ingredientName}
                 className="flex justify-start items-center gap-2 p-1">
-                {decimalToFraction(item.totalAmount, item.ingredient.unit)}{" "}
-                {item.ingredient.unit.toLowerCase() === "each"
-                  ? ""
-                  : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
-                {item.ingredient?.[lang]}
+                {item.packagesNeeded > 0 && `${decimalToFraction(item.packagesNeeded, units[item.ingredientName])} x ${item.storeName}`}
+                {item.totalCost > 0 && ` - $${item.totalCost.toFixed(2)}`}
               </li>
             ))}
           </ul>
           {/*Toggle to show more ingredients if the list is long */}
-          {combinedIngredientsState.length > MAX_VISIBLE_INGREDIENTS && (
+          {shoppingList.shoppingList.length > MAX_VISIBLE_INGREDIENTS && (
             <button
               className="mt-2 text-sm text-blue-600 hover:underline print:hidden"
               onClick={() => setShowAllIngredients(!showAllIngredients)}
             >
               {showAllIngredients
                 ? t.seeLess
-                : `${t.seeMore} (${combinedIngredientsState.length - MAX_VISIBLE_INGREDIENTS} ${t.more})`}
+                : `${t.seeMore} (${shoppingList.shoppingList.length - MAX_VISIBLE_INGREDIENTS} ${t.more})`}
             </button>
           )}
           {/*Total cost of all ingredients */}

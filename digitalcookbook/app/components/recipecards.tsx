@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider";
 import { useState } from "react";
 import Toast from "@/app/components/toast";
-import { Recipe, SelectedRecipe } from "@/app/meal-planner/page";
+import { SelectedRecipe } from "@/lib/combineIngredients";
 
 interface Props {
   recipes: any[];

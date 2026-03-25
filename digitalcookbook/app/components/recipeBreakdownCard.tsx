@@ -1,6 +1,6 @@
 "use client";
 
-import { SelectedRecipe } from "@/app/meal-planner/page";
+import { SelectedRecipe } from "@/lib/combineIngredients";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
 import { useLang } from "@/app/components/languageprovider";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";

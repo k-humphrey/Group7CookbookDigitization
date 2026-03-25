@@ -9,6 +9,7 @@ export const SHOPPING_LIST_STRINGS = {
     more: "more",
     totalCost: "Total Cost",
     cost: "Cost",
+    ingredientShoppingList: "Ingredient Shopping List"
   },
   es: {
     title: "Lista de Compras",
@@ -20,5 +21,6 @@ export const SHOPPING_LIST_STRINGS = {
     more: "más",
     totalCost: "Costo Total",
     cost: "Costo",
+    ingredientShoppingList: "Lista de la compra de ingredientes"
   },
 };
