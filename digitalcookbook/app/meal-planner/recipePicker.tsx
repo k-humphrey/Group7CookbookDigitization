@@ -1,6 +1,6 @@
 "use client";
 
-import { Recipe, SelectedRecipe } from "@/app/meal-planner/page";
+import { Recipe, SelectedRecipe } from "@/lib/combineIngredients";
 import { useEffect } from "react";
 import { useRecipeSearch } from "@/hooks/useRecipeSearch";
 import { useLang } from "@/app/components/languageprovider";
