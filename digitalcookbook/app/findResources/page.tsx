@@ -1,13 +1,13 @@
 "use client";
 
 import Script from "next/script";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-//google maps key and map id
+//api key and map ID
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_MAPS_API_KEY;
 const MAP_ID = "912b2dfe55b44487cd709d27";
 
-//type for locations bc of typescript
+//location type for typescript
 type Location = {
   name: string;
   lat: number;
@@ -18,47 +18,93 @@ type Location = {
   description: string;
 };
 
-// Declare Google Maps Web Components for typescript [AI helped here]
+//have to declare the google map API stuff for typescript as well [AI made this]
 declare global {
   namespace JSX {
     interface IntrinsicElements {
       "gmp-map": React.HTMLAttributes<HTMLElement> & {
-        center?: string;
-        zoom?: number;
         "map-id"?: string;
       };
       "gmp-advanced-marker": React.HTMLAttributes<HTMLElement> & {
-        position?: string;
         title?: string;
       };
     }
   }
 }
 
+//AI mangled version of the old marker loading system.. Does some weird stuff that fixes a rendering and typing issue
+function AdvancedMarker({ loc, onClick }: { loc: Location; onClick: () => void }) {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    (el as any).position = { lat: loc.lat, lng: loc.lng };
+    el.addEventListener("click", onClick);
+    return () => el.removeEventListener("click", onClick);
+  }, [loc, onClick]);
+
+  return <gmp-advanced-marker ref={ref} title={loc.name} />;
+}
+
+//AI mangled this and made it a function version of the Map that fixes a rendering issue
+function MapComponent({ locations, onMarkerClick }: { locations: Location[]; onMarkerClick: (loc: Location) => void }) {
+  const mapRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+    (el as any).center = { lat: locations[0].lat, lng: locations[0].lng };
+    (el as any).zoom = 15;
+  }, [locations]);
+
+  return (
+    <gmp-map ref={mapRef} map-id={MAP_ID} style={{ height: "400px", width: "100%" }}>
+      {locations.map((loc) => (
+        <AdvancedMarker
+          key={loc.name}
+          loc={loc}
+          onClick={() => onMarkerClick(loc)}
+        />
+      ))}
+    </gmp-map>
+  );
+}
+
 export default function MapPage() {
   const [locations, setLocations] = useState<Location[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const [copyStatus, setCopyStatus] = useState("");
+  const [mapsReady, setMapsReady] = useState(false);
 
-  //Fetch locations on client side
+  //load function needed to safetly call my api route. we just load in everything in location table from DB
   useEffect(() => {
-    //async function load for loading in locations
     async function load() {
       const res = await fetch("/api/locations");
       const data: Location[] = await res.json();
       setLocations(data);
     }
-    //immediately call async function
     load();
   }, []);
 
-  //everytime someone clicks a marker on the map, set the selected location and empty the copy status
+  //busy waiting  (100ms) for the gmp map and gmp advanced marker components to be ready before we try to actually render them.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (customElements.get("gmp-map") && customElements.get("gmp-advanced-marker")) {
+        clearInterval(interval);
+        setMapsReady(true);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  //if we click a marker, set the selected location and clear the copy status
   function handleMarkerClick(loc: Location) {
     setSelectedLocation(loc);
     setCopyStatus("");
   }
 
-  //everytime an address is copied, set the copy status to copied, then set a little time out for the status to clear
+  //if copy address is clicked, copy to clipboard and set the copy status to Copied for 2000ms
   function handleCopyAddress(address: string) {
     navigator.clipboard.writeText(address).then(() => {
       setCopyStatus("Copied!");
@@ -66,122 +112,114 @@ export default function MapPage() {
     });
   }
 
-  //for open in google maps, Allows user to open google maps with the location pre loaded
+  //function that will open google maps with the selected location
   function googleMapsUrl(loc: Location) {
     const query = encodeURIComponent(`${loc.name}, ${loc.address}`);
     return `https://www.google.com/maps/search/?api=1&query=${query}`;
   }
 
-  //Don’t render map until data is loaded
-  if (locations.length === 0) {
-    return <p>Loading map…</p>;
-  }
-
-  //once data is loaded, set the center and zoom
-  const MAP_CENTER = `${locations[0].lat}, ${locations[0].lng}`;
-  const MAP_ZOOM = 15;
+  //we check the state of the readiness and whether locations has been loaded yet
+  const mapIsReady = mapsReady && locations.length > 0;
 
   return (
     <>
-      <Script src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=maps,marker&v=weekly`} strategy="afterInteractive"/>
+      <Script
+        src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=maps,marker&v=weekly`}
+        strategy="afterInteractive"
+      />
       <main>
-        <h1 className="text-center font-bold text-2xl">Helpful Resource Locations</h1>
-        {/*Card that contains the google maps, map. Contains advanced markers that can trigger our pop up card*/}
-        <div className="card bg-base-100 shadow-xl max-w-4xl mx-auto mt-6">
-          <figure className="rounded-xl overflow-hidden">
-            <gmp-map
-              center={MAP_CENTER}
-              zoom={MAP_ZOOM}
-              map-id={MAP_ID}
-              style={{ height: "400px", width: "100%" }}
-            >
-              {locations.map((loc) => (
-                <gmp-advanced-marker
-                  key={loc.name}
-                  position={`${loc.lat}, ${loc.lng}`}
-                  title={loc.name}
-                  onClick={() => handleMarkerClick(loc)}
-                />
-              ))}
-            </gmp-map>
-            </figure>
-          </div>
-        
-        {/*Pop up card, when selected Location is not null, this card comes up with info about a location.*/}
-        {selectedLocation && (
-          <div className="card bg-base-100 shadow-xl max-w-2xl mx-auto mt-6 p-6">
-            <div className="flex justify-between items-start">
-              <h2 className="card-title">{selectedLocation.name}</h2>
-              <button
-                onClick={() => setSelectedLocation(null)}
-                className="btn btn-sm btn-circle btn-ghost"
-              >
-                ✕
-              </button>
+        <h1 className="text-center font-bold text-2xl mt-5">Helpful Resource Locations</h1>
+
+        {/*Check if the map is ready, and only load it when it's actually ready. */}
+        {!mapIsReady ? (
+          <p className="text-center mt-6">Loading map…</p>
+        ) : (
+          <>
+          {/*Map card*/}
+            <div className="card bg-base-100 shadow-xl max-w-4xl mx-auto mt-6">
+              <figure className="rounded-xl overflow-hidden">
+                <MapComponent locations={locations} onMarkerClick={handleMarkerClick} />
+              </figure>
             </div>
 
-            <p className="mt-2">{selectedLocation.description}</p>
-
-            <div className="mt-4 space-y-1">
-              <p><strong>Address:</strong> {selectedLocation.address}</p>
-              <p><strong>Hours:</strong> {selectedLocation.hours}</p>
-              <p><strong>Phone:</strong> {selectedLocation.phone}</p>
-            </div>
-
-            <div className="mt-4 flex items-center gap-3">
-              <a
-                href={googleMapsUrl(selectedLocation)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary btn-sm"
-              >
-                Open in Google Maps
-              </a>
-
-              <button
-                onClick={() => handleCopyAddress(selectedLocation.address)}
-                className="btn btn-outline btn-sm"
-              >
-                {copyStatus || "Copy Address"}
-              </button>
-            </div>
-          </div>
-        )}
-        {/*Table that can be tabbed through of locations, also can be clicked to get popup card.*/}
-        <div className="card bg-base-100 shadow-xl max-w-4xl mx-auto mt-6 p-4">
-          <table className="table table-zebra w-full">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Hours</th>
-                <th>Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              {locations.map((loc) => (
-                <tr
-                    key={loc.name}
-                    tabIndex={0}
-                    role="button"
-                    onClick={() => handleMarkerClick(loc)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        handleMarkerClick(loc);
-                      }
-                    }}
-                    className="cursor-pointer hover:bg-base-200"
+            {/*If the selected Location state is non empty (something has been clicked) so we will show a card description*/}
+            {selectedLocation && (
+              <div className="card bg-base-100 shadow-xl max-w-2xl mx-auto mt-6 p-6">
+                <div className="flex justify-between items-start">
+                  <h2 className="card-title">{selectedLocation.name}</h2>
+                  {/*X button that will remove selected location, thus hiding the card. */}
+                  <button
+                    onClick={() => setSelectedLocation(null)}
+                    className="btn btn-sm btn-circle btn-ghost"
                   >
-                  <td>{loc.name}</td>
-                  <td>{loc.address}</td>
-                  <td>{loc.hours}</td>
-                  <td>{loc.phone}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                    ✕
+                  </button>
+                </div>
 
+                <p className="mt-2">{selectedLocation.description}</p>
+
+                <div className="mt-4 space-y-1">
+                  <p><strong>Address:</strong> {selectedLocation.address}</p>
+                  <p><strong>Hours:</strong> {selectedLocation.hours}</p>
+                  <p><strong>Phone:</strong> {selectedLocation.phone}</p>
+                </div>
+
+                <div className="mt-4 flex items-center gap-3">
+                {/*a button hyperlink that dynamically routes to google maps with the selected address */}
+                  <a
+                    href={googleMapsUrl(selectedLocation)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Open in Google Maps
+                  </a>
+                  {/*A button that will let you copy your selected address to the clipboard */}
+                  <button
+                    onClick={() => handleCopyAddress(selectedLocation.address)}
+                    className="btn btn-outline btn-sm"
+                  >
+                    {copyStatus || "Copy Address"}
+                  </button>
+                </div>
+              </div>
+            )}
+            <div className="card bg-base-100 shadow-xl max-w-4xl mx-auto mt-6 p-4 overflow-y-auto max-h-96 mb-4">
+              <table className="table table-zebra w-full">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Hours</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/*Table, each row is a button that also triggers the popup info card*/}
+                  {locations.map((loc) => (
+                    <tr
+                      key={loc.name}
+                      tabIndex={0}
+                      role="button"
+                      onClick={() => handleMarkerClick(loc)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          handleMarkerClick(loc);
+                        }
+                      }}
+                      className="cursor-pointer hover:bg-base-200"
+                    >
+                      <td>{loc.name}</td>
+                      <td>{loc.address}</td>
+                      <td>{loc.hours}</td>
+                      <td>{loc.phone}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </main>
     </>
   );
