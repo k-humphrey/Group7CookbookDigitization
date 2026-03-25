@@ -29,6 +29,7 @@ const STRINGS = {
         shoppingList: "Shopping List",
         openMenu: "Open Menu",
         languageToggle: "Toggle Language",
+        findResources: "Find Resources",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -54,6 +55,7 @@ const STRINGS = {
         shoppingList: "Lista de Compras",
         openMenu: "Abrir Menú",
         languageToggle: "Cambiar Idioma",
+        findResources: "Encontrar recursos",
     } as const
 };
 
@@ -253,6 +255,14 @@ export default function Navbar() {
                             {t.shoppingList}
                     </Link>
             </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
+                </Link>
+
+            </li>
             </ul>
             </div>
         </div>
@@ -433,6 +443,14 @@ export default function Navbar() {
                     href="/shopping-list"
                     className="hover">
                         {t.shoppingList}
+                </Link>
+
+            </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
                 </Link>
 
             </li>
