@@ -103,7 +103,7 @@ export default function PlanSummary({ selectedRecipes, ingredientPriceInfo }: Pr
             </div>
 
             {/* RECIPE BREAKDOWN CARDS */}
-            <section aria-label={t.recipeBreakdownCardsSection}>
+            <section aria-label={t.recipeBreakdownCardsSection} className="hidden md:block">
             {selectedRecipes.map((item) => {
                 return (
                     <RecipeBreakdownCard
