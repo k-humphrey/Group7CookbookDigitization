@@ -100,7 +100,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
     <section className="min-h-screen bg-base-100">
       <div className="mx-auto max-w-6xl px-6 pt-6 printable print:block">
         <div className="border border-base-300 bg-base-100">
-
+          
           {/* IMAGE */}
           <div className="h-90 w-full overflow-hidden bg-base-200 print:flex print:justify-center relative">
             {recipe?.imageURI ? (

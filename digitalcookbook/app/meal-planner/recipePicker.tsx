@@ -61,6 +61,16 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
 
     }, []);
 
+    const ingredientSuggestions = [
+        ...new Set(
+        recipes.flatMap((r: any) =>
+            r.ingredients?.map((i: any) =>
+            (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
+            ) || []
+        )
+        )
+    ];
+
     // Toggle recipe selection in parent state
     function toggleRecipe(recipe: Recipe) {
         const isSelected = selectedRecipes.find(r => r.recipe._id === recipe._id);
@@ -89,7 +99,7 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
                     setIngredients(ingredients);
                     sessionStorage.setItem("recipeIngredients", JSON.stringify(ingredientsRef.current));
                     handleSearch(false);
-                }} initialTags={typeof window !== "undefined" && sessionIngredients ? JSON.parse(sessionIngredients) : []} /> 
+                }} initialTags={typeof window !== "undefined" && sessionIngredients ? JSON.parse(sessionIngredients) : []} suggestionsSource={ingredientSuggestions} /> 
             </div>
 
             <div className="flex gap-3">
