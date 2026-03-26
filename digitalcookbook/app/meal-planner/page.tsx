@@ -1,50 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import RecipePicker from "@/app/meal-planner/recipePicker";
 import PlanSummary from "@/app/meal-planner/planSummary";
 import { useLang } from "@/app/components/languageprovider";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
-
-// Type for ingredient
-export type Ingredient = {
-    ingredient: string;
-    amount: number;
-    unit: string;
-    en: string;
-    es: string;
-    costPerUnit: number;
-    baseUnit: string;
-    productLink: string;
-    multiplier: number;
-};
-
-// Type for recipe
-export type Recipe = {
-    _id: string;
-    title: {en: string; es: string};
-    totalCost: number;
-    ingredients: Ingredient[];
-    ingredientPlainText: {en: string; es: string};
-    imageURI: string;
-};
-
-// Type for selected recipe with servings
-export type SelectedRecipe = {
-    recipe: Recipe;
-    servings: number;
-}
+import { SelectedRecipe } from "@/lib/combineIngredients";
+import { IngredientPriceInfo } from "@/app/api/ingredients/byIDsGetIngredientPriceInfo/route";
 
 export default function BackpackPlannerPage() {
     // State for selected recipes and their servings
-    const [selectedRecipes, setSelectedRecipes] = useState<SelectedRecipe[]>([])
+    const [selectedRecipes, setSelectedRecipes] = useState<SelectedRecipe[]>(() => {
+        const sessionPlannerRecipes = typeof window !== "undefined" ? JSON.parse(sessionStorage.getItem("plannerRecipes") || "[]") : [];
+        return sessionPlannerRecipes;
+    });
+
+    // State for ingredientPriceInfo
+    const [ingredientPriceInfo, setIngredientPriceInfo] = useState<Record<string, IngredientPriceInfo>>({});
 
     // Lang settings
     const langContext = useLang();
     const lang = langContext?.lang ?? 'en';
     const t = PLANNER_STRINGS[lang];
+
+    // Save selected recipes to session storage and get ingredient prices
+    useEffect(() => {
+        sessionStorage.setItem("plannerRecipes", JSON.stringify(selectedRecipes));
+
+        // get ingredient prices
+        fetch(`/api/ingredients/byIDsGetIngredientPriceInfo?ids=${Array.from(new Set(selectedRecipes.flatMap(recipes => recipes.recipe.ingredients.map(ingredient => ingredient.ingredient)))).filter(Boolean).join(",")}`)
+        .then(res => res.json())
+        .then((data: Record<string, IngredientPriceInfo>) => setIngredientPriceInfo(data));
+
+    }, [selectedRecipes]);
 
     return (
         <section aria-label={t.pageTitle} className="relative bg-base-100">
@@ -60,7 +50,7 @@ export default function BackpackPlannerPage() {
                 />
             </div>
 
-            <div className="relative z-10 w-full pt-14 pb-5 flex flex-col items-center">
+            <div className="relative w-full pt-14 pb-5 flex flex-col items-center">
 
                 <div className="relative mx-auto w-full px-3">
 
@@ -82,7 +72,7 @@ export default function BackpackPlannerPage() {
 
                         {/* SUMMARY PANEL */}
                         <section aria-label={t.summaryPanelSection} className="order-1 lg:order-2 lg:col-span-1">
-                            <PlanSummary selectedRecipes={selectedRecipes} />
+                            <PlanSummary selectedRecipes={selectedRecipes} ingredientPriceInfo={ingredientPriceInfo} />
                         </section>
                     </div>
                 </div>

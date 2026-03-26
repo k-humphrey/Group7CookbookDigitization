@@ -1,6 +1,6 @@
 "use client";
 
-import { SelectedRecipe } from "@/app/meal-planner/page";
+import { SelectedRecipe } from "@/lib/combineIngredients";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
 import { useLang } from "@/app/components/languageprovider";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
@@ -28,7 +28,7 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
     // Store recipe information
     const { recipe, servings } = selectedRecipe;
-    const { scaledCost, scaleFactor } = scaleCost(recipe.totalCost, servings);
+    const { scaledCost } = scaleCost(recipe.totalCost, servings);
     const ingredients = getScaledIngredients(recipe, servings);
 
     return (

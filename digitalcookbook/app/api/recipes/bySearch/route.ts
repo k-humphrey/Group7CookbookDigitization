@@ -17,13 +17,14 @@ export async function GET(req: Request){
         const ingredientsParams = url.searchParams.get("ingredients") || null;
         const healthTagsParams = url.searchParams.get("healthTags") || null;
         const allergenTagsParams = url.searchParams.get("allergenTags") || null;
-        const cost = {min: Number(url.searchParams.get("minCost") || null), max: Number(url.searchParams.get("maxCost") || null)};
+        const cost = {min: Number(url.searchParams.get("minCost") || null), max: Number(url.searchParams.get("maxCost") || 100)};
         const pageInfo = {pageNumber: Number(url.searchParams.get("page") || 1), pageLimit: Number(url.searchParams.get("limit") || 15)};
 
         const filters: any[] = [];
 
         // Store info for aggregation
         let ingredientIds: any[] = [];
+        let ingredientWords: any[] = [];
         let applianceIds: any[] = [];
 
         // Get possible titles from ingredientparams
@@ -31,21 +32,29 @@ export async function GET(req: Request){
 
         // ---------- Filter by ingredients
         if(ingredientsParams) {
-            // Convert ingredients array into string so regex can be used (Split ingredients into word parts)
-            const ingredientList = ingredientsParams.split(",").map(item => item.trim()).filter(Boolean).filter(word => word.length > 3).flatMap(ingredient => [
+            // Find exact ingredient matches
+            const ingredientList = ingredientsParams.split(",").map(item => item.trim()).filter(Boolean).flatMap(ingredient => [
+                {"en": {$regex: ingredient, $options: 'i'}},
+                {"es": {$regex: ingredient, $options: 'i'}},
+            ]);
+
+            // split ingredient strings into words for partial matches, convert to string so regex can be used
+            const ingredientParts = ingredientsParams.split(",").map(item => item.trim()).filter(Boolean).flatMap(item => item.split(/\s+/)).filter(item => item.length > 2).flatMap(ingredient => [
                 {"en": {$regex: ingredient, $options: 'i'}},
                 {"es": {$regex: ingredient, $options: 'i'}},
             ]);
 
             // Connect to the ingredients database and find matching ingredients ids
             const matchingIngredients = await Ingredient.find({"$or": ingredientList}).select('_id').lean();
+            const partialMatchingIngredients = await Ingredient.find({"$or": ingredientParts}).select('_id').lean();
             
-            // Add to filters
-            if(matchingIngredients.length > 0) {
+            // prepare for aggregation relevance scoring
+            if(matchingIngredients.length > 0)
                 ingredientIds = matchingIngredients.map(ingredient => ingredient._id);
-                filters.push({"ingredients.ingredient": {$in: ingredientIds}});
-            }
-        }   
+            if(partialMatchingIngredients.length > 0)
+                ingredientWords = partialMatchingIngredients.map(ingredient => ingredient._id);
+
+        } 
 
         // ---------- Filter by appliances
         if(appliancesParams) {
@@ -111,31 +120,37 @@ export async function GET(req: Request){
                 {$addFields: 
                     {relevanceScore: 
                         {$add: [
+                            {$multiply: [
+                                {$size: {
+                                    $filter: {
+                                        input: "$ingredients",
+                                        as: "ingredient",
+                                        cond: { $in: ["$$ingredient.ingredient", ingredientIds] }
+                                    }
+                                }},
+                                5   // Add 5 for each matching ingredient
+                            ]},
+                            {$multiply: [
+                                {$divide: [
+                                    {$size: {
+                                        $filter: {
+                                            input: "$ingredients",
+                                            as: "ingredient",
+                                            cond: { $in: ["$$ingredient.ingredient", ingredientIds] }
+                                        }
+                                    }}, ingredientIds.length || 1
+                                ]}, 10  // add higher percentage for more matches
+                            ]},
                             {$size: {
                                 $filter: {
                                     input: "$ingredients",
                                     as: "ingredient",
-                                    cond: { $in: ["$$ingredient.ingredient", ingredientIds] }
-                                } // add 1 for each matching ingredient
-                            }},
+                                    cond: { $in: ["$$ingredient.ingredient", ingredientWords] }
+                                }
+                            }}, // add 1 for partial match
                             {$size: {
                                 $setIntersection: ["$appliances._id", applianceIds] // add 1 for each matching appliance
                             }},
-                            /*{$sum: {
-                                $map: {
-                                    input: {
-                                        $filter: {
-                                            input: "$ingredients",
-                                            as: "i",
-                                            cond: {
-                                                $in: ["$$i.ingredient", ingredientIds] 
-                                            } 
-                                        } 
-                                    },
-                                    as: "matched",
-                                    in: "$$matched.amount"
-                                }
-                            }},*/
                             {$cond: [
                                 {$or: titles?.map(title => (
                                     {$or: [

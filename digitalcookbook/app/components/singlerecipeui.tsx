@@ -1,14 +1,15 @@
 // app/components/singlerecipeui.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useLang } from "./languageprovider";
+import { useLang } from "@/app/components/languageprovider";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
-import RecipeActions from "./recipeActions"; // <- NEW
+import RecipeActions from "@/app/components/recipeActions"; // <- NEW
 // Removed direct PrintButton import because it's now inside RecipeActions
 
 type Recipe = {
+  _id: string;
   title?: { en?: string; es?: string };
   ingredientPlainText?: { en?: string; es?: string };
   instructions?: { en?: string; es?: string };
@@ -37,7 +38,7 @@ const STRINGS = {
     allergensLabel: "Allergens",
     noImage: "No image",
     noIngredients: "No ingredients listed.",
-    directions: "Directions",
+    directions: "Directions (4 Servings)",
     noDirections: "No directions provided."
   },
   es: {
@@ -52,7 +53,7 @@ const STRINGS = {
     allergensLabel: "Alérgenos",
     noImage: "Sin imagen",
     noIngredients: "No hay ingredientes listados.",
-    directions: "Instrucciones",
+    directions: "Instrucciones (4 Porciones)",
     noDirections: "No se proporcionaron instrucciones."
   },
 };
@@ -72,6 +73,28 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const {scaleFactor, scaledCost} = recipe?.totalCost != null
     ? scaleCost(recipe.totalCost, servings)
     : {scaleFactor: 1, scaledCost: 0.00};
+
+  // Log recipe page visit
+  useEffect(() => {
+    // Load already visited recipes
+    const visitedRecipes = JSON.parse(sessionStorage.getItem("visitedRecipes") || "{}");
+
+    // if recipe already visited, skip
+    if (visitedRecipes[recipe._id])
+      return;
+    else { // else, store recipe as visited (true) in session storage
+      visitedRecipes[recipe._id] = true;
+      sessionStorage.setItem("visitedRecipes", JSON.stringify(visitedRecipes));
+    }
+    
+    // Log recipe page visit
+    fetch("/api/trackVisit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({ recipeId: recipe._id })
+    }).catch((error) => console.log("Failed to log recipe visit: ", error));
+    
+  }, [recipe._id]);
 
   return (
     <section className="min-h-screen bg-base-100">
@@ -163,7 +186,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 <ul className="pt-4 space-y-3 text-sm leading-relaxed list-decimal pl-6">
                   {recipe?.instructions?.[lang] ? (
                     recipe.instructions?.[lang].split("|||").map((line, i) =>
-                      <li key={i} className="wrap-break-words">{scaleIngredient(line.trim(), scaleFactor)}</li>
+                      <li key={i} className="wrap-break-words">{line}</li>
                     )
                   ) : (
                     <li className="text-base-content/60">{t.noDirections}</li>

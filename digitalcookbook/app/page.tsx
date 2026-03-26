@@ -33,17 +33,20 @@ export default function Home() {
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
+  const [sessionTags, setSessionTags] = useState<any[]>([]);
 
   // routes to the recipes page
   const handleSearch = (tags: string[]) => {
-    if(tags)
-      router.push(`/recipes?ingredients=${tags.join(",")}`);
-    else
-      router.push('/recipes');
+    sessionStorage.setItem("recipeIngredients", JSON.stringify(tags || []));
+
+    router.push('/recipes');
   };
 
   // fetch all recipes - NOT VERY PERFORMANT - 
   useEffect(() => {
+    // get last session to restore
+    setSessionTags(JSON.parse(sessionStorage.getItem("recipeIngredients") || "[]"));
+
     (async () => {
       const res = await fetch("/api/recipes");
       const data = await res.json();
@@ -94,7 +97,7 @@ export default function Home() {
 
       <div id="searchbar" className="w-11/12 w-md-full z-10">
         {/* Searchbar */}
-        <Searchbar onSearch={handleSearch} suggestionsSource={ingredientSuggestions} />
+        <Searchbar key={sessionTags.join(",")} onSearch={handleSearch} initialTags={sessionTags} suggestionsSource={ingredientSuggestions} />
       </div>
 
       {/* Featured Recipes */}

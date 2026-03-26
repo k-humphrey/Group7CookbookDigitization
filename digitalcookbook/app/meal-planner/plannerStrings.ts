@@ -17,7 +17,10 @@ export const PLANNER_STRINGS = {
         recipeGridSection: "Recipe selection grid with recipe cards, each with image, title, cost, and add/remove button",
         planTotalsSection: "Section showing total servings and total cost for the meal plan",
         totalIngredientsSection: "Section showing combined list of all ingredients needed for the meal plan with total amounts and costs",
-        recipeBreakdownCardsSection: "Section with breakdown cards for each selected recipe showing scaled ingredient amounts and costs"
+        recipeBreakdownCardsSection: "Section with breakdown cards for each selected recipe showing scaled ingredient amounts and costs",
+        totalShoppingCost: "Shopping List Cost",
+        exportCSV: "Export CSV",
+        addToShopping: "Add to Shopping List"
     },
     es: {
         pageTitle: "Planificador de comidas",
@@ -36,6 +39,9 @@ export const PLANNER_STRINGS = {
         recipeGridSection: "Cuadrícula de selección de recetas con tarjetas de recetas, cada una con imagen, título, costo y botón de agregar/eliminar",
         planTotalsSection: "Sección que muestra las porciones totales y el costo total para el plan de comidas",
         totalIngredientsSection: "Sección que muestra la lista combinada de todos los ingredientes necesarios para el plan de comidas con cantidades totales y costos",
-        recipeBreakdownCardsSection: "Sección con tarjetas de desglose para cada receta seleccionada que muestra las cantidades e costos de ingredientes ajustados"
+        recipeBreakdownCardsSection: "Sección con tarjetas de desglose para cada receta seleccionada que muestra las cantidades e costos de ingredientes ajustados",
+        totalShoppingCost: "Costo de la Lista de la Compra",
+        exportCSV: "Exportar CSV",
+        addToShopping: "Añadir a la Lista de la Compra"
     }
 } as const;
