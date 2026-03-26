@@ -14,7 +14,7 @@ export function generateCSV(combinedIngredients: CombinedIngredient[], selectedR
 
         // get recipes using ingredient
         const recipesUsingIngredient = selectedRecipes.filter(recipe => recipe.recipe.ingredients.some(ing => ing.ingredient === ingredient.ingredient.ingredient))
-        .map(recipe => `${recipe.recipe.title?.[lang]} (servings: ${recipe.servings})`).join("|");
+        .map(recipe => `${recipe.recipe.title?.[lang] ? recipe.recipe.title?.[lang] : "Error"} (servings: ${recipe.servings})`).join("|");
 
         // append to csv
         csv += `"${name}",${amount},${unit},${cost},"${recipesUsingIngredient}"\n`;
@@ -24,12 +24,14 @@ export function generateCSV(combinedIngredients: CombinedIngredient[], selectedR
     const url = URL.createObjectURL(new Blob(["\uFEFF" + csv], { type: "text/csv; charset=utf-8;" }));
 
     // create link for download
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = fileName;
+    if(typeof window !== "undefined" && typeof document !== "undefined") {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName;
 
-    // download csv
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+        // download csv
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 }
