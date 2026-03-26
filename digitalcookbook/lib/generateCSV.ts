@@ -14,7 +14,7 @@ export function generateCSV(combinedIngredients: CombinedIngredient[], selectedR
 
         // get recipes using ingredient
         const recipesUsingIngredient = selectedRecipes.filter(recipe => recipe.recipe.ingredients.some(ing => ing.ingredient === ingredient.ingredient.ingredient))
-        .map(recipe => recipe.recipe.title?.[lang]).join("|");
+        .map(recipe => `${recipe.recipe.title?.[lang]} (servings: ${recipe.servings})`).join("|");
 
         // append to csv
         csv += `"${name}",${amount},${unit},${cost},"${recipesUsingIngredient}"\n`;
