@@ -66,7 +66,7 @@ export default function PlanSummary({ selectedRecipes, ingredientPriceInfo }: Pr
                     {t.addToShopping}
                 </button>
                 {/* Export to CSV Button */}
-                <button onClick={() => generateCSV(combinedIngredients, lang, "IngredientList.csv")} className={focusClasses + " btn btn-warning"}>
+                <button onClick={() => generateCSV(combinedIngredients, selectedRecipes, lang, "IngredientList.csv")} className={focusClasses + " btn btn-warning"}>
                     {t.exportCSV}
                 </button>
             </div>
