@@ -16,8 +16,8 @@ export default function ShoppingListPage() {
   const router = useRouter();
   const [selectedRecipes, setSelectedRecipes] = useState<SelectedRecipe[]>([]);
   const [showAllIngredients, setShowAllIngredients] = useState(false);
-  const [combinedIngredientsState, setCombinedIngredientsState] = useState<any[]>([]);
-  const [ingredientPriceInfo, setIngredientPriceInfo] = useState<Record<string, IngredientPriceInfo>>({});
+  const [shoppingState, setShoppingState] = useState<{combinedIngredients: any[]; ingredientPriceInfo: Record<string, IngredientPriceInfo>;}>({combinedIngredients: [], ingredientPriceInfo: {}});
+  const { combinedIngredients, ingredientPriceInfo } = shoppingState;
   const langContext = useLang();
   const lang = langContext?.lang ?? "en";
   const t = SHOPPING_LIST_STRINGS[lang];
@@ -34,11 +34,12 @@ export default function ShoppingListPage() {
 
   // Update combined ingredients when selected recipes change and get ingredient price info
   useEffect(() => {
-    setCombinedIngredientsState(combineIngredients(selectedRecipes));
+    const combinedIngredients = combineIngredients(selectedRecipes);
+    setShoppingState({combinedIngredients: combinedIngredients, ingredientPriceInfo: {}});
 
     fetch(`/api/ingredients/byIDsGetIngredientPriceInfo?ids=${Array.from(new Set(selectedRecipes.flatMap(recipes => recipes.recipe.ingredients.map(ingredient => ingredient.ingredient)))).filter(Boolean).join(",")}`)
     .then(res => res.json())
-    .then((data: Record<string, IngredientPriceInfo>) => setIngredientPriceInfo(data));
+    .then((data: Record<string, IngredientPriceInfo>) => setShoppingState({combinedIngredients: combinedIngredients, ingredientPriceInfo: data}));
 
   }, [selectedRecipes]);
 
@@ -63,19 +64,20 @@ export default function ShoppingListPage() {
   //clear all selected recipes and combined ingredients
   const clearAll = () => {
     setSelectedRecipes([]);
-    setCombinedIngredientsState([]);
+    setShoppingState({combinedIngredients: [], ingredientPriceInfo: {}});
     localStorage.removeItem("shoppingList");
   };
 
   // Remove specific ingredinet form the combined ingredients list
   const removeIngredient = (ingredientId: string) => {
-    setCombinedIngredientsState(prev =>
-      prev.filter(item => item.ingredient.ingredient !== ingredientId)
-    );
+    setShoppingState(prev => ({
+      ...prev,
+      combinedIngredients: prev.combinedIngredients.filter(item => item.ingredient.ingredient !== ingredientId)
+    }));
   };
 
   // Convert to shoppingList
-  const shoppingList = ingredientShoppingConverter(combinedIngredientsState, ingredientPriceInfo, lang);
+  const shoppingList = ingredientShoppingConverter(combinedIngredients, ingredientPriceInfo, lang);
 
   //Total cost of all shoppingList Items
   const totalCost = shoppingList.totalShoppingCost.toFixed(2);
