@@ -107,72 +107,6 @@ const vegetarianProteins: ShelfItem[] = [
 	{ product: "Tofu", refrigerated: "1 Week (opened: 2–3 days)", frozen: "6 Months" },
 	{ product: "Textured soy protein (TSP)", refrigerated: "Opened: 3–4 Months", frozen: "6 Months" },
 ];
-<<<<<<< HEAD
-
-
-const Table = ({
-	title,
-	data,
-	color,
-	search,
-}: {
-	title: string;
-	data: ShelfItem[];
-	color: string;
-	search: string;
-}) => {
-	const filteredData = data.filter((item) =>
-		item.product.toLowerCase().includes(search.toLowerCase())
-	);
-
-	if (filteredData.length === 0) return null;
-
-	return (
-		<div style={{ marginBottom: "40px" }}>
-			<h2
-				style={{
-					textAlign: "center",
-					fontWeight: "bold",
-					fontSize: "1rem",
-					marginTop: "10px",
-					marginBottom: "5px",
-					backgroundColor: color,
-					color: "white",
-					padding: "8px",
-					borderRadius: "4px",
-				}}
-			>
-				{title}
-			</h2>
-
-			<table style={{ width: "100%", borderCollapse: "collapse" }}>
-				<thead>
-					<tr>
-						<th style={th}>Product</th>
-						<th style={th}>Refrigerated</th>
-						<th style={th}>Frozen</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filteredData.map((item, index) => (
-						<tr
-							key={index}
-							style={{
-								backgroundColor: index % 2 === 0 ? "#fafafa" : "white",
-							}}
-						>
-							<td style={td}>{item.product}</td>
-							<td style={td}>{item.refrigerated}</td>
-							<td style={td}>{item.frozen}</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
-		</div>
-	);
-};
-=======
->>>>>>> 483365a8f32dec4d3c2d5e8485db4ef45c072bf6
 
 const th: React.CSSProperties = {
 	border: "1px solid #ccc",
@@ -260,11 +194,7 @@ export default function ShelfLifeGuidelinesPage() {
 				</p>
 			</section>
 
-<<<<<<< HEAD
-			{/* 🔍 Search */}
-=======
 			{/* Search */}
->>>>>>> 483365a8f32dec4d3c2d5e8485db4ef45c072bf6
 			<div style={{ marginBottom: "20px" }}>
 				<input
 					type="text"
