@@ -34,6 +34,9 @@ export default function ShoppingListPage() {
 
   // Update combined ingredients when selected recipes change and get ingredient price info
   useEffect(() => {
+    if(selectedRecipes.length === 0)
+      return;
+
     const combinedIngredients = combineIngredients(selectedRecipes);
     setShoppingState({combinedIngredients: combinedIngredients, ingredientPriceInfo: {}});
 
