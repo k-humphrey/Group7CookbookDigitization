@@ -38,12 +38,12 @@ export function ingredientShoppingConverter(combinedIngredients: CombinedIngredi
 
             // Dont convert if ingredient counted in "each"
             if(ingredient.unit === "each") {
-                totalShoppingCost += totalAmount * priceInfo.price;
+                totalShoppingCost += Math.ceil(totalAmount) * priceInfo.price;
 
                 return {
                     ingredientName: ingredient.ingredient,
                     storeName: priceInfo.storeName ?? ingredient?.[lang],
-                    packagesNeeded: totalAmount,
+                    packagesNeeded: Math.ceil(totalAmount),
                     totalCost: totalAmount * priceInfo.price
                 };
             }
