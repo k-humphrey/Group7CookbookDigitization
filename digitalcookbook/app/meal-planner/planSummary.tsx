@@ -46,10 +46,10 @@ export default function PlanSummary({ selectedRecipes, setSelectedRecipes, ingre
     // Render summary of plan totals and breakdown for each selected recipe
     return (
         <div className="mt-15 gap-3 flex flex-col">
-            <div className="flex justify-end">
+            <div className="flex md:justify-end justify-center gap-0.5 md:gap-0">
                 {/* Clear All Button*/}
                 <button
-                className={focusClasses + " btn btn-error mr-2"}
+                className={focusClasses + " btn btn-error md:mr-2 md:btn-md btn-sm"}
                 onClick={() => {
                         setSelectedRecipes([]);                // clear recipes state
                         sessionStorage.removeItem("plannerRecipes"); // clear session storage
@@ -59,7 +59,7 @@ export default function PlanSummary({ selectedRecipes, setSelectedRecipes, ingre
                 </button>
                 {/* Add to Shopping List Button */}
                 <button
-                className={focusClasses + " btn btn-primary mr-2"}
+                className={focusClasses + " btn btn-primary md:mr-2 md:btn-md btn-sm"}
                 onClick={() => {
                     const saved = localStorage.getItem("shoppingList");
                     const list: SelectedRecipe[] = saved ? JSON.parse(saved) : [];
@@ -77,7 +77,7 @@ export default function PlanSummary({ selectedRecipes, setSelectedRecipes, ingre
                     {t.addToShopping}
                 </button>
                 {/* Export to CSV Button */}
-                <button onClick={() => generateCSV(combinedIngredients, selectedRecipes, lang, "IngredientList.csv")} className={focusClasses + " btn btn-warning"}>
+                <button onClick={() => generateCSV(combinedIngredients, selectedRecipes, lang, "IngredientList.csv")} className={focusClasses + " btn btn-warning md:btn-md btn-sm"}>
                     {t.exportCSV}
                 </button>
             </div>
