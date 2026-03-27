@@ -18,13 +18,14 @@ import Toast from "@/app/components/toast";
 // Pass in selected recipes
 interface Props {
     selectedRecipes: SelectedRecipe[];
+    setSelectedRecipes: React.Dispatch<React.SetStateAction<SelectedRecipe[]>>;
     ingredientPriceInfo: Record<string, IngredientPriceInfo>;
 }
 
 const focusClasses = "focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded";
 
 // Component to show summary of selected recipes, total costs, and scaled ingredients
-export default function PlanSummary({ selectedRecipes, ingredientPriceInfo }: Props) {
+export default function PlanSummary({ selectedRecipes, setSelectedRecipes, ingredientPriceInfo }: Props) {
     // Lang settings
     const langContext = useLang();
     const lang = langContext?.lang ?? 'en';
@@ -46,6 +47,16 @@ export default function PlanSummary({ selectedRecipes, ingredientPriceInfo }: Pr
     return (
         <div className="mt-15 gap-3 flex flex-col">
             <div className="flex justify-end">
+                {/* Clear All Button*/}
+                <button
+                className={focusClasses + " btn btn-error mr-2"}
+                onClick={() => {
+                        setSelectedRecipes([]);                // clear recipes state
+                        sessionStorage.removeItem("plannerRecipes"); // clear session storage
+                }}
+                >
+                    {t.clearAll}
+                </button>
                 {/* Add to Shopping List Button */}
                 <button
                 className={focusClasses + " btn btn-primary mr-2"}

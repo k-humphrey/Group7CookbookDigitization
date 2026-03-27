@@ -20,7 +20,8 @@ export const PLANNER_STRINGS = {
         recipeBreakdownCardsSection: "Section with breakdown cards for each selected recipe showing scaled ingredient amounts and costs",
         totalShoppingCost: "Shopping List Cost",
         exportCSV: "Export CSV",
-        addToShopping: "Add to Shopping List"
+        addToShopping: "Add to Shopping List",
+        clearAll: "Clear All"
     },
     es: {
         pageTitle: "Planificador de comidas",
@@ -42,6 +43,7 @@ export const PLANNER_STRINGS = {
         recipeBreakdownCardsSection: "Sección con tarjetas de desglose para cada receta seleccionada que muestra las cantidades e costos de ingredientes ajustados",
         totalShoppingCost: "Costo de la Lista de la Compra",
         exportCSV: "Exportar CSV",
-        addToShopping: "Añadir a la Lista de la Compra"
+        addToShopping: "Añadir a la Lista de la Compra",
+        clearAll: "Borrar Todo"
     }
 } as const;
