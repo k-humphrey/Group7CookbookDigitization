@@ -72,7 +72,7 @@ export default function BackpackPlannerPage() {
 
                         {/* SUMMARY PANEL */}
                         <section aria-label={t.summaryPanelSection} className="order-1 lg:order-2 lg:col-span-1">
-                            <PlanSummary selectedRecipes={selectedRecipes} ingredientPriceInfo={ingredientPriceInfo} />
+                            <PlanSummary selectedRecipes={selectedRecipes} setSelectedRecipes={setSelectedRecipes} ingredientPriceInfo={ingredientPriceInfo} />
                         </section>
                     </div>
                 </div>
