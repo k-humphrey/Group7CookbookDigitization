@@ -44,7 +44,7 @@ export function ingredientShoppingConverter(combinedIngredients: CombinedIngredi
                     ingredientName: ingredient.ingredient,
                     storeName: priceInfo.storeName ?? ingredient?.[lang],
                     packagesNeeded: Math.ceil(totalAmount),
-                    totalCost: totalAmount * priceInfo.price
+                    totalCost: Math.ceil(totalAmount) * priceInfo.price
                 };
             }
 
