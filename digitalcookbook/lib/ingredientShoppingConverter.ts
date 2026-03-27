@@ -36,6 +36,18 @@ export function ingredientShoppingConverter(combinedIngredients: CombinedIngredi
             if(ingredient.unit === "g" && ingredient.amount < 5)
                 return null;
 
+            // Dont convert if ingredient counted in "each"
+            if(ingredient.unit === "each") {
+                totalShoppingCost += totalAmount * priceInfo.price;
+
+                return {
+                    ingredientName: ingredient.ingredient,
+                    storeName: priceInfo.storeName ?? ingredient?.[lang],
+                    packagesNeeded: totalAmount,
+                    totalCost: totalAmount * priceInfo.price
+                };
+            }
+
             // Fallback to combinedIngredients if packageSize not set yet
             if(priceInfo.packageSize === 1 && ingredient.unit !== "each") {
                 totalShoppingCost += totalCost;
