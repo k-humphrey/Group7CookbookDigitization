@@ -25,15 +25,17 @@ export default function PrintButton({ targetId, label, className }: Props) {
         <head>
           <title>${lang === "es" ? "Imprimir" : "Print"}</title>
           <style>
-            body { font-family: sans-serif; padding: 1rem; }
+              body { font-family: sans-serif; padding: 1rem; }
 
-            ul { list-style: none; padding-left: 0; }
-            li { margin-bottom: 0.25rem; }
+              ul { list-style: none; padding-left: 0; }
+              li { margin-bottom: 0.25rem; }
 
-            /* Hide buttons in print window */
-            button { display: none !important; }
+              button { display: none !important; }
 
-          </style>
+              /*HIDE SCREEN-ONLY CONTENT IN PRINT WINDOW */
+              .screen-list-only { display: none !important; }
+            </style>
+
         </head>
         <body>
           ${content.innerHTML}
