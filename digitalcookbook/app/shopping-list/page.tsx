@@ -3,24 +3,33 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
-import { combineIngredients } from "@/lib/combineIngredients";
-import { decimalToFraction } from "@/lib/fractionConverter";
+import { combineIngredients, SelectedRecipe } from "@/lib/combineIngredients";
+import { ingredientShoppingConverter } from "@/lib/ingredientShoppingConverter";
+import { IngredientPriceInfo } from "../api/ingredients/byIDsGetIngredientPriceInfo/route";
 import { useLang } from "@/app/components/languageprovider";
-import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStrings";
 import { SHOPPING_LIST_STRINGS } from "./shoppingListStrings";
-import { SelectedRecipe } from "@/app/meal-planner/page";
 import PrintButton from "@/app/components/printbutton";
+import { decimalToFraction } from "@/lib/fractionConverter";
 
 export default function ShoppingListPage() {
   const router = useRouter();
   const [selectedRecipes, setSelectedRecipes] = useState<SelectedRecipe[]>([]);
+  // Load checkbox state from localStorage
+  const [checkedIngredients, setCheckedIngredients] = useState<Record<string, boolean>>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("checkedIngredients");
+      return saved ? JSON.parse(saved) : {};
+    }
+    return {};
+  });
+
   const [showAllIngredients, setShowAllIngredients] = useState(false);
-  const [combinedIngredientsState, setCombinedIngredientsState] = useState<any[]>([]);
+  const [shoppingState, setShoppingState] = useState<{combinedIngredients: any[];ingredientPriceInfo: Record<string, IngredientPriceInfo>;}>({combinedIngredients: [],ingredientPriceInfo: {},});
+  const { combinedIngredients, ingredientPriceInfo } = shoppingState;
   const langContext = useLang();
   const lang = langContext?.lang ?? "en";
   const t = SHOPPING_LIST_STRINGS[lang];
-  const plannerT = PLANNER_STRINGS[lang];
   const units: Record<string, string> = MEASUREMENT_STRINGS[lang].units;
 
   // Load saved shopping list from localStorage
@@ -29,14 +38,46 @@ export default function ShoppingListPage() {
     if (saved) {
       const recipes = JSON.parse(saved);
       setSelectedRecipes(recipes);
-      setCombinedIngredientsState(combineIngredients(recipes));
     }
   }, []);
 
-  // Update combined ingredients when selected recipes change
+  // Save checkbox state to localStorage
   useEffect(() => {
-    setCombinedIngredientsState(combineIngredients(selectedRecipes));
+    localStorage.setItem("checkedIngredients", JSON.stringify(checkedIngredients));
+  }, [checkedIngredients]);
+
+  // Update combined ingredients when selected recipes change and get ingredient price info
+  useEffect(() => {
+    if (selectedRecipes.length === 0) 
+      return;
+
+    const combinedIngredients = combineIngredients(selectedRecipes);
+    setShoppingState({combinedIngredients: combinedIngredients,ingredientPriceInfo: {},});
+
+    fetch(`/api/ingredients/byIDsGetIngredientPriceInfo?ids=${Array.from(new Set(selectedRecipes.flatMap((recipes) =>recipes.recipe.ingredients.map((ingredient) => ingredient.ingredient)))).filter(Boolean).join(",")}`)
+      .then((res) => res.json())
+      .then((data: Record<string, IngredientPriceInfo>) => setShoppingState({combinedIngredients: combinedIngredients,ingredientPriceInfo: data,}));
   }, [selectedRecipes]);
+
+  // Initialize checkbox state only when new ingredients appear
+  useEffect(() => {
+    if (!shoppingState.combinedIngredients.length) 
+      return;
+    const newState = { ...checkedIngredients };
+    let changed = false;
+
+    shoppingState.combinedIngredients.forEach((item) => {
+      const name = item.ingredientName;
+      if (name && newState[name] === undefined) {
+        // default checked
+        newState[name] = true; 
+        changed = true;
+      }
+    });
+
+    if (changed) 
+      setCheckedIngredients(newState);
+  }, [shoppingState.combinedIngredients]);
 
   //remove a recipe from shopping list by its id
   const removeRecipe = (id: string) => {
@@ -47,9 +88,11 @@ export default function ShoppingListPage() {
 
   //update the number of servings for a given recipe
   const updateServings = (recipeID: string, servings: number) => {
-    const updated = selectedRecipes.map((item) =>
-      item.recipe._id === recipeID ? { ...item, servings } : item
-    );
+    const updated = selectedRecipes.map((item) => {
+      if (servings < 1) 
+        servings = 1;
+      return item.recipe._id === recipeID ? { ...item, servings } : item;
+    });
     setSelectedRecipes(updated);
     localStorage.setItem("shoppingList", JSON.stringify(updated));
   };
@@ -57,25 +100,30 @@ export default function ShoppingListPage() {
   //clear all selected recipes and combined ingredients
   const clearAll = () => {
     setSelectedRecipes([]);
-    setCombinedIngredientsState([]);
+    setShoppingState({ combinedIngredients: [], ingredientPriceInfo: {} });
     localStorage.removeItem("shoppingList");
+    localStorage.removeItem("checkedIngredients");
+    setCheckedIngredients({});
   };
-  // Remove specific ingredinet form the combined ingredients list
-  const removeIngredient = (ingredientId: string) => {
-    setCombinedIngredientsState(prev =>
-      prev.filter(item => item.ingredient._id !== ingredientId)
-    );
+
+  // Toggle ingredientName
+  const toggleIngredient = (name: string) => {
+    setCheckedIngredients((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
   };
-  //Total cost of all combined ingredients
-  const totalCost = combinedIngredientsState
-    .reduce((total, item) => total + item.totalCost, 0)
-    .toFixed(2);
+
+  // Convert to shopping list
+  const shoppingList = ingredientShoppingConverter(combinedIngredients,ingredientPriceInfo,lang);
+  //Total cost of all shoppingList Items
+  const totalCost = shoppingList.totalShoppingCost.toFixed(2);
   // Number of ingredients to show before "See more "
   const MAX_VISIBLE_INGREDIENTS = 5;
 
   const visibleIngredients = showAllIngredients
-    ? combinedIngredientsState
-    : combinedIngredientsState.slice(0, MAX_VISIBLE_INGREDIENTS);
+    ? shoppingList.shoppingList
+    : shoppingList.shoppingList.slice(0, MAX_VISIBLE_INGREDIENTS);
 
   return (
     <main className="min-h-screen bg-base-100">
@@ -86,7 +134,7 @@ export default function ShoppingListPage() {
 
       <div className="max-w-6xl mx-auto p-6 space-y-8">
 
-        {/* Buttons: Clear All, Print Ingredients, Print All Recipes */}
+        {/* Buttons */}
         <div className="flex gap-4 flex-wrap items-center print:flex print:gap-4">
           <button
             className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 print:hidden"
@@ -94,7 +142,7 @@ export default function ShoppingListPage() {
           >
             {t.clearAll}
           </button>
-          {/*Print only the combined ingredients */}
+          {/*Print only the shopping list ingredients */}
           <PrintButton
             targetId="print-ingredients"
             label={lang === "es" ? "Imprimir Ingredientes" : "Print Ingredients"}
@@ -107,71 +155,98 @@ export default function ShoppingListPage() {
           />
         </div>
 
-        {/* Combined Ingredients*/}
+        {/* Shopping List ingredients*/}
         <div
           id="print-ingredients"
           className="bg-base-200 p-6 rounded-xl shadow print:block print:p-0 print:shadow-none print:mt-0"
         >
           <h2 className="text-2xl font-bold mb-4 print:text-black print:text-xl">
-            {plannerT.totalIngredients}
+            {t.ingredientShoppingList}
           </h2>
 
-          {/* visable ingredients */}
-          <ul className="screen-only print:hidden">
-            {visibleIngredients.map((item) => (
-              <li
-                key={item.ingredient._id}
-                className="flex justify-start items-center gap-2 p-1 group"
-              >
-                <span>
-                  {decimalToFraction(item.totalAmount, item.ingredient.unit)}{" "}
-                  {item.ingredient.unit.toLowerCase() === "each"
-                    ? ""
-                    : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
-                  {item.ingredient?.[lang]}
-                </span>
-                
-                {/* samll button "x" to remove ingredient */}
-                <button
-                  onClick={() => removeIngredient(item.ingredient._id)}
-                  className="text-red-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity select-none"
-                  title="Remove ingredient"
-                >
-                  ×
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          {/* visible ingredients when printing */}
-          <ul className="hidden print:block">
-            {combinedIngredientsState.map((item) => (
-              <li
-                key={item.ingredient._id}
-                className="flex justify-start items-center gap-2 p-1">
-                {decimalToFraction(item.totalAmount, item.ingredient.unit)}{" "}
-                {item.ingredient.unit.toLowerCase() === "each"
-                  ? ""
-                  : units[item.ingredient.unit?.toLowerCase()] || item.ingredient.unit}{" "}
-                {item.ingredient?.[lang]}
-              </li>
-            ))}
-          </ul>
-          {/*Toggle to show more ingredients if the list is long */}
-          {combinedIngredientsState.length > MAX_VISIBLE_INGREDIENTS && (
+          {/* Check All and Uncheck All */}
+          <div className="flex gap-4 mb-3 screen-list-only">
             <button
-              className="mt-2 text-sm text-blue-600 hover:underline print:hidden"
-              onClick={() => setShowAllIngredients(!showAllIngredients)}
+              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition-colors"
+              onClick={() => {
+                const all: Record<string, boolean> = {};
+                shoppingList.shoppingList.forEach((item) => {
+                  all[item.ingredientName] = true;
+                });
+                setCheckedIngredients(all);
+              }}
             >
-              {showAllIngredients
-                ? t.seeLess
-                : `${t.seeMore} (${combinedIngredientsState.length - MAX_VISIBLE_INGREDIENTS} ${t.more})`}
+              Check All
             </button>
-          )}
-          {/*Total cost of all ingredients */}
-          <div className="mt-4 font-bold print:text-black">
-            {t.totalCost}: ${totalCost}
+
+            <button
+              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition-colors"
+              onClick={() => {
+                const none: Record<string, boolean> = {};
+                shoppingList.shoppingList.forEach((item) => {
+                  none[item.ingredientName] = false;
+                });
+                setCheckedIngredients(none);
+              }}
+            >
+              Uncheck All
+            </button>
           </div>
+
+          {/* visible screen list */}
+          <div className="screen-list-only">
+            <ul>
+              {visibleIngredients.filter((ingredient) => ingredient.ingredientName).map((item) => {
+                  const name = item.ingredientName;
+                  return (
+                    <li
+                      key={name}
+                      className="flex justify-start items-center gap-2 p-1"
+                    >
+                      <input type="checkbox" checked={checkedIngredients[name] !== false}onChange={() => toggleIngredient(name)}/>
+
+                      <span>
+                        {item.packagesNeeded > 0 && `${decimalToFraction(item.packagesNeeded,units[name])} x ${item.storeName}`}
+                        {item.totalCost > 0 && ` - $${item.totalCost.toFixed(2)}`}
+                      </span>
+                    </li>
+                  );
+                })}
+            </ul>
+
+            {/*Toggle to show more ingredients if the list is long */}
+            {shoppingList.shoppingList.length > MAX_VISIBLE_INGREDIENTS && (
+              <button className="mt-2 text-sm text-blue-600 hover:underline" 
+              onClick={() => setShowAllIngredients(!showAllIngredients)}
+              >
+                {showAllIngredients
+                  ? t.seeLess
+                  : `${t.seeMore} (${
+                      shoppingList.shoppingList.length - MAX_VISIBLE_INGREDIENTS
+                    } ${t.more})`}
+              </button>
+            )}
+
+            {/* total cost in print */}
+            <div className="mt-4 font-bold">
+              {t.totalCost}: ${totalCost}
+            </div>
+          </div>
+
+          {/* Print list */}
+          <ul className="print-list hidden print:block">
+            {shoppingList.shoppingList
+              .filter((item) => checkedIngredients[item.ingredientName] !== false)
+              .map((item) => (
+                <li key={item.ingredientName} className="flex gap-2 p-1">
+                  {item.packagesNeeded > 0 &&
+                    `${decimalToFraction(
+                      item.packagesNeeded,
+                      units[item.ingredientName]
+                    )} x ${item.storeName}`}
+                </li>
+              ))}
+          </ul>
         </div>
 
         {/* Recipe Cards */}
@@ -182,7 +257,7 @@ export default function ShoppingListPage() {
             recipe.totalCost,
             servings
           );
-          // Scale amount of each ingredient according to servings
+           // Scale amount of each ingredient according to servings
           const ingredients: string[] = recipe.ingredientPlainText[lang]
             .split("|||")
             .map((ingredient: string) =>
@@ -203,10 +278,9 @@ export default function ShoppingListPage() {
                   }
                 }}
               >
-
-                {/* Remove button for recipe*/}
+                {/* Remove button for recipe card*/}
                 <button
-                  className="absolute top-4 right-4 btn btn-sm btn-error print:hidden z-10"
+                  className="absolute top-4 right-4 btn btn-sm btn-error screen-list-only z-10"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -215,7 +289,6 @@ export default function ShoppingListPage() {
                 >
                   {t.remove}
                 </button>
-
                 {/* Recipe image */}
                 {recipe.imageURI && (
                   <div className="flex-none w-full md:w-60 h-40 rounded-lg overflow-hidden mb-4 md:mb-0 md:mr-6">
@@ -226,21 +299,20 @@ export default function ShoppingListPage() {
                     />
                   </div>
                 )}
-
                 {/* Recipe details */}
                 <div className="flex-1">
                   <h3 className="text-xl font-bold">
                     {recipe.title?.[lang]}
                   </h3>
 
-                  <div className="flex gap-2 mt-2 print:flex-col">
+                  <div className="flex gap-2 mt-2 screen-list-only">
                     <span>{t.servings}</span>
                     {/* Servings input */}
                     <input
                       type="number"
                       min={1}
                       value={servings}
-                      className="input input-bordered w-20 print:hidden"
+                      className="input input-bordered w-20"
                       onClick={(e) => e.stopPropagation()}
                       onChange={(e) => {
                         e.stopPropagation();
@@ -249,7 +321,7 @@ export default function ShoppingListPage() {
                     />
                   </div>
                   {/*Recipe cost */}
-                  <p className="mt-2 font-semibold print:hidden">
+                  <p className="mt-2 font-semibold screen-list-only">
                     {t.cost}: ${scaledCost.toFixed(2)}
                   </p>
                   {/*Recipe ingredients */}
@@ -258,7 +330,6 @@ export default function ShoppingListPage() {
                       <li key={i}>{ingredient}</li>
                     ))}
                   </ul>
-
                 </div>
               </div>
             </div>

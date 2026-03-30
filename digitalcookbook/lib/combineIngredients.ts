@@ -2,6 +2,7 @@ import { scaleCost } from "@/lib/scaleRecipe";
 
 // Type for ingredient
 export type Ingredient = {
+    costPerUnit: number;
     ingredient: string;
     amount: number;
     unit: string;
@@ -45,6 +46,9 @@ export function combineIngredients(selectedRecipes: SelectedRecipe[]) {
         // Loop through each ingredient in the recipe
         recipe.ingredients?.forEach((ingredient: Ingredient) => {
 
+            // use ingredientCost if it exists, otherwise fallback to costPerUnit
+            const unscaledCost = ingredient.ingredientCost ?? ingredient.costPerUnit;
+
             // if ingredient already exists in map
             if(ingredientsMap.has(ingredient.ingredient)) {
                 const existingIngredient = ingredientsMap.get(ingredient.ingredient)!;
@@ -52,14 +56,14 @@ export function combineIngredients(selectedRecipes: SelectedRecipe[]) {
                 ingredientsMap.set(ingredient.ingredient, {
                     ingredient: ingredient,
                     totalAmount: existingIngredient.totalAmount + (ingredient.amount * scaleFactor),
-                    totalCost: existingIngredient.totalCost + (scaleFactor * ingredient.ingredientCost)
+                    totalCost: existingIngredient.totalCost + (scaleFactor * unscaledCost)
                 });
                 
             } else // Else, add new ingredient to map
                 ingredientsMap.set(ingredient.ingredient, {
                     ingredient: ingredient,
                     totalAmount: (ingredient.amount * scaleFactor),
-                    totalCost: (scaleFactor * ingredient.ingredientCost)
+                    totalCost: (scaleFactor * unscaledCost)
                 });
         });
     });
