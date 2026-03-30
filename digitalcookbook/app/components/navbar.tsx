@@ -29,6 +29,7 @@ const STRINGS = {
         shoppingList: "Shopping List",
         openMenu: "Open Menu",
         languageToggle: "Toggle Language",
+        findResources: "Find Resources",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -54,6 +55,7 @@ const STRINGS = {
         shoppingList: "Lista de Compras",
         openMenu: "Abrir Menú",
         languageToggle: "Cambiar Idioma",
+        findResources: "Encontrar recursos",
     } as const
 };
 
@@ -253,6 +255,14 @@ export default function Navbar() {
                             {t.shoppingList}
                     </Link>
             </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
+                </Link>
+
+            </li>
             </ul>
             </div>
         </div>
@@ -378,7 +388,10 @@ export default function Navbar() {
                 </Link>
             </li>
             <li className="relative group">
-            <span className="cursor-pointer">{t.tools}</span>
+            <Link href="/tools" className="cursor-pointer">
+                {t.tools}
+            </Link>
+            
                 <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
                                 opacity-0 invisible translate-y-2
                                 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
@@ -433,6 +446,14 @@ export default function Navbar() {
                     href="/shopping-list"
                     className="hover">
                         {t.shoppingList}
+                </Link>
+
+            </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
                 </Link>
 
             </li>
