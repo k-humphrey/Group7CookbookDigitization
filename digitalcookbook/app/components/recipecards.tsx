@@ -82,7 +82,7 @@ export default function RecipeGrid({ recipes }: Props) {
                               alt="Blue Ribbon"
                               width={38}
                               height={38}
-                              className="drop-shadow-sm -mt-2"
+                              className="drop-shadow-sm -mt-8"
                             />
                           ) : (
                             <span className="badge badge-success">
