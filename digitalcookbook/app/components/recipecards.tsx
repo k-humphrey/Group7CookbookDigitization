@@ -68,13 +68,30 @@ export default function RecipeGrid({ recipes }: Props) {
               </h2>
 
               {/* Tags */}
-              <div className="mt-1 flex flex-wrap gap-2 min-h-7">
-                {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
-                  return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
-                      <div key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
-                        {tag}
-                      </div>
-                    ));
+              <div className="mt-1 flex flex-wrap items-center gap-2 min-h-7">
+                {(() => {
+                  const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
+
+                  return Object.entries(tagObj).filter(([, value]) => value === true).map(([tag]) => {
+                      const isBlueRibbon = tag === "Blue Ribbon" || tag === "Cinta Azul";
+                      return (
+                        <div key={tag}>
+                          {isBlueRibbon ? (
+                            <Image
+                              src="/blueribbon2.png"
+                              alt="Blue Ribbon"
+                              width={38}
+                              height={38}
+                              className="drop-shadow-sm -mt-2"
+                            />
+                          ) : (
+                            <span className="badge badge-success">
+                              {tag}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    });
                 })()}
               </div>
 
