@@ -59,8 +59,8 @@ export default function Home() {
     (async () => {
       const res = await fetch("/api/recipes/featured");
       const data = await res.json();
-      if(data?.recipes)
-        setFeaturedRecipes(data.recipes);
+      setFeaturedRecipes(data.recipes);
+      
     })();
 
   }, []);
