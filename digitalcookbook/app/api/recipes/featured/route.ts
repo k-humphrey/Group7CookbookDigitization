@@ -1,5 +1,6 @@
 import { connectToDB } from "@/lib/connectToDB";
 import FeaturedRecipes from "@/models/FeaturedRecipes";
+import Recipe from "@/models/Recipe";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest){
