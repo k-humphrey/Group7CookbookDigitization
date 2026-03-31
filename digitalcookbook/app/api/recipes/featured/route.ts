@@ -10,10 +10,11 @@ export async function GET(req: NextRequest){
         await connectToDB();
     
         // get featured recipes from db
-        const featured = await FeaturedRecipes.findOne({}).populate("recipeIds");
+        const featured = await FeaturedRecipes.findOne({});
+        const recipes = await Recipe.find({ _id: { $in: featured?.recipeIds || []}});
 
         // Return featured recipes if they exist, else return nothing
-        return NextResponse.json({ recipes: featured.recipeIds });
+        return NextResponse.json({ recipes: recipes });
 
     } catch(error) {
         // error return nothing
