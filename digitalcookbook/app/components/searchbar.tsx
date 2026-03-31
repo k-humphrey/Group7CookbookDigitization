@@ -43,6 +43,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
   // Filter suggestions based on input and exclude already selected tags
   const filteredSuggestions = suggestionsSource
     .filter((s) => typeof s === "string")
+    .map((s) => s.replace(/\(.*?\)/g, "").replace(/\s*[-–—]\s*.*/, "").trim())
     .filter((s) => s.toLowerCase().includes(input.toLowerCase()))
     .filter((s) => !tags.includes(s))
     .slice(0, 6);
@@ -89,7 +90,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
       <div
         className={`w-full max-w-3xl overflow-hidden transition-all duration-300 ease-in-out
         ${tags.length > 0 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="rounded-t-3xl bg-[#DEE4D6] px-4 py-3 flex items-center gap-4">
+          <div className="rounded-t-3xl bg-gray-200 px-4 py-3 flex items-center gap-4">
             
           {/* Tag Area */}
           <div className="flex-1">
@@ -138,7 +139,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
           htmlFor="ingredient-search" 
           className={`input input-bordered transition-all duration-100 ${
           tags.length > 0 ? "rounded-b-3xl rounded-t-none" : "rounded-full"}
-          w-full flex items-center gap-3 h-12 px-6 bg-[#DEE4D6] focus-within:ring-1 focus-within:ring-neutral`}>
+          w-full flex items-center gap-3 h-12 px-6 bg-gray-200 focus-within:ring-1 focus-within:ring-neutral`}>
           {/* Search Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"

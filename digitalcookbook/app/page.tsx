@@ -16,6 +16,7 @@ const STRINGS = {
     featured: "Featured Recipes",
     skipToSearch: "Skip to search",
     skipToFeatured: "Skip to featured recipes",
+    loading: "Loading..."
   },
   es: {
     thrifyBites: "Mordidas Económicos",
@@ -23,13 +24,14 @@ const STRINGS = {
     featured: "Recetas Destacadas",
     skipToSearch: "Saltar a búsqueda",
     skipToFeatured: "Saltar a recetas destacadas",
+    loading: "Cargando..."
   },
 };
 
 export default function Home() {
   const router = useRouter();
-  const [recipes, setRecipes] = useState<any[]>([]);
-  const [featuredRecipes, setFeaturedRecipes] = useState<any[]>([]);
+  const [ingredients, setIngredients] = useState<any[]>([]);
+  const [featuredRecipes, setFeaturedRecipes] = useState<any[] | null>(null);
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
@@ -42,33 +44,36 @@ export default function Home() {
     router.push('/recipes');
   };
 
-  // fetch all recipes - NOT VERY PERFORMANT - 
+  // load suggestions, load session, and load featured recipes
   useEffect(() => {
     // get last session to restore
     setSessionTags(JSON.parse(sessionStorage.getItem("recipeIngredients") || "[]"));
 
+    // fetch ingredients
     (async () => {
-      const res = await fetch("/api/recipes");
+      const res = await fetch("/api/ingredients");
       const data = await res.json();
-      setRecipes(data);
+      if(data)
+        setIngredients(data);
     })();
+
+    // fetch featured recipes
+    fetch("/api/recipes/featured")
+    .then(res => res.json())
+    .then(data => {
+      if(data?.recipes)
+        setFeaturedRecipes(data.recipes);
+    })
+
   }, []);
 
   const ingredientSuggestions = [
-    ...new Set(
-      recipes.flatMap((r: any) =>
-        r.ingredients?.map((i: any) =>
-          (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
-        ) || []
-      )
+    ...new Set(Array.isArray(ingredients) ?
+      ingredients.map((ingredient: any) =>
+        ingredient?.[lang].replace(/\(.*?\)/g, "").replace(/\s*[-–—]\s*.*/, "").trim()
+      ) : []
     )
   ];
-
-  // select 3 random recipes for featured recipes
-  useEffect(() => {
-    setFeaturedRecipes(recipes.length ? [...recipes].sort(() => Math.random() - 0.5).slice(0, 3) : []);
-
-  }, [recipes]);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden">
@@ -103,7 +108,11 @@ export default function Home() {
       {/* Featured Recipes */}
       <section id="featured-recipes" aria-label={t.featured} className="w-full max-w-7xl px-6 mt-40 mb-20 z-10">
         <h2 className="text-4xl font-bold mb-6 flex justify-center">{t.featured}</h2>
-        <RecipeGrid recipes={featuredRecipes} />
+        {featuredRecipes === null ? (
+          <p>{t.loading}</p>
+        ) : (
+          <RecipeGrid recipes={featuredRecipes} />
+        )}
       </section>  
     </section>
   );

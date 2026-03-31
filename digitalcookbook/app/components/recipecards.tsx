@@ -14,15 +14,19 @@ interface Props {
 const STRINGS = {
   en: {
     viewRecipes: "View Recipe",
-    noRecipes: "No recipes found.",
+    noRecipes: "Loading...",
     saveRecipe: "Save Recipe",
-    addToShopping: "Add to Shopping"
+    addToShopping: "Add to Shopping",
+    addedRecipeSaved: "added to Saved Recipes",
+    addedRecipeShopping: "added to Shopping List"
   },
   es: {
     viewRecipes: "Ver receta",
-    noRecipes: "No se encontraron recetas.",
+    noRecipes: "Cargando...",
     saveRecipe: "Guardar receta",
-    addToShopping: "Agregar a compras"
+    addToShopping: "Agregar a compras",
+    addedRecipeSaved: "Añadido a la receta guardada",
+    addedRecipeShopping: "Añadido a la lista compra"
   }
 };
 export default function RecipeGrid({ recipes }: Props) {
@@ -39,7 +43,7 @@ export default function RecipeGrid({ recipes }: Props) {
   return (
   <div>
     <div className="grid gap-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-      {recipes.map((recipe: any) => (
+      {(recipes || []).map((recipe: any) => (
         <Link key={recipe._id} href={`/single-recipe/${recipe._id}`} className="group block focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded" aria-label={`View recipe ${recipe.title?.[lang]}`}>
           <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
             
@@ -68,13 +72,30 @@ export default function RecipeGrid({ recipes }: Props) {
               </h2>
 
               {/* Tags */}
-              <div className="mt-1 flex flex-wrap gap-2 min-h-7">
-                {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
-                  return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
-                      <div key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
-                        {tag}
-                      </div>
-                    ));
+              <div className="mt-1 flex flex-wrap items-center gap-2 min-h-7">
+                {(() => {
+                  const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
+
+                  return Object.entries(tagObj).filter(([, value]) => value === true).map(([tag]) => {
+                      const isBlueRibbon = tag === "Blue Ribbon" || tag === "Cinta Azul";
+                      return (
+                        <div key={tag}>
+                          {isBlueRibbon ? (
+                            <Image
+                              src="/blueribbon2.png"
+                              alt="Blue Ribbon"
+                              width={38}
+                              height={38}
+                              className="drop-shadow-sm -mt-8"
+                            />
+                          ) : (
+                            <span className="badge badge-success">
+                              {tag}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    });
                 })()}
               </div>
 
@@ -103,7 +124,7 @@ export default function RecipeGrid({ recipes }: Props) {
                         //saves updated list back to browser
                         localStorage.setItem("savedRecipe", JSON.stringify(list));
                         //message
-                        setToastMessage(`${recipe.title?.[lang]} added to Saved Recipe`);
+                        setToastMessage(`${recipe.title?.[lang]} ${t.addedRecipeSaved}`);
                       }
                     }}
                   >
@@ -126,7 +147,7 @@ export default function RecipeGrid({ recipes }: Props) {
                         });
 
                         localStorage.setItem("shoppingList", JSON.stringify(list));
-                        setToastMessage(`${recipe.title?.[lang]} added to Shopping List`);
+                        setToastMessage(`${recipe.title?.[lang]} ${t.addedRecipeShopping}`);
                       }
                     }}
                   >
