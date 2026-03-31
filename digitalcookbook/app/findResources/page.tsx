@@ -18,19 +18,8 @@ type Location = {
   description: string;
 };
 
-//have to declare the google map API stuff for typescript as well [AI made this]
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "gmp-map": React.HTMLAttributes<HTMLElement> & {
-        "map-id"?: string;
-      };
-      "gmp-advanced-marker": React.HTMLAttributes<HTMLElement> & {
-        title?: string;
-      };
-    }
-  }
-}
+const GmpMap = "gmp-map" as any;
+const GmpAdvancedMarker = "gmp-advanced-marker" as any;
 
 //AI mangled version of the old marker loading system.. Does some weird stuff that fixes a rendering and typing issue
 function AdvancedMarker({ loc, onClick }: { loc: Location; onClick: () => void }) {
@@ -44,7 +33,7 @@ function AdvancedMarker({ loc, onClick }: { loc: Location; onClick: () => void }
     return () => el.removeEventListener("click", onClick);
   }, [loc, onClick]);
 
-  return <gmp-advanced-marker ref={ref} title={loc.name} />;
+  return <GmpAdvancedMarker ref={ref} title={loc.name} />;
 }
 
 //AI mangled this and made it a function version of the Map that fixes a rendering issue
@@ -59,7 +48,7 @@ function MapComponent({ locations, onMarkerClick }: { locations: Location[]; onM
   }, [locations]);
 
   return (
-    <gmp-map ref={mapRef} map-id={MAP_ID} style={{ height: "400px", width: "100%" }}>
+    <GmpMap ref={mapRef} map-id={MAP_ID} style={{ height: "400px", width: "100%" }}>
       {locations.map((loc) => (
         <AdvancedMarker
           key={loc.name}
@@ -67,7 +56,7 @@ function MapComponent({ locations, onMarkerClick }: { locations: Location[]; onM
           onClick={() => onMarkerClick(loc)}
         />
       ))}
-    </gmp-map>
+    </GmpMap>
   );
 }
 
