@@ -28,7 +28,7 @@ export default async function AdminPanelPage() {
 	const safeRecipes = JSON.parse(JSON.stringify(recipes));
 
 	// get featured ids
-	const featuredIds = (await FeaturedRecipes.findOne<{ recipeIds: string[] }>({}).lean())?.recipeIds || [];
+	const featuredIds = JSON.parse(JSON.stringify((await FeaturedRecipes.findOne<{ recipeIds: string[] }>({}).lean())?.recipeIds || []));
 
 	//return the recipe view
   	return (
