@@ -56,12 +56,11 @@ export default function Home() {
     })();
 
     // fetch featured recipes
-    (async () => {
-      const res = await fetch("/api/recipes/featured");
-      const data = await res.json();
+    fetch("/api/recipes/featured")
+    .then(res => res.json())
+    .then(data => {
       setFeaturedRecipes(data.recipes);
-      
-    })();
+    })
 
   }, []);
 
