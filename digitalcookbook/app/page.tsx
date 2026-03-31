@@ -16,6 +16,7 @@ const STRINGS = {
     featured: "Featured Recipes",
     skipToSearch: "Skip to search",
     skipToFeatured: "Skip to featured recipes",
+    loading: "Loading..."
   },
   es: {
     thrifyBites: "Mordidas Económicos",
@@ -23,13 +24,14 @@ const STRINGS = {
     featured: "Recetas Destacadas",
     skipToSearch: "Saltar a búsqueda",
     skipToFeatured: "Saltar a recetas destacadas",
+    loading: "Cargando..."
   },
 };
 
 export default function Home() {
   const router = useRouter();
   const [ingredients, setIngredients] = useState<any[]>([]);
-  const [featuredRecipes, setFeaturedRecipes] = useState<any[]>([]);
+  const [featuredRecipes, setFeaturedRecipes] = useState<any[] | null>(null);
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
@@ -59,7 +61,8 @@ export default function Home() {
     fetch("/api/recipes/featured")
     .then(res => res.json())
     .then(data => {
-      setFeaturedRecipes(data.recipes);
+      if(data?.recipes)
+        setFeaturedRecipes(data.recipes);
     })
 
   }, []);
@@ -105,7 +108,11 @@ export default function Home() {
       {/* Featured Recipes */}
       <section id="featured-recipes" aria-label={t.featured} className="w-full max-w-7xl px-6 mt-40 mb-20 z-10">
         <h2 className="text-4xl font-bold mb-6 flex justify-center">{t.featured}</h2>
-        <RecipeGrid recipes={featuredRecipes} />
+        {featuredRecipes === null ? (
+          <p>{t.loading}</p>
+        ) : (
+          <RecipeGrid recipes={featuredRecipes} />
+        )}
       </section>  
     </section>
   );
