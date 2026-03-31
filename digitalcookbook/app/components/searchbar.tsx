@@ -43,6 +43,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
   // Filter suggestions based on input and exclude already selected tags
   const filteredSuggestions = suggestionsSource
     .filter((s) => typeof s === "string")
+    .map((s) => s.replace(/\(.*?\)/g, "").replace(/\s*[-–—]\s*.*/, "").trim())
     .filter((s) => s.toLowerCase().includes(input.toLowerCase()))
     .filter((s) => !tags.includes(s))
     .slice(0, 6);

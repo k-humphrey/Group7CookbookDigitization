@@ -5,10 +5,18 @@
 import { useState } from "react";
 import InfoCard from "./infocard";
 
+const PAGE_SIZE = 12; // 3 rows x 4 columns
+
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	const [selectedRecipe, setSelectedRecipe] = useState< any | null >(null);
+	const [page, setPage] = useState(0);
 	//const [newAllergenEn, setNewAllergenEn] = useState("");
 	//const [newAllergenEs, setNewAllergenEs] = useState("");
+
+	// calculate pagination info
+	const totalPages = Math.ceil(recipes.length / PAGE_SIZE);
+	const pageRecipes = recipes.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+
 	const TAGS_EN = {
 		"Blue Ribbon": false,
 		Vegan: false,
@@ -69,7 +77,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 			</button>
 	</div>
 	<div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6">
-		{recipes.map((recipe) => (
+		{pageRecipes.map((recipe) => (
 			<InfoCard
 				key={ recipe._id }
 				title={ recipe.title.en }
@@ -90,6 +98,44 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 		/>
 		))}
       	</div>
+
+		{/* Pagination Buttons */}
+		<div className="flex justify-between w-full max-w-6xl px-6 mb-10">
+			<button className="btn btn-outline"
+				disabled={page === 0}
+				onClick={() => setPage(page - 1)}    
+			>
+				Previous
+			</button>
+
+			<div>
+				<span>Page </span>
+				<input className="border rounded px-2 py-1 w-14 text-center"
+					type="number"
+					min={1}
+					max={totalPages}
+					value={page + 1}
+					onChange={(e) => {
+						let val = parseInt(e.target.value, 10);
+						if(!isNaN(val)) {
+							if (val < 1)
+								val = 1;
+							else if (val > totalPages)
+								val = totalPages;
+							setPage(val - 1);
+						}
+					}}
+				/>
+				<span> of {totalPages}</span>
+			</div>
+
+			<button className="btn btn-outline"
+				disabled={page + 1 >= totalPages}
+				onClick={() => setPage(page + 1)}
+			>
+				Next
+			</button>
+		</div>
 
       	{/* Modal */}
       	{selectedRecipe && (

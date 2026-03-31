@@ -28,7 +28,7 @@ const STRINGS = {
 
 export default function Home() {
   const router = useRouter();
-  const [recipes, setRecipes] = useState<any[]>([]);
+  const [ingredients, setIngredients] = useState<any[]>([]);
   const [featuredRecipes, setFeaturedRecipes] = useState<any[]>([]);
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
@@ -42,33 +42,36 @@ export default function Home() {
     router.push('/recipes');
   };
 
-  // fetch all recipes - NOT VERY PERFORMANT - 
+  // load suggestions, load session, and load featured recipes
   useEffect(() => {
     // get last session to restore
     setSessionTags(JSON.parse(sessionStorage.getItem("recipeIngredients") || "[]"));
 
+    // fetch ingredients
     (async () => {
-      const res = await fetch("/api/recipes");
+      const res = await fetch("/api/ingredients");
       const data = await res.json();
-      setRecipes(data);
+      if(data)
+        setIngredients(data);
     })();
+
+    // fetch featured recipes
+    (async () => {
+      const res = await fetch("/api/recipes/featured");
+      const data = await res.json();
+      if(data?.recipes)
+        setFeaturedRecipes(data.recipes);
+    })();
+
   }, []);
 
   const ingredientSuggestions = [
-    ...new Set(
-      recipes.flatMap((r: any) =>
-        r.ingredients?.map((i: any) =>
-          (typeof i === "string" ? i : i[lang]).replace(/\(.*?\)/g, "").trim()
-        ) || []
-      )
+    ...new Set(Array.isArray(ingredients) ?
+      ingredients.map((ingredient: any) =>
+        ingredient?.[lang].replace(/\(.*?\)/g, "").replace(/\s*[-–—]\s*.*/, "").trim()
+      ) : []
     )
   ];
-
-  // select 3 random recipes for featured recipes
-  useEffect(() => {
-    setFeaturedRecipes(recipes.length ? [...recipes].sort(() => Math.random() - 0.5).slice(0, 3) : []);
-
-  }, [recipes]);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden">

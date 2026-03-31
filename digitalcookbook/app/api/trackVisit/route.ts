@@ -1,5 +1,6 @@
 import { connectToDB } from "@/lib/connectToDB";
 import RecipeAnalytics from "@/models/RecipeAnalytics";
+import { NextResponse, NextRequest } from "next/server";
 
 // get seconds till end of month
 function getSecondsUntilNextMonth() {
@@ -9,7 +10,7 @@ function getSecondsUntilNextMonth() {
     return Math.floor((startOfNextMonth.getTime() - startOfThisMonth.getTime()) / 1000);
 }
 
-export async function POST(req: Request){
+export async function POST(req: NextRequest){
     try {
         await connectToDB();
 
@@ -19,7 +20,7 @@ export async function POST(req: Request){
 
         // Validate recipeId
         if(!recipeId)
-            return new Response(JSON.stringify({ error: "Missing recipeId" }), { status: 400 });
+            return NextResponse.json({ error: "Missing recipeId" });
 
         // get first of month
         const firstOfMonth = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1, 0, 0, 0));
@@ -40,7 +41,7 @@ export async function POST(req: Request){
         );
 
         // return response
-        return new Response(JSON.stringify({ success: true, analytics }), { status: 200 });
+        return NextResponse.json({ success: true, analytics});
 
     } catch (e) {
         console.error("trackVisit API Error: ", e);
