@@ -5,8 +5,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider";
 import { scaleCost, scaleIngredient } from "@/lib/scaleRecipe";
-import RecipeActions from "@/app/components/recipeActions"; // <- NEW
-// Removed direct PrintButton import because it's now inside RecipeActions
+import RecipeActions from "@/app/components/recipeActions";
 
 type Recipe = {
   _id: string;
@@ -15,7 +14,7 @@ type Recipe = {
   instructions?: { en?: string; es?: string };
   imageURI?: string;
   tags?: {
-    'Blue Ribbon'?: boolean;
+    "Blue Ribbon"?: boolean;
     vegan?: boolean;
     vegetarian?: boolean;
   };
@@ -32,14 +31,18 @@ const STRINGS = {
     servings: "Servings:",
     total: "Total Cost: $",
     ing: "Ingredients",
+    ingSub: "Tap each one as you add it!",
+    gathered: "gathered",
     contains: "This recipe contains the following allergens:",
     servingsLabel: "Servings",
     tagsLabel: "Tags",
     allergensLabel: "Allergens",
     noImage: "No image",
     noIngredients: "No ingredients listed.",
-    directions: "Directions (4 Servings)",
-    noDirections: "No directions provided."
+    directions: "Directions",
+    dirSub: "Tap each step when done",
+    noDirections: "No directions provided.",
+    doneMsg: "You made it! Great job, chef! Time to eat! 🍽️",
   },
   es: {
     prep: "Tiempo de preparación:",
@@ -47,32 +50,82 @@ const STRINGS = {
     servings: "Porciones:",
     total: "Costo total: $",
     ing: "Ingredientes",
+    ingSub: "¡Toca cada uno al agregarlo!",
+    gathered: "reunidos",
     contains: "Esta receta contiene:",
-    servingsLabel: "Porciones",
-    tagsLabel: "Etiquetas",
-    allergensLabel: "Alérgenos",
     noImage: "Sin imagen",
     noIngredients: "No hay ingredientes listados.",
-    directions: "Instrucciones (4 Porciones)",
-    noDirections: "No se proporcionaron instrucciones."
+    directions: "Instrucciones",
+    dirSub: "Toca cada paso cuando termines",
+    noDirections: "No se proporcionaron instrucciones.",
+    doneMsg: "¡Lo lograron! ¡Buen trabajo, chef! ¡A comer! 🍽️",
   },
 };
+const CheckIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <polyline
+      points="2,6 5,9 10,3"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   const langContext = useLang();
-  const lang = langContext?.lang ?? 'en';
+  const lang = langContext?.lang ?? "en";
   const title = recipe?.title?.[lang] ?? "Recipe";
   const t = STRINGS[lang];
   const allergenField = lang === "es" ? "espAllergens" : "allergens";
-  const allergensObj = (recipe as any)?.[allergenField] as Record<string, boolean> | undefined;
+  const allergensObj = (recipe)?.[allergenField] as Record<string, boolean> | undefined;
 
-   // State for servings, default to 4
   const [servings, setServings] = useState(4);
+  const [checkedIngredients, setCheckedIngredients] = useState<Set<number>>(new Set());
+  const [checkedSteps, setCheckedSteps] = useState<Set<number>>(new Set());
 
-  // Calculate scaled cost based on servings
   const {scaleFactor, scaledCost} = recipe?.totalCost != null
     ? scaleCost(recipe.totalCost, servings)
     : {scaleFactor: 1, scaledCost: 0.00};
+
+  const ingredients = recipe?.ingredientPlainText?.[lang]
+    ? recipe.ingredientPlainText[lang]!.split("|||").map((l) => l.trim())
+    : [];
+
+  const steps = recipe?.instructions?.[lang]
+    ? recipe.instructions[lang]!.split("|||").map((l) => l.trim())
+    : [];
+
+  const toggleIngredient = (i: number) => {
+    setCheckedIngredients((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) {
+        next.delete(i);
+      } else {
+        next.add(i);
+      }
+      return next;
+    });
+  };
+
+  const toggleStep = (i: number) => {
+    setCheckedSteps((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) {
+        next.delete(i);
+      } else {
+        next.add(i);
+      }
+      return next;
+    });
+  };
+
+  const showDone =
+    ingredients.length > 0 &&
+    steps.length > 0 &&
+    checkedIngredients.size === ingredients.length &&
+    checkedSteps.size === steps.length;
 
   // Log recipe page visit
   useEffect(() => {
@@ -93,16 +146,15 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify({ recipeId: recipe._id })
     }).catch((error) => console.log("Failed to log recipe visit: ", error));
-    
   }, [recipe._id]);
 
   return (
     <section className="min-h-screen bg-base-100">
-      <div className="mx-auto max-w-6xl px-6 pt-6 printable print:block">
-        <div className="border border-base-300 bg-base-100">
-          
+      <div className="mx-auto max-w-6xl p-6 printable print:block">
+        <div className="rounded-xl border border-black/20 bg-base-100">
+
           {/* IMAGE */}
-          <div className="h-90 w-full overflow-hidden bg-base-200 print:flex print:justify-center relative">
+          <div className="rounded-t-xl h-90 w-full overflow-hidden bg-base-200 print:flex print:justify-center relative">
             {recipe?.imageURI ? (
               <Image
                 src={recipe.imageURI.trimEnd()}
@@ -124,13 +176,29 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 {title}
               </h1>
 
-              <ul aria-label={t.tagsLabel} className="flex flex-wrap items-center gap-2 text-sm">
-                {(() => {const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
-                  return Object.entries(tagObj).filter(([_, value]) => value === true).map(([tag]) => (
-                      <li key={tag} className={`badge ${(tag === "Blue Ribbon" || tag === "Cinta Azul") ? "badge-info" : "badge-success"}`}>
-                        {tag}
-                      </li>
-                    ));
+              <ul className="flex flex-wrap items-center gap-2 text-sm">
+                {(() => {
+                  const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
+                  return Object.entries(tagObj).filter(([, value]) => value === true).map(([tag]) => {
+                      const isBlueRibbon = tag === "Blue Ribbon" || tag === "Cinta Azul";
+                      return (
+                        <li key={tag}>
+                          {isBlueRibbon ? (
+                            <Image
+                              src="/blueribbon2.png"   // put this image in /public
+                              alt="Blue Ribbon"
+                              width={38}
+                              height={38}
+                              className="drop-shadow-sm -mt-2"
+                            />
+                          ) : (
+                            <span className="badge badge-success">
+                              {tag}
+                            </span>
+                          )}
+                        </li>
+                      );
+                    });
                 })()}
               </ul>
             </div>
@@ -153,7 +221,6 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                     placeholder="0"
                     onChange={(e) => setServings(Number(e.target.value))}
                     className="ml-2 w-16 input input-sm input-bordered focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:rounded-md"
-                    aria-label={t.servingsLabel}
                   />
                 </div>
                 <span className="font-semibold">{t.total}{scaledCost.toFixed(2)}</span>
@@ -168,53 +235,142 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
           </div>
 
           {/* ALLERGENS */}
-          <ul aria-label={t.allergensLabel} className="px-6 pb-4 flex flex-wrap gap-2">
+          <div className="flex flex-row pl-6 gap-2">
             <span className="font-semibold">{t.contains}</span>
-
-            {allergensObj && Object.entries(allergensObj).filter(([, value]) => value === true).map(([allergen]) => (
+            <ul className="pr-6 pb-10 flex flex-wrap gap-2">
+              {allergensObj && Object.entries(allergensObj).filter(([, value]) => value === true).map(([allergen]) => (
                 <li key={allergen} className="badge badge-error font-semibold text-black">{allergen}</li>
               ))}
-          </ul>
+            </ul>
+          </div>
 
-          {/* Directions and Ingredients */}
-          <section className="flex flex-col-reverse sm:flex-row justify-between print:flex-col">
+          {/* INGREDIENTS + DIRECTIONS */}
+          <div className="p-4 sm:p-6 space-y-6">
 
-            {/* Directions */}
-            <div className="p-4 flex">
-              <section className="rounded-lg bg-[#dfe8d8] p-4 w-full print:w-auto print:h-auto">
-                <h2 className="text-lg lg:text-2xl font-bold mb-3 text-center">{t.directions}</h2>
-                <ul className="pt-4 space-y-3 text-sm leading-relaxed list-decimal pl-6">
-                  {recipe?.instructions?.[lang] ? (
-                    recipe.instructions?.[lang].split("|||").map((line, i) =>
-                      <li key={i} className="wrap-break-words">{line}</li>
-                    )
-                  ) : (
-                    <li className="text-base-content/60">{t.noDirections}</li>
-                  )}
-                </ul>
-              </section>
+            {/* INGREDIENTS */}
+            <div>
+              <div className="flex items-end justify-between mb-2">
+                <div>
+                  <h2 className="text-lg lg:text-2xl font-bold">{t.ing}</h2>
+                  <p className="text-xs font-semibold mt-0.5 text-black/60">
+                    {t.ingSub}
+                  </p>
+                </div>
+                <span className="text-sm font-bold text-black/60">
+                  {checkedIngredients.size} / {ingredients.length} {t.gathered}
+                </span>
+              </div>
+
+              {/* Progress bar */}
+              <progress
+                className="progress w-full mb-3 bg-base-200 [&::-webkit-progress-value]:bg-[#23B13B] [&::-moz-progress-bar]:bg-[#23B13B]"
+                value={checkedIngredients.size}
+                max={ingredients.length}
+              />
+
+              {/* Ingredient card grid */}
+              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2 list-none">
+                {ingredients.length > 0 ? (
+                  ingredients.map((line, i) => {
+                    const checked = checkedIngredients.has(i);
+                    const scaledLine = scaleIngredient(line, scaleFactor);
+                    if(line.length > 0) {
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            onClick={() => toggleIngredient(i)}
+                            className={`flex items-center gap-3 rounded-xl px-3 py-3 text-left transition-all cursor-pointer w-full border ${checked ? "bg-[#EAF3DE] border-[#3B6D11]" : "bg-base-100 border-base-300 hover:border-[#3B6D11]/50"}`}>
+                            <div
+                              className={`text-white shrink-0 w-5 h-5 flex items-center justify-center rounded-md border-2 transition-all ${checked ? "bg-[#23B13B] border-base-300" : "bg-base-100 border-base-300"}`}>
+                              {checked && <CheckIcon />}
+                            </div>
+                            <span className={`text-sm font-semibold leading-snug wrap-break-words ${checked ? "line-through text-base-content/40" : "text-base-content"}`}>
+                              {scaledLine}
+                            </span>
+                          </button>
+                        </li>
+                      );
+                    }
+                  })
+                ) : (
+                  <li className="text-sm text-base-content/60 col-span-full">
+                    {t.noIngredients}
+                  </li>
+                )}
+              </ul>
             </div>
 
-            {/* Ingredients */}
-            <div className="py-4 pr-4 flex justify-center sm:justify-right">
-              <section className="rounded-lg bg-[#f0f0f0] p-4 w-auto print:w-auto print:h-auto">
-                <h2 className="text-lg lg:text-2xl font-bold mb-3 text-center">{t.ing}</h2>
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed">
-                  {recipe?.ingredientPlainText?.[lang] ? (
-                    recipe.ingredientPlainText?.[lang].split("|||").map((line, i) =>
-                      <li key={i} className="flex gap-2">
-                        <span className="text-primary font-extrabold">•</span>
-                        <span className="wrap-break-words">{scaleIngredient(line.trim(), scaleFactor)}</span>
-                      </li>
-                    )
-                  ) : (
-                    <li className="text-base-content/60">{t.noIngredients}</li>
-                  )}
-                </ul>
-              </section>
+            {/* DIRECTIONS */}
+            <div className="rounded-2xl overflow-hidden border border-base-300">
+
+              {/* Header */}
+              <div className="px-5 py-4 flex items-center justify-between bg-[#DFE8D8]">
+                <h2 className="text-lg lg:text-2xl font-bold text-black">
+                  {t.directions}
+                  <span className="ml-2 text-sm font-semibold text-black/60">
+                    ({servings} {lang === "es" ? "porciones" : "servings"})
+                  </span>
+                </h2>
+                <span className="text-xs font-semibold hidden sm:block text-black/60">
+                  {t.dirSub}
+                </span>
+              </div>
+
+              <ol className="divide-y divide-base-200 list-none">
+                {steps.length > 0 ? (
+                  steps.map((line, i) => {
+                    const done = checkedSteps.has(i);
+                    if(line.length > 0) {
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            onClick={() => toggleStep(i)}
+                            className={`w-full flex items-center gap-4 px-5 py-4 text-left transition-all cursor-pointer ${
+                              done ? "bg-[#EAF3DE]" : "bg-base-100 hover:bg-base-200"
+                            }`}
+                          >
+                            {/* Step number badge */}
+                            <div
+                              className={`shrink-0 w-8 h-8 mt-0.5 flex items-center justify-center rounded-lg text-sm font-black text-black ${
+                                done ? "text-white bg-[#23B13B]" : "bg-[#DFE8D8]"}`}>
+                              {i + 1}
+                            </div>
+
+                            <div className="flex-1">
+                              <p
+                                className={`text-sm leading-relaxed wrap-break-words ${done ? "line-through text-base-content/40" : "text-base-content"}`}>
+                                {line}
+                              </p>
+                            </div>
+
+                            {/* Visual tick */}
+                            <div
+                              className={`text-white shrink-0 w-5 h-5 flex items-center justify-center rounded-full mt-1 border-2 transition-all ${
+                                done ? "bg-[#23B13B] border-[#23B13B]" : "bg-base-100 border-base-300"}`}>
+                              {done && <CheckIcon />}
+                            </div>
+                          </button>
+                        </li>
+                      );
+                    }
+                  })
+                ) : (
+                  <li className="text-sm text-base-content/60 px-5 py-4">
+                    {t.noDirections}
+                  </li>
+                )}
+              </ol>
             </div>
 
-          </section>
+            {/* COMPLETION MESSAGE */}
+            {showDone && (
+              <div className="rounded-2xl text-center px-6 py-4 font-black text-lg bg-[#EAF3DE] border border-[#3B6D11] text-green-700 print:hidden">
+                {t.doneMsg}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
