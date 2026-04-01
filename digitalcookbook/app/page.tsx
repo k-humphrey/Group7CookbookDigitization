@@ -108,7 +108,7 @@ export default function Home() {
       </div>
 
       {/* Featured Recipes */}
-      <section id="featured-recipes" aria-label={t.featured} className="w-full max-w-7xl px-6 mt-40 mb-15 z-10">
+      <section id="featured-recipes" aria-label={t.featured} className="w-full max-w-7xl px-6 mt-20 mb-15 z-10">
         <h2 className="text-4xl font-bold mb-6 flex justify-center">{t.featured}</h2>
         {featuredRecipes === null ? (
           <p>{t.loading}</p>
