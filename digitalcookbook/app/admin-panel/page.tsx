@@ -9,6 +9,7 @@ import AdminPanelClient from "../components/adminPanelClient";
 import FeaturedRecipeSelector from "../components/featuredRecipeSelector";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import AdminLoginPage from "../admin-login/page";
+import SponsorsSelector from "../components/sponsorsSelector";
 
 export default async function AdminPanelPage() {
 	//get cookies
@@ -37,6 +38,7 @@ export default async function AdminPanelPage() {
 				<div className="w-full max-w-6xl mx-auto">
 					<AdminPanelClient recipes={safeRecipes} />
 					<FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
+					<SponsorsSelector />
 				</div>
 		</section>
   	);
