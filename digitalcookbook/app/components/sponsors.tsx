@@ -37,7 +37,7 @@ export default function Sponsors() {
     if (sponsors.length > 0) {
         return (
             <section className="w-full flex justify-center">
-                <div className="w-3/4 text-center border rounded-xl px-4 py-2 min-w-50">
+                <div className="w-3/4 text-center px-4 py-2 min-w-50">
                     {/* Title */}
                     <h2 className="font-bold mb-1">{STRINGS?.[lang].title}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-2">
