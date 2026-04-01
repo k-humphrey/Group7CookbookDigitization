@@ -29,6 +29,7 @@ const STRINGS = {
         shoppingList: "Shopping List",
         openMenu: "Open Menu",
         languageToggle: "Toggle Language",
+        findResources: "Find Resources",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -54,6 +55,7 @@ const STRINGS = {
         shoppingList: "Lista de Compras",
         openMenu: "Abrir Menú",
         languageToggle: "Cambiar Idioma",
+        findResources: "Encontrar recursos",
     } as const
 };
 
@@ -200,7 +202,7 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes"
-                    className="block px-4 py-2 hover:bg-gray-100" >
+                    className="hover" >
                     {t.allRecipes}
                 </Link>
             </li>
@@ -248,10 +250,26 @@ export default function Navbar() {
                 </li>
                 <li>
                     <Link
+                        href="/saved-recipe"
+                        className="hover">
+                            {t.savedRecipe}
+                    </Link>
+
+                </li>
+                <li>
+                    <Link
                         href="/shopping-list"
-                        className="block px-4 py-2 hover:bg-gray-100">
+                        className="hover">
                             {t.shoppingList}
                     </Link>
+            </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
+                </Link>
+
             </li>
             </ul>
             </div>
@@ -436,6 +454,14 @@ export default function Navbar() {
                     href="/shopping-list"
                     className="hover">
                         {t.shoppingList}
+                </Link>
+
+            </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
                 </Link>
 
             </li>
