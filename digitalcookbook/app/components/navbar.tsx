@@ -9,12 +9,8 @@ const STRINGS = {
     en: {
         communityResources: "Community Resources",
         aboutCommRes: "About Our Community Resources",
-        
         partners: "Partners",
         aboutPartners: "About Our Partners", 
-        kwianis: "Kiwanis",
-        enbridge: "Enbridge",
-        powerOfPutnam: "Power of Putnam",
         tools: "Tools",
         shelfLife: "Shelf Life Guidelines",
         priceFinder: "Price Finder",
@@ -31,12 +27,8 @@ const STRINGS = {
     es: {
         communityResources: "Recursos Comunitarios",
         aboutCommRes: "Información Sobre Nuestros Recursos Comunitarios",
-        
         partners: "Socios",
-        aboutPartners: "Información Sobre Nuestros Socios Comunitarios", 
-        kwianis: "Kiwanis",
-        enbridge: "Enbridge",
-        powerOfPutnam: "Power of Putnam",
+        aboutPartners: "Información Sobre Nuestros Socios Comunitarios",
         tools: "Herramientas",
         shelfLife: "Guías de Vida Útil",
         priceFinder: "Buscador de Precios",
@@ -59,12 +51,17 @@ export default function Navbar() {
     const t = STRINGS[lang];
 
     const [resources, setResources] = useState<any[]>([]);
+    const [partners, setPartners] = useState<any[]>([]);
      
     // Get resources
     useEffect(() => {
         fetch("/api/resources")
             .then(res => res.json())
             .then(data => setResources(data));
+
+        fetch("/api/partners")
+            .then(res => res.json())
+            .then(data => setPartners(data));
     }, []);
 
     return (
@@ -140,33 +137,17 @@ export default function Navbar() {
                             {t.aboutPartners}
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            href="https://www.kiwanis.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.kwianis}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.enbridge.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >                                
-                            {t.enbridge}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.powerofputnam.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.powerOfPutnam}
-                        </Link>
-                    </li>
+                    {partners.map((partner) => (
+                        <li>
+                            <Link
+                                href={partner.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block px-4 py-2 hover:bg-gray-100" >
+                                {partner.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </details>
             </li>
@@ -291,33 +272,17 @@ export default function Navbar() {
                     </Link>
                     </li>
 */}
-                    <li>
-                        <Link
-                            href="https://www.kiwanis.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.kwianis}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.enbridge.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >                                
-                            {t.enbridge}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.powerofputnam.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.powerOfPutnam}
-                        </Link>
-                    </li>
+                    {partners.map((partner) => (
+                        <li>
+                            <Link
+                                href={partner.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block px-4 py-2 hover:bg-gray-100" >
+                                {partner.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </li>
             <li>
