@@ -3,16 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider"; 
+import { useEffect, useState } from "react";
 
 const STRINGS = {
     en: {
         communityResources: "Community Resources",
         aboutCommRes: "About Our Community Resources",
-        safety: "Safety",
-        putnumHealthDept: "Putnam County Health Department",
-        ucAssist: "UCAssist.org",
-        elPuente: "El Puente - Hispanic Community Center",
-        emergencyNumbers: "Emergency Numbers",
+        
         partners: "Partners",
         aboutPartners: "About Our Partners", 
         kwianis: "Kiwanis",
@@ -29,15 +26,12 @@ const STRINGS = {
         shoppingList: "Shopping List",
         openMenu: "Open Menu",
         languageToggle: "Toggle Language",
+        findResources: "Find Resources",
     },
     es: {
         communityResources: "Recursos Comunitarios",
         aboutCommRes: "Información Sobre Nuestros Recursos Comunitarios",
-        safety: "Seguridad",
-        putnumHealthDept: "Departamento de Salud del Condado de Putnam",
-        ucAssist: "UCAssist.org",
-        elPuente: "El Puente - Centro Comunitario Hispano",
-        emergencyNumbers: "Números de Emergencia",
+        
         partners: "Socios",
         aboutPartners: "Información Sobre Nuestros Socios Comunitarios", 
         kwianis: "Kiwanis",
@@ -54,6 +48,7 @@ const STRINGS = {
         shoppingList: "Lista de Compras",
         openMenu: "Abrir Menú",
         languageToggle: "Cambiar Idioma",
+        findResources: "Encontrar recursos",
     } as const
 };
 
@@ -62,6 +57,16 @@ export default function Navbar() {
     if (!langContext) return null
     const { lang, setLang } = langContext
     const t = STRINGS[lang];
+
+    const [resources, setResources] = useState<any[]>([]);
+     
+    // Get resources
+    useEffect(() => {
+        fetch("/api/resources")
+            .then(res => res.json())
+            .then(data => setResources(data));
+    }, []);
+
     return (
         <div className="navbar bg-white text-black shadow-sm relative z-50">
 
@@ -112,47 +117,15 @@ export default function Navbar() {
                             {t.aboutCommRes}
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            href="/safety"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.safety}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            href="https://www.putnamcountytnhealthdept.com/"
-                            target="_blank"
-                            rel="noopener noreferrer" 
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.putnumHealthDept}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            href="https://UCAssist.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.ucAssist}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            href="https://www.elpuentecookeville.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.elPuente}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/emergency-numbers"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.emergencyNumbers}
-                        </Link>
-                    </li>
+                    {resources.map((resource) => (
+                        <li key={resource._id}>
+                            <Link
+                                href={resource.link}
+                                className="block px-4 py-2 hover:bg-gray-100" >
+                                {resource.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </details>
             </li>
@@ -200,7 +173,7 @@ export default function Navbar() {
             <li>
                 <Link
                     href="/recipes"
-                    className="block px-4 py-2 hover:bg-gray-100" >
+                    className="hover" >
                     {t.allRecipes}
                 </Link>
             </li>
@@ -248,10 +221,26 @@ export default function Navbar() {
                 </li>
                 <li>
                     <Link
+                        href="/saved-recipe"
+                        className="hover">
+                            {t.savedRecipe}
+                    </Link>
+
+                </li>
+                <li>
+                    <Link
                         href="/shopping-list"
-                        className="block px-4 py-2 hover:bg-gray-100">
+                        className="hover">
                             {t.shoppingList}
                     </Link>
+            </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
+                </Link>
+
             </li>
             </ul>
             </div>
@@ -275,54 +264,15 @@ export default function Navbar() {
                     </Link>
                     </li>
 */}
-                    <li>
-                    <Link 
-                        href="/safety" 
-                        className="block px-4 py-2 hover:bg-gray-100">
-                        {t.safety}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link
-                        href="https://www.putnamcountytnhealthdept.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                        {t.putnumHealthDept}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link
-                        href="https://UCAssist.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                        {t.ucAssist}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link
-                        href="https://www.elpuentecookeville.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                        {t.elPuente}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link 
-                        href="/emergency-numbers" 
-                        className="block px-4 py-2 hover:bg-gray-100">
-                        {t.emergencyNumbers}
-                    </Link>
-                    </li>
+                    {resources.map((resource) => (
+                        <li key={resource._id}>
+                            <Link 
+                                href={resource.link} 
+                                className="block px-4 py-2 hover:bg-gray-100">
+                                {resource.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </li>
             <li className="relative group">
@@ -436,6 +386,14 @@ export default function Navbar() {
                     href="/shopping-list"
                     className="hover">
                         {t.shoppingList}
+                </Link>
+
+            </li>
+            <li>
+                <Link
+                    href="/findResources"
+                    className="hover">
+                        {t.findResources}
                 </Link>
 
             </li>
