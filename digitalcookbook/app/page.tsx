@@ -103,7 +103,7 @@ export default function Home() {
       </div>
 
       {/* Searchbar */}
-      <div id="searchbar" aria-label={"searchbar"} className="w-11/12 w-md-full z-10">
+      <div id="searchbar" aria-label={"searchbar"} className="w-11/12 w-md-full z-11">
         <Searchbar key={sessionTags.join(",")} onSearch={handleSearch} initialTags={sessionTags} suggestionsSource={ingredientSuggestions} />
       </div>
 
