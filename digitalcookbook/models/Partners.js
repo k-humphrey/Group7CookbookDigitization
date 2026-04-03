@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const ResourcesSchema = new mongoose.Schema({
+const PartnersSchema = new mongoose.Schema({
     title: {
         en: {type: String, required: true, unique: true},
         es: {type: String, required: true, unique: true},
@@ -13,4 +13,4 @@ const ResourcesSchema = new mongoose.Schema({
     order: Number
 });
     
-export default mongoose.models.Resources || mongoose.model('Resources', ResourcesSchema);
+export default mongoose.models.Partners || mongoose.model('Partners', PartnersSchema);
