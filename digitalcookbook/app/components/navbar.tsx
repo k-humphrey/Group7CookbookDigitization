@@ -138,7 +138,7 @@ export default function Navbar() {
                         </Link>
                     </li>
                     {partners.map((partner) => (
-                        <li>
+                        <li key={partner._id}>
                             <Link
                                 href={partner.link}
                                 target="_blank"
@@ -273,7 +273,7 @@ export default function Navbar() {
                     </li>
 */}
                     {partners.map((partner) => (
-                        <li>
+                        <li key={partner._id}>
                             <Link
                                 href={partner.link}
                                 target="_blank"
