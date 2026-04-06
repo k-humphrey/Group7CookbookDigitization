@@ -75,9 +75,7 @@ export default function Timer() {
       setIsRunning(false);
 
       if (soundEnabled) {
-        alarmRef.current?.play().catch(() => {
-          console.log("Audio blocked: user interaction required");
-        });
+        alarmRef.current?.play().catch(() => console.log("Audio blocked"));
         // vibration (mobile)
         navigator.vibrate?.(500);
       }
@@ -89,7 +87,6 @@ export default function Timer() {
     if (!alarmRef.current){
       alarmRef.current = new Audio("/sound/alarm.mp3");
       alarmRef.current.preload = "auto";
-      alarmRef.current.play().then(() => alarmRef.current?.pause());
       alarmRef.current.currentTime = 0;
     }
   }
@@ -105,9 +102,10 @@ export default function Timer() {
       const totalSeconds = inputHours * 3600 + inputMinutes * 60 + inputSeconds;
       setSecondsLeft(totalSeconds);
     }
-    if (soundEnabled)
+    if (soundEnabled){
       // prime audio on start 
       primeAudio();
+    }
       setIsRunning(true);
   };
 
@@ -271,7 +269,7 @@ export default function Timer() {
           checked={soundEnabled}
           onChange={handleToggleSound}
           className="toggle toggle-primary" />
-          <label htmlFor="soundToggle" className = "text-sm text-gray-60">{t.sound}</label>
+          <label htmlFor="soundToggle" className = "text-sm text-gray-600">{t.sound}</label>
         </div>
       </div>
     </div>
