@@ -56,50 +56,104 @@ export async function POST(req: Request){
 /*Update existing image
 Expected Parameter: file and public_id as formdata
 Expected Return error or new url and new public id, these must also be saved in db by caller; */
-export async function PUT(req: Request){
-    const cookieStore = await cookies()
+export async function PUT(req: Request) {
+  const cookieStore = await cookies();
 
-    //check authentication
-    if (!(await isAdminAuthenticated(cookieStore))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+  // Auth check
+  if (!(await isAdminAuthenticated(cookieStore))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
-    //get image and public id
-    const formData = await req.formData()
-    const file = formData.get("file")
-    const raw = formData.get("public_id")
+  const formData = await req.formData();
+  const file = formData.get("file");
+  const raw = formData.get("public_id");
 
-    // validate
-    if (!file || !(file instanceof File)) {
-        return NextResponse.json({ error: "No file uploaded" }, { status: 400 })
-    }
-    if (!raw || typeof raw !== "string") {
-        return NextResponse.json({ error: "Missing public_id" }, { status: 400 })
-    }
-    const public_id = raw; //just because we checked type for typescript 
+  // Validation
+  if (!file || !(file instanceof File)) {
+    return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+  }
+  if (!raw || typeof raw !== "string") {
+    return NextResponse.json({ error: "Missing public_id" }, { status: 400 });
+  }
 
-    //delete existing image
-    await cloudinary.uploader.destroy(public_id, async (error) =>{
-        if(error){
-                return NextResponse.json({ error: "Delete failed" }, { status: 500 })
-        }
-    })
-   
-    //upload new image
+  const public_id = raw;
+
+  try {
+    // Convert file to buffer
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
+    // Upload new image OVERWRITING the old one
     const uploadResult = await new Promise<UploadApiResponse>((resolve, reject) => {
-    cloudinary.uploader.upload_stream((error, result) => {
-        if (error) return reject(error)
-            resolve(result as UploadApiResponse)
-        }).end(buffer)
-    })
+      cloudinary.uploader.upload_stream(
+        {
+          public_id,       // overwrite this exact asset
+          overwrite: true, // allow overwrite
+          invalidate: true // purge CDN cache so new image shows immediately
+        },
+        (error, result) => {
+          if (error) return reject(error);
+          resolve(result as UploadApiResponse);
+        }
+      ).end(buffer);
+    });
 
-    //return url (at this point it's assumed successful)
     return NextResponse.json({
-        success: true,
-        url: uploadResult.secure_url, 
-        public_id: uploadResult.public_id, 
-    })
+      success: true,
+      url: uploadResult.secure_url,
+      public_id: uploadResult.public_id,
+    });
+
+  } catch (err: any) {
+    console.error("PUT error:", err);
+    return NextResponse.json(
+      { error: err.message },
+      { status: 500 }
+    );
+  }
+}
+
+
+/*DELETE existing image
+Expected Parameter: public_id as formdata
+Expected Return: error or success 
+WARNING: caller is responsible for handling what happens when an image is deleted such as deleting a recipe etc. */
+export async function DELETE(req: Request) {
+  const cookieStore = await cookies();
+
+  // Auth check
+  if (!(await isAdminAuthenticated(cookieStore))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // Parse formdata
+  const formData = await req.formData();
+  const raw = formData.get("public_id");
+
+  if (!raw || typeof raw !== "string") {
+    return NextResponse.json({ error: "Missing public_id" }, { status: 400 });
+  }
+
+  const public_id = raw;
+
+  try {
+    // Delete from Cloudinary
+    const result = await cloudinary.uploader.destroy(public_id);
+
+    if (result.result !== "ok" && result.result !== "not found") {
+      return NextResponse.json(
+        { error: "Cloudinary delete failed", details: result },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true, result });
+
+  } catch (err: any) {
+    console.error("Cloudinary delete error:", err);
+    return NextResponse.json(
+      { error: "Delete failed", details: err.message },
+      { status: 500 }
+    );
+  }
 }
