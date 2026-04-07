@@ -38,8 +38,9 @@ export default async function AdminPanelPage() {
             <div className="flex justify-center mx-2">
 					<Link href="/admin-panel" className="block px-4 py-2 hover:bg-gray-100">Edit Recipes</Link>
 					<Link href="/admin-panel-featured" className="block px-4 py-2 hover:bg-gray-100">Edit Featured Recipes</Link>
-					<Link href="/" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
-					<Link href="/" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
+					<Link href="/admin-panel-sponsors" className="block px-4 py-2 hover:bg-gray-100">Edit Sponsors</Link>
+					<Link href="/admin-panel-resources" className="block px-4 py-2 hover:bg-gray-100">Edit Resources</Link>
+					<Link href="/admin-panel-partners" className="block px-4 py-2 hover:bg-gray-100">Edit Partners</Link>
 			</div>
             <div className="w-full max-w-6xl mx-auto">
                 <FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
