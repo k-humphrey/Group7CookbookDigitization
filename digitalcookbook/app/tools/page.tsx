@@ -1,17 +1,23 @@
 //app/tools/page.tsx
 
 import InfoCard from "../components/infocard";
+import Image from "next/image";
 
 export default function ToolsPage() {
     return (
-        <section className="min-h-screen flex flex-col items-center justify-start">
-            <a href="#tools-grid" className="sr-only">
-                Skip to tools
-            </a>
-            
-            
-            <div className="text-center mb-5">
-                <h1 className="text-2xl md:text-[5rem] font-bold">Kitchen Tools</h1>
+        <section className="relative min-h-screen flex flex-col items-center justify-start">
+            <Image
+                src="/background_maybe2.png"
+                alt=""
+                fill
+                priority
+                className="object-cover scale-110"
+            />
+
+            <div className="text-center mb-5 relative z-10">
+                <h1 className="text-2xl md:text-[5rem] font-bold">
+                    Kitchen Tools
+                </h1>
             </div>
 
             {/* Cards Container aka Responsive Grid, should work on mobile */}
