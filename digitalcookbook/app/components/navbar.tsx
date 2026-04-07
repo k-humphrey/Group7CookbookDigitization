@@ -3,21 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider"; 
+import { useEffect, useState } from "react";
 
 const STRINGS = {
     en: {
         communityResources: "Community Resources",
         aboutCommRes: "About Our Community Resources",
-        safety: "Safety",
-        putnumHealthDept: "Putnam County Health Department",
-        ucAssist: "UCAssist.org",
-        elPuente: "El Puente - Hispanic Community Center",
-        emergencyNumbers: "Emergency Numbers",
         partners: "Partners",
         aboutPartners: "About Our Partners", 
-        kwianis: "Kiwanis",
-        enbridge: "Enbridge",
-        powerOfPutnam: "Power of Putnam",
         tools: "Tools",
         shelfLife: "Shelf Life Guidelines",
         priceFinder: "Price Finder",
@@ -34,16 +27,8 @@ const STRINGS = {
     es: {
         communityResources: "Recursos Comunitarios",
         aboutCommRes: "Información Sobre Nuestros Recursos Comunitarios",
-        safety: "Seguridad",
-        putnumHealthDept: "Departamento de Salud del Condado de Putnam",
-        ucAssist: "UCAssist.org",
-        elPuente: "El Puente - Centro Comunitario Hispano",
-        emergencyNumbers: "Números de Emergencia",
         partners: "Socios",
-        aboutPartners: "Información Sobre Nuestros Socios Comunitarios", 
-        kwianis: "Kiwanis",
-        enbridge: "Enbridge",
-        powerOfPutnam: "Power of Putnam",
+        aboutPartners: "Información Sobre Nuestros Socios Comunitarios",
         tools: "Herramientas",
         shelfLife: "Guías de Vida Útil",
         priceFinder: "Buscador de Precios",
@@ -64,6 +49,21 @@ export default function Navbar() {
     if (!langContext) return null
     const { lang, setLang } = langContext
     const t = STRINGS[lang];
+
+    const [resources, setResources] = useState<any[]>([]);
+    const [partners, setPartners] = useState<any[]>([]);
+     
+    // Get resources
+    useEffect(() => {
+        fetch("/api/resources")
+            .then(res => res.json())
+            .then(data => setResources(data));
+
+        fetch("/api/partners")
+            .then(res => res.json())
+            .then(data => setPartners(data));
+    }, []);
+
     return (
         <div className="navbar bg-white text-black shadow-sm relative z-50">
 
@@ -114,47 +114,15 @@ export default function Navbar() {
                             {t.aboutCommRes}
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            href="/safety"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.safety}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            href="https://www.putnamcountytnhealthdept.com/"
-                            target="_blank"
-                            rel="noopener noreferrer" 
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.putnumHealthDept}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            href="https://UCAssist.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.ucAssist}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            href="https://www.elpuentecookeville.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.elPuente}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/emergency-numbers"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.emergencyNumbers}
-                        </Link>
-                    </li>
+                    {resources.map((resource) => (
+                        <li key={resource._id}>
+                            <Link
+                                href={resource.link}
+                                className="block px-4 py-2 hover:bg-gray-100" >
+                                {resource.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </details>
             </li>
@@ -169,40 +137,24 @@ export default function Navbar() {
                             {t.aboutPartners}
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            href="https://www.kiwanis.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.kwianis}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.enbridge.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >                                
-                            {t.enbridge}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.powerofputnam.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.powerOfPutnam}
-                        </Link>
-                    </li>
+                    {partners.map((partner) => (
+                        <li key={partner._id}>
+                            <Link
+                                href={partner.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block px-4 py-2 hover:bg-gray-100" >
+                                {partner.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </details>
             </li>
             <li>
                 <Link
                     href="/recipes"
-                    className="block px-4 py-2 hover:bg-gray-100" >
+                    className="hover" >
                     {t.allRecipes}
                 </Link>
             </li>
@@ -250,8 +202,16 @@ export default function Navbar() {
                 </li>
                 <li>
                     <Link
+                        href="/saved-recipe"
+                        className="hover">
+                            {t.savedRecipe}
+                    </Link>
+
+                </li>
+                <li>
+                    <Link
                         href="/shopping-list"
-                        className="block px-4 py-2 hover:bg-gray-100">
+                        className="hover">
                             {t.shoppingList}
                     </Link>
             </li>
@@ -285,54 +245,15 @@ export default function Navbar() {
                     </Link>
                     </li>
 */}
-                    <li>
-                    <Link 
-                        href="/safety" 
-                        className="block px-4 py-2 hover:bg-gray-100">
-                        {t.safety}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link
-                        href="https://www.putnamcountytnhealthdept.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                        {t.putnumHealthDept}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link
-                        href="https://UCAssist.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                        {t.ucAssist}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link
-                        href="https://www.elpuentecookeville.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                        {t.elPuente}
-                    </Link>
-                    </li>
-
-                    <li>
-                    <Link 
-                        href="/emergency-numbers" 
-                        className="block px-4 py-2 hover:bg-gray-100">
-                        {t.emergencyNumbers}
-                    </Link>
-                    </li>
+                    {resources.map((resource) => (
+                        <li key={resource._id}>
+                            <Link 
+                                href={resource.link} 
+                                className="block px-4 py-2 hover:bg-gray-100">
+                                {resource.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </li>
             <li className="relative group">
@@ -351,33 +272,17 @@ export default function Navbar() {
                     </Link>
                     </li>
 */}
-                    <li>
-                        <Link
-                            href="https://www.kiwanis.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.kwianis}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.enbridge.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >                                
-                            {t.enbridge}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.powerofputnam.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.powerOfPutnam}
-                        </Link>
-                    </li>
+                    {partners.map((partner) => (
+                        <li key={partner._id}>
+                            <Link
+                                href={partner.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block px-4 py-2 hover:bg-gray-100" >
+                                {partner.title?.[lang]}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </li>
             <li>
@@ -460,13 +365,41 @@ export default function Navbar() {
             </ul>
         </div>
         <div className="navbar-end">
-            <input 
-                type="checkbox"
-                id="languageToggle"
-                aria-label={t.languageToggle}
-                className="toggle"
-                onChange={() => setLang(lang === "en" ? "es" : "en")}
-            />
+            <div className="dropdown dropdown-hover dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost flex items-center gap-2">
+                    <Image
+                    src={lang === "en" ? "/flags/en.png" : "/flags/es.jpg"}
+                    alt="flag"
+                    width={20}
+                    height={20}
+                    />
+                    <span className="font-semibold uppercase">{lang}</span>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+
+                <ul className="dropdown-content menu bg-white rounded-box w-26 mt-2 shadow z-50">
+                    <li>
+                    <button type="button"onClick={() => setLang("en")} className="flex items-center gap-2">
+                        <Image src="/flags/en.png" alt="English" width={20} height={20} />
+                        EN
+                    </button>
+                    </li>
+                    <li>
+                    <button type="button" onClick={() => setLang("es")} className="flex items-center gap-2">
+                        <Image src="/flags/es.jpg" alt="Español" width={20} height={20} />
+                        ES
+                    </button>
+                    </li>
+                </ul>
+                </div>
             <Image 
                 src="/LP_logo.png"
                 alt="LEADERSHIP PUTNAM LOGO"

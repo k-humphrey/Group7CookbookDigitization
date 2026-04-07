@@ -274,22 +274,24 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                   ingredients.map((line, i) => {
                     const checked = checkedIngredients.has(i);
                     const scaledLine = scaleIngredient(line, scaleFactor);
-                    return (
-                      <li key={i}>
-                        <button
-                          type="button"
-                          onClick={() => toggleIngredient(i)}
-                          className={`flex items-center gap-3 rounded-xl px-3 py-3 text-left transition-all cursor-pointer w-full border ${checked ? "bg-[#EAF3DE] border-[#3B6D11]" : "bg-base-100 border-base-300 hover:border-[#3B6D11]/50"}`}>
-                          <div
-                            className={`text-white shrink-0 w-5 h-5 flex items-center justify-center rounded-md border-2 transition-all ${checked ? "bg-[#23B13B] border-base-300" : "bg-base-100 border-base-300"}`}>
-                            {checked && <CheckIcon />}
-                          </div>
-                          <span className={`text-sm font-semibold leading-snug wrap-break-words ${checked ? "line-through text-base-content/40" : "text-base-content"}`}>
-                            {scaledLine}
-                          </span>
-                        </button>
-                      </li>
-                    );
+                    if(line.length > 0) {
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            onClick={() => toggleIngredient(i)}
+                            className={`flex items-center gap-3 rounded-xl px-3 py-3 text-left transition-all cursor-pointer w-full border ${checked ? "bg-[#EAF3DE] border-[#3B6D11]" : "bg-base-100 border-base-300 hover:border-[#3B6D11]/50"}`}>
+                            <div
+                              className={`text-white shrink-0 w-5 h-5 flex items-center justify-center rounded-md border-2 transition-all ${checked ? "bg-[#23B13B] border-base-300" : "bg-base-100 border-base-300"}`}>
+                              {checked && <CheckIcon />}
+                            </div>
+                            <span className={`text-sm font-semibold leading-snug wrap-break-words ${checked ? "line-through text-base-content/40" : "text-base-content"}`}>
+                              {scaledLine}
+                            </span>
+                          </button>
+                        </li>
+                      );
+                    }
                   })
                 ) : (
                   <li className="text-sm text-base-content/60 col-span-full">
@@ -319,38 +321,40 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 {steps.length > 0 ? (
                   steps.map((line, i) => {
                     const done = checkedSteps.has(i);
-                    return (
-                      <li key={i}>
-                        <button
-                          type="button"
-                          onClick={() => toggleStep(i)}
-                          className={`w-full flex items-center gap-4 px-5 py-4 text-left transition-all cursor-pointer ${
-                            done ? "bg-[#EAF3DE]" : "bg-base-100 hover:bg-base-200"
-                          }`}
-                        >
-                          {/* Step number badge */}
-                          <div
-                            className={`shrink-0 w-8 h-8 mt-0.5 flex items-center justify-center rounded-lg text-sm font-black text-black ${
-                              done ? "text-white bg-[#23B13B]" : "bg-[#DFE8D8]"}`}>
-                            {i + 1}
-                          </div>
+                    if(line.length > 0) {
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            onClick={() => toggleStep(i)}
+                            className={`w-full flex items-center gap-4 px-5 py-4 text-left transition-all cursor-pointer ${
+                              done ? "bg-[#EAF3DE]" : "bg-base-100 hover:bg-base-200"
+                            }`}
+                          >
+                            {/* Step number badge */}
+                            <div
+                              className={`shrink-0 w-8 h-8 mt-0.5 flex items-center justify-center rounded-lg text-sm font-black text-black ${
+                                done ? "text-white bg-[#23B13B]" : "bg-[#DFE8D8]"}`}>
+                              {i + 1}
+                            </div>
 
-                          <div className="flex-1">
-                            <p
-                              className={`text-sm leading-relaxed wrap-break-words ${done ? "line-through text-base-content/40" : "text-base-content"}`}>
-                              {line}
-                            </p>
-                          </div>
+                            <div className="flex-1">
+                              <p
+                                className={`text-sm leading-relaxed wrap-break-words ${done ? "line-through text-base-content/40" : "text-base-content"}`}>
+                                {line}
+                              </p>
+                            </div>
 
-                          {/* Visual tick */}
-                          <div
-                            className={`text-white shrink-0 w-5 h-5 flex items-center justify-center rounded-full mt-1 border-2 transition-all ${
-                              done ? "bg-[#23B13B] border-[#23B13B]" : "bg-base-100 border-base-300"}`}>
-                            {done && <CheckIcon />}
-                          </div>
-                        </button>
-                      </li>
-                    );
+                            {/* Visual tick */}
+                            <div
+                              className={`text-white shrink-0 w-5 h-5 flex items-center justify-center rounded-full mt-1 border-2 transition-all ${
+                                done ? "bg-[#23B13B] border-[#23B13B]" : "bg-base-100 border-base-300"}`}>
+                              {done && <CheckIcon />}
+                            </div>
+                          </button>
+                        </li>
+                      );
+                    }
                   })
                 ) : (
                   <li className="text-sm text-base-content/60 px-5 py-4">

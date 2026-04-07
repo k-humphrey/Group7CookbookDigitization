@@ -8,7 +8,9 @@ import { cookies } from "next/headers";
 import AdminPanelClient from "../components/adminPanelClient";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import AdminLoginPage from "../admin-login/page";
-import Link from "next/link";
+import SponsorsSelector from "../components/sponsorsSelector";
+import ResourceSelector from "../components/resourceSelector";
+import PartnerSelector from "../components/PartnerSelector";
 
 export default async function AdminPanelPage() {
 	//get cookies
@@ -42,6 +44,12 @@ export default async function AdminPanelPage() {
 				</div>
 				<div className="w-full max-w-6xl mx-auto">
 					<AdminPanelClient recipes={safeRecipes} />
+					<FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
+					<div className="flex flex-1">
+					<SponsorsSelector />
+					<ResourceSelector />
+					<PartnerSelector />
+					</div>
 				</div>
 		</section>
   	);
