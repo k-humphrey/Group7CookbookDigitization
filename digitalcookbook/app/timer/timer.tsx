@@ -1,7 +1,7 @@
 // app/timer/timer.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLang } from "@/app/components/languageprovider";
 
 const STRINGS = {
@@ -12,7 +12,8 @@ const STRINGS = {
     start: "Start",
     pause: "Pause",
     reset: "Reset",
-    remaining: "Time Remaining"
+    remaining: "Time Remaining",
+    sound: "Sound Alert"
   },
   es: {
     hours: "horas",
@@ -21,7 +22,8 @@ const STRINGS = {
     start: "Iniciar",
     pause: "Pausa",
     reset: "Reiniciar",
-    remaining: "Tiempo Restante"
+    remaining: "Tiempo Restante",
+    sound: "Alerta de sonido"
   }
 };
 
@@ -37,10 +39,25 @@ export default function Timer() {
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
+  //sound toggle state
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  //audio ref
+  const alarmRef = useRef<HTMLAudioElement | null > (null);
+
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
   
+  //load saved preference
+  useEffect(() => {
+    const saved = localStorage.getItem("soundEnabled");
+    if (saved !== null) setSoundEnabled(saved === "true");
+  }, []);
+
+  // save preference
+  useEffect(() => {
+    localStorage.setItem("soundEnabled", String(soundEnabled));
+  }, [soundEnabled]);
 
   // Tick every second
   useEffect(() => {
@@ -52,15 +69,44 @@ export default function Timer() {
 
     return () => clearInterval(interval);
   }, [isRunning, secondsLeft]);
+  // detect when timmer hits zero
+  useEffect(() => {
+    if (secondsLeft === 0 && isRunning) {
+      setIsRunning(false);
+
+      if (soundEnabled) {
+        alarmRef.current?.play().catch(() => console.log("Audio blocked"));
+        // vibration (mobile)
+        navigator.vibrate?.(500);
+      }
+    }
+  }, [secondsLeft, isRunning, soundEnabled]);
+
+  // prime audio for autoplay
+  const primeAudio = () => {
+    if (!alarmRef.current){
+      alarmRef.current = new Audio("/sound/alarm.mp3");
+      alarmRef.current.preload = "auto";
+      alarmRef.current.currentTime = 0;
+    }
+  }
 
   // Timer control handlers 
   const handleStart = () => {
+    // stop current alarm before starting new alarm
+    if (alarmRef.current){
+      alarmRef.current.pause();
+      alarmRef.current.currentTime = 0;
+    }
     if(secondsLeft == 0) {
       const totalSeconds = inputHours * 3600 + inputMinutes * 60 + inputSeconds;
       setSecondsLeft(totalSeconds);
     }
-    
-    setIsRunning(true);
+    if (soundEnabled){
+      // prime audio on start 
+      primeAudio();
+    }
+      setIsRunning(true);
   };
 
   const handlePause = () => setIsRunning(false);
@@ -68,6 +114,27 @@ export default function Timer() {
   const handleReset = () => {
     setIsRunning(false);
     setSecondsLeft(0);
+    //stop sound if playing
+    if (alarmRef.current){
+      alarmRef.current.pause();
+      alarmRef.current.currentTime = 0;
+    }
+  };
+    // Sound toggle handler
+  const handleToggleSound = () => {
+    setSoundEnabled((prev) => {
+      const newValue = !prev;
+      if (newValue){
+        primeAudio(); // prime audio on first enable
+      }
+      else {
+        if (alarmRef.current){
+          alarmRef.current.pause();
+          alarmRef.current.currentTime = 0;
+        }
+      }
+      return newValue;
+    });
   };
 
   // Format seconds into Hours:Minutes:Seconds
@@ -77,6 +144,7 @@ export default function Timer() {
     const seconds = (sec % 60).toString().padStart(2, "0");
     return `${hours}:${minutes}:${seconds}`;
   };
+
 
   //Input handlers
   const handleInputChange = (
@@ -192,6 +260,16 @@ export default function Timer() {
           >
             {t.reset}
           </button>
+        </div>
+        
+        {/*Sound toggle */}
+        <div className = "flex items-center gap-2 mt-2">
+          <input id="soundToggle" 
+          type= "checkbox" 
+          checked={soundEnabled}
+          onChange={handleToggleSound}
+          className="toggle toggle-primary" />
+          <label htmlFor="soundToggle" className = "text-sm text-gray-600">{t.sound}</label>
         </div>
       </div>
     </div>
