@@ -460,13 +460,41 @@ export default function Navbar() {
             </ul>
         </div>
         <div className="navbar-end">
-            <input 
-                type="checkbox"
-                id="languageToggle"
-                aria-label={t.languageToggle}
-                className="toggle"
-                onChange={() => setLang(lang === "en" ? "es" : "en")}
-            />
+            <div className="dropdown dropdown-hover dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost flex items-center gap-2">
+                    <Image
+                    src={lang === "en" ? "/flags/en.png" : "/flags/es.jpg"}
+                    alt="flag"
+                    width={20}
+                    height={20}
+                    />
+                    <span className="font-semibold uppercase">{lang}</span>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+
+                <ul className="dropdown-content menu bg-white rounded-box w-26 mt-2 shadow z-50">
+                    <li>
+                    <button type="button"onClick={() => setLang("en")} className="flex items-center gap-2">
+                        <Image src="/flags/en.png" alt="English" width={20} height={20} />
+                        EN
+                    </button>
+                    </li>
+                    <li>
+                    <button type="button" onClick={() => setLang("es")} className="flex items-center gap-2">
+                        <Image src="/flags/es.jpg" alt="Español" width={20} height={20} />
+                        ES
+                    </button>
+                    </li>
+                </ul>
+                </div>
             <Image 
                 src="/LP_logo.png"
                 alt="LEADERSHIP PUTNAM LOGO"
