@@ -36,7 +36,6 @@ export default async function AdminPanelPage() {
 			<h1 className="text-2xl font-bold mb-6 ml-6">Admin Panel</h1>
 				<div className="w-full max-w-6xl mx-auto">
 					<AdminPanelClient recipes={safeRecipes} />
-					<FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
 				</div>
 		</section>
   	);

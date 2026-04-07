@@ -66,10 +66,10 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	return (
     <>
 	<div className="flex justify-center mx-2">
-		<Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
-		<Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
-		<Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
-		<Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
+		<Link href="/admin-panel" className="block px-4 py-2 hover:bg-gray-100">Edit Recipes</Link>
+		<Link href="/admin-panel-featured" className="block px-4 py-2 hover:bg-gray-100">Edit Featured Recipes</Link>
+		<Link href="/" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
+		<Link href="/" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
 	</div>
 	<div className="flex justify-between items-center px-6 mb-4">
 		<h2 className="text-xl font-semibold">Recipes</h2>
