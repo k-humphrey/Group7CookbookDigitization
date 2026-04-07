@@ -5,10 +5,11 @@ import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
 import FeaturedRecipes from "@/models/FeaturedRecipes";
 import { cookies } from "next/headers";
-import AdminPanelClient from "../components/adminPanelClient";
 import FeaturedRecipeSelector from "../components/featuredRecipeSelector";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import AdminLoginPage from "../admin-login/page";
+import Link from "next/link";
+
 
 export default async function AdminPanelPage() {
     //get cookies
@@ -34,9 +35,15 @@ export default async function AdminPanelPage() {
     return (
         <section className="min-h-screen w-full flex flex-col items-center py-12">
             <h1 className="text-2xl font-bold mb-6 ml-6">Admin Panel</h1>
-                <div className="w-full max-w-6xl mx-auto">
-                    <FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
-                </div>
+            <div className="flex justify-center mx-2">
+					<Link href="/admin-panel" className="block px-4 py-2 hover:bg-gray-100">Edit Recipes</Link>
+					<Link href="/admin-panel-featured" className="block px-4 py-2 hover:bg-gray-100">Edit Featured Recipes</Link>
+					<Link href="/" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
+					<Link href="/" className="block px-4 py-2 hover:bg-gray-100">LINK</Link>
+			</div>
+            <div className="w-full max-w-6xl mx-auto">
+                <FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
+            </div>
         </section>
     );
 }
