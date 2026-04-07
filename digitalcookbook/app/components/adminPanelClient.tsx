@@ -5,6 +5,7 @@
 import { useState } from "react";
 import InfoCard from "./infocard";
 
+
 const PAGE_SIZE = 12; // 3 rows x 4 columns
 
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
@@ -65,10 +66,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	return (
     <>
 	<div className="flex justify-between items-center px-6 mb-4">
-		<h2 className="text-xl font-semibold">
-			Recipes
-		</h2>
-
+		<h2 className="text-xl font-semibold">Recipes</h2>
 			<button
 				className="btn btn-success"
 				onClick={() => setSelectedRecipe({ ...emptyRecipe })}
