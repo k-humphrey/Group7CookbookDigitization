@@ -85,3 +85,48 @@ export async function PUT(req: Request) {
     );
   }
 }
+
+export async function DELETE(req: Request) {
+  const cookieStore = await cookies(); 
+  //check authentication
+  if (!(await isAdminAuthenticated(cookieStore))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  //try to delete a recipe
+  try{ 
+    await connectToDB()
+
+    //get json recipe as data
+    const data = await req.json()
+    
+    //if no id, error
+    if (!data._id) {
+      return Response.json(
+        { error: "Missing _id" },
+        { status: 400 }
+      )
+    }
+
+    //delete
+    const deleted = await Recipe.findByIdAndDelete(data._id)
+
+    //check if delete worked
+    if(!deleted){
+      return Response.json(
+        { error: "Recipe not found" },
+        { status: 404 }
+      )
+    }
+
+    //else assumed successful
+    return Response.json({ success: true, deleted })
+
+  } catch (err: any) { //catch all other errors
+    console.error("DELETE error:", err);
+    return Response.json(
+      { error: err.message },
+      { status: 500 }
+    );
+  }
+}
