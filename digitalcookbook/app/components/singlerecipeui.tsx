@@ -11,6 +11,7 @@ type Recipe = {
   _id: string;
   title?: { en?: string; es?: string };
   ingredientPlainText?: { en?: string; es?: string };
+  ingredients?: any[];
   instructions?: { en?: string; es?: string };
   imageURI?: string;
   tags?: {
@@ -91,7 +92,9 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
 
   const ingredients = recipe?.ingredientPlainText?.[lang]
     ? recipe.ingredientPlainText[lang]!.split("|||").map((l) => l.trim())
-    : [];
+    : (recipe?.ingredients || []).map((ing: any) => { 
+      return (ing.unit || "") === "each" ? `${(ing.amount || 0)} ${(ing?.[lang] || "")}`.trim() : `${(ing.amount || 0)} ${(ing.unit || "")} ${(ing?.[lang] || "")}`.trim();
+    });
 
   const steps = recipe?.instructions?.[lang]
     ? recipe.instructions[lang]!.split("|||").map((l) => l.trim())

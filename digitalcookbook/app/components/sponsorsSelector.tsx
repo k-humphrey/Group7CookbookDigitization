@@ -27,6 +27,17 @@ export default function SponsorsSelector() {
         .then(data => setSponsors(data.ads || []));
     };
 
+    // Get publicID from URI - Used in image editing and deleting
+    function getPublicIDFromURI(uri: string): string {
+        if (!uri)
+            return "";
+        
+        const parts = uri.split("/");
+        const fileName = parts[parts.length - 1];
+
+        return fileName.split(".")[0];
+    }
+
     return (
         <>
             <div className="p-6 max-w-md">
@@ -104,7 +115,13 @@ export default function SponsorsSelector() {
                         accept="image/*"
                         onChange={e => {
                             const file = e.target.files?.[0];
-                            if (file) {
+                            const publicID = getPublicIDFromURI(modalSponsor.imageURI);
+                            if (file && publicID) {
+                                uploadImage(file, publicID).then(url => {
+                                    if(url)
+                                        setModalSponsor((prev: any) => ({ ...prev, imageURI: url}));
+                                });
+                            } else if (file) {
                                 uploadImage(file).then(url => {
                                     if(url)
                                         setModalSponsor((prev: any) => ({ ...prev, imageURI: url}));
@@ -154,6 +171,9 @@ export default function SponsorsSelector() {
                                 className="btn btn-error flex-1"
                                 onClick={async () => {
                                     await fetch(`/api/advertisments?_id=${modalSponsor._id}`, { method: "DELETE" });
+                                    const publicID = getPublicIDFromURI(modalSponsor.imageURI);
+                                    if(publicID)
+                                        uploadImage(undefined, publicID);
                                     setModalSponsor(null);
                                     refreshSponsors();
                                 }}
