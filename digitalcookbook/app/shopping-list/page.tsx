@@ -258,11 +258,10 @@ export default function ShoppingListPage() {
             servings
           );
            // Scale amount of each ingredient according to servings
-          const ingredients: string[] = recipe.ingredientPlainText[lang]
-            .split("|||")
-            .map((ingredient: string) =>
-              scaleIngredient(ingredient, scaleFactor)
-            );
+          const ingredients: string[] = recipe.ingredientPlainText?.[lang] ? recipe.ingredientPlainText[lang].split("|||").map((ingredient: string) => scaleIngredient(ingredient, scaleFactor)) : (recipe?.ingredients || []).map((ing: any) => { 
+              return (ing.unit || "") === "each" ? scaleIngredient(`${(ing.amount || 0)} ${(ing?.[lang] || "")}`.trim(), scaleFactor) :
+                scaleIngredient(`${(ing.amount || 0)} ${(ing.unit || "")} ${(ing?.[lang] || "")}`.trim(), scaleFactor);
+            });
 
           return (
             <div
