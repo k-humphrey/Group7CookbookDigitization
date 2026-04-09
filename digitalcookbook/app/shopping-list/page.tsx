@@ -280,7 +280,7 @@ export default function ShoppingListPage() {
               >
                 {/* Remove button for recipe card*/}
                 <button
-                  className="absolute top-4 right-4 btn btn-sm btn-error screen-list-only z-10"
+                  className="absolute top-4 right-4 btn btn-sm btn-error screen-list-only z-10 print:hidden"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
