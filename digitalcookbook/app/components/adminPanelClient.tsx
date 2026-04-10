@@ -80,10 +80,42 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 		espAllergens: {},
 	};
 
+	{/* Handles DELETE using api route in edit-recipes  */}
+	const handleDeleteRecipe = async (recipe: any) => {
+		// confirmation message
+		const confirmed = window.confirm(
+			`Are you sure you want to delete "${recipe.title?.en || "this recipe"}"?`
+		);
+		if (!confirmed) return;
+
+		const res = await fetch("/api/edit-recipes/", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ _id: recipe._id }),
+		});
+
+		//error check
+		if (!res.ok) {
+			const data = await res.json().catch(() => null);
+			alert(data?.error || "Failed to delete recipe.");
+			return;
+		}
+
+		if (selectedRecipe?._id === recipe._id) {
+			setSelectedRecipe(null);
+		}
+
+		location.reload(); // reload recipe w/o recipe
+	};
+
+
   	return (
     <>
-	<div className="flex justify-between items-center px-6 mb-4">
+	<div className="flex justify-between items-center px-6 mt-6 mb-4">
 		<h2 className="text-xl font-semibold">Recipes</h2>
+		{/* Create recipe button */}
 			<button
 				className="btn btn-success"
 				onClick={() => setSelectedRecipe({ ...emptyRecipe })}
@@ -98,20 +130,32 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				title={ recipe.title.en }
 				description=""
 				href="#"
-				imageSrc={recipe.imageURI.trimEnd()}
+				imageSrc={ recipe.imageURI.trimEnd() }
 				action={
-				<button
-					className="btn btn-primary btn-sm"
-					onClick={(e) => {
-						e.preventDefault();
-						setSelectedRecipe(recipe);
-						setOldImageURI(recipe.imageURI || null);
-					}}
-				>
-					Edit
-				</button>
-		}
-		/>
+					<div className="w-full flex justify-end gap-2 mt-auto">
+						<button
+							className="btn btn-primary btn-sm"
+							onClick={(e) => {
+								e.preventDefault();
+								setSelectedRecipe(recipe);
+								setOldImageURI(recipe.imageURI || null);
+							}}
+						>
+							Edit
+						</button>
+
+						<button
+							className="btn btn-error btn-sm"
+							onClick={(e) => {
+								e.preventDefault();
+								handleDeleteRecipe(recipe);
+							}}
+						>
+							Delete
+						</button>
+					</div>	
+				}
+			/>
 		))}
       	</div>
 
@@ -164,7 +208,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				onClick={(e) => e.stopPropagation()}
 			>
 			<h3 className="font-bold text-2xl mb-6">
-				Edit Recipe
+				{selectedRecipe._id ? "Edit Recipe" : "Create Recipe"}
 			</h3>
 
 			{/* TOTAL COST */}
