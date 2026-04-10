@@ -2,8 +2,10 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InfoCard from "./infocard";
+import Image from "next/image";
+import { uploadImage } from "@/lib/uploadImage";
 
 
 const PAGE_SIZE = 12; // 3 rows x 4 columns
@@ -11,56 +13,71 @@ const PAGE_SIZE = 12; // 3 rows x 4 columns
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	const [selectedRecipe, setSelectedRecipe] = useState< any | null >(null);
 	const [page, setPage] = useState(0);
-	//const [newAllergenEn, setNewAllergenEn] = useState("");
-	//const [newAllergenEs, setNewAllergenEs] = useState("");
+	const [oldImageURI, setOldImageURI] = useState< string | null >(null);
+
+	// store recipe checkbox information
+	const [appliancesList, setAppliancesList] = useState<any[]>([]);
+	const [tagsList, setTagsList] = useState<any[]>([]);
+	const [allergensList, setAllergensList] = useState<any[]>([]);
+	const [ingredientsList, setIngredientsList] = useState<any[]>([]);
+	const [ingredientSearch, setIngredientSearch] = useState("");
+	const [unitsList, setUnitsList] = useState<{ fromUnit: string, toUnit: string, multiplier: number }[]>([]);
 
 	// calculate pagination info
 	const totalPages = Math.ceil(recipes.length / PAGE_SIZE);
 	const pageRecipes = recipes.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
 
-	const TAGS_EN = {
-		"Blue Ribbon": false,
-		Vegan: false,
-		Vegetarian: false,
-	};
+	// fetch appliances, tags, and allergens from database
+	useEffect(() => {
+		// get appliances
+		fetch("/api/appliances/all")
+			.then(res => res.json())
+			.then(data => setAppliancesList(data));
 
-	const TAGS_ES = {
-		"Cinta Azul": false,
-		Vegano: false,
-		Vegetariano: false,
-	};
+		// get tags
+		fetch("/api/tags/all")
+			.then(res => res.json())
+			.then(data => setTagsList(data));
 
-	const ALLERGENS_EN = {
-		"Tree Nuts": true,
-		Peanuts: true,
-		Dairy: true,
-		Egg: true,
-		Wheat: true,
-		Soy: true,
-		Fish: true,
-	};
+		// get allergens
+		fetch("/api/allergens/all")
+			.then(res => res.json())
+			.then(data => setAllergensList(data));
 
-	const ALLERGENS_ES = {
-		"Frutos Secos": true,
-		Cacahuetes: true,
-		"Derechos Lácteos": true,
-		Huevo: true,
-		Trigo: true,
-		Soja: true,
-		Pescado: true,
-	};
+		// get ingredients
+		fetch("/api/ingredients")
+			.then(res => res.json())
+			.then(data => setIngredientsList(data));
+
+		// get units
+		fetch("/api/units")
+			.then(res => res.json())
+			.then(data => setUnitsList(data.uniqueUnits));
+		
+	}, []);
+
+	// Get publicID from URI - Used in image editing and deleting
+    function getPublicIDFromURI(uri: string): string {
+		if (!uri)
+            return "";
+
+        const parts = uri.split("/");
+        const fileName = parts[parts.length - 1];
+
+        return fileName.split(".")[0];
+    }
 
 	const emptyRecipe = {
 		title: { en: "", es: "" },
 		ingredientPlainText: { en: "", es: "" },
 		instructions: { en: "", es: "" },
 		imageURI: "",
-		tags: TAGS_EN,
-		espTags: TAGS_ES,
+		tags: {},
+		espTags: {},
 		ingredients: [],
 		appliances: [],
-		allergens: ALLERGENS_EN,
-		espAllergens: ALLERGENS_ES,
+		allergens: {},
+		espAllergens: {},
 	};
 
 	{/* Handles DELETE using api route in edit-recipes  */}
@@ -121,6 +138,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 							onClick={(e) => {
 								e.preventDefault();
 								setSelectedRecipe(recipe);
+								setOldImageURI(recipe.imageURI || null);
 							}}
 						>
 							Edit
@@ -202,17 +220,33 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 			</div>
 
 			{/* IMAGE */}
-			<label className="font-semibold">Image URL</label>
-			<input
-				className="input input-bordered w-full mb-4"
-				value={selectedRecipe.imageURI || ""}
-				onChange={(e) =>
-					setSelectedRecipe({
-						...selectedRecipe,
-					imageURI: e.target.value,
-					})
-				}
+			<label className="font-semibold" htmlFor="imageInput">Upload Image: </label>
+			<input id="imageInput" className="file-input file-input-bordered w-full mb-4"
+				type="file"
+				accept="image/*"
+				onChange={e => {
+					const file = e.target.files?.[0];
+					if (file) {
+						uploadImage(file).then(url => {
+							if(url)
+								setSelectedRecipe((prev: any) => ({ ...prev, imageURI: url}));
+						});
+					}
+				}}
 			/>
+
+			{/* image preview */}
+			{selectedRecipe.imageURI && (
+				<div className="mt-2 relative w-full h-40">
+					<Image
+						src={selectedRecipe.imageURI}
+						alt="Preview"
+						fill
+						sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+						className="object-contain rounded"
+					/>
+				</div>
+			)}
 
 			{/* TITLE EN */}
 			<label className="font-semibold">Title (English)</label>
@@ -244,38 +278,6 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 						},
 					})
 				}
-			/>
-
-			{/* INGREDIENTS PLAIN TEXT EN */}
-			<label className="font-semibold">Ingredients (English)</label>
-			<textarea
-			className="textarea textarea-bordered w-full mb-4"
-			value={(selectedRecipe.ingredientPlainText?.en || "").replaceAll("|||", "\n")} //remove |||
-			onChange={(e) =>
-				setSelectedRecipe({
-				...selectedRecipe,
-				ingredientPlainText: {
-					...selectedRecipe.ingredientPlainText,
-					en: e.target.value.replaceAll("\n", "|||"), //add back in
-				},
-				})
-			}
-			/>
-
-			{/* INGREDIENTS PLAIN TEXT ES */}
-			<label className="font-semibold">Ingredients (Spanish)</label>
-			<textarea
-			className="textarea textarea-bordered w-full mb-4"
-			value={(selectedRecipe.ingredientPlainText?.es || "").replaceAll("|||", "\n")}
-			onChange={(e) =>
-				setSelectedRecipe({
-				...selectedRecipe,
-				ingredientPlainText: {
-					...selectedRecipe.ingredientPlainText,
-					es: e.target.value.replaceAll("\n", "|||"),
-				},
-				})
-			}
 			/>
 
 			{/* INSTRUCTIONS EN */}
@@ -310,159 +312,176 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 			}
 			/>
 
-			{/* TAGS EN */}
-			<h4 className="font-bold mt-6 mb-2">Tags (English)</h4>
-			{Object.keys(selectedRecipe.tags || {}).map((tag) => (
-				<label key={tag} className="flex gap-2 mb-2">
-				<input
-					type="checkbox"
-					checked={selectedRecipe.tags[tag]}
-					onChange={(e) =>
-						setSelectedRecipe({
-							...selectedRecipe,
-							tags: {
-							...selectedRecipe.tags,
-							[tag]: e.target.checked,
-							},
-						})
-					}
-				/>
-				{tag}
-				</label>
-			))}
-
-			{/* TAGS BUT ES */}
-			<h4 className="font-bold mt-6 mb-2">Tags (Spanish)</h4>
-			{Object.keys(selectedRecipe.espTags || {}).map((tag) => (
-				<label key={tag} className="flex gap-2 mb-2">
-				<input
-					type="checkbox"
-					checked={selectedRecipe.espTags[tag]}
-					onChange={(e) =>
-						setSelectedRecipe({
-							...selectedRecipe,
-							espTags: {
-							...selectedRecipe.espTags,
-							[tag]: e.target.checked,
-							},
-						})
-					}
-				/>
-				{tag}
-				</label>
-			))}
-
-			{/* ALLERGENS EN */}
-			<h4 className="font-bold mt-6 mb-2">Allergens (English)</h4>
-			{Object.keys(selectedRecipe.allergens || {}).map(
-				(allergen) => (
-				<label key={allergen} className="flex gap-2 mb-2">
-					<input
-					type="checkbox"
-					checked={
-						selectedRecipe.allergens[allergen]
-					}
-					onChange={(e) =>
-						setSelectedRecipe({
-						...selectedRecipe,
-						allergens: {
-							...selectedRecipe.allergens,
-							[allergen]: e.target.checked,
-						},
-					})
-					}
-					/>
-					{allergen}
-				</label>
-				)
-			)}
-			{/* ADD NEW ALLERGEN */}
-			{/*
-			<div className="flex gap-2 mt-2">
-			<input
-				className="input input-bordered input-sm flex-1"
-				placeholder="Add new allergen..."
-				value= {newAllergenEn}
-				onChange={(e) => setNewAllergenEn(e.target.value)}
+			{/* INGREDIENTS PLAIN TEXT EN */}
+			<label className="font-semibold">Ingredients PlainText (English)</label>
+			<textarea
+			className="textarea textarea-bordered w-full mb-4"
+			value={(selectedRecipe.ingredientPlainText?.en || "").replaceAll("|||", "\n")} //remove |||
+			onChange={(e) =>
+				setSelectedRecipe({
+				...selectedRecipe,
+				ingredientPlainText: {
+					...selectedRecipe.ingredientPlainText,
+					en: e.target.value.replaceAll("\n", "|||"), //add back in
+				},
+				})
+			}
 			/>
-				<button
-					className="btn btn-sm btn-outline"
-					onClick={() => {
-						if (!newAllergenEn.trim()) return;
-						setSelectedRecipe({
-							...selectedRecipe,
-							allergens: {
-								...selectedRecipe.allergens,
-								[newAllergenEn.trim()]: true,
-							},
-						});
-						setNewAllergenEn("");
-					}}
-				>
-					Add
-				</button>
-			</div> */}
 
-			{/* ALLERGENS ES */}
-			<h4 className="font-bold mt-6 mb-2">Allergens (Spanish)</h4>
-			{Object.keys(selectedRecipe.espAllergens || {}).map((allergen) => (
-				<label key={allergen} className="flex gap-2 mb-2">
-					<input
-						type="checkbox"
-						checked={selectedRecipe.espAllergens[allergen]}
-						onChange={(e) =>
-							setSelectedRecipe({
-								...selectedRecipe,
-								espAllergens: {
-									...selectedRecipe.espAllergens,
-									[allergen]: e.target.checked,
-								},
-							})
-						}
-					/>
-					{allergen}
-				</label>
-			))}
-			{/* ADD NEW ALLERGEN */}
-			{/*
-			<div className="flex gap-2 mt-2">
-				<input
-					className="input input-bordered input-sm flex-1"
-					placeholder="Add new allergen (Spanish)..."
-					value={newAllergenEs}
-					onChange={(e) => setNewAllergenEs(e.target.value)}
-				/>
-				<button
-					className="btn btn-sm btn-outline"
-					onClick={() => {
-						if (!newAllergenEs.trim()) return;
-						setSelectedRecipe({
-							...selectedRecipe,
-							espAllergens: {
-								...selectedRecipe.espAllergens,
-								[newAllergenEs.trim()]: true,
-							},
-						});
-						setNewAllergenEs("");
-					}}
-				>
-					Add
-				</button>
-			</div> */}
+			{/* INGREDIENTS PLAIN TEXT ES */}
+			<label className="font-semibold">Ingredients PlainText (Spanish)</label>
+			<textarea
+			className="textarea textarea-bordered w-full mb-4"
+			value={(selectedRecipe.ingredientPlainText?.es || "").replaceAll("|||", "\n")}
+			onChange={(e) =>
+				setSelectedRecipe({
+				...selectedRecipe,
+				ingredientPlainText: {
+					...selectedRecipe.ingredientPlainText,
+					es: e.target.value.replaceAll("\n", "|||"),
+				},
+				})
+			}
+			/>
+
+			{/* INGREDIENTS ENGLISH AND SPANISH */}
+			<h4 className="font-bold mt-6 mb-2">Ingredients</h4>
+			<input 
+				type="text"
+				placeholder="Search ingredients..."
+				className="input input-bordered w-1/2 mb-2"
+				value={ingredientSearch}
+				onChange={(e) => setIngredientSearch(e.target.value)}
+			/>
+			<div className="overflow-auto max-h-80">
+				{ingredientsList.filter((ingredient) => ingredient.en.toLowerCase().includes(ingredientSearch.toLowerCase()) || ingredient.es.toLowerCase().includes(ingredientSearch.toLowerCase())).map((ingredient) => {
+					const isChecked = (selectedRecipe.ingredients || []).some(
+						(a: any) => String(a._id || a.ingredient) === String(ingredient._id)
+					);
+					return (
+						<label key={ingredient._id} className="flex gap-2 mb-2">
+							<input
+								type="checkbox"
+								checked={isChecked}
+								onChange={(e) => {
+									if (e.target.checked) {
+										setSelectedRecipe({
+											...selectedRecipe,
+											ingredients: [
+												...(selectedRecipe.ingredients || []),
+												{ ...ingredient, amount: "", unit: "", multiplier: 1 },
+											],
+										});
+									} else {
+										setSelectedRecipe({
+											...selectedRecipe,
+											ingredients: (selectedRecipe.ingredients || []).filter(
+												(a: any) => String(a._id || a.ingredient) !== String(ingredient._id)
+											),
+										});
+									}
+								}}
+							/>
+							<span>{ingredient.en} / {ingredient.es}</span>
+
+							{/* Ingredient amount and unit*/}
+							{isChecked && (
+								<div className="flex gap-2">
+									{/* Amount */}
+									<label className="ml-5">Amount: </label>
+									<input 
+										type="number"
+										className="input input-bordered w-20"
+										value={
+											(selectedRecipe.ingredients || []).find((a: any) => String(a._id || a.ingredient) === String(ingredient._id))?.amount || ""
+										}
+										onChange={(e) => {
+											setSelectedRecipe({ ...selectedRecipe, ingredients: (selectedRecipe.ingredients || []).map((a: any) => 
+												String(a._id || a.ingredient) === String(ingredient._id) ? { ...a, amount: e.target.value} : a
+											)});
+										}}
+									/>
+
+									{/* Unit */}
+									<label className="ml-5">Unit: </label>
+									<select
+										className="select select-bordered w-24"
+										value={
+											(selectedRecipe.ingredients || []).find((a: any) => String(a._id || a.ingredient || a.ingredient?._id) === String(ingredient._id))?.unit || ""
+										}
+										onChange={(e) => {
+											const unitValue = e.target.value;
+											const selectedUnit = unitsList.find(unit => unit.fromUnit === unitValue && unit.toUnit === ingredient.baseUnit);
+											setSelectedRecipe({ ...selectedRecipe, ingredients: (selectedRecipe.ingredients || []).map((a: any) =>
+												String(a._id || a.ingredient || a.ingredient?._id) === String(ingredient._id) ? { ...a, unit: unitValue, multiplier: selectedUnit?.multiplier || 1 } : a 
+											)});
+										}}
+									>
+										<option value="">
+											Unit
+										</option>
+										{[...new Set([...unitsList.map(unit => unit.fromUnit), ...unitsList.map(unit => unit.toUnit)])].map((unit) => (
+											<option key={unit} value={unit}>
+												{unit}
+											</option>
+										))}
+									</select>
+								</div>
+							)}
+						</label>
+					);
+				})}
+			</div>
+
+			{/* TAGS BOTH ENGLISH AND SPANISH */}
+			<h4 className="font-bold mt-6 mb-2">Tags</h4>
+			{tagsList.map((tag) => {
+				const isChecked = selectedRecipe.tags[tag.en];
+				return (
+					<label key={tag._id} className="flex gap-2 mb-2">
+						<input
+							type="checkbox"
+							checked={isChecked}
+							onChange={(e) => {
+								setSelectedRecipe({
+									...selectedRecipe,
+									tags: { ...selectedRecipe.tags, [tag.en]: e.target.checked },
+									espTags: { ...selectedRecipe.espTags, [tag.es]: e.target.checked }
+								});
+							}}
+						/>
+						<span>{tag.en} / {tag.es}</span>
+					</label>
+				);
+			})}
+
+			{/* ALLERGENS BOTH ENGLISH AND SPANISH */}
+			<h4 className="font-bold mt-6 mb-2">Allergens</h4>
+			{allergensList.map((allergen) => {
+				const isChecked = selectedRecipe.allergens[allergen.en];
+				return (
+					<label key={allergen._id} className="flex gap-2 mb-2">
+						<input
+							type="checkbox"
+							checked={isChecked}
+							onChange={(e) => {
+								setSelectedRecipe({
+									...selectedRecipe,
+									allergens: { ...selectedRecipe.allergens, [allergen.en]: e.target.checked },
+									espAllergens: { ...selectedRecipe.espAllergens, [allergen.es]: e.target.checked }
+								});
+							}}
+						/>
+						<span>{allergen.en} / {allergen.es}</span>
+					</label>
+				);
+			})}
 
 			{/* APPLIANCES BOTH ENGLISH AND SPANISH */}
 			<h4 className="font-bold mt-6 mb-2">Appliances</h4>
-			{[
-				{ _id: "695ec4c6b0379ee832d8a867", en: "Microwave", es: "Microondas" },
-				{ _id: "695ec4c6b0379ee832d8a866", en: "Oven", es: "Horno" },
-				{ _id: "695ec4c6b0379ee832d8a86a", en: "Skillet/Frying Pan", es: "Sartén/Sartén" },
-				{ _id: "695ec4c6b0379ee832d8a869", en: "Stockpot/Dutch Oven", es: "olla/horno holandés" },
-				{ _id: "695ec4c6b0379ee832d8a86b", en: "Saucepan with Lid", es: "Cacerola con Tapa" },
-				{ _id: "695ec4c6b0379ee832d8a868", en: "Slow Cooker", es: "Olla de Cocción Lenta" },
-				{ _id: "695ec4c6b0379ee832d8a86c", en: "Stockpot and Skillet", es: "Olla y Sartén" },
-			].map((appliance) => {
+			{appliancesList.map((appliance) => {
 				const isChecked = (selectedRecipe.appliances || []).some(
-					(a: any) => String(a.appliance) === String(appliance._id)
+					(a: any) => String(a._id) === String(appliance._id)
 				);
 				return (
 					<label key={appliance._id} className="flex gap-2 mb-2">
@@ -475,14 +494,14 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 										...selectedRecipe,
 										appliances: [
 											...(selectedRecipe.appliances || []),
-											{ appliance: appliance._id, en: appliance.en, es: appliance.es },
+											appliance,
 										],
 									});
 								} else {
 									setSelectedRecipe({
 										...selectedRecipe,
 										appliances: (selectedRecipe.appliances || []).filter(
-											(a: any) => String(a.appliance) !== String(appliance._id)
+											(a: any) => String(a._id) !== String(appliance._id)
 										),
 									});
 								}
@@ -507,15 +526,54 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 					onClick={async () => {
 						const isNew = !selectedRecipe._id;  //check if _id exists, if not uses POST 
 
-						await fetch("/api/edit-recipes/", {
-						method: isNew? "POST" : "PUT",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify(selectedRecipe),
+						const formatedIngredients = (selectedRecipe.ingredients || []).map((ingredient: any) => {
+							const unitInfo = unitsList.find(unit => unit.fromUnit === ingredient.unit && unit.toUnit === ingredient.baseUnit);
+							const ingredientCost = ingredient.unit === "each" ? ingredient.price || 0 : (ingredient.costPerUnit || 0) * (Number(ingredient.amount) || 0) * (ingredient.multiplier || unitInfo?.multiplier || 1);
+
+							return {
+								ingredient: ingredient._id || ingredient.ingredient,
+								_id: ingredient._id || ingredient.ingredient,
+								en: ingredient.en,
+								es: ingredient.es,
+								amount: Number(ingredient.amount) || 0,
+								unit: ingredient.unit,
+								costPerUnit: ingredient.costPerUnit || 0,
+								baseUnit: ingredient.baseUnit || "",
+								productLink: ingredient.productLink || "",
+								multiplier: ingredient.multiplier || unitInfo?.multiplier || 1,
+								price: ingredient.price,
+								storeName: ingredient.storeName,
+								packageSize: ingredient.packageSize,
+								ingredientCost: ingredientCost
+							};
 						});
 
+						const totalCost = formatedIngredients.reduce((sum: number, ingredient: any) => sum + (ingredient.ingredientCost || 0), 0);
+
+						await fetch("/api/edit-recipes/", {
+							method: isNew? "POST" : "PUT",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								...selectedRecipe,
+								tags: Object.fromEntries(tagsList.map(tag => [tag.en, !!selectedRecipe.tags?.[tag.en]])),
+								espTags: Object.fromEntries(tagsList.map(tag => [tag.es, !!selectedRecipe.espTags?.[tag.es]])),
+								allergens: Object.fromEntries(allergensList.map(allergen => [allergen.en, !!selectedRecipe.allergens?.[allergen.en]])),
+								espAllergens: Object.fromEntries(allergensList.map(allergen => [allergen.es, !!selectedRecipe.espAllergens?.[allergen.es]])),
+								ingredients: formatedIngredients,
+								totalCost
+							}),
+						});
+
+						if (oldImageURI && oldImageURI !== selectedRecipe.imageURI) {
+							const publicID = getPublicIDFromURI(oldImageURI);
+							if (publicID)
+								await uploadImage(undefined, publicID);
+						}
+
 						setSelectedRecipe(null);
+						setOldImageURI(null);
 						location.reload();     
 					}}
 				>

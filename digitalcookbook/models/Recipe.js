@@ -30,7 +30,11 @@ const recipeSchema = new mongoose.Schema({
             costPerUnit: Number,
             baseUnit: String,
             productLink: String,
-            multiplier: Number
+            multiplier: Number,
+            price: Number,
+            storeName: String,
+            packageSize: Number,
+            ingredientCost: Number
         },
     ],
     appliances: [

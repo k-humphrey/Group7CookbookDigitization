@@ -21,9 +21,10 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
     function getScaledIngredients(recipe: any, servings: number) {
         const { scaleFactor } = scaleCost(recipe.totalCost, servings);
 
-        return recipe.ingredientPlainText[lang]
-            .split("|||")
-            .map((ingredient: string) => scaleIngredient(ingredient, scaleFactor));
+        return recipe.ingredientPlainText?.[lang] ? recipe.ingredientPlainText[lang].split("|||").map((ingredient: string) => scaleIngredient(ingredient, scaleFactor)) : (recipe?.ingredients || []).map((ing: any) => { 
+            return (ing.unit || "") === "each" ? scaleIngredient(`${(ing.amount || 0)} ${(ing?.[lang] || "")}`.trim(), scaleFactor) :
+                scaleIngredient(`${(ing.amount || 0)} ${(ing.unit || "")} ${(ing?.[lang] || "")}`.trim(), scaleFactor);
+        });
     }
 
     // Store recipe information

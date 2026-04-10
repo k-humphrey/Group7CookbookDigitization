@@ -89,13 +89,13 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
       
       <div
         className={`w-full max-w-3xl overflow-hidden transition-all duration-300 ease-in-out
-        ${tags.length > 0 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="rounded-t-3xl bg-gray-200 px-4 py-3 flex items-center gap-4">
+        ${tags.length > 0 ? "opacity-100" : "max-h-0 opacity-0"}`}>
+          <div className="rounded-t-3xl bg-gray-200 px-4 py-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             
           {/* Tag Area */}
           <div className="flex-1">
             <p className="text-xs font-semibold uppercase text-slate-950">{t.selectedIngredients}</p>
-            <ul aria-live="polite" aria-atomic="true" className="pt-2 flex flex-wrap gap-2 text-slate-950">
+            <ul aria-live="polite" aria-atomic="true" className="pt-2 flex flex-wrap gap-2 text-slate-950 max-h-24 overflow-y-auto">
               {tags.map((tag, index) => {
                   const colorClasses = [
                     "badge-info",
