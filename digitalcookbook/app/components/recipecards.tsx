@@ -66,13 +66,13 @@ export default function RecipeGrid({ recipes }: Props) {
             </figure>
 
             {/* Content */}
-            <div className="card-body flex-1 flex flex-col -m-1">
+            <div className="card-body flex-1 flex flex-col -m-2">
               <h2 className="card-title text-lg line-clamp-2 min-h-14">
                 {recipe.title?.[lang]}
               </h2>
 
               {/* Tags */}
-              <div className="mt-1 flex flex-wrap items-center gap-2 min-h-7">
+              <div className="mt-1 flex flex-wrap items-center gap-2 min-h-[57px]">
                 {(() => {
                   const tagObj = lang === "es" ? (recipe.espTags ?? {}) : (recipe.tags ?? {});
 
@@ -86,7 +86,7 @@ export default function RecipeGrid({ recipes }: Props) {
                               alt="Blue Ribbon"
                               width={38}
                               height={38}
-                              className="drop-shadow-sm -mt-8"
+                              className="drop-shadow-sm shrink-0"
                             />
                           ) : (
                             <span className="badge badge-success">
@@ -105,6 +105,7 @@ export default function RecipeGrid({ recipes }: Props) {
 
                   {/* Add to saved recipe */}
                   <button
+                    type="button"
                     className="btn btn-sm btn-primary focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2"
                     onClick={(e) => {
                       e.preventDefault();
@@ -132,6 +133,7 @@ export default function RecipeGrid({ recipes }: Props) {
                   </button>
                   {/* ADD TO SHOPPING */}
                   <button
+                    type="button"
                     className="btn btn-sm btn-secondary focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2"
                     onClick={(e) => {
                       e.preventDefault();
