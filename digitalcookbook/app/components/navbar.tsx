@@ -365,7 +365,7 @@ export default function Navbar() {
 
         <div className="navbar-end">
             <div className="dropdown dropdown-hover dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost flex items-center gap-2">
+                <button type="button" onClick={(e) => {setLang(lang === "en" ? "es" : "en");(e.currentTarget as HTMLElement).blur()}} className="btn btn-ghost flex items-center gap-2">
                     <Image
                     src={lang === "en" ? "/flags/en.png" : "/flags/es.jpg"}
                     alt="flag"
@@ -382,17 +382,17 @@ export default function Navbar() {
                     >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                </div>
+                </button>
 
-                <ul className="dropdown-content menu bg-white rounded-box w-26 mt-2 shadow z-50">
+                <ul className="dropdown-content menu bg-white rounded-box w-26 shadow z-50">
                     <li>
-                    <button type="button"onClick={() => setLang("en")} className="flex items-center gap-2">
+                    <button type="button" onClick={(e) => {setLang("en");(e.currentTarget as HTMLElement).blur()}} className="flex items-center gap-2">
                         <Image src="/flags/en.png" alt="English" width={20} height={20} />
                         EN
                     </button>
                     </li>
                     <li>
-                    <button type="button" onClick={() => setLang("es")} className="flex items-center gap-2">
+                    <button type="button" onClick={(e) => {setLang("es");(e.currentTarget as HTMLElement).blur()}} className="flex items-center gap-2">
                         <Image src="/flags/es.jpg" alt="Español" width={20} height={20} />
                         ES
                     </button>
