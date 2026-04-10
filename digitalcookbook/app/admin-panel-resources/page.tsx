@@ -46,7 +46,7 @@ export default async function AdminPanelPage() {
 					<Link href="/admin-panel-partners" className="block px-4 py-2 hover:bg-gray-100">Edit Partners</Link>
 				</div>
 				<div className="w-full max-w-6xl mx-auto">
-					<AdminPanelClient recipes={safeRecipes} />
+					<ResourceSelector />
 				</div>
 		
 		</section>

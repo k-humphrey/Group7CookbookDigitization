@@ -11,6 +11,7 @@ type Recipe = {
   _id: string;
   title?: { en?: string; es?: string };
   ingredientPlainText?: { en?: string; es?: string };
+  ingredients?: any[];
   instructions?: { en?: string; es?: string };
   imageURI?: string;
   tags?: {
@@ -91,7 +92,9 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
 
   const ingredients = recipe?.ingredientPlainText?.[lang]
     ? recipe.ingredientPlainText[lang]!.split("|||").map((l) => l.trim())
-    : [];
+    : (recipe?.ingredients || []).map((ing: any) => { 
+      return (ing.unit || "") === "each" ? `${(ing.amount || 0)} ${(ing?.[lang] || "")}`.trim() : `${(ing.amount || 0)} ${(ing.unit || "")} ${(ing?.[lang] || "")}`.trim();
+    });
 
   const steps = recipe?.instructions?.[lang]
     ? recipe.instructions[lang]!.split("|||").map((l) => l.trim())
@@ -204,10 +207,9 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
             </div>
 
             {/* ROW 2: TIME, SERVINGS, COST, ACTIONS */}
-            <div className="flex flex-row items-end justify-between mt-24">
+            <div className="flex flex-row items-end justify-between mt-10">
               <div className="md:flex md:flex-row items-start md:gap-10 grid print:flex print:flex-row print:gap-10 print:items-start">
-                <div className="font-semibold">{t.prep}</div>
-                <div className="font-semibold">{t.cook}</div>
+                
                 <div className="font-semibold -mt-0.5">
                   <label htmlFor="servings-input">
                     {t.servings}
@@ -249,9 +251,9 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
 
             {/* INGREDIENTS */}
             <div>
-              <div className="flex items-end justify-between mb-2">
+              <div className="flex items-end justify-between mb-4">
                 <div>
-                  <h2 className="text-lg lg:text-2xl font-bold">{t.ing}</h2>
+                  <h2 className="text-lg lg:text-2xl font-bold -mt-10">{t.ing}</h2>
                   <p className="text-xs font-semibold mt-0.5 text-black/60">
                     {t.ingSub}
                   </p>
@@ -362,6 +364,21 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                   </li>
                 )}
               </ol>
+            </div>
+
+            {/* NOTES */}
+            <div className="rounded-2xl overflow-hidden border border-base-600 mt-6 p-4 sm:p-6 bg-base-100">
+              <h2 className="text-lg lg:text-2xl font-bold text-black mb-2">
+                Notes
+              </h2>
+              <p className="text-xs text-black/60 mb-4">
+                Add any personal notes or tips for this recipe.
+              </p>
+
+              <p className="w-full p-4 rounded-xl border-base-300 focus:outline-none focus:ring-2 focus:ring-primary resize-none"></p>
+              <p className="w-full p-4 rounded-xl border-base-300 focus:outline-none focus:ring-2 focus:ring-primary resize-none"></p>
+              <p className="w-full p-4 rounded-xl border-base-300 focus:outline-none focus:ring-2 focus:ring-primary resize-none"></p>
+              
             </div>
 
             {/* COMPLETION MESSAGE */}

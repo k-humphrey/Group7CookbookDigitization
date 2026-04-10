@@ -55,7 +55,7 @@ export async function POST(req: Request){
 
 /*Update existing image
 Expected Parameter: file and public_id as formdata
-Expected Return error or new url and new public id, these must also be saved in db by caller; */
+Expected Return error or new url and new public id, these must also be saved in db by caller (save new URL and new public id); */
 export async function PUT(req: Request) {
   const cookieStore = await cookies();
 

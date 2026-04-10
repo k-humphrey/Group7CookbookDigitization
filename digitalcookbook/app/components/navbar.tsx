@@ -227,143 +227,142 @@ export default function Navbar() {
             </div>
         </div>
 
-        {/*Menu when not small*/}
+        {/* Menu when not small */}
         <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 gap-2">
+        <ul className="menu menu-horizontal px-1 gap-2 items-center">
             <li className="relative group">
-                <Link href="/comm-resources" className="cursor-pointer block px-4 py-2 hover:bg-gray-100">
-                    {t.communityResources}
-                </Link>
-                <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
-                                opacity-0 invisible translate-y-2
-                                group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
-                                transition-all duration-200 z-50">
-{/*
-                    <li>
-                    <Link href="/comm-resources" className="block px-4 py-2 hover:bg-gray-100">
-                        {t.aboutCommRes}
-                    </Link>
-                    </li>
-*/}
-                    {resources.map((resource) => (
-                        <li key={resource._id}>
-                            <Link 
-                                href={resource.link} 
-                                className="block px-4 py-2 hover:bg-gray-100">
-                                {resource.title?.[lang]}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </li>
-            <li className="relative group">
-                <Link href="/comm-partners" className="cursor-pointer block px-4 py-2 hover:bg-gray-100">
-                    {t.partners}
-                </Link>
+            <Link
+                href="/comm-resources"
+                className="block px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-100" >
+                {t.communityResources}
+            </Link>
 
-                <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
-                                opacity-0 invisible translate-y-2
-                                group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
-                                transition-all duration-200 z-50">
-{/*
-                    <li>
-                    <Link href="/comm-partners" className="block px-4 py-2 hover:bg-gray-100">
-                        {t.aboutPartners}
+            <ul
+                className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
+                        opacity-0 invisible translate-y-2
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                        transition-all duration-200 z-50" >
+                {resources.map((resource) => (
+                <li key={resource._id}>
+                    <Link
+                    href={resource.link}
+                    className="block px-4 py-2 hover:bg-gray-100" >
+                    {resource.title?.[lang]}
                     </Link>
-                    </li>
-*/}
-                    {partners.map((partner) => (
-                        <li key={partner._id}>
-                            <Link
-                                href={partner.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block px-4 py-2 hover:bg-gray-100" >
-                                {partner.title?.[lang]}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                </li>
+                ))}
+            </ul>
             </li>
-            <li>
-                <Link
-                    href="/recipes"
-                    className="hover" >
-                    {t.allRecipes}
-                </Link>
-            </li>
+
             <li className="relative group">
-            <Link href="/tools" className="cursor-pointer">
+            <Link
+                href="/comm-partners"
+                className="block px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-100" >
+                {t.partners}
+            </Link>
+
+            <ul
+                className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
+                        opacity-0 invisible translate-y-2
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                        transition-all duration-200 z-50" >
+                {partners.map((partner) => (
+                <li key={partner._id}>
+                    <Link
+                    href={partner.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-2 hover:bg-gray-100" >
+                    {partner.title?.[lang]}
+                    </Link>
+                </li>
+                ))}
+            </ul>
+            </li>
+
+            <li>
+            <Link
+                href="/recipes"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-100" >
+                {t.allRecipes}
+            </Link>
+            </li>
+
+            <li className="relative group">
+            <Link
+                href="/tools"
+                className="block px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-100" >
                 {t.tools}
             </Link>
-            
-                <ul className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
-                                opacity-0 invisible translate-y-2
-                                group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
-                                transition-all duration-200 z-50">
-                    <li>
-                        <Link
-                            href="/shelf-life-guidelines"
-                            className="block px-4 py-2 hover:bg-gray-100">
-                            {t.shelfLife}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/price-finder"
-                            className="block px-4 py-2 hover:bg-gray-100" >
-                            {t.priceFinder}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/timer"
-                            className="block px-4 py-2 hover:bg-gray-100">
-                            {t.timer}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/measurement-converter"
-                            className="block px-4 py-2 hover:bg-gray-100">
-                            {t.measurementConverter}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/meal-planner"
-                            className="block px-4 py-2 hover:bg-gray-100">
-                            {t.mealPlanner}
-                        </Link>
-                    </li>
-                </ul>
-            </li>
-            <li>
+            <ul
+                className="absolute left-0 top-full pt-2 w-64 bg-white shadow-lg rounded-lg
+                        opacity-0 invisible translate-y-2
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                        transition-all duration-200 z-50" >
+                <li>
                 <Link
-                    href="/saved-recipe"
-                    className="hover">
-                        {t.savedRecipe}
+                    href="/shelf-life-guidelines"
+                    className="block px-4 py-2 hover:bg-gray-100" >
+                    {t.shelfLife}
                 </Link>
-
-            </li>
-            <li>
+                </li>
+                <li>
                 <Link
-                    href="/shopping-list"
-                    className="hover">
-                        {t.shoppingList}
+                    href="/price-finder"
+                    className="block px-4 py-2 hover:bg-gray-100" >
+                    {t.priceFinder}
                 </Link>
-
-            </li>
-            <li>
+                </li>
+                <li>
                 <Link
-                    href="/findResources"
-                    className="hover">
-                        {t.findResources}
+                    href="/timer"
+                    className="block px-4 py-2 hover:bg-gray-100" >
+                    {t.timer}
                 </Link>
-
-            </li>
+                </li>
+                <li>
+                <Link
+                    href="/measurement-converter"
+                    className="block px-4 py-2 hover:bg-gray-100" >
+                    {t.measurementConverter}
+                </Link>
+                </li>
+                <li>
+                <Link
+                    href="/meal-planner"
+                    className="block px-4 py-2 hover:bg-gray-100" >
+                    {t.mealPlanner}
+                </Link>
+                </li>
             </ul>
+            </li>
+
+            <li>
+            <Link
+                href="/saved-recipe"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-100" >
+                {t.savedRecipe}
+            </Link>
+            </li>
+
+            <li>
+            <Link
+                href="/shopping-list"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-100" >
+                {t.shoppingList}
+            </Link>
+            </li>
+
+            <li>
+            <Link
+                href="/findResources"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-100" >
+                {t.findResources}
+            </Link>
+            </li>
+        </ul>
         </div>
+
         <div className="navbar-end">
             <div className="dropdown dropdown-hover dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost flex items-center gap-2">
