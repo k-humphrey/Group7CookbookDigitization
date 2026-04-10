@@ -8,7 +8,14 @@ import Searchbar from "@/app/components/searchbar";
 import RecipeGrid from "@/app/components/recipecards";  
 import { useLang } from "@/app/components/languageprovider";
 import Image from "next/image";
+import { Chango } from "next/font/google";
 import Sponsors from "./components/sponsors";
+
+const chango = Chango({
+  subsets: ['latin'],
+  weight: '400',
+});
+
 
 const STRINGS = {
   en: {
@@ -96,10 +103,10 @@ export default function Home() {
       />
 
       {/* Logo + Subtitle */}
-      <div className="text-center mb-5 z-10">
-        <h1 className="text-6xl md:text-[5rem] font-black text-slate-950 leading-none mt-10">{t.thrifyBites}</h1>
-
-        <p className="mt-5 pt-5 text-base max-w-3xl md:text-2xl text-slate-950">{t.search}</p>
+      <div className="text-center mb-5 z-10 mt-40">
+        <h1 className={`text-6xl md:text-8xl font-extrabold tracking-tighter ${chango.className} text-[#2b3033] leading-none`}>
+          {t.thrifyBites}</h1>
+        <p className="mt-5 pt-5 text-base max-w-full md:text-2xl text-slate-950 ">{t.search}</p>
       </div>
 
       {/* Searchbar */}
@@ -109,7 +116,7 @@ export default function Home() {
 
       {/* Featured Recipes */}
       <section id="featured-recipes" aria-label={t.featured} className="w-full max-w-7xl px-6 mt-20 mb-15 z-10">
-        <h2 className="text-4xl font-bold mb-6 flex justify-center">{t.featured}</h2>
+        <h2 className={`${chango.className} text-[#2b3033] text-4xl font-bold mb-6 flex justify-center`}>{t.featured}</h2>
         {featuredRecipes === null ? (
           <p>{t.loading}</p>
         ) : (
