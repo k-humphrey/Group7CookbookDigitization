@@ -22,7 +22,7 @@ const STRINGS = {
         shoppingList: "Shopping List",
         openMenu: "Open Menu",
         languageToggle: "Toggle Language",
-        findResources: "Finding Resources",
+        findResources: "Map of Local Resources",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -34,13 +34,13 @@ const STRINGS = {
         priceFinder: "Buscador de Precios",
         timer: "Temporizador",
         measurementConverter: "Convertidor de Medidas",
-        mealPlanner: "Planificador de comidas",
+        mealPlanner: "Planificador de Comidas",
         allRecipes: "Todas las Recetas",
-        savedRecipe: "Recetas guardadas",
+        savedRecipe: "Recetas Guardadas",
         shoppingList: "Lista de Compras",
         openMenu: "Abrir Menú",
         languageToggle: "Cambiar Idioma",
-        findResources: "Encontrar recursos",
+        findResources: "Mapa de Recursos Locales",
     } as const
 };
 
