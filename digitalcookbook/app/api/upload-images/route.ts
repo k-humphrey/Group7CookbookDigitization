@@ -34,7 +34,7 @@ export async function POST(req: Request){
 
         //then upload to cloudinary (straight from cloudinary docs)
         const uploadResult = await new Promise<UploadApiResponse>((resolve, reject) => {
-        cloudinary.uploader.upload_stream((error, result) => {
+        cloudinary.uploader.upload_stream({resource_type:"image"},(error, result) => {
             if (error) return reject(error)
             resolve(result as UploadApiResponse)
         }).end(buffer); // your image buffer
@@ -122,9 +122,9 @@ export async function DELETE(req: Request) {
   const cookieStore = await cookies();
 
   // Auth check
-  if (!(await isAdminAuthenticated(cookieStore))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  //if (!(await isAdminAuthenticated(cookieStore))) {
+  //  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  //}
 
   // Parse formdata
   const formData = await req.formData();
@@ -138,9 +138,12 @@ export async function DELETE(req: Request) {
 
   try {
     // Delete from Cloudinary
-    const result = await cloudinary.uploader.destroy(public_id);
+    const result = await cloudinary.uploader.destroy(public_id, {
+      resource_type: "image",
+      invalidate: true
+    });
 
-    if (result.result !== "ok" && result.result !== "not found") {
+    if (result.result !== "ok") {
       return NextResponse.json(
         { error: "Cloudinary delete failed", details: result },
         { status: 500 }
