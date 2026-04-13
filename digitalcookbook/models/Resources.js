@@ -10,7 +10,9 @@ const ResourcesSchema = new mongoose.Schema({
         es: String,
     },
     link: String,
-    order: Number
+    order: Number,
+    imageURI: String,
+    public_id: String
 });
     
 export default mongoose.models.Resources || mongoose.model('Resources', ResourcesSchema);
