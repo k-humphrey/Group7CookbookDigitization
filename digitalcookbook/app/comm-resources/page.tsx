@@ -36,7 +36,7 @@ export default function CommResourcesPage() {
 
 			{/* Background picture */}
 			<Image
-				src="/searchbackground.jpg"
+				src="/comm_resources.png"
 				alt=""
 				fill
 				priority

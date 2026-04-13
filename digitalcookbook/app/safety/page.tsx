@@ -1,97 +1,86 @@
-//app/safety/page.tsx
+// app/safety/page.tsx
 
 "use client";
 
-import InfoCard from "../components/infocard";
+import { useEffect, useState } from "react";
 import { useLang } from "@/app/components/languageprovider";
+import InfoCard from "../components/infocard";
+import Image from "next/image";
 
 const STRINGS = {
     en: {
-      	title: "Safety",
-
-      	carSeatTitle: "Car Seat Recommendations",
-      	carSeatDesc:
-        	"Learn how to choose the correct car seat for your child's age, height, and weight.",
-
-		extremeWeatherTitle: "Extreme Weather Awareness",
-		extremeWeatherDesc:
-			"Important steps to take during heat waves, blizzards, tornadoes, and flooding.",
-
-		chokingTitle: "First Aid for Choking",
-		chokingDesc:
-			"Recognize choking signs and learn how to perform abdominal thrusts safely.",
-
-		cprTitle: "How to Perform CPR",
-		cprDesc:
-			"Learn adult, child, and infant CPR guidelines.",
+        safety: "Safety",
     },
     es: {
-		title: "Seguridad",
-
-		carSeatTitle: "Recomendaciones para Asientos de Auto",
-		carSeatDesc:
-			"Aprenda a elegir el asiento correcto según la edad, estatura y peso de su hijo.",
-
-		extremeWeatherTitle: "Conciencia sobre Clima Extremo",
-		extremeWeatherDesc:
-			"Pasos importantes durante olas de calor, tormentas de nieve, tornados e inundaciones.",
-
-		chokingTitle: "Primeros Auxilios por Asfixia",
-		chokingDesc:
-			"Reconozca las señales de asfixia y aprenda a realizar empujes abdominales de forma segura.",
-
-		cprTitle: "Cómo Realizar RCP",
-		cprDesc:
-			"Aprenda las pautas de RCP para adultos, niños y bebés.",
+        safety: "Seguridad",
     },
 };
 
+type SafetyItem = {
+    _id: string;
+    title: {
+        en: string;
+        es: string;
+    };
+    description: {
+        en: string;
+        es: string;
+    };
+    link: string;
+    order: number;
+}; 
+
 export default function SafetyPage() {
-	const langContext = useLang();
-	const lang = langContext?.lang ?? "en";
-	const t = STRINGS[lang];
+    const langContext = useLang();
+    const lang = langContext?.lang ?? "en";
+    const t = STRINGS[lang];
 
-	return (
-		<section aria-label={t.title} className="min-h-screen flex flex-col items-center justify-start">
-			<div className="text-center mb-5">
-				<h1 className="text-3xl md:text-[5rem] font-bold">{t.title}</h1>
-			</div>
+    const [safetyItems, setSafetyItems] = useState<SafetyItem[]>([]);
 
-			{/* Cards Container */}
-			<ul className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4">
-				<li className="flex justify-center">
-					<InfoCard
-					title={t.carSeatTitle}
-					description={t.carSeatDesc}
-					href="https://www.nhtsa.gov/equipment/car-seats-and-booster-seats"
-					/>
-				</li>
+    // Get safety items from DB
+    useEffect(() => {
+        fetch("/api/safety")
+            .then((res) => res.json())
+            .then((data) => {
+				console.log("DATA", data);
+				setSafetyItems(data);
+			});
+    }, []);
 
-				<li className="flex justify-center">
-					<InfoCard
-					title={t.extremeWeatherTitle}
-					description={t.extremeWeatherDesc}
-					href="https://www.ready.gov/weather"
-					/>
-				</li>
+    return (
+        <section
+            aria-label={t.safety}
+            className="relative min-h-screen flex flex-col items-center justify-start"
+        >
+            {/* Background picture */}
+            <Image
+                src="/comm_resources.png"
+                alt=""
+                fill
+                priority
+                className="object-cover scale-110"
+            />
 
-				<li className="flex justify-center">
-					<InfoCard
-					title={t.chokingTitle}
-					description={t.chokingDesc}
-					href="https://www.redcross.org/..."
-					/>
-				</li>
+            <div className="text-center mt-10 mb-20 relative z-10">
+                <div className="inline-block bg-white shadow-md rounded-lg p-5">
+                    <h1 className="text-2xl md:text-[5rem] font-bold text-black">
+                        {t.safety}
+                    </h1>
+                </div>
+            </div>
 
-
-				<li className="flex justify-center">
-					<InfoCard
-					title={t.cprTitle}
-					description={t.cprDesc}
-					href="https://www.heart.org/..."
-					/>
-				</li>
-			</ul>
-		</section>
-  	);
+            {/* Cards Container aka Responsive Grid, works on mobile */}
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20 items-stretch">
+                {safetyItems.map((item) => (
+                    <li key={item._id} className="flex justify-center">
+                        <InfoCard
+                            title={item.title?.[lang]}
+                            description={item.description?.[lang]}
+                            href={item.link}
+                        />
+                    </li>
+                ))}
+            </ul>
+        </section>
+    );
 }
