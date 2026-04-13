@@ -23,10 +23,10 @@ export async function POST(req: NextRequest){
         await connectToDB();
     
         // get resource information
-        const { title, description, link, order } = await req.json();
+        const { title, description, link, order, imageURI, public_id } = await req.json();
 
         // create a new resource
-        const resource = await Resources.create({ title, description, link, order });
+        const resource = await Resources.create({ title, description, link, order, imageURI, public_id });
         return NextResponse.json({ resource });
 
     } catch(error) {
@@ -43,12 +43,12 @@ export async function PUT(req: NextRequest){
         await connectToDB();
     
         // get resource information
-        const { _id, title, description, link, order } = await req.json();
+        const { _id, title, description, link, order, imageURI, public_id } = await req.json();
 
         // update collection
         const resource = await Resources.findByIdAndUpdate(
             _id,
-            { title, description, link, order },
+            { title, description, link, order, imageURI, public_id },
             { new: true }
         );
         return NextResponse.json({ resource });

@@ -1,11 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import InfoCard from "@/app/components/infocard";
+import { uploadImage } from "@/lib/uploadImage";
 
 export default function ResourceSelector() {
     const [resources, setResources] = useState<any[]>([]);
     const [modalResource, setModalResource] = useState<any | null>(null);
+    const [pendingImage, setPendingImage] = useState<{url: string, public_id: string} | null>(null);
+    const [oldImagePublicID, setOldImagePublicID] = useState<string | null>(null);
          
     // Get resources
     useEffect(() => {
@@ -27,7 +31,7 @@ export default function ResourceSelector() {
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-xl font-bold">Community Resources</h2>
 
-                    <button className="btn btn-success" onClick={() => setModalResource({ title: { en: "", es: "" }, description: { en: "", es: "" }, link: "", order: resources.length })}>
+                    <button className="btn btn-success" onClick={() => setModalResource({ title: { en: "", es: "" }, description: { en: "", es: "" }, link: "", order: resources.length, imageURI: "", public_id: "" })}>
                         + Add New Resource
                     </button>
                 </div>
@@ -40,8 +44,15 @@ export default function ResourceSelector() {
                             title={resource.title.en}
                             description=""
                             href="#"
+                            imageSrc={resource?.imageURI ?? ""}
                             action={
-                                <button className="btn btn-primary btn-sm" onClick={() => setModalResource({...resource})}>
+                                <button className="btn btn-primary btn-sm" 
+                                    onClick={() => {
+                                        setModalResource({...resource})
+                                        setOldImagePublicID(resource.public_id || null);
+                                        setPendingImage(null);
+                                    }}
+                                >
                                     Edit
                                 </button>
                             }
@@ -70,10 +81,18 @@ export default function ResourceSelector() {
                                 title: modalResource.title,
                                 description: modalResource.description,
                                 link: modalResource.link,
-                                order: resources.length
+                                order: resources.length,
+                                imageURI: pendingImage?.url || modalResource.imageURI,
+                                public_id: pendingImage?.public_id || modalResource.public_id
                             })
                         });
 
+                        if (oldImagePublicID && oldImagePublicID !== (pendingImage?.public_id || modalResource.public_id)) {
+                            await uploadImage(undefined, oldImagePublicID);
+                        }
+
+                        setPendingImage(null);
+                        setOldImagePublicID(null);
                         setModalResource(null);
                         refreshResources();
 
@@ -97,6 +116,58 @@ export default function ResourceSelector() {
                         onChange={e => setModalResource({ ...modalResource, title: { ...modalResource.title, es: e.target.value } })}
                         required 
                     />
+
+                    {/* image */}
+                    <label className="font-semibold" htmlFor="imageInput">Upload Image: </label>
+                    <input id="imageInput" className="file-input file-input-bordered w-full mb-4"
+                        type="file"
+                        accept="image/*"
+                        onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if(!file)
+                                return;
+                            const res = await uploadImage(file);
+                            if(!res?.url)
+                                return;
+
+                            if (pendingImage?.public_id) {
+                                await uploadImage(undefined, pendingImage.public_id);
+                            }
+
+                            setPendingImage({url: res.url, public_id: res.public_id});
+                        }}
+                    />
+
+                    {/* image preview */}
+                    {(pendingImage?.url || modalResource.imageURI) && (
+                        <div className="mt-2 relative w-full h-40">
+                            <Image
+                                src={(pendingImage?.url || modalResource.imageURI)}
+                                alt="Preview"
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                className="object-contain rounded"
+                            />
+                        </div>
+                    )}
+
+                    {/* remove image button */}
+                    {(pendingImage?.public_id || modalResource.public_id) && (
+                        <button
+                            type="button"
+                            className="btn btn-warning mt-3 w-full"
+                            onClick={async () => {
+                                if (pendingImage?.public_id || modalResource.public_id) {
+                                    await uploadImage(undefined, (pendingImage?.public_id || modalResource.public_id));
+                                }
+
+                                setPendingImage(null);
+                                setModalResource((prev: any) => ({...prev, imageURI: "", public_id: ""}));
+                            }}
+                        >
+                            Remove Image
+                        </button>
+                    )}
                 
                     {/* description */}
                     <label className="font-semibold" htmlFor="descriptionENInput">Description en: </label>
@@ -123,7 +194,15 @@ export default function ResourceSelector() {
                         <button
                             type="button"
                             className="btn btn-secondary flex-1"
-                            onClick={() => setModalResource(null)}
+                            onClick={async () => {
+                                if (pendingImage?.public_id) {
+                                    await uploadImage(undefined, pendingImage.public_id);
+                                }
+
+                                setPendingImage(null);
+                                setOldImagePublicID(null);
+                                setModalResource(null);
+                            }}
                         >
                             Cancel
                         </button>
@@ -138,6 +217,10 @@ export default function ResourceSelector() {
                                 type="button"
                                 className="btn btn-error flex-1"
                                 onClick={async () => {
+                                    if(modalResource.public_id) {
+                                        await uploadImage(undefined, modalResource.public_id);
+                                    }
+
                                     await fetch(`/api/resources?_id=${modalResource._id}`, { method: "DELETE" });
                                     setModalResource(null);
                                     refreshResources();

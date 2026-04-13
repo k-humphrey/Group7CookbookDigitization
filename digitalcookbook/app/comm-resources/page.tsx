@@ -59,6 +59,7 @@ export default function CommResourcesPage() {
 							title={resource.title?.[lang]}
 							description= {resource.description?.[lang]}
 							href={resource.link}
+							imageSrc={resource?.imageURI ?? ""}
 						/>
 					</li>
 				))}
