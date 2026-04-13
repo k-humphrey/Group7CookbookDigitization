@@ -8,6 +8,8 @@ import { uploadImage } from "@/lib/uploadImage";
 export default function SponsorsSelector() {
     const [sponsors, setSponsors] = useState<any[]>([]);
     const [modalSponsor, setModalSponsor] = useState<any | null>(null);
+    const [pendingImage, setPendingImage] = useState<{url: string, public_id: string} | null>(null);
+    const [oldImagePublicID, setOldImagePublicID] = useState<string | null>(null);
     
     // get sponsor data from database
     useEffect(() => {
@@ -27,24 +29,19 @@ export default function SponsorsSelector() {
         .then(data => setSponsors(data.ads || []));
     };
 
-    // Get publicID from URI - Used in image editing and deleting
-    function getPublicIDFromURI(uri: string): string {
-        if (!uri)
-            return "";
-        
-        const parts = uri.split("/");
-        const fileName = parts[parts.length - 1];
-
-        return fileName.split(".")[0];
-    }
-
     return (
         <>
             <div className="p-6 max-w-md">
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-xl font-bold mr-4">Homepage Partners</h2>
 
-                    <button className="btn btn-success" onClick={() => setModalSponsor({ name: "", imageURI: "", link: "" })}>
+                    <button className="btn btn-success"
+                        onClick={() => {
+                            setModalSponsor({ name: "", imageURI: "", public_id: "", link: "" });
+                            setPendingImage(null);
+                            setOldImagePublicID(null);
+                        }}
+                    >
                         + Add New Partner
                     </button>
                 </div>
@@ -59,7 +56,13 @@ export default function SponsorsSelector() {
                             href="#"
                             imageSrc={sponsor.imageURI.trimEnd()}
                             action={
-                                <button className="btn btn-primary btn-sm" onClick={() => setModalSponsor({...sponsor})}>
+                                <button className="btn btn-primary btn-sm"
+                                    onClick={() => {
+                                        setModalSponsor({...sponsor, public_id: sponsor.public_id || ""});
+                                        setOldImagePublicID(sponsor.public_id || null);
+                                        setPendingImage(null);
+                                    }}
+                                >
                                     Edit
                                 </button>
                             }
@@ -72,7 +75,15 @@ export default function SponsorsSelector() {
             {modalSponsor && (
             <dialog
                 className="modal modal-open"
-                onClick={() => setModalSponsor(null)}
+                onClick={async () => {
+                    if(pendingImage?.public_id) {
+                        await uploadImage(undefined, pendingImage.public_id);
+                    }
+
+                    setPendingImage(null);
+                    setOldImagePublicID(null);
+                    setModalSponsor(null);
+                }}
             >
                 <form
                     className="modal-box max-w-3xl max-h-[90vh] overflow-y-auto"
@@ -86,11 +97,18 @@ export default function SponsorsSelector() {
                             body: JSON.stringify({
                                 _id: modalSponsor._id,
                                 name: modalSponsor.name,
-                                imageURI: modalSponsor.imageURI,
+                                imageURI: pendingImage?.url || modalSponsor.imageURI,
+                                public_id: pendingImage?.public_id || modalSponsor.public_id,
                                 link: modalSponsor.link
                             })
                         });
 
+                        if (oldImagePublicID && oldImagePublicID !== (pendingImage?.public_id || modalSponsor.public_id)) {
+                            await uploadImage(undefined, oldImagePublicID);
+                        }
+
+                        setPendingImage(null);
+                        setOldImagePublicID(null);
                         setModalSponsor(null);
                         refreshSponsors();
 
@@ -113,28 +131,27 @@ export default function SponsorsSelector() {
                     <input id="imageInput" className="file-input file-input-bordered w-full mb-4"
                         type="file"
                         accept="image/*"
-                        onChange={e => {
+                        onChange={async (e) => {
                             const file = e.target.files?.[0];
-                            const publicID = getPublicIDFromURI(modalSponsor.imageURI);
-                            if (file && publicID) {
-                                uploadImage(file, publicID).then(url => {
-                                    if(url)
-                                        setModalSponsor((prev: any) => ({ ...prev, imageURI: url}));
-                                });
-                            } else if (file) {
-                                uploadImage(file).then(url => {
-                                    if(url)
-                                        setModalSponsor((prev: any) => ({ ...prev, imageURI: url}));
-                                });
+                            if(!file)
+                                return;
+                            const res = await uploadImage(file);
+                            if(!res?.url)
+                                return;
+
+                            if (pendingImage?.public_id) {
+                                await uploadImage(undefined, pendingImage.public_id);
                             }
+
+                            setPendingImage({url: res.url, public_id: res.public_id});
                         }}
                     />
 
                     {/* image preview */}
-                    {modalSponsor.imageURI && (
+                    {(pendingImage?.url || modalSponsor.imageURI) && (
                         <div className="mt-2 relative w-full h-40">
                             <Image
-                                src={modalSponsor.imageURI}
+                                src={(pendingImage?.url || modalSponsor.imageURI)}
                                 alt="Preview"
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
@@ -155,7 +172,15 @@ export default function SponsorsSelector() {
                         <button
                             type="button"
                             className="btn btn-secondary flex-1"
-                            onClick={() => setModalSponsor(null)}
+                            onClick={async () => {
+                                if (pendingImage?.public_id) {
+                                    await uploadImage(undefined, pendingImage.public_id);
+                                }
+
+                                setPendingImage(null);
+                                setOldImagePublicID(null);
+                                setModalSponsor(null);
+                            }}
                         >
                             Cancel
                         </button>
@@ -170,12 +195,21 @@ export default function SponsorsSelector() {
                                 type="button"
                                 className="btn btn-error flex-1"
                                 onClick={async () => {
-                                    await fetch(`/api/advertisments?_id=${modalSponsor._id}`, { method: "DELETE" });
-                                    const publicID = getPublicIDFromURI(modalSponsor.imageURI);
-                                    if(publicID)
-                                        uploadImage(undefined, publicID);
-                                    setModalSponsor(null);
-                                    refreshSponsors();
+                                    const publicID = modalSponsor.public_id;
+
+                                    try {
+                                        if(publicID)
+                                            await uploadImage(undefined, publicID);
+
+                                        const res = await fetch(`/api/advertisments?_id=${modalSponsor._id}`, { method: "DELETE" });
+                                        if(!res.ok) throw new Error("DB delete failed");
+
+                                        setModalSponsor(null);
+                                        refreshSponsors();
+                                    } catch(err) {
+                                        console.error(err);
+                                        alert("Failed to delete sponsor");
+                                    }
                                 }}
                             >
                                 Remove
