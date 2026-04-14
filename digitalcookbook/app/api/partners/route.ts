@@ -23,10 +23,10 @@ export async function POST(req: NextRequest){
         await connectToDB();
     
         // get partner information
-        const { title, description, link, order } = await req.json();
+        const { title, description, link, order, imageURI, public_id } = await req.json();
 
         // create a new partner
-        const partners = await Partners.create({ title, description, link, order });
+        const partners = await Partners.create({ title, description, link, order, imageURI, public_id });
         return NextResponse.json({ partners });
 
     } catch(error) {
@@ -43,12 +43,12 @@ export async function PUT(req: NextRequest){
         await connectToDB();
     
         // get partner information
-        const { _id, title, description, link, order } = await req.json();
+        const { _id, title, description, link, order, imageURI, public_id } = await req.json();
 
         // update collection
         const resource = await Partners.findByIdAndUpdate(
             _id,
-            { title, description, link, order },
+            { title, description, link, order, imageURI, public_id },
             { new: true }
         );
         return NextResponse.json({ resource });

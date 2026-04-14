@@ -10,7 +10,9 @@ const PartnersSchema = new mongoose.Schema({
         es: String,
     },
     link: String,
-    order: Number
+    order: Number,
+    imageURI: String,
+    public_id: String
 });
     
 export default mongoose.models.Partners || mongoose.model('Partners', PartnersSchema);

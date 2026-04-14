@@ -13,10 +13,12 @@ interface Props {
 export default function FeaturedRecipeSelector({ recipes, featuredIds }: Props) {
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const [page, setPage] = useState(0);
+    const [recipeSearch, setRecipeSearch] = useState("");
 
     // calculate pagination information
-    const totalPages = Math.ceil(recipes.length / PAGE_SIZE);
-    const pageRecipes = recipes.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+    const searchedRecipes = recipes.filter(recipe => recipe.title.en.toLowerCase().includes(recipeSearch.toLowerCase()) || recipe.title.es.toLowerCase().includes(recipeSearch.toLowerCase()));
+    const totalPages = Math.ceil(searchedRecipes.length / PAGE_SIZE);
+    const pageRecipes = searchedRecipes.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
 
     // set already selected featured recipes
     useEffect(() => {
@@ -67,6 +69,20 @@ export default function FeaturedRecipeSelector({ recipes, featuredIds }: Props) 
                 <div>
                     {selectedIds.length} / 3 selected
                 </div>
+            </div>
+
+            {/* Search Bar */}
+            <div className="w-full max-w-6xl px-6 mb-4">
+                <input
+                    type="text"
+                    placeholder="Search ingredients..."
+                    className="input input-bordered w-full"
+                    value={recipeSearch}
+                    onChange={(e) => {
+                        setRecipeSearch(e.target.value);
+                        setPage(0);
+                    }}
+                />
             </div>
 
             {/* Recipe Grid */}
