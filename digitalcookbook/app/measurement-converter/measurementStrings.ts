@@ -17,8 +17,7 @@ export const MEASUREMENT_STRINGS = {
 
     notes: [
       { leftStrong: "TBSP", text: " = TABLESPOON = ", rightStrong: "T" },
-      { leftStrong: "TSP", text: " = TEASPOON = ", rightStrong: "t" },
-      { leftStrong: "1.5 CUPS", text: " = TWO ", rightStrong: "2/3", tail: " CUPS" },
+      { leftStrong: "TSP", text: " = TEASPOON = ", rightStrong: "t", tail: ""},
     ],
   },
 
@@ -40,8 +39,7 @@ export const MEASUREMENT_STRINGS = {
 
     notes: [
       { leftStrong: "TBSP", text: " = CUCHARADA = ", rightStrong: "T" },
-      { leftStrong: "TSP", text: " = CUCHARADITA = ", rightStrong: "t" },
-      { leftStrong: "1.5 TAZAS", text: " = DOS ", rightStrong: "2/3", tail: " TAZAS" },
+      { leftStrong: "TSP", text: " = CUCHARADITA = ", rightStrong: "t", tail: ""},
     ],
   },
 } as const;
