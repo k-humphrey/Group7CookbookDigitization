@@ -48,7 +48,7 @@ export default function ResourceSelector() {
                             action={
                                 <button className="btn btn-primary btn-sm" 
                                     onClick={() => {
-                                        setModalResource({...resource})
+                                        setModalResource({...resource});
                                         setOldImagePublicID(resource.public_id || null);
                                         setPendingImage(null);
                                     }}
@@ -65,7 +65,15 @@ export default function ResourceSelector() {
             {modalResource && (
             <dialog
                 className="modal modal-open"
-                onClick={() => setModalResource(null)}
+                onClick={async () => {
+                    if(pendingImage?.public_id) {
+                        await uploadImage(undefined, pendingImage.public_id);
+                    }
+                    
+                    setPendingImage(null);
+                    setOldImagePublicID(null);
+                    setModalResource(null);
+                }}
             >
                 <form
                     className="modal-box max-w-3xl max-h-[90vh] overflow-y-auto"
@@ -82,12 +90,12 @@ export default function ResourceSelector() {
                                 description: modalResource.description,
                                 link: modalResource.link,
                                 order: resources.length,
-                                imageURI: pendingImage?.url || modalResource.imageURI,
-                                public_id: pendingImage?.public_id || modalResource.public_id
+                                imageURI: pendingImage?.url ?? modalResource.imageURI,
+                                public_id: pendingImage?.public_id ?? modalResource.public_id
                             })
                         });
 
-                        if (oldImagePublicID && oldImagePublicID !== (pendingImage?.public_id || modalResource.public_id)) {
+                        if (oldImagePublicID && oldImagePublicID !== (pendingImage?.public_id ?? modalResource.public_id)) {
                             await uploadImage(undefined, oldImagePublicID);
                         }
 
@@ -135,6 +143,7 @@ export default function ResourceSelector() {
                             }
 
                             setPendingImage({url: res.url, public_id: res.public_id});
+                            setModalResource((prev: any) => ({...prev, imageURI: res.url, public_id: res.public_id}));
                         }}
                     />
 
@@ -157,8 +166,8 @@ export default function ResourceSelector() {
                             type="button"
                             className="btn btn-warning mt-3 w-full"
                             onClick={async () => {
-                                if (pendingImage?.public_id || modalResource.public_id) {
-                                    await uploadImage(undefined, (pendingImage?.public_id || modalResource.public_id));
+                                if (pendingImage?.public_id ?? modalResource.public_id) {
+                                    await uploadImage(undefined, (pendingImage?.public_id ?? modalResource.public_id));
                                 }
 
                                 setPendingImage(null);

@@ -120,14 +120,14 @@ export default function Navbar() {
         <div className="navbar bg-white text-black shadow-sm relative z-50">
             <div className="navbar-start">
                 <Link href="/">
-                    <div className="p-2 hover:bg-gray-100 rounded-lg relative w-[168px] h-[72px]">
+                    <div className="p-2 hover:bg-gray-100 rounded-lg relative h-[72px] items-center flex">
                         <Image
                             src="/pep_logo.png"
                             alt="LEADERSHIP PUTNAM Logo"
                             priority
                             height={72}
                             width={168}
-                            className="object-contain"
+                            className="object-contain w-[70px] md:w-[168px]"
                         />
                     </div>
                 </Link>
@@ -365,7 +365,7 @@ export default function Navbar() {
                             width={20}
                             height={20}
                         />
-                        <span className="font-semibold uppercase">{lang}</span>
+                        <span className="font-semibold uppercase hidden md:inline">{lang}</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="w-4 h-4"
@@ -415,7 +415,7 @@ export default function Navbar() {
                     src="/LP_logo.png"
                     alt="LEADERSHIP PUTNAM LOGO"
                     priority
-                    className="w-24 h-auto max-w-full object-contain"
+                    className="w-12 md:w-24 h-auto max-w-full object-contain"
                     height={72}
                     width={168}
                 />

@@ -7,7 +7,6 @@ import InfoCard from "./infocard";
 import Image from "next/image";
 import { uploadImage } from "@/lib/uploadImage";
 
-
 const PAGE_SIZE = 12; // 3 rows x 4 columns
 
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
@@ -15,6 +14,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 	const [page, setPage] = useState(0);
 	const [oldImagePublicID, setOldImagePublicID] = useState< string | null >(null);
 	const [pendingImage, setPendingImage] = useState<{ url: string, public_id: string } | null>(null);
+	const [recipeSearch, setRecipeSearch] = useState("");
 
 	// store recipe checkbox information
 	const [appliancesList, setAppliancesList] = useState<any[]>([]);
@@ -25,8 +25,9 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 	const [unitsList, setUnitsList] = useState<{ fromUnit: string, toUnit: string, multiplier: number }[]>([]);
 
 	// calculate pagination info
-	const totalPages = Math.ceil(recipes.length / PAGE_SIZE);
-	const pageRecipes = recipes.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+	const searchedRecipes = recipes.filter(recipe => recipe.title.en.toLowerCase().includes(recipeSearch.toLowerCase()) || recipe.title.es.toLowerCase().includes(recipeSearch.toLowerCase()));
+	const totalPages = Math.ceil(searchedRecipes.length / PAGE_SIZE);
+	const pageRecipes = searchedRecipes.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
 
 	// fetch appliances, tags, and allergens from database
 	useEffect(() => {
@@ -118,6 +119,21 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				+ Create New Recipe
 			</button>
 	</div>
+
+	{/* Search Bar */}
+	<div className="w-full max-w-6xl px-6 mb-4">
+		<input
+			type="text"
+			placeholder="Search Recipes..."
+			className="input input-bordered w-full"
+			value={recipeSearch}
+			onChange={(e) => {
+				setRecipeSearch(e.target.value);
+				setPage(0);
+			}}
+		/>
+	</div>
+
 	<div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6">
 		{pageRecipes.map((recipe) => (
 			<InfoCard

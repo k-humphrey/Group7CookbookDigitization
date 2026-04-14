@@ -60,6 +60,7 @@ export default function CommPartnersPage() {
                             title={partner.title?.[lang]}
                             description={partner.description?.[lang]}
                             href={partner.link}
+                            imageSrc={partner?.imageURI ?? ""}
                         />
                     </li>
                 ))}
