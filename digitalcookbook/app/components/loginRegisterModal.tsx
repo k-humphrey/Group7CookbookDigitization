@@ -14,19 +14,19 @@ export default function AuthModal() {
     confirmPassword: "",
   });
 
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
 
-  const toggleModal = () => {
+  const toggleModal = () => {  
     if (modalRef.current) {
       modalRef.current.showModal();
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e : any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e : any) => {
     e.preventDefault();
     if (!isLogin && formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
