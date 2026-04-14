@@ -22,6 +22,7 @@ const STRINGS = {
         shoppingList: "Shopping List",
         openMenu: "Open Menu",
         languageToggle: "Toggle Language",
+        login: "Login",
         findResources: "Map of Local Resources",
     },
     es: {
@@ -40,6 +41,7 @@ const STRINGS = {
         shoppingList: "Lista de Compras",
         openMenu: "Abrir Menú",
         languageToggle: "Cambiar Idioma",
+        login: "Login",
         findResources: "Mapa de Recursos Locales",
     } as const
 };
@@ -88,7 +90,7 @@ export default function Navbar() {
             .then((data) => setPartners(data));
     }, []);
 
-    const orderedResources = useMemo(
+    const orderedResources = useMemo( //react hook that caches the result of a calculation between re-renders, which improves performance
         () =>
             [...resources].sort(
                 (a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER)
@@ -354,8 +356,9 @@ export default function Navbar() {
             </div>
 
             <div className="navbar-end">
+                {/* Language Switch */}
                 <div className="dropdown dropdown-hover dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost flex items-center gap-2">
+                      <button type="button" onClick={(e) => {setLang(lang === "en" ? "es" : "en");(e.currentTarget as HTMLElement).blur()}} className="btn btn-ghost flex items-center gap-2">
                         <Image
                             src={lang === "en" ? "/flags/en.png" : "/flags/es.jpg"}
                             alt="flag"
@@ -372,15 +375,14 @@ export default function Navbar() {
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
-                    </div>
+                    </button>
 
                     <ul className="dropdown-content menu bg-white rounded-box w-26 mt-2 shadow z-50">
                         <li>
                             <button
                                 type="button"
-                                onClick={() => setLang("en")}
-                                className="flex items-center gap-2"
-                            >
+                                onClick={(e) => {setLang("en"); (e.currentTarget as HTMLElement).blur()}}
+                                className="flex items-center gap-2" >
                                 <Image src="/flags/en.png" alt="English" width={20} height={20} />
                                 EN
                             </button>
@@ -388,7 +390,7 @@ export default function Navbar() {
                         <li>
                             <button
                                 type="button"
-                                onClick={() => setLang("es")}
+                                onClick={(e) => {setLang("es");(e.currentTarget as HTMLElement).blur()}}
                                 className="flex items-center gap-2"
                             >
                                 <Image src="/flags/es.jpg" alt="Español" width={20} height={20} />
@@ -397,7 +399,18 @@ export default function Navbar() {
                         </li>
                     </ul>
                 </div>
+                
+                {/* Login Button */}
+                <div className="mx-2">
+                    <Link
+                        href="/recipes"
+                        className="btn btn-sm bg-gray-200 text-black hover:bg-gray-300 border-none"
+                    >
+                        {t.login ?? "Login"}
+                    </Link>
+                </div>
 
+                {/* Leadershup Putnam Logo */}
                 <Image
                     src="/LP_logo.png"
                     alt="LEADERSHIP PUTNAM LOGO"
