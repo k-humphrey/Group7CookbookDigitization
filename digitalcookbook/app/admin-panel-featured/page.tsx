@@ -41,6 +41,7 @@ export default async function AdminPanelPage() {
 					<Link href="/admin-panel-sponsors" className="block px-4 py-2 hover:bg-gray-100">Edit Sponsors</Link>
 					<Link href="/admin-panel-resources" className="block px-4 py-2 hover:bg-gray-100">Edit Resources</Link>
 					<Link href="/admin-panel-partners" className="block px-4 py-2 hover:bg-gray-100">Edit Partners</Link>
+                    <Link href="/admin-panel-ingredients" className="block px-4 py-2 hover:bg-gray-100">Edit Ingredients</Link>
 			</div>
             <div className="w-full max-w-6xl mx-auto">
                 <FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
