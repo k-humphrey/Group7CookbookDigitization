@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 
-export default function AuthModal() {
+export default function LoginRegisterModal() {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Mock state for demo
   const [username, setUsername] = useState("JaneDoe"); // Mock username

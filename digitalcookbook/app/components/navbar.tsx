@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "@/app/components/languageprovider";
 import { useEffect, useMemo, useState } from "react";
+import LoginRegisterModal from "./loginRegisterModal";
 
 const STRINGS = {
     en: {
@@ -402,12 +403,7 @@ export default function Navbar() {
                 
                 {/* Login Button */}
                 <div className="mx-2">
-                    <Link
-                        href="/recipes"
-                        className="btn btn-sm bg-gray-200 text-black hover:bg-gray-300 border-none"
-                    >
-                        {t.login ?? "Login"}
-                    </Link>
+                    <LoginRegisterModal/>
                 </div>
 
                 {/* Leadershup Putnam Logo */}
