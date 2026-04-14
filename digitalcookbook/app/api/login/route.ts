@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     //connect to db
     await connectToDB();
     //check authentication
-    const validUser = await User.findOne({ username });
+    const validUser = await User.findOne({email : username});
     //if not authenticated, return invalid credentials
     if (!validUser || validUser.password !== password) {
         return NextResponse.json(
