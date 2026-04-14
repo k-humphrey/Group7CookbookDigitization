@@ -152,7 +152,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   }, [recipe._id]);
 
   return (
-    <section className="min-h-screen bg-base-100">
+    <section className="min-h-screen bg-base-100 bg-cover bg-center" style={{backgroundImage: "url('/singlerecipebg.png')"}}>
       <div className="mx-auto max-w-6xl p-6 printable print:block">
         <div className="rounded-xl border border-black/20 bg-base-100">
 
