@@ -26,10 +26,10 @@ export async function POST(req: NextRequest){
         await connectToDB();
     
         // get advertisment information
-        const { name, imageURI, link } = await req.json();
+        const { name, imageURI, public_id, link } = await req.json();
 
         // create a new ad
-        const ad = await Advertisment.create({ name, imageURI, link });
+        const ad = await Advertisment.create({ name, imageURI, public_id, link });
         return NextResponse.json({ ad });
 
     } catch(error) {
@@ -46,12 +46,12 @@ export async function PUT(req: NextRequest){
         await connectToDB();
     
         // get advertisment information
-        const { _id, name, imageURI, link } = await req.json();
+        const { _id, name, imageURI, public_id, link } = await req.json();
 
         // update collection
         const ad = await Advertisment.findByIdAndUpdate(
             _id,
-            { name, imageURI, link },
+            { name, imageURI, public_id, link },
             { new: true }
         );
         return NextResponse.json({ ad });

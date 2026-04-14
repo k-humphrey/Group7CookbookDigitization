@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/connectToDB";
-import Resources from "@/models/Resources";
+import Safety from "@/models/Safety";
 
-// api to return community resources from db
+// api to return safety from db
 export async function GET(req: Request){
     try {
         await connectToDB();
 
-        const resources = await Resources.find().sort({ order: 1 }).lean();
-        return NextResponse.json(resources);
+        const safety = await Safety.find().sort({ order: 1 }).lean();
+        return NextResponse.json(safety);
         
     } catch(error) {
-        console.error("Resources API error:", error);
+        console.error("Safety API GET error:", error);
         return NextResponse.json({});
     }
 }
@@ -22,16 +22,16 @@ export async function POST(req: NextRequest){
         // connect to db
         await connectToDB();
     
-        // get resource information
-        const { title, description, link, order, imageURI, public_id } = await req.json();
+        // get safety information
+        const { title, description, link, order } = await req.json();
 
-        // create a new resource
-        const resource = await Resources.create({ title, description, link, order, imageURI, public_id });
-        return NextResponse.json({ resource });
+        // create a new safety
+        const newSafety = await Safety.create({ title, description, link, order });
+        return NextResponse.json({ newSafety });
 
     } catch(error) {
         // error return nothing
-        console.error("Resources API POST error:", error);
+        console.error("Safetys API POST error:", error);
         return NextResponse.json({});
     }
 }
@@ -42,20 +42,20 @@ export async function PUT(req: NextRequest){
         // connect to db
         await connectToDB();
     
-        // get resource information
-        const { _id, title, description, link, order, imageURI, public_id } = await req.json();
+        // get safety information
+        const { _id, title, description, link, order } = await req.json();
 
         // update collection
-        const resource = await Resources.findByIdAndUpdate(
+        const resource = await Safety.findByIdAndUpdate(
             _id,
-            { title, description, link, order, imageURI, public_id },
+            { title, description, link, order },
             { new: true }
         );
         return NextResponse.json({ resource });
 
     } catch(error) {
         // error return nothing
-        console.error("Resources API PUT error:", error);
+        console.error("Safety API PUT error:", error);
         return NextResponse.json({});
     }
 }
@@ -66,17 +66,17 @@ export async function DELETE(req: NextRequest) {
         // connect to db
         await connectToDB();
     
-        // get resource information
+        // get safety information
         const url = new URL(req.url);
         const id = url.searchParams.get("_id");
 
         // delete from collection
-        await Resources.findByIdAndDelete(id);
+        await Safety.findByIdAndDelete(id);
         return NextResponse.json({ success: true });
 
     } catch(error) {
         // error return nothing
-        console.error("Resources API DELETE error:", error);
+        console.error("Safety API DELETE error:", error);
         return NextResponse.json({ success: false });
     }
 }

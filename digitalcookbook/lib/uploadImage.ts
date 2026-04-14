@@ -1,5 +1,5 @@
 // upload, edit, or delete image to cloudinary
-export async function uploadImage(file?: File, publicID?: string): Promise<string | boolean | null> {
+export async function uploadImage(file?: File, publicID?: string): Promise<{url: string, public_id: string} | null> {
     try {
         
         if (file && publicID) { // edit image
@@ -16,7 +16,7 @@ export async function uploadImage(file?: File, publicID?: string): Promise<strin
             .then(res => res.json())
             .then(data => {
                 if(data.success)
-                    return data.url; // if success, return url of image
+                    return {url: data.url, public_id: data.public_id}; // if success, return url of image and publicID
                 else {
                     console.error("Edit failed: ", data); // else, error
                     return null;
@@ -36,7 +36,7 @@ export async function uploadImage(file?: File, publicID?: string): Promise<strin
             .then(res => res.json())
             .then(data => {
                 if(data.success)
-                    return data.url; // if success, return url of image
+                    return {url: data.url, public_id: data.public_id}; // if success, return url of image and publicID
                 else {
                     console.error("Upload failed: ", data); // else, error
                     return null;
@@ -56,7 +56,7 @@ export async function uploadImage(file?: File, publicID?: string): Promise<strin
             .then(res => res.json())
             .then(data => {
                 if(data.success)
-                    return true; // if success, return true
+                    return {url: "", public_id: ""}; // if success, return true
                 else {
                     console.error("Delete failed: ", data); // else, error
                     return null;

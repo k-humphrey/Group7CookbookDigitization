@@ -36,7 +36,7 @@ export default function CommResourcesPage() {
 
 			{/* Background picture */}
 			<Image
-				src="/searchbackground.jpg"
+				src="/comm_resources.png"
 				alt=""
 				fill
 				priority
@@ -54,11 +54,12 @@ export default function CommResourcesPage() {
 			{/* Cards Container aka Responsive Grid, works on mobile */}
 			<ul className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4 mb-20 items-stretch">
 				{resources.map((resource) => (
-					<li className="flex justify-center">
+					<li key={ resource._id } className="flex justify-center">
 						<InfoCard
 							title={resource.title?.[lang]}
 							description= {resource.description?.[lang]}
 							href={resource.link}
+							imageSrc={resource?.imageURI ?? ""}
 						/>
 					</li>
 				))}

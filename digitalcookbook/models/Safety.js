@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const ResourcesSchema = new mongoose.Schema({
+const SafetySchema = new mongoose.Schema({
     title: {
         en: {type: String, required: true, unique: true},
         es: {type: String, required: true, unique: true},
@@ -10,9 +10,7 @@ const ResourcesSchema = new mongoose.Schema({
         es: String,
     },
     link: String,
-    order: Number,
-    imageURI: String,
-    public_id: String
+    order: Number
 });
     
-export default mongoose.models.Resources || mongoose.model('Resources', ResourcesSchema);
+export default mongoose.models.Safety || mongoose.model('Safety', SafetySchema);

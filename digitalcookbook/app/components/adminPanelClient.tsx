@@ -13,7 +13,8 @@ const PAGE_SIZE = 12; // 3 rows x 4 columns
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	const [selectedRecipe, setSelectedRecipe] = useState< any | null >(null);
 	const [page, setPage] = useState(0);
-	const [oldImageURI, setOldImageURI] = useState< string | null >(null);
+	const [oldImagePublicID, setOldImagePublicID] = useState< string | null >(null);
+	const [pendingImage, setPendingImage] = useState<{ url: string, public_id: string } | null>(null);
 
 	// store recipe checkbox information
 	const [appliancesList, setAppliancesList] = useState<any[]>([]);
@@ -56,22 +57,12 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 		
 	}, []);
 
-	// Get publicID from URI - Used in image editing and deleting
-    function getPublicIDFromURI(uri: string): string {
-		if (!uri)
-            return "";
-
-        const parts = uri.split("/");
-        const fileName = parts[parts.length - 1];
-
-        return fileName.split(".")[0];
-    }
-
 	const emptyRecipe = {
 		title: { en: "", es: "" },
 		ingredientPlainText: { en: "", es: "" },
 		instructions: { en: "", es: "" },
 		imageURI: "",
+		public_id: "",
 		tags: {},
 		espTags: {},
 		ingredients: [],
@@ -87,6 +78,10 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 			`Are you sure you want to delete "${recipe.title?.en || "this recipe"}"?`
 		);
 		if (!confirmed) return;
+
+		// Delete image
+		if(recipe.public_id)
+			await uploadImage(undefined, recipe.public_id);
 
 		const res = await fetch("/api/edit-recipes/", {
 			method: "DELETE",
@@ -137,8 +132,8 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 							className="btn btn-primary btn-sm"
 							onClick={(e) => {
 								e.preventDefault();
-								setSelectedRecipe(recipe);
-								setOldImageURI(recipe.imageURI || null);
+								setSelectedRecipe({...recipe});
+								setOldImagePublicID(recipe.public_id || null);
 							}}
 						>
 							Edit
@@ -224,22 +219,27 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 			<input id="imageInput" className="file-input file-input-bordered w-full mb-4"
 				type="file"
 				accept="image/*"
-				onChange={e => {
+				onChange={async (e) => {
 					const file = e.target.files?.[0];
-					if (file) {
-						uploadImage(file).then(url => {
-							if(url)
-								setSelectedRecipe((prev: any) => ({ ...prev, imageURI: url}));
-						});
+					if(!file)
+						return;
+					const res = await uploadImage(file);
+					if(!res?.url)
+						return;
+
+					if(pendingImage?.public_id) {
+						await uploadImage(undefined, pendingImage.public_id);
 					}
+
+					setPendingImage({ url: res.url, public_id: res.public_id });
 				}}
 			/>
 
 			{/* image preview */}
-			{selectedRecipe.imageURI && (
+			{(pendingImage?.url || selectedRecipe.imageURI) && (
 				<div className="mt-2 relative w-full h-40">
 					<Image
-						src={selectedRecipe.imageURI}
+						src={(pendingImage?.url || selectedRecipe.imageURI)}
 						alt="Preview"
 						fill
 						sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
@@ -516,7 +516,15 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 			<div className="flex gap-4 mt-8">
 				<button
 					className="btn btn-secondary flex-1"
-				onClick={() => setSelectedRecipe(null)}
+				onClick={async () => {
+					if(pendingImage?.public_id) {
+						await uploadImage(undefined, pendingImage.public_id)
+					}
+
+					setPendingImage(null);
+					setSelectedRecipe(null);
+					setOldImagePublicID(null);
+				}}
 				>
 				Cancel
 				</button>
@@ -562,18 +570,19 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 								allergens: Object.fromEntries(allergensList.map(allergen => [allergen.en, !!selectedRecipe.allergens?.[allergen.en]])),
 								espAllergens: Object.fromEntries(allergensList.map(allergen => [allergen.es, !!selectedRecipe.espAllergens?.[allergen.es]])),
 								ingredients: formatedIngredients,
+								public_id: pendingImage?.public_id || selectedRecipe.public_id,
+								imageURI: pendingImage?.url || selectedRecipe.imageURI,
 								totalCost
 							}),
 						});
 
-						if (oldImageURI && oldImageURI !== selectedRecipe.imageURI) {
-							const publicID = getPublicIDFromURI(oldImageURI);
-							if (publicID)
-								await uploadImage(undefined, publicID);
+						if (oldImagePublicID && pendingImage?.public_id) {
+							await uploadImage(undefined, oldImagePublicID);
 						}
 
+						setPendingImage(null);
 						setSelectedRecipe(null);
-						setOldImageURI(null);
+						setOldImagePublicID(null);
 						location.reload();     
 					}}
 				>

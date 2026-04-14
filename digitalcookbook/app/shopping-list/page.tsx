@@ -11,6 +11,7 @@ import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStri
 import { SHOPPING_LIST_STRINGS } from "./shoppingListStrings";
 import PrintButton from "@/app/components/printbutton";
 import { decimalToFraction } from "@/lib/fractionConverter";
+import { generateCSV } from "@/lib/generateCSV";
 
 export default function ShoppingListPage() {
   const router = useRouter();
@@ -153,6 +154,13 @@ export default function ShoppingListPage() {
             label={lang === "es" ? "Imprimir todas las recetas" : "Print All Recipes"}
             className="px-4 py-2 rounded-md"
           />
+          {/*Generate CSV Button*/}
+          <button 
+            className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 print:hidden"
+            onClick={() => generateCSV(combinedIngredients, selectedRecipes, lang, "shopping-list.csv")}
+          >
+            {t.generateCSV}
+          </button>
         </div>
 
         {/* Shopping List ingredients*/}

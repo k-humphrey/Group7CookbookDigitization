@@ -9,7 +9,8 @@ export const SHOPPING_LIST_STRINGS = {
     more: "more",
     totalCost: "Total Cost",
     cost: "Cost",
-    ingredientShoppingList: "Ingredient Shopping List"
+    ingredientShoppingList: "Ingredient Shopping List",
+    generateCSV: "Generate CSV"
   },
   es: {
     title: "Lista de Compras",
@@ -21,6 +22,7 @@ export const SHOPPING_LIST_STRINGS = {
     more: "más",
     totalCost: "Costo Total",
     cost: "Costo",
-    ingredientShoppingList: "Lista de la compra de ingredientes"
+    ingredientShoppingList: "Lista de la compra de ingredientes",
+    generateCSV: "Generar CSV"
   },
 };
