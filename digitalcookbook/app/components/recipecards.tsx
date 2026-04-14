@@ -37,7 +37,12 @@ export default function RecipeGrid({ recipes }: Props) {
   const t = STRINGS[lang];
 
   if (!recipes || recipes.length === 0) {
-    return <p className="mt-6 text-sm text-slate-600">{t.noRecipes}</p>;
+  return (
+    <div className="flex min-h-[60vh] w-full flex-col items-center justify-start pt-24 gap-2 text-gray-700">
+      <span className="loading loading-spinner loading-xl scale-200"></span>
+      <p className="text-sm">{t.noRecipes}</p>
+    </div>
+    );
   }
 
   return (
