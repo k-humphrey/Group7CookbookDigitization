@@ -118,7 +118,10 @@ export default function Home() {
       <section id="featured-recipes" aria-label={t.featured} className="w-full max-w-7xl px-6 mt-20 mb-15 z-10">
         <h2 className={`${chango.className} text-[#2b3033] text-4xl font-bold mb-6 flex justify-center`}>{t.featured}</h2>
         {featuredRecipes === null ? (
-          <p>{t.loading}</p>
+          <div className="flex flex-col items-center justify-center py-10">
+          <span className="loading loading-spinner loading-xl"></span>
+          <p className="mt-3 text-sm text-gray-700">{t.loading}</p>
+        </div>
         ) : (
           <RecipeGrid recipes={featuredRecipes} />
         )}
