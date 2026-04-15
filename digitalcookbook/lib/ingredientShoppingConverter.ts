@@ -48,6 +48,17 @@ export function ingredientShoppingConverter(combinedIngredients: CombinedIngredi
                 };
             }
 
+            if(ingredient.unit === "count") {
+                totalShoppingCost += (priceInfo.price / priceInfo.packageSize) * Math.ceil(totalAmount);
+
+                return {
+                    ingredientName: ingredient.ingredient,
+                    storeName: priceInfo.storeName ?? ingredient?.[lang],
+                    packagesNeeded: Math.ceil(totalAmount / priceInfo.packageSize),
+                    totalCost: (priceInfo.price / priceInfo.packageSize) * Math.ceil(totalAmount)
+                };
+            }
+
             // Fallback to combinedIngredients if packageSize not set yet
             if(priceInfo.packageSize === 1 && ingredient.unit !== "each") {
                 totalShoppingCost += totalCost;

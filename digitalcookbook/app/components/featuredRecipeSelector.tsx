@@ -75,7 +75,7 @@ export default function FeaturedRecipeSelector({ recipes, featuredIds }: Props) 
             <div className="w-full max-w-6xl px-6 mb-4">
                 <input
                     type="text"
-                    placeholder="Search ingredients..."
+                    placeholder="Search Recipes..."
                     className="input input-bordered w-full"
                     value={recipeSearch}
                     onChange={(e) => {

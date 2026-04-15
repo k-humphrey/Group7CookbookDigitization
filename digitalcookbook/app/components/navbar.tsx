@@ -13,7 +13,6 @@ const STRINGS = {
         aboutPartners: "About Our Partners",
         tools: "Tools",
         shelfLife: "Shelf Life Guidelines",
-        priceFinder: "Price Finder",
         timer: "Timer",
         measurementConverter: "Measurement Converter",
         mealPlanner: "Meal Planner",
@@ -32,7 +31,6 @@ const STRINGS = {
         aboutPartners: "Información Sobre Nuestros Socios",
         tools: "Herramientas",
         shelfLife: "Guías de Vida Útil",
-        priceFinder: "Buscador de Precios",
         timer: "Temporizador",
         measurementConverter: "Convertidor de Medidas",
         mealPlanner: "Planificador de Comidas",
@@ -108,7 +106,6 @@ export default function Navbar() {
 
     const toolItems: ToolItem[] = [
         { href: "/shelf-life-guidelines", label: t.shelfLife },
-        { href: "/price-finder", label: t.priceFinder },
         { href: "/timer", label: t.timer },
         { href: "/measurement-converter", label: t.measurementConverter },
         { href: "/meal-planner", label: t.mealPlanner },
