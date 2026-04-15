@@ -32,14 +32,6 @@ export default function ToolsPage() {
 
                 <div className="flex justify-center">
                     <InfoCard
-                        title="Price Finder"
-                        description="Calculate the price of different ingredients and shows you the location where its the cheapest."
-                        href="/price-finder"
-                    />
-                </div>
-
-                <div className="flex justify-center">
-                    <InfoCard
                         title="Kitchen Timer"
                         description="Timer"
                         href="/timer"
