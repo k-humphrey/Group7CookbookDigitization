@@ -3,7 +3,6 @@ import { encrypt } from "@/lib/session";
 import User from "@/models/User";
 import { connectToDB } from "@/lib/connectToDB";
 import bcrypt from "bcrypt";
-import { cookies } from "next/headers";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -19,7 +18,6 @@ export async function POST(req: Request) {
     );
   }
 
-  // Compare hashed password
   const passwordMatch = await bcrypt.compare(password, validUser.password);
 
   if (!passwordMatch) {
@@ -29,23 +27,19 @@ export async function POST(req: Request) {
     );
   }
 
-  // Create encrypted session cookie
   const sessionData = { email };
   const encrypted = await encrypt(sessionData);
 
   const res = NextResponse.json({ success: true });
 
-  const cookieStore = await cookies(); 
-  cookieStore.set("session", encrypted)
-  /*res.cookies.set("session", encrypted, {
+  // THIS is the correct way to set cookies in App Router
+  res.cookies.set("session", encrypted, {
     httpOnly: true,
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     maxAge: 60 * 60 * 2,
     path: "/",
   });
-*/
+
   return res;
 }
-
-
