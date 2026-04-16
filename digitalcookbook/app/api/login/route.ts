@@ -35,7 +35,7 @@ export async function POST(req: Request) {
   // THIS is the correct way to set cookies in App Router
   res.cookies.set("session", encrypted, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: false,
     sameSite: "lax",
     maxAge: 60 * 60 * 2,
     path: "/",
