@@ -43,7 +43,6 @@ export default function LoginRegisterModal() {
     setIsLoggedIn(false);
     setUsername("");
 
-    router.refresh(); // refresh AFTER state change
   };
 
   const handleSubmit = async (e: FormEvent) => {
