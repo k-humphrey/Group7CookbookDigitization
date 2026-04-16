@@ -57,14 +57,14 @@ export default function Sponsors() {
 
                                         {/* Logo */}
                                         {sponsor?.imageURI && /^https?:\/\//.test(sponsor.imageURI) && (
-                                            <div className="relative w-full h-40 mb-5">
+                                            <div className="relative w-full h-50 md:h-40 mb-5">
                                                 <Image
                                                     src={sponsor.imageURI}
                                                     alt={sponsor.name}
                                                     fill
                                                     loading="lazy"
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                                                    className="w-full object-contain"
+                                                    className="w-full object-contain scale-120 md:scale-100"
                                                 />
                                             </div>
                                         )}
@@ -78,14 +78,14 @@ export default function Sponsors() {
 
                                     {/* Logo */}
                                     {sponsor?.imageURI && /^https?:\/\//.test(sponsor.imageURI) && (
-                                        <div className="relative w-full h-40 mb-5">
+                                        <div className="relative w-full h-50 md:h-40 mb-5">
                                             <Image
                                                 src={sponsor.imageURI}
                                                 alt={sponsor.name}
                                                 fill
                                                 loading="lazy"
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                                                className="w-full object-contain"
+                                                className="w-full object-contain scale-120 md:scale-100"
                                             />
                                         </div>
                                     )}
