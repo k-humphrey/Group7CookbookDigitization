@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const validUser = await User.findOne({ email });
   if (!validUser) {
     return NextResponse.json(
-      { error: "Invalid credentials" },
+      { error: "Invalid credentials bc unfound" },
       { status: 401 }
     );
   }
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 
   if (!passwordMatch) {
     return NextResponse.json(
-      { error: "Invalid credentials" },
+      { error: "Invalid credentials bc pssword" },
       { status: 401 }
     );
   }
