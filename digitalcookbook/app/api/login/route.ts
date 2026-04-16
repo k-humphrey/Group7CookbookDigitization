@@ -3,6 +3,7 @@ import { encrypt } from "@/lib/session";
 import User from "@/models/User";
 import { connectToDB } from "@/lib/connectToDB";
 import bcrypt from "bcrypt";
+import { cookies } from "next/headers";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -34,14 +35,16 @@ export async function POST(req: Request) {
 
   const res = NextResponse.json({ success: true });
 
-  res.cookies.set("session", encrypted, {
+  const cookieStore = await cookies(); 
+  cookieStore.set("session", encrypted)
+  /*res.cookies.set("session", encrypted, {
     httpOnly: true,
     secure: false,
     sameSite: "lax",
     maxAge: 60 * 60 * 2,
     path: "/",
   });
-
+*/
   return res;
 }
 
