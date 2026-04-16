@@ -10,7 +10,6 @@ import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 import Filters from "@/app/components/filters";
 import Searchbar from "@/app/components/searchbar";
 import PlannerRecipeCards from "@/app/components/plannerRecipeCards";
-import Link from "next/link";
 
 // Props needed to pass selected recipes
 interface Props {
@@ -120,15 +119,13 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
 
                         return (
                             <li key={recipe._id}>
-                                <Link key={recipe._id} href={`/single-recipe/${recipe._id}`} className="group block focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded" aria-label={`View recipe ${recipe.title?.[lang]}`}>
                                     <PlannerRecipeCards
                                         key={recipe._id}
                                         recipe={recipe}
                                         selected={selected}
                                         toggleRecipe={toggleRecipe}
                                         updateServings={updateServings}
-                                    /> 
-                                </Link>
+                                    />
                             </li>
                         );
                     })}
