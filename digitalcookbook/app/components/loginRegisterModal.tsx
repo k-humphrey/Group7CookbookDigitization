@@ -42,7 +42,7 @@ export default function LoginRegisterModal() {
 
     setIsLoggedIn(false);
     setUsername("");
-
+    window.location.href = "/";
   };
 
   const handleSubmit = async (e: FormEvent) => {

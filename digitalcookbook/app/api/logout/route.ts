@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function POST() {
-  const res = NextResponse.redirect("/");
+  const res = NextResponse.json({ success: true });
   console.log("1please")
   res.cookies.set("session", "", {
     httpOnly: true,
