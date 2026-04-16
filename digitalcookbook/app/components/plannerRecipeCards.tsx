@@ -78,10 +78,10 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                             inputMode="numeric"
                             min={1}
                             value={selected.servings}
-                            onChange={(e) => {
+                            onChange={(e) => updateServings(recipe._id, Number(e.target.value))}
+                            onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                updateServings(recipe._id, Number(e.target.value));
                             }}
                             className="input input-bordered w-full lg:w-20"
                         />
