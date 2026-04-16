@@ -10,13 +10,13 @@ export async function POST(req: Request) {
   await connectToDB();
 
   const validUser = await User.findOne({ email });
-
   if (!validUser) {
     return NextResponse.json(
       { error: "Invalid credentials" },
       { status: 401 }
     );
   }
+  const role = validUser.role
 
   const passwordMatch = await bcrypt.compare(password, validUser.password);
 
@@ -27,11 +27,10 @@ export async function POST(req: Request) {
     );
   }
 
-  const sessionData = { email };
+  const sessionData = { email, role };
   const encrypted = await encrypt(sessionData);
 
   const res = NextResponse.json({ success: true });
-  // THIS is the correct way to set cookies in App Router
   res.cookies.set("session", encrypted, {
     httpOnly: true,
     secure: false,
