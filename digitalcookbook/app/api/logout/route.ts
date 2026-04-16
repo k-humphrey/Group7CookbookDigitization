@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   const res = NextResponse.json({ success: true });
-  console.log("1please")
+
   res.cookies.set("session", "", {
     httpOnly: true,
     secure: false,
@@ -10,8 +10,6 @@ export async function POST() {
     maxAge: 0,
     path: "/",
   });
-
-  console.log("please")
 
   return res;
 }
