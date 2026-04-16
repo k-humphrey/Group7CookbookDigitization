@@ -48,9 +48,14 @@ export default async function AdminPanelPage() {
 					<Link href="/admin-panel-ingredients" className="block px-4 py-2 hover:bg-gray-100">Edit Ingredients</Link>
 					
 				</div>
-				<div className="w-full max-w-6xl mx-auto">
-					<ResourceSelector />
-					<SafetySelector />
+				<div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-10">
+					<div className="flex-1">
+						<ResourceSelector />
+					</div>
+
+					<div className="flex-1">
+						<SafetySelector />
+					</div>
 				</div>
 		
 		</section>
