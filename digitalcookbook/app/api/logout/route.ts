@@ -11,5 +11,7 @@ export async function POST() {
     path: "/",
   });
 
+  console.log("please")
+
   return res;
 }

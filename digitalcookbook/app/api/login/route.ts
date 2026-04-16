@@ -31,7 +31,6 @@ export async function POST(req: Request) {
   const encrypted = await encrypt(sessionData);
 
   const res = NextResponse.json({ success: true });
-
   // THIS is the correct way to set cookies in App Router
   res.cookies.set("session", encrypted, {
     httpOnly: true,
