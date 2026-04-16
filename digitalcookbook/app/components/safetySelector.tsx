@@ -36,7 +36,7 @@ export default function SafetySelector() {
                     </button>
                 </div>
 
-                {/* List Resources */}
+                {/* List Safety Items */}
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {safeties.map(item => (
                         <InfoCard
@@ -107,7 +107,7 @@ export default function SafetySelector() {
                     }}
                 >
                     <h3 className="font-bold text-2xl mb-6">
-                        {modalSafety._id ? "Edit Resource" : "Add Resource"}
+                        {modalSafety._id ? "Edit Safety Item" : "Add Safety Item"}
                     </h3>
 
                     {/* Name */}
