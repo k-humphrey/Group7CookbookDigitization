@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const validUser = await User.findOne({ email });
   if (!validUser) {
     return NextResponse.json(
-      { error: "Invalid credentials bc unfound" },
+      { error: "Invalid credentials." },
       { status: 401 }
     );
   }
