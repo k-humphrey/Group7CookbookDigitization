@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
       email,
       password: hashedPassword,
       role: "USER",
+      savedRecipes: []
     });
 
     return NextResponse.json(
