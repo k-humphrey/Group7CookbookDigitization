@@ -122,7 +122,7 @@ export default function Home() {
           <span className="loading loading-spinner loading-xl"></span>
           <p className="mt-3 text-sm text-gray-700">{t.loading}</p>
         </div>
-        ) : (
+        ) : ( 
           <RecipeGrid recipes={featuredRecipes} />
         )}
       </section>
