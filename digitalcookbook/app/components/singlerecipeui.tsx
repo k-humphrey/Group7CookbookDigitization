@@ -238,7 +238,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
 
           {/* ALLERGENS */}
           <div className="flex flex-row pl-6 gap-2">
-            <span className="font-semibold">{t.contains}</span>
+            <span className="font-semibold pb-10">{t.contains}</span>
             <ul className="pr-6 pb-10 flex flex-wrap gap-2">
               {allergensObj && Object.entries(allergensObj).filter(([, value]) => value === true).map(([allergen]) => (
                 <li key={allergen} className="badge badge-error font-semibold text-black">{allergen}</li>
