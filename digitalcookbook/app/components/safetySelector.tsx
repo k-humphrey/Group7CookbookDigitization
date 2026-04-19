@@ -5,51 +5,51 @@ import Image from "next/image";
 import InfoCard from "@/app/components/infocard";
 import { uploadImage } from "@/lib/uploadImage";
 
-export default function ResourceSelector() {
-    const [resources, setResources] = useState<any[]>([]);
-    const [modalResource, setModalResource] = useState<any | null>(null);
+export default function SafetySelector() {
+    const [safeties, setSafety] = useState<any[]>([]);
+    const [modalSafety, setModalSafety] = useState<any | null>(null);
     const [pendingImage, setPendingImage] = useState<{url: string, public_id: string} | null>(null);
     const [oldImagePublicID, setOldImagePublicID] = useState<string | null>(null);
          
-    // Get resources
+    // Get safety items
     useEffect(() => {
-        fetch("/api/resources")
+        fetch("/api/safety")
             .then(res => res.json())
-            .then(data => setResources(data))
-            .catch(error => console.warn(`Failed to fetch resources API: ${error}`));
+            .then(data => setSafety(data))
+            .catch(error => console.warn(`Failed to fetch safety API: ${error}`));
     }, []);
 
-    const refreshResources = async () => {
-        await fetch("/api/resources")
+    const refreshSafetyItems = async () => {
+        await fetch("/api/safety")
         .then(res => res.json())
-        .then(data => setResources(data));
+        .then(data => setSafety(data));
     };
 
     return (
         <>
             <div className="p-6 max-w-md">
                 <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-bold">Community Resources</h2>
+                    <h2 className="text-xl font-bold">Safety</h2>
 
-                    <button className="btn btn-success" onClick={() => setModalResource({ title: { en: "", es: "" }, description: { en: "", es: "" }, link: "", order: resources.length, imageURI: "", public_id: "" })}>
-                        + Add New Resource
+                    <button className="btn btn-success" onClick={() => setModalSafety({ title: { en: "", es: "" }, description: { en: "", es: "" }, link: "", order: safeties.length, imageURI: "", public_id: "" })}>
+                        + Add New Safety Item
                     </button>
                 </div>
 
-                {/* List Resources */}
+                {/* List Safety Items */}
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {resources.map(resource => (
+                    {safeties.map(item => (
                         <InfoCard
-                            key={resource._id}
-                            title={resource.title.en}
+                            key={item._id}
+                            title={item.title.en}
                             description=""
                             href="#"
-                            imageSrc={resource?.imageURI ?? ""}
+                            imageSrc={item?.imageURI ?? ""}
                             action={
                                 <button className="btn btn-primary btn-sm" 
                                     onClick={() => {
-                                        setModalResource({...resource});
-                                        setOldImagePublicID(resource.public_id || null);
+                                        setModalSafety({...item});
+                                        setOldImagePublicID(item.public_id || null);
                                         setPendingImage(null);
                                     }}
                                 >
@@ -62,7 +62,7 @@ export default function ResourceSelector() {
             </div>
 
             {/* Modal */}
-            {modalResource && (
+            {modalSafety && (
             <dialog
                 className="modal modal-open"
                 onClick={async () => {
@@ -72,7 +72,7 @@ export default function ResourceSelector() {
                     
                     setPendingImage(null);
                     setOldImagePublicID(null);
-                    setModalResource(null);
+                    setModalSafety(null);
                 }}
             >
                 <form
@@ -81,47 +81,47 @@ export default function ResourceSelector() {
                     onSubmit={async (e) => {
                         e.preventDefault();
                         
-                        await fetch("/api/resources", {
-                            method: modalResource._id ? "PUT" : "POST",
+                        await fetch("/api/safety", {
+                            method: modalSafety._id ? "PUT" : "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                                _id: modalResource._id,
-                                title: modalResource.title,
-                                description: modalResource.description,
-                                link: modalResource.link,
-                                order: resources.length,
-                                imageURI: pendingImage?.url ?? modalResource.imageURI,
-                                public_id: pendingImage?.public_id ?? modalResource.public_id
+                                _id: modalSafety._id,
+                                title: modalSafety.title,
+                                description: modalSafety.description,
+                                link: modalSafety.link,
+                                order: safeties.length,
+                                imageURI: pendingImage?.url ?? modalSafety.imageURI,
+                                public_id: pendingImage?.public_id ?? modalSafety.public_id
                             })
                         });
 
-                        if (oldImagePublicID && oldImagePublicID !== (pendingImage?.public_id ?? modalResource.public_id)) {
+                        if (oldImagePublicID && oldImagePublicID !== (pendingImage?.public_id ?? modalSafety.public_id)) {
                             await uploadImage(undefined, oldImagePublicID);
                         }
 
                         setPendingImage(null);
                         setOldImagePublicID(null);
-                        setModalResource(null);
-                        refreshResources();
+                        setModalSafety(null);
+                        refreshSafetyItems();
 
                     }}
                 >
                     <h3 className="font-bold text-2xl mb-6">
-                        {modalResource._id ? "Edit Resource" : "Add Resource"}
+                        {modalSafety._id ? "Edit Safety Item" : "Add Safety Item"}
                     </h3>
 
                     {/* Name */}
                     <label className="font-semibold" htmlFor="nameENInput">Title en: </label>
                     <input id="nameENInput" className="input input-bordered w-full mb-4"
-                        value={modalResource.title.en || ""} 
-                        onChange={e => setModalResource({ ...modalResource, title: { ...modalResource.title, en: e.target.value } })}
+                        value={modalSafety.title.en || ""} 
+                        onChange={e => setModalSafety({ ...modalSafety, title: { ...modalSafety.title, en: e.target.value } })}
                         required 
                     />
 
                     <label className="font-semibold" htmlFor="nameESInput">Title es: </label>
                     <input id="nameESInput" className="input input-bordered w-full mb-4"
-                        value={modalResource.title.es || ""} 
-                        onChange={e => setModalResource({ ...modalResource, title: { ...modalResource.title, es: e.target.value } })}
+                        value={modalSafety.title.es || ""} 
+                        onChange={e => setModalSafety({ ...modalSafety, title: { ...modalSafety.title, es: e.target.value } })}
                         required 
                     />
 
@@ -143,15 +143,15 @@ export default function ResourceSelector() {
                             }
 
                             setPendingImage({url: res.url, public_id: res.public_id});
-                            setModalResource((prev: any) => ({...prev, imageURI: res.url, public_id: res.public_id}));
+                            setModalSafety((prev: any) => ({...prev, imageURI: res.url, public_id: res.public_id}));
                         }}
                     />
 
                     {/* image preview */}
-                    {(pendingImage?.url || modalResource.imageURI) && (
+                    {(pendingImage?.url || modalSafety.imageURI) && (
                         <div className="mt-2 relative w-full h-40">
                             <Image
-                                src={(pendingImage?.url || modalResource.imageURI)}
+                                src={(pendingImage?.url || modalSafety.imageURI)}
                                 alt="Preview"
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
@@ -161,17 +161,17 @@ export default function ResourceSelector() {
                     )}
 
                     {/* remove image button */}
-                    {(pendingImage?.public_id || modalResource.public_id) && (
+                    {(pendingImage?.public_id || modalSafety.public_id) && (
                         <button
                             type="button"
                             className="btn btn-warning mt-3 w-full"
                             onClick={async () => {
-                                if (pendingImage?.public_id ?? modalResource.public_id) {
-                                    await uploadImage(undefined, (pendingImage?.public_id ?? modalResource.public_id));
+                                if (pendingImage?.public_id ?? modalSafety.public_id) {
+                                    await uploadImage(undefined, (pendingImage?.public_id ?? modalSafety.public_id));
                                 }
 
                                 setPendingImage(null);
-                                setModalResource((prev: any) => ({...prev, imageURI: "", public_id: ""}));
+                                setModalSafety((prev: any) => ({...prev, imageURI: "", public_id: ""}));
                             }}
                         >
                             Remove Image
@@ -181,21 +181,21 @@ export default function ResourceSelector() {
                     {/* description */}
                     <label className="font-semibold" htmlFor="descriptionENInput">Description en: </label>
                     <input id="descriptionENInput" className="input input-bordered w-full mb-4"
-                        value={modalResource.description.en || ""} 
-                        onChange={e => setModalResource({ ...modalResource, description: { ...modalResource.description, en: e.target.value } })}
+                        value={modalSafety.description.en || ""} 
+                        onChange={e => setModalSafety({ ...modalSafety, description: { ...modalSafety.description, en: e.target.value } })}
                     />
 
                     <label className="font-semibold" htmlFor="descriptionESInput">Description es: </label>
                     <input id="descriptionESInput" className="input input-bordered w-full mb-4"
-                        value={modalResource.description.es || ""} 
-                        onChange={e => setModalResource({ ...modalResource, description: { ...modalResource.description, es: e.target.value } })}
+                        value={modalSafety.description.es || ""} 
+                        onChange={e => setModalSafety({ ...modalSafety, description: { ...modalSafety.description, es: e.target.value } })}
                     />
 
                     {/* Link */}
                     <label className="font-semibold" htmlFor="linkInput">Link: </label>
                     <input id="linkInput" className="input input-bordered w-full mb-4"
-                        value={modalResource.link || ""}
-                        onChange={e => setModalResource({ ...modalResource, link: e.target.value })}
+                        value={modalSafety.link || ""}
+                        onChange={e => setModalSafety({ ...modalSafety, link: e.target.value })}
                     />
 
                     {/* BUTTONS */}
@@ -210,7 +210,7 @@ export default function ResourceSelector() {
 
                                 setPendingImage(null);
                                 setOldImagePublicID(null);
-                                setModalResource(null);
+                                setModalSafety(null);
                             }}
                         >
                             Cancel
@@ -221,18 +221,18 @@ export default function ResourceSelector() {
                         >
                             Save
                         </button>
-                        {modalResource._id && (
+                        {modalSafety._id && (
                             <button
                                 type="button"
                                 className="btn btn-error flex-1"
                                 onClick={async () => {
-                                    if(modalResource.public_id) {
-                                        await uploadImage(undefined, modalResource.public_id);
+                                    if(modalSafety.public_id) {
+                                        await uploadImage(undefined, modalSafety.public_id);
                                     }
 
-                                    await fetch(`/api/resources?_id=${modalResource._id}`, { method: "DELETE" });
-                                    setModalResource(null);
-                                    refreshResources();
+                                    await fetch(`/api/safety?_id=${modalSafety._id}`, { method: "DELETE" });
+                                    setModalSafety(null);
+                                    refreshSafetyItems();
                                 }}
                             >
                                 Remove

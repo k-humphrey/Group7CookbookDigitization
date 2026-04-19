@@ -118,7 +118,7 @@ export default function ShoppingListPage() {
   // Convert to shopping list
   const shoppingList = ingredientShoppingConverter(combinedIngredients,ingredientPriceInfo,lang);
   //Total cost of all shoppingList Items
-  const totalCost = shoppingList.totalShoppingCost.toFixed(2);
+  const totalCost = ingredientShoppingConverter(combinedIngredients.filter(item => checkedIngredients[item.ingredient._id] !== false),ingredientPriceInfo,lang).totalShoppingCost.toFixed(2);
   // Number of ingredients to show before "See more "
   const MAX_VISIBLE_INGREDIENTS = 5;
 

@@ -13,7 +13,6 @@ const STRINGS = {
         aboutPartners: "About Our Partners",
         tools: "Tools",
         shelfLife: "Shelf Life Guidelines",
-        priceFinder: "Price Finder",
         timer: "Timer",
         measurementConverter: "Measurement Converter",
         mealPlanner: "Meal Planner",
@@ -22,6 +21,7 @@ const STRINGS = {
         shoppingList: "Shopping List",
         openMenu: "Open Menu",
         languageToggle: "Toggle Language",
+        login: "Login",
         findResources: "Map of Local Resources",
     },
     es: {
@@ -31,7 +31,6 @@ const STRINGS = {
         aboutPartners: "Información Sobre Nuestros Socios",
         tools: "Herramientas",
         shelfLife: "Guías de Vida Útil",
-        priceFinder: "Buscador de Precios",
         timer: "Temporizador",
         measurementConverter: "Convertidor de Medidas",
         mealPlanner: "Planificador de Comidas",
@@ -40,6 +39,7 @@ const STRINGS = {
         shoppingList: "Lista de Compras",
         openMenu: "Abrir Menú",
         languageToggle: "Cambiar Idioma",
+        login: "Login",
         findResources: "Mapa de Recursos Locales",
     } as const
 };
@@ -88,7 +88,7 @@ export default function Navbar() {
             .then((data) => setPartners(data));
     }, []);
 
-    const orderedResources = useMemo(
+    const orderedResources = useMemo( //react hook that caches the result of a calculation between re-renders, which improves performance
         () =>
             [...resources].sort(
                 (a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER)
@@ -106,7 +106,6 @@ export default function Navbar() {
 
     const toolItems: ToolItem[] = [
         { href: "/shelf-life-guidelines", label: t.shelfLife },
-        { href: "/price-finder", label: t.priceFinder },
         { href: "/timer", label: t.timer },
         { href: "/measurement-converter", label: t.measurementConverter },
         { href: "/meal-planner", label: t.mealPlanner },
@@ -118,14 +117,14 @@ export default function Navbar() {
         <div className="navbar bg-white text-black shadow-sm relative z-50">
             <div className="navbar-start">
                 <Link href="/">
-                    <div className="p-2 hover:bg-gray-100 rounded-lg relative w-[168px] h-[72px]">
+                    <div className="p-2 hover:bg-gray-100 rounded-lg relative h-[72px] items-center flex">
                         <Image
                             src="/pep_logo.png"
                             alt="LEADERSHIP PUTNAM Logo"
                             priority
                             height={72}
                             width={168}
-                            className="object-contain"
+                            className="object-contain w-[70px] md:w-[168px]"
                         />
                     </div>
                 </Link>
@@ -354,15 +353,16 @@ export default function Navbar() {
             </div>
 
             <div className="navbar-end">
+                {/* Language Switch */}
                 <div className="dropdown dropdown-hover dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost flex items-center gap-2">
+                      <button type="button" onClick={(e) => {setLang(lang === "en" ? "es" : "en");(e.currentTarget as HTMLElement).blur()}} className="btn btn-ghost flex items-center gap-2">
                         <Image
                             src={lang === "en" ? "/flags/en.png" : "/flags/es.jpg"}
                             alt="flag"
                             width={20}
                             height={20}
                         />
-                        <span className="font-semibold uppercase">{lang}</span>
+                        <span className="font-semibold uppercase hidden md:inline">{lang}</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="w-4 h-4"
@@ -372,15 +372,14 @@ export default function Navbar() {
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
-                    </div>
+                    </button>
 
                     <ul className="dropdown-content menu bg-white rounded-box w-26 mt-2 shadow z-50">
                         <li>
                             <button
                                 type="button"
-                                onClick={() => setLang("en")}
-                                className="flex items-center gap-2"
-                            >
+                                onClick={(e) => {setLang("en"); (e.currentTarget as HTMLElement).blur()}}
+                                className="flex items-center gap-2" >
                                 <Image src="/flags/en.png" alt="English" width={20} height={20} />
                                 EN
                             </button>
@@ -388,7 +387,7 @@ export default function Navbar() {
                         <li>
                             <button
                                 type="button"
-                                onClick={() => setLang("es")}
+                                onClick={(e) => {setLang("es");(e.currentTarget as HTMLElement).blur()}}
                                 className="flex items-center gap-2"
                             >
                                 <Image src="/flags/es.jpg" alt="Español" width={20} height={20} />
@@ -397,12 +396,23 @@ export default function Navbar() {
                         </li>
                     </ul>
                 </div>
+                
+                {/* Login Button */}
+                <div className="mx-2">
+                    <Link
+                        href="/recipes"
+                        className="btn btn-sm bg-gray-200 text-black hover:bg-gray-300 border-none"
+                    >
+                        {t.login ?? "Login"}
+                    </Link>
+                </div>
 
+                {/* Leadershup Putnam Logo */}
                 <Image
                     src="/LP_logo.png"
                     alt="LEADERSHIP PUTNAM LOGO"
                     priority
-                    className="w-24 h-auto max-w-full object-contain"
+                    className="w-12 md:w-24 h-auto max-w-full object-contain"
                     height={72}
                     width={168}
                 />

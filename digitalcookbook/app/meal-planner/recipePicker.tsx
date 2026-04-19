@@ -119,13 +119,13 @@ export default function RecipePicker({ selectedRecipes, setSelectedRecipes }: Pr
 
                         return (
                             <li key={recipe._id}>
-                                <PlannerRecipeCards
-                                    key={recipe._id}
-                                    recipe={recipe}
-                                    selected={selected}
-                                    toggleRecipe={toggleRecipe}
-                                    updateServings={updateServings}
-                                />  
+                                    <PlannerRecipeCards
+                                        key={recipe._id}
+                                        recipe={recipe}
+                                        selected={selected}
+                                        toggleRecipe={toggleRecipe}
+                                        updateServings={updateServings}
+                                    />
                             </li>
                         );
                     })}
