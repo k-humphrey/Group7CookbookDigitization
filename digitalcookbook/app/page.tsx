@@ -92,21 +92,11 @@ export default function Home() {
         {t.skipToFeatured}
       </a>
 
-      {/* Background picture 
-      <Image
-        src="/searchbackground2.0.webp"
-        alt=""
-        fill
-        sizes="100vh"
-        priority
-        className="object-cover scale-110"
-      />
-*/}
       {/* Logo + Subtitle */}
       <div className="text-center mb-5 z-10 mt-30 md:mt-40">
-        <h1 className={`text-6xl md:text-8xl font-extrabold tracking-tighter ${chango.className} text-[#2b3033] leading-none`}>
+        <h1 className={`text-5xl md:text-8xl font-extrabold tracking-tighter ${chango.className} text-[#2b3033] leading-none`}>
           {t.thrifyBites}</h1>
-        <p className="mt-5 pt-5 text-base max-w-full md:text-2xl text-slate-950">{t.search}</p>
+        <p className="mt-7 pt-2 text-base max-w-full md:text-2xl text-slate-950 inline-block backdrop-blur-xs pb-2 rounded-full mx-2">{t.search}</p>
       </div>
 
       {/* Searchbar */}
