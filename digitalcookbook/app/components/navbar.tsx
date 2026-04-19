@@ -23,6 +23,7 @@ const STRINGS = {
         languageToggle: "Toggle Language",
         login: "Login",
         findResources: "Map of Local Resources",
+        language: "Language:",
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -41,6 +42,7 @@ const STRINGS = {
         languageToggle: "Cambiar Idioma",
         login: "Login",
         findResources: "Mapa de Recursos Locales",
+        language: "Idioma:",
     } as const
 };
 
@@ -354,15 +356,10 @@ export default function Navbar() {
 
             <div className="navbar-end">
                 {/* Language Switch */}
-                <div className="dropdown dropdown-hover dropdown-end">
+                <div className="dropdown dropdown-hover dropdown-start">
                       <button type="button" onClick={(e) => {setLang(lang === "en" ? "es" : "en");(e.currentTarget as HTMLElement).blur()}} className="btn btn-ghost flex items-center gap-2">
-                        <Image
-                            src={lang === "en" ? "/flags/en.png" : "/flags/es.jpg"}
-                            alt="flag"
-                            width={20}
-                            height={20}
-                        />
-                        <span className="font-semibold uppercase hidden md:inline">{lang}</span>
+                        <span className="hidden sm:inline text-sm text-gray-500">{t.language}</span>
+                        <span className="font-semibold inline">{lang === "en" ? "English" : "Español"}</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="w-4 h-4"
@@ -374,14 +371,13 @@ export default function Navbar() {
                         </svg>
                     </button>
 
-                    <ul className="dropdown-content menu bg-white rounded-box w-26 mt-2 shadow z-50">
+                    <ul className="dropdown-content menu bg-white rounded-box w-26 shadow z-50">
                         <li>
                             <button
                                 type="button"
                                 onClick={(e) => {setLang("en"); (e.currentTarget as HTMLElement).blur()}}
                                 className="flex items-center gap-2" >
-                                <Image src="/flags/en.png" alt="English" width={20} height={20} />
-                                EN
+                                English
                             </button>
                         </li>
                         <li>
@@ -390,8 +386,7 @@ export default function Navbar() {
                                 onClick={(e) => {setLang("es");(e.currentTarget as HTMLElement).blur()}}
                                 className="flex items-center gap-2"
                             >
-                                <Image src="/flags/es.jpg" alt="Español" width={20} height={20} />
-                                ES
+                                Español
                             </button>
                         </li>
                     </ul>
