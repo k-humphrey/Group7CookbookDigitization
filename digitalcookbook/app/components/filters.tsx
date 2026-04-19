@@ -165,7 +165,7 @@ export default function Filters({ onChange }: Props) {
                 <input
                   type="checkbox"
                   id={`appliance-${appliance.id}`}
-                  className="checkbox checkbox-xs"
+                  className="checkbox checkbox-xs rounded-sm"
                   checked={selected.appliances.includes(appliance.id)}
                   onChange={() => toggle("appliances", appliance.id)}
                 />
@@ -184,7 +184,7 @@ export default function Filters({ onChange }: Props) {
                 <input
                   type="checkbox"
                   id={`healthTag-${tag.id}`}
-                  className="checkbox checkbox-xs"
+                  className="checkbox checkbox-xs rounded-sm"
                   checked={selected.tags.healthTags.includes(tag.id)}
                   onChange={() => toggle("healthTags", tag.id)}
                 />
@@ -203,7 +203,7 @@ export default function Filters({ onChange }: Props) {
                 <input
                   type="checkbox"
                   id={`allergenTag-${tag.id}`}
-                  className="checkbox checkbox-xs"
+                  className="checkbox checkbox-xs rounded-sm"
                   checked={selected.tags.allergenTags.includes(tag.id)}
                   onChange={() => toggle("allergenTags", tag.id)}
                 />
