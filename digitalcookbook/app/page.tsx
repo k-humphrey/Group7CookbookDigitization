@@ -84,7 +84,7 @@ export default function Home() {
   ];
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-cover md:bg-center bg-right" style={{backgroundImage: "url('/searchbackground2.0.webp')"}}>
       <a href="#searchbar" className="sr-only">
         {t.skipToSearch}
       </a>
@@ -92,7 +92,7 @@ export default function Home() {
         {t.skipToFeatured}
       </a>
 
-      {/* Background picture */}
+      {/* Background picture 
       <Image
         src="/searchbackground2.0.webp"
         alt=""
@@ -101,12 +101,12 @@ export default function Home() {
         priority
         className="object-cover scale-110"
       />
-
+*/}
       {/* Logo + Subtitle */}
-      <div className="text-center mb-5 z-10 mt-40">
+      <div className="text-center mb-5 z-10 mt-30 md:mt-40">
         <h1 className={`text-6xl md:text-8xl font-extrabold tracking-tighter ${chango.className} text-[#2b3033] leading-none`}>
           {t.thrifyBites}</h1>
-        <p className="mt-5 pt-5 text-base max-w-full md:text-2xl text-slate-950 ">{t.search}</p>
+        <p className="mt-5 pt-5 text-base max-w-full md:text-2xl text-slate-950">{t.search}</p>
       </div>
 
       {/* Searchbar */}
@@ -116,7 +116,7 @@ export default function Home() {
 
       {/* Featured Recipes */}
       <section id="featured-recipes" aria-label={t.featured} className="w-full max-w-7xl px-6 mt-20 mb-15 z-10">
-        <h2 className={`${chango.className} text-[#2b3033] text-4xl font-bold mb-6 flex justify-center`}>{t.featured}</h2>
+        <h2 className={`${chango.className} text-[#2b3033] text-4xl font-bold mb-6 flex justify-center text-center`}>{t.featured}</h2>
         {featuredRecipes === null ? (
           <p>{t.loading}</p>
         ) : (
