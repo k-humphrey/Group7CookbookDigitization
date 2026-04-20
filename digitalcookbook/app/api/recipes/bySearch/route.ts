@@ -14,6 +14,7 @@ export async function GET(req: Request){
 
         // Get search parameters from url if available
         const appliancesParams = url.searchParams.get("appliances") || null;
+        const categoriesParams = url.searchParams.get("categories") || null;
         const ingredientsParams = url.searchParams.get("ingredients") || null;
         const healthTagsParams = url.searchParams.get("healthTags") || null;
         const allergenTagsParams = url.searchParams.get("allergenTags") || null;
@@ -71,6 +72,38 @@ export async function GET(req: Request){
             if(matchingAppliances.length > 0) {
                 applianceIds = matchingAppliances.map(appliance => appliance._id);
                 filters.push({"appliances._id": {$in: applianceIds}});
+            }
+        }
+
+        // ---------- Filter by categories
+        if (categoriesParams) {
+            const categoriesList = categoriesParams.split(",").map(category => category.trim()).filter(Boolean);
+            const categoryFilter: any[] = [];
+
+            // all categories besides lunchDinner (dessert and breakfast)
+            const otherCategories = categoriesList.filter(category => category !== "lunchDinner");
+
+            // include if dessert or breakfast (all set to dessert and/or breakfast)
+            if (otherCategories.length > 0) {
+                categoryFilter.push({category: {$in: otherCategories}});
+            }
+
+            // include if lunchDinner selected (all set to lunchDinner/not set)
+            if (categoriesList.includes("lunchDinner")) {
+                categoryFilter.push({
+                    $or: [
+                        { category: "lunchDinner" },
+                        { category: { $exists: false } },
+                        { category: null }
+                    ]
+                })
+            }
+
+            // Add to filters
+            if (categoryFilter.length === 1) {
+                filters.push(categoryFilter[0]);
+            } else if(categoryFilter.length > 1) {
+                filters.push({$or: categoryFilter});
             }
         }
 

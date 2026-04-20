@@ -67,7 +67,8 @@ const recipeSchema = new mongoose.Schema({
         'Trigo': Boolean,
         'Soja': Boolean,
         'Pescado': Boolean,
-    }
+    },
+    category: String 
 });
 
 export default mongoose.models.Recipe || mongoose.model('Recipe', recipeSchema);
