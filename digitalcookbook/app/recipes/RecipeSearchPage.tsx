@@ -21,7 +21,7 @@ export default function RecipeSearchPage() {
   const sessionFilters = typeof window !== "undefined" ? sessionStorage.getItem("recipeFilters") : null;
 
   // custom hook for recipe search and pagination logic
-  const { recipes, handleSearch, setIngredients, setFilters, pageInfoRef, filtersRef, ingredientsRef } = useRecipeSearch(lang);
+  const { recipes, handleSearch, setIngredients, setFilters, pageInfoRef, filtersRef, ingredientsRef, loading } = useRecipeSearch(lang);
 
   // Initial loading for page
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function RecipeSearchPage() {
         
         {/* Recipes */}
         <div id="recipes" className="flex-1 min-w-0 pt-3">
-          <RecipeGrid recipes={recipes} />
+          <RecipeGrid recipes={recipes} loading={loading} />
         </div>
       </div>
     </section>
