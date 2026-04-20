@@ -10,6 +10,7 @@ import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import AdminLoginPage from "../admin-login/page";
 import SponsorsSelector from "../components/sponsorsSelector";
 import ResourceSelector from "../components/resourceSelector";
+import SafetySelector from "../components/safetySelector";
 import PartnerSelector from "../components/PartnerSelector";
 import FeaturedRecipeSelector from "../components/featuredRecipeSelector";
 import Link from "next/link";
@@ -47,8 +48,14 @@ export default async function AdminPanelPage() {
 					<Link href="/admin-panel-ingredients" className="block px-4 py-2 hover:bg-gray-100">Edit Ingredients</Link>
 					
 				</div>
-				<div className="w-full max-w-6xl mx-auto">
-					<ResourceSelector />
+				<div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-10">
+					<div className="flex-1">
+						<ResourceSelector />
+					</div>
+
+					<div className="flex-1">
+						<SafetySelector />
+					</div>
 				</div>
 		
 		</section>
