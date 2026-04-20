@@ -19,6 +19,7 @@ type Filters = {
 // Custom hook to handle recipe search and pagination logic, to be used in RecipeSearchPage component, to keep the component clean and separate logic from UI 
 export function useRecipeSearch(lang: string) {
     const [recipes, setRecipes] = useState<any[]>([]); // Store recipes in state
+    const [loading, setLoading] = useState(false);
 
     // reference arrays for search
     const ingredientsRef = useRef<string[]>([]);
@@ -63,6 +64,7 @@ export function useRecipeSearch(lang: string) {
     const handleSearch = async (load: boolean) => {
         // page loading, lock to prevent multiple loads
         pageInfoRef.current.isLocked = true;
+        setLoading(true);
 
         // load new recipes?
         if(load)
@@ -89,12 +91,13 @@ export function useRecipeSearch(lang: string) {
             // finished loading page, lock loading if no newRecipes, till new search (!load)
             if(newRecipes.length > 0 || !load) {
                 window.scrollBy({top: -50, behavior: 'smooth'}); // scroll up 50px
-                pageInfoRef.current.isLocked = false;
             }
 
         } catch(e) {
             console.warn("Failed to fetch recipes: ", e);
+        } finally {
             pageInfoRef.current.isLocked = false;
+            setLoading(false);
         }
     };
 
@@ -108,5 +111,5 @@ export function useRecipeSearch(lang: string) {
     };
 
     // return recipes and handleSearch function to be used in the RecipeSearchPage component, along with setters for ingredients and filters, and pageInfoRef for Pagination
-    return {recipes, handleSearch, setIngredients, setFilters, pageInfoRef, filtersRef, ingredientsRef};
+    return {recipes, handleSearch, setIngredients, setFilters, pageInfoRef, filtersRef, ingredientsRef, loading};
 }

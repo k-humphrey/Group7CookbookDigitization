@@ -9,12 +9,14 @@ import { SelectedRecipe } from "@/lib/combineIngredients";
 
 interface Props {
   recipes: any[];
+  loading?: boolean;
 }
 
 const STRINGS = {
   en: {
     viewRecipes: "View Recipe",
-    noRecipes: "Loading...",
+    loadingRecipes: "Loading...",
+    noRecipes: "No Recipes",
     saveRecipe: "Save Recipe",
     addToShopping: "Add to Shopping",
     addedRecipeSaved: "added to Saved Recipes",
@@ -22,26 +24,33 @@ const STRINGS = {
   },
   es: {
     viewRecipes: "Ver receta",
-    noRecipes: "Cargando...",
+    loadingRecipes: "Cargando...",
+    noRecipes: "Sin Recetas",
     saveRecipe: "Guardar receta",
     addToShopping: "Agregar a compras",
     addedRecipeSaved: "Añadido a la receta guardada",
     addedRecipeShopping: "Añadido a la lista compra"
   }
 };
-export default function RecipeGrid({ recipes }: Props) {
+export default function RecipeGrid({ recipes, loading }: Props) {
 
   const [toastMessage, setToastMessage] = useState("");
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
 
-  if (!recipes || recipes.length === 0) {
-  return (
-    <div className="flex min-h-[60vh] w-full flex-col items-center justify-start pt-24 gap-2 text-gray-700">
-      <span className="loading loading-spinner loading-xl scale-200"></span>
-      <p className="text-sm">{t.noRecipes}</p>
-    </div>
+  if (loading) {
+    return (
+      <div className="flex min-h-[60vh] w-full flex-col items-center justify-start pt-24 gap-2 text-gray-700">
+        <span className="loading loading-spinner loading-xl scale-200"></span>
+        <p className="text-sm">{t.loadingRecipes}</p>
+      </div>
+    );
+  } else if(!recipes || recipes.length === 0) {
+    return (
+      <div className="flex min-h-[60vh] w-full flex-col items-center justify-start pt-24 gap-2 text-gray-700">
+        <p className="text-sm">{t.noRecipes}</p>
+      </div>
     );
   }
 
