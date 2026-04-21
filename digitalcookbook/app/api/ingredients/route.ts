@@ -4,6 +4,18 @@ import Recipe from "@/models/Recipe";
 import Conversions from "@/models/Conversions";
 import { NextResponse, NextRequest } from 'next/server';
 
+function getMultiplier(units: any[], from: string, to: string) {
+    if (from === to) return 1;
+
+    const direct = units.find(unit => unit.fromUnit === from && unit.toUnit === to);
+    if (direct) return direct.multiplier;
+
+    const reverse = units.find(unit => unit.fromUnit === to && unit.toUnit === from);
+    if (reverse) return 1 / reverse.multiplier;
+
+    return null;
+}
+
 export async function GET(req: Request){
     try {
         // connect to db
@@ -28,7 +40,7 @@ export async function POST(req: NextRequest){
     
         // get ingredient information
         const { en, es, baseUnit, productLink, price, storeName, packageSize } = await req.json();
-        const costPerUnit = price && packageSize && packageSize > 0 ? price/packageSize : 0;
+        const costPerUnit = packageSize && packageSize > 0 ? price/Number(packageSize) : price;
 
         // create a new ingredient
         const ingredient = await Ingredient.create({ en, es, baseUnit, productLink, price, storeName, packageSize, costPerUnit });
@@ -49,7 +61,7 @@ export async function PUT(req: NextRequest){
     
         // get Ingredient information
         const { _id, en, es, baseUnit, productLink, price, storeName, packageSize } = await req.json();
-        const costPerUnit = price && packageSize && packageSize > 0 ? price/packageSize : 0;
+        const costPerUnit = packageSize && packageSize > 0 ? price/Number(packageSize) : price;
 
         // update collection
         const ingredient = await Ingredient.findByIdAndUpdate(
@@ -69,18 +81,23 @@ export async function PUT(req: NextRequest){
             recipe.ingredients = recipe.ingredients.map((ing: any) => {
                 if (String(ing.ingredient) === String(ingredient._id)) {
                     // Recalculate costs
-                    const multiplier = units.find(unit => unit.fromUnit === ing.unit && unit.toUnit === ingredient.baseUnit)?.multiplier || 1;
-                    const ingredientCost = ing.unit === "each" ? ingredient.price || 0 : (ingredient.costPerUnit || 0) * (Number(ing.amount) || 0) * (ingredient.multiplier || multiplier);
+                    const multiplier = getMultiplier(units, ing.unit, "oz");
+
+                    if (multiplier === null) {
+                        throw new Error(`Missing conversion: ${ing.unit} → ${ingredient.baseUnit}`);
+                    }
+
+                    const ingredientCost = (ingredient.costPerUnit || 0) * ((Number(ing.amount) || 0) * (multiplier));
                     totalCost += ingredientCost;
 
                     return {
                         ...ing,
                         en: ingredient.en,
                         es: ingredient.es,
-                        costPerUnit: ingredient.costPerUnit,
+                        costPerUnit: costPerUnit,
                         baseUnit: ingredient.baseUnit,
                         productLink: ingredient.productLink,
-                        price: ingredient.price,
+                        price: price,
                         multiplier,
                         ingredientCost
                     };
