@@ -42,7 +42,7 @@ export function ingredientShoppingConverter(combinedIngredients: CombinedIngredi
 
                 return {
                     ingredientName: ingredient.ingredient,
-                    storeName: priceInfo.storeName ?? ingredient?.[lang],
+                    storeName: ingredient?.[lang],
                     packagesNeeded: Math.ceil(totalAmount),
                     totalCost: Math.ceil(totalAmount) * priceInfo.price
                 };
@@ -53,7 +53,7 @@ export function ingredientShoppingConverter(combinedIngredients: CombinedIngredi
 
                 return {
                     ingredientName: ingredient.ingredient,
-                    storeName: priceInfo.storeName ?? ingredient?.[lang],
+                    storeName: ingredient?.[lang],
                     packagesNeeded: Math.ceil(totalAmount / priceInfo.packageSize),
                     totalCost: (priceInfo.price / priceInfo.packageSize) * Math.ceil(totalAmount)
                 };
@@ -84,7 +84,7 @@ export function ingredientShoppingConverter(combinedIngredients: CombinedIngredi
             // return shoppingList item
             return {
                 ingredientName: ingredient.ingredient,
-                storeName: priceInfo.storeName ?? ingredient?.[lang],
+                storeName: ingredient?.[lang],
                 packagesNeeded: packagesNeeded,
                 totalCost: totalPackageCost
             };
