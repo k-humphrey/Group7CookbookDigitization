@@ -22,6 +22,10 @@ body {
   .print-hidden {
     display: none !important;
   }
+  /* Hides single recipe background*/
+  .recipe-print-bg {
+    background: none !important;
+  }
 
   /* Ensure colors and images print correctly */
   body, body * {
