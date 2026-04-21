@@ -34,36 +34,48 @@ export default function RecipeBreakdownCard({ selectedRecipe }: Props) {
 
     return (
 
-        <div key={recipe._id} className="mt-4 bg-base-100 shadow-xl rounded-xl p-4 md:p-6 flex flex-col md:flex-row md:gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1" tabIndex={0}>
+        <div key={recipe._id} className="mt-4 bg-base-100 shadow-xl rounded-xl p-4 md:p-6 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral focus-visible:ring-offset-1" tabIndex={0}>
 
-            {/* Ingredients */}
-            <div className="flex-1">
-                <h3 className="text-xl font-bold mb-2">{recipe.title?.[lang]}</h3>
+            <div className="flex flex-col md:flex-row md:gap-6">
+                {/* Ingredients */}
+                <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-2">{recipe.title?.[lang]}</h3>
 
-                <p>{t.servings}: <b>{servings}</b></p>
-                <p>{t.cost}: <b>${scaledCost.toFixed(2)}</b></p>
+                    <p>{t.servings}: <b>{servings}</b></p>
+                    <p>{t.cost}: <b>${scaledCost.toFixed(2)}</b></p>
 
-                <div className="mt-4">
-                    <h4 className="font-semibold">{t.ingredientsNeeded}</h4>
-            
-                    <ul className="list-disc ml-6 mt-2 space-y-1">
-                        {ingredients.map((ingredient: string, index: number) => (<li key={index}>{ingredient}</li>))}
-                    </ul>
+                    <div className="mt-4">
+                        <h4 className="font-semibold">{t.ingredientsNeeded}</h4>
+                
+                        <ul className="list-disc ml-6 mt-2 space-y-1">
+                            {ingredients.map((ingredient: string, index: number) => (<li key={index}>{ingredient}</li>))}
+                        </ul>
+                    </div>
                 </div>
+
+                {/* Image */}
+                {recipe.imageURI && (
+                    <div className="w-full md:flex-1 h-80 md:h-auto rounded-lg overflow-hidden relative shrink-0 mt-3">
+                        <Image
+                            src={recipe.imageURI.trimEnd()}
+                            alt={recipe.title?.[lang]}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover"
+                        />
+                    </div>
+                )}
             </div>
 
-            {/* Image */}
-            {recipe.imageURI && (
-                <div className="w-full md:flex-1 h-80 md:h-auto rounded-lg overflow-hidden relative shrink-0 mt-3">
-                    <Image
-                        src={recipe.imageURI.trimEnd()}
-                        alt={recipe.title?.[lang]}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover"
-                    />
-                </div>
-            )}
+            {/* Instructions */}
+            <div className="mt-6">
+                <h4 className="font-semibold">{t.instructions}</h4>
+                <ol className="list-decimal ml-6 mt-2 space-y-1">
+                    {(recipe.instructions?.[lang] ? recipe.instructions[lang].split("|||") : []).map((step: string, index: number) => (
+                        <li key={index}>{step}</li>
+                    ))}
+                </ol>
+            </div>
         </div>
     );
 }

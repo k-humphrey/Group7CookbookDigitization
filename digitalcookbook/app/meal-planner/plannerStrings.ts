@@ -21,7 +21,8 @@ export const PLANNER_STRINGS = {
         totalShoppingCost: "Shopping List Cost",
         exportCSV: "Export CSV",
         addToShopping: "Add to Shopping List",
-        clearAll: "Clear All"
+        clearAll: "Clear All",
+        instructions: "Instructions"
     },
     es: {
         pageTitle: "Planificador de comidas",
@@ -44,6 +45,7 @@ export const PLANNER_STRINGS = {
         totalShoppingCost: "Costo de la Lista de la Compra",
         exportCSV: "Exportar CSV",
         addToShopping: "Añadir a la Lista de la Compra",
-        clearAll: "Borrar Todo"
+        clearAll: "Borrar Todo",
+        instructions: "Instrucciones"
     }
 } as const;
