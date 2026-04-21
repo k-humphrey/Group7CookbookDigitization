@@ -21,6 +21,7 @@ export type Recipe = {
     ingredients: Ingredient[];
     ingredientPlainText: {en: string; es: string};
     imageURI: string;
+    instructions: {en: string; es: string};
 };
 
 // Type for selected recipe with servings
