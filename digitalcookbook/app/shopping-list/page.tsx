@@ -173,9 +173,9 @@ export default function ShoppingListPage() {
           </h2>
 
           {/* Check All and Uncheck All */}
-          <div className="flex gap-4 mb-3 screen-list-only">
+          <div className="flex gap-4 mb-2 screen-list-only">
             <button
-              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition-colors"
+              className="px-2 py-0.5 bg-gray-300 rounded hover:bg-gray-400 transition-colors"
               onClick={() => {
                 const all: Record<string, boolean> = {};
                 shoppingList.shoppingList.forEach((item) => {
@@ -188,7 +188,7 @@ export default function ShoppingListPage() {
             </button>
 
             <button
-              className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition-colors"
+              className="px-2 py-0.5 bg-gray-300 rounded hover:bg-gray-400 transition-colors"
               onClick={() => {
                 const none: Record<string, boolean> = {};
                 shoppingList.shoppingList.forEach((item) => {
@@ -258,6 +258,7 @@ export default function ShoppingListPage() {
         </div>
 
         {/* Recipe Cards */}
+        <div id="print-recipes">
         {selectedRecipes.map((item) => {
           const { recipe, servings } = item;
           // calculate cost based on selected servings 
@@ -274,10 +275,9 @@ export default function ShoppingListPage() {
           return (
             <div
               key={recipe._id}
-              className="group block rounded-xl focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2"
-            >
+              className="group block rounded-xl focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2">
               <div
-                className="bg-base-100 shadow-xl rounded-xl p-6 relative flex flex-col md:flex-row print:flex-col hover:shadow-2xl transition-shadow cursor-pointer"
+                className="bg-base-100 shadow-xl rounded-xl p-6 relative flex flex-row md:flex-row hover:shadow-2xl transition-shadow cursor-pointer"
                 onClick={() => {
                   const selection = window.getSelection()?.toString();
                   if (!selection) {
@@ -342,6 +342,7 @@ export default function ShoppingListPage() {
             </div>
           );
         })}
+        </div>
       </div>
     </main>
   );
