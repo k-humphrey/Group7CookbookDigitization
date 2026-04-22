@@ -406,7 +406,7 @@ export default function Navbar() {
                 </div>
                 
                 {/* Login Button */}
-                <div className="mx-2">
+                <div className="mx-1">
                     <LoginRegisterModal/>
                 </div>
 

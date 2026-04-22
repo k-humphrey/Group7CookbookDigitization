@@ -103,7 +103,7 @@ export default function LoginRegisterModal() {
         </div>
       ) : (
         <button className="btn btn-ghost" onClick={toggleModal}>
-          Login / Register
+          Login
         </button>
       )}
 
