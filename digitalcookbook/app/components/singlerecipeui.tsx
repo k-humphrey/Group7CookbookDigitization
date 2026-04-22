@@ -152,7 +152,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
   }, [recipe._id]);
 
   return (
-    <section className="min-h-screen bg-base-100 bg-cover bg-center" style={{backgroundImage: "url('/singlerecipebg.png')"}}>
+    <section className="min-h-screen bg-base-100 bg-cover bg-center recipe-print-bg" style={{backgroundImage: "url('/singlerecipebg.png')"}}>
       <div className="mx-auto max-w-6xl p-6 printable print:block">
         <div className="rounded-xl border border-black/20 bg-base-100">
 
@@ -254,18 +254,18 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               <div className="flex items-end justify-between mb-4">
                 <div>
                   <h2 className="text-lg lg:text-2xl font-bold -mt-10">{t.ing}</h2>
-                  <p className="text-xs font-semibold mt-0.5 text-black/60">
+                  <p className="text-xs font-semibold mt-0.5 text-black/60 print:hidden">
                     {t.ingSub}
                   </p>
                 </div>
-                <span className="text-sm font-bold text-black/60">
+                <span className="text-sm font-bold text-black/60 print:hidden">
                   {checkedIngredients.size} / {ingredients.length} {t.gathered}
                 </span>
               </div>
 
               {/* Progress bar */}
               <progress
-                className="progress w-full mb-3 bg-base-200 [&::-webkit-progress-value]:bg-[#23B13B] [&::-moz-progress-bar]:bg-[#23B13B]"
+                className="progress w-full mb-3 bg-base-200 [&::-webkit-progress-value]:bg-[#23B13B] [&::-moz-progress-bar]:bg-[#23B13B] print:hidden"
                 value={checkedIngredients.size}
                 max={ingredients.length}
               />
@@ -366,8 +366,8 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
               </ol>
             </div>
 
-            {/* NOTES */}
-            <div className="rounded-2xl overflow-hidden border border-base-600 mt-6 p-4 sm:p-6 bg-base-100">
+            {/* NOTES: hides Notes on screen and shows Notes only when printing */}
+            <div className="recipe-print-notes hidden print:block rounded-2xl overflow-hidden border border-base-600 mt-6 p-4 sm:p-6 bg-base-100">
               <h2 className="text-lg lg:text-2xl font-bold text-black mb-2">
                 Notes
               </h2>

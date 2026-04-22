@@ -12,6 +12,7 @@ interface Props {
     appliances: string[];
     tags: { healthTags: string[]; allergenTags: string[] };
     maxCost: number;
+    categories: string[];
   }) => void;
 }
 
@@ -25,6 +26,10 @@ const STRINGS = {
     collapse: "Collapse filters",
     expand: "Expand filters",
     maxCostLabel: "Max cost",
+    category: "Category",
+    breakfast: "Breakfast",
+    lunchDinner: "Lunch/Dinner",
+    dessert: "Dessert"
   },
   es: {
     filters: "Filtros",
@@ -35,6 +40,10 @@ const STRINGS = {
     collapse: "Colapsar filtros",
     expand: "Expandir filtros",
     maxCostLabel: "Costo máximo",
+    category: "Categoría",
+    breakfast: "Desayuno",
+    lunchDinner: "Almuerzo/Cena",
+    dessert: "Postre"
   },
 } as const;
 
@@ -43,6 +52,13 @@ export default function Filters({ onChange }: Props) {
   const langContext = useLang();
   const lang = langContext?.lang ?? 'en';
   const t = STRINGS[lang];
+
+  // define categories
+  const categories = [
+    {id: 1, key: "breakfast", label: t.breakfast},
+    {id: 2, key: "lunchDinner", label: t.lunchDinner},
+    {id: 3, key: "dessert", label: t.dessert}
+  ];
 
   // State for filter options (id, number) and filter toggles
   const [filterOptions, setFilterOptions] = useState<{appliances: IDGroup[]; tags: TagIDGroup;}>({ appliances: [], tags: { healthTags: [], allergenTags: [] } });
@@ -54,8 +70,8 @@ export default function Filters({ onChange }: Props) {
   
   // State for selected filters (id for toggle between languages)
   const [selected, setSelected] = useState(() => {
-    const sessionFilterIds: {appliances?: number[]; tags?: {healthTags: number[]; allergenTags: number[] }} = typeof window !== "undefined" ? JSON.parse(sessionStorage.getItem("recipeFilterIds") || "{}") : {};
-    return {appliances: sessionFilterIds.appliances || [], tags: sessionFilterIds.tags || { healthTags: [], allergenTags: []}};
+    const sessionFilterIds: {appliances?: number[]; tags?: {healthTags: number[]; allergenTags: number[] }; categories?: number[]} = typeof window !== "undefined" ? JSON.parse(sessionStorage.getItem("recipeFilterIds") || "{}") : {};
+    return {appliances: sessionFilterIds.appliances || [], tags: sessionFilterIds.tags || { healthTags: [], allergenTags: []}, categories: sessionFilterIds.categories || []};
   });
 
   // Gets all filter options
@@ -95,8 +111,8 @@ export default function Filters({ onChange }: Props) {
 
 
   // Toggle filter selection
-  const toggle = (category: "appliances" | "healthTags" | "allergenTags", tagID: number) => {
-    let newSelected;
+  const toggle = (category: "appliances" | "healthTags" | "allergenTags" | "category", tagID: number) => {
+    let newSelected = {...selected};
 
     if(category == "appliances") {  // toggle appliances
       if (selected.appliances.includes(tagID))
@@ -104,6 +120,12 @@ export default function Filters({ onChange }: Props) {
       else
         newSelected = {...selected, appliances: selected.appliances.concat(tagID)};
 
+    } else if (category == "category") {
+      if (selected.categories.includes(tagID)) {
+        newSelected = {...selected, categories: selected.categories.filter((item) => item !== tagID)};
+      } else {
+        newSelected = {...selected, categories: selected.categories.concat(tagID)};
+      }
     } else {  // toggle tags
       if (selected.tags[category].includes(tagID))
         newSelected = {...selected, tags: {...selected.tags, [category]: selected.tags[category].filter((item) => item !== tagID)}};
@@ -113,7 +135,7 @@ export default function Filters({ onChange }: Props) {
     }
 
     // update UI
-    setSelected(newSelected); 
+    setSelected(newSelected);
 
     // update recipes, send parent only names
     onChange({
@@ -122,7 +144,8 @@ export default function Filters({ onChange }: Props) {
         healthTags: newSelected.tags.healthTags.map(id => filterOptions.tags.healthTags.find(tag => tag.id == id)?.name ?? ""),
         allergenTags: newSelected.tags.allergenTags.map(id => filterOptions.tags.allergenTags.find(tag => tag.id == id)?.name ?? "")
       },
-      maxCost
+      maxCost,
+      categories: newSelected.categories.map(id => categories.find(category => category.id == id)?.key ?? "")
     }); 
   };
   
@@ -213,7 +236,26 @@ export default function Filters({ onChange }: Props) {
               </div>
             </div>
 
-            {/* Filter 4: Cost */}
+            {/* Filter 4: Category */}
+            <div>
+              <h3 className="font-semibold text-xs uppercase my-2">{t.category}</h3>
+              <div className="flex flex-col gap-1">
+                {categories.map((cat) => (
+                <label key={cat.id} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id={`category-${cat.id}`}
+                  className="checkbox checkbox-xs rounded-sm"
+                  checked={selected.categories.includes(cat.id)}
+                  onChange={() => toggle("category", cat.id)}
+                />
+                  <span>{cat.label}</span>
+                </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Filter 5: Cost */}
             <div>
               <h3 className="font-semibold text-xs uppercase my-2">{t.cost}</h3>
               <div className="flex flex-col gap-1">
@@ -242,7 +284,8 @@ export default function Filters({ onChange }: Props) {
                         allergenTags: selected.tags.allergenTags.map(id =>
                           filterOptions.tags.allergenTags.find(t => t.id === id)?.name ?? ""
                         ),
-                      }
+                      },
+                      categories: selected.categories.map(id => categories.find(category => category.id === id)?.key ?? "")
                     });
                   }}
                   />

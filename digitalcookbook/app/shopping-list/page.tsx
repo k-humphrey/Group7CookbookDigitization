@@ -111,7 +111,7 @@ export default function ShoppingListPage() {
   const toggleIngredient = (name: string) => {
     setCheckedIngredients((prev) => ({
       ...prev,
-      [name]: !prev[name],
+      [name]: !(prev[name] ?? true),
     }));
   };
 
