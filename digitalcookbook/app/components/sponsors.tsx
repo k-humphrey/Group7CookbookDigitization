@@ -3,6 +3,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLang } from "@/app/components/languageprovider";
+import { Chango } from "next/font/google";
+
+const chango = Chango({
+  subsets: ['latin'],
+  weight: '400',
+});
 
 // string lang conversions
 const STRINGS = {
@@ -39,9 +45,9 @@ export default function Sponsors() {
             <section className="w-full flex justify-center">
                 <div className="w-3/4 text-center px-4 py-2 min-w-50">
                     {/* Title */}
-                    <h2 className="font-bold mb-1">{STRINGS?.[lang].title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-2">
-                        {sponsors && sponsors.map(sponsor => (
+                    <h2 className={`font-bold text-3xl mb-15 ${chango.className}`}>{STRINGS?.[lang].title}</h2>
+                    <div className={sponsors.length === 3 ? "flex items-end justify-center gap-2" : "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-2"}>
+                        {sponsors && sponsors.map((sponsor, i) => (
                             // if link included, include Hyperlink, else dont
                             sponsor.link ? (
                                 <a
@@ -49,7 +55,7 @@ export default function Sponsors() {
                                     href={sponsor.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block text-center"
+                                    className={`block text-center ${sponsors.length === 3 ? "flex-1" : ""} ${sponsors.length === 3 && i === 1 ? "scale-125 origin-bottom" : sponsors.length === 3 ? "self-end" : ""}`}
                                 >
                                     <div className="min-h-50">
                                         {/* Name */}
@@ -72,7 +78,7 @@ export default function Sponsors() {
 
                                 </a>
                             ) : (
-                                <div key={sponsor._id} className="min-h-50">
+                                <div key={sponsor._id} className={`min-h-50 ${sponsors.length === 3 ? "flex-1" : ""} ${sponsors.length === 3 && i === 1 ? "scale-125 origin-bottom mt-4" : sponsors.length === 3 ? "self-end" : ""}`}>
                                     {/* Name */}
                                     <div className="text-center underline mb-2">{sponsor.name.startsWith("!") ? <div className="invisible">{sponsor.name}</div> : sponsor.name}</div>
 
