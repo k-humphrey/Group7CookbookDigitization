@@ -8,10 +8,9 @@ export async function isAdminAuthenticated(cookieStore: ReadonlyRequestCookies) 
 
   try {
     const session = await decrypt(encrypted); //try to decrypt session
-
     //these are stateless cookies,, so we only check if it can be decrypted, this is pretty secure because
     //nobody can really forge this exact value without knowing a username and the secret token
-    return Boolean(session?.username);
+    return Boolean(session?.email && session?.role == "ADMIN");
   } catch {
     return false; // invalid or tampered cookie
   }

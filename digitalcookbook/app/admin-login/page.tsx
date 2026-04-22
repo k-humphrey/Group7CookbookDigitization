@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function AdminLoginPage() {
     const router = useRouter();
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
@@ -34,7 +34,7 @@ export default function AdminLoginPage() {
         const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
         });
 
         if (!res.ok) {
@@ -60,8 +60,8 @@ export default function AdminLoginPage() {
             type="text"
             placeholder="Username"
             className="border p-3 rounded-lg"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             />
 
             <input
