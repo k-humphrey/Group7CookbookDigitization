@@ -54,7 +54,7 @@ export default function SafetyPage() {
         >
             {/* Background picture */}
             <Image
-                src="/comm_resources.png"
+                src="/background_maybe2.png"
                 alt=""
                 fill
                 priority
