@@ -3,6 +3,7 @@
 
 import { useState, KeyboardEvent, ChangeEvent } from "react";
 import { useLang } from "@/app/components/languageprovider";
+import { useEffect } from "react";
 
 interface Props {
   onSearch: (tags: string[]) => void; // parent callback
@@ -40,8 +41,14 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
 
   // State for input and selected tags
   const [input, setInput] = useState("");
-  const [tags, setTags] = useState<string[]>(initialTags || []); // store selected ingredients
-  
+  //const [tags, setTags] = useState<string[]>(initialTags || []); // store selected ingredients
+  const [tags, setTags] = useState<string[]>([]);
+
+    useEffect(() => {
+    if (initialTags && initialTags.length > 0) {
+      setTags(initialTags);
+    }
+}, [initialTags]);
   // Filter suggestions based on input and exclude already selected tags
   const filteredSuggestions = suggestionsSource
     .filter((s) => typeof s === "string")

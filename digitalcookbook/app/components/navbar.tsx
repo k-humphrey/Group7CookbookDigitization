@@ -11,7 +11,7 @@ const STRINGS = {
         aboutCommRes: "About Our Community Resources",
         partners: "Community Partners",
         aboutPartners: "About Our Partners",
-        tools: "Tools",
+        tools: "Kitchen & Meal Tools",
         shelfLife: "Shelf Life Guidelines",
         timer: "Timer",
         measurementConverter: "Measurement Converter",
@@ -30,7 +30,7 @@ const STRINGS = {
         aboutCommRes: "Información Sobre Nuestros Recursos Comunitarios",
         partners: "Socios Comunitarios",
         aboutPartners: "Información Sobre Nuestros Socios",
-        tools: "Herramientas",
+        tools: "Utensilios de Cocina",
         shelfLife: "Guías de Vida Útil",
         timer: "Temporizador",
         measurementConverter: "Convertidor de Medidas",
@@ -122,7 +122,7 @@ export default function Navbar() {
                     <div className="p-2 hover:bg-gray-100 rounded-lg relative h-[72px] items-center flex">
                         <Image
                             src="/pep_logo.png"
-                            alt="LEADERSHIP PUTNAM Logo"
+                            alt="PEP Logo"
                             priority
                             height={72}
                             width={168}
@@ -245,6 +245,12 @@ export default function Navbar() {
                                 </ul>
                             </details>
                         </li>
+
+                        <li>
+                            <Link href="/meal-planner" className="hover">
+                                {t.mealPlanner}
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -350,6 +356,12 @@ export default function Navbar() {
                                 </li>
                             ))}
                         </ul>
+                    </li>
+
+                    <li>
+                        <Link href="/meal-planner" className="hover">
+                            {t.mealPlanner}
+                        </Link>
                     </li>
                 </ul>
             </div>

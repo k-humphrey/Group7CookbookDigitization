@@ -14,11 +14,13 @@ export default function ToolsPage() {
                 className="object-cover scale-110"
             />
 
-            <div className="text-center mb-5 relative z-10">
-                <h1 className="text-2xl md:text-[5rem] font-bold">
-                    Kitchen Tools
-                </h1>
-            </div>
+			<div className="text-center mt-10 mb-20 relative z-10">
+				<div className="inline-block bg-white shadow-md rounded-lg p-5">
+					<h1 className="text-2xl md:text-[5rem] font-bold text-black">
+					Kitchen Tools
+					</h1>
+				</div>
+			</div>
 
             {/* Cards Container aka Responsive Grid, should work on mobile */}
             <div id="tools-grid" className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl px-4">
