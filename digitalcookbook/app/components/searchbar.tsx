@@ -16,14 +16,16 @@ const STRINGS = {
     placeholder: "(Your selected ingredients will appear here)",
     search: "Search Recipes",
     placeholder2: "Type an ingredient and press Enter...",
-    removetag: "Remove"
+    removetag: "Remove",
+    blueRibbon: "Blue ribbon recipes are nutritionally balanced across all food groups",
   },
   es: {
     selectedIngredients: "Ingredientes seleccionados:",
     placeholder: "(Tus ingredientes seleccionados aparecerán aquí)",
     search: "Buscar recetas",
     placeholder2: "Escribe un ingrediente y presiona Enter...",
-    removetag: "Eliminar"
+    removetag: "Eliminar",
+    blueRibbon: "Las recetas de la cinta azul están equilibradas nutricionalmente en todos los grupos de alimentos",
   },
 };
 
@@ -186,6 +188,9 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
           </ul>
         )}
       </div>
+      <p className="mt-2 text-xs text-slate-900 backdrop-blur-xs px-3 rounded-full">
+       {t.blueRibbon}
+      </p>
     </form>
   );
 }
