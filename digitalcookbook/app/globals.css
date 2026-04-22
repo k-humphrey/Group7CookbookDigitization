@@ -47,6 +47,10 @@ body {
     overflow-wrap: normal !important;
     hyphens: auto;
   }
+  /*hide checkboxes*/
+  input[type="checkbox"] {
+    display: none !important;
+  }
 
   /* Zoom out recipe content for print */
   .printable {
@@ -60,4 +64,41 @@ body {
     size: auto;
     margin: 0.3in;
   }
+
+  .screen-list-only {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* remove heading spacing completely */
+  #print-ingredients h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  /* remove leftover spacing from wrappers */
+  #print-ingredients {
+    padding-top: 0 !important;
+  }
+
+  /* remove flex spacing inside ingredient section (safe version) */
+  #print-ingredients .mb-3 {
+    margin-bottom: 0 !important;
+  }
+
+  /* hide only bottom spacing of totals wrapper */
+  #print-ingredients .mt-4 {
+    margin-top: 0 !important;
+  }
+
+  /* ensure clean list spacing */
+  .print-list {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+  
 }
