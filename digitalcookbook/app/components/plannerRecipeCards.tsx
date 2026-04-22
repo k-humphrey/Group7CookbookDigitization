@@ -2,6 +2,7 @@ import { Recipe, SelectedRecipe } from "@/lib/combineIngredients";
 import { useLang } from "@/app/components/languageprovider";
 import Image from "next/image";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
+import Link from "next/link";
 
 // Props needed to render planner recipe cards
 interface Props {
@@ -20,7 +21,11 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
     const t = PLANNER_STRINGS[lang];
 
     return (
-        <div key={recipe._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col h-full">
+        <Link
+            href={`/single-recipe/${recipe._id}`}
+            className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col h-full focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2 focus-visible:ring-neutral rounded"
+            aria-label={`View recipe ${recipe.title?.[lang]}`}
+        >
 
             {/* Image */}
             <figure className="h-40 overflow-hidden relative">
@@ -53,7 +58,13 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                 </p>
 
                 {/* Add / Remove Button */}
-                <button type="button" aria-pressed={!!selected} className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`} onClick={() => toggleRecipe(recipe)}>
+                <button type="button" aria-pressed={!!selected} className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleRecipe(recipe);
+                    }}
+                >
                     {selected ? t.remove : t.addToPlan}
                 </button>
 
@@ -68,11 +79,15 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                             min={1}
                             value={selected.servings}
                             onChange={(e) => updateServings(recipe._id, Number(e.target.value))}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                            }}
                             className="input input-bordered w-full lg:w-20"
                         />
                     </div>
                 )}
             </div>
-        </div>
+        </Link>
     );
 }

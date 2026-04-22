@@ -9,6 +9,18 @@ import { uploadImage } from "@/lib/uploadImage";
 
 const PAGE_SIZE = 12; // 3 rows x 4 columns
 
+function getMultiplier(units: any[], from: string, to: string) {
+    if (from === to || from === "each") return 1;
+
+    const direct = units.find(unit => unit.fromUnit === from && unit.toUnit === to);
+    if (direct) return direct.multiplier;
+
+    const reverse = units.find(unit => unit.fromUnit === to && unit.toUnit === from);
+    if (reverse) return 1 / reverse.multiplier;
+
+    throw new Error(`Missing conversion: ${from} -> ${to}`);
+}
+
 export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
   	const [selectedRecipe, setSelectedRecipe] = useState< any | null >(null);
 	const [page, setPage] = useState(0);
@@ -70,6 +82,7 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 		appliances: [],
 		allergens: {},
 		espAllergens: {},
+		category: "lunchDinner"
 	};
 
 	{/* Handles DELETE using api route in edit-recipes  */}
@@ -528,6 +541,18 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 				);
 			})}
 
+			{/* CATEGORY */}
+			<h4 className="font-bold mt-6 mb-2">Category</h4>
+			<select
+				className="select select-bordered w-full mb-4"
+				value={selectedRecipe.category || "lunchDinner"}
+				onChange={(e) => setSelectedRecipe({...selectedRecipe, category: e.target.value})}
+			>
+				<option value="breakfast">Breakfast</option>
+				<option value="lunchDinner">Lunch/Dinner</option>
+				<option value="dessert">Dessert</option>
+			</select>
+
 			{/* SAVE BUTTONS */}
 			<div className="flex gap-4 mt-8">
 				<button
@@ -551,8 +576,8 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 						const isNew = !selectedRecipe._id;  //check if _id exists, if not uses POST 
 
 						const formatedIngredients = (selectedRecipe.ingredients || []).map((ingredient: any) => {
-							const unitInfo = unitsList.find(unit => unit.fromUnit === ingredient.unit && unit.toUnit === ingredient.baseUnit);
-							const ingredientCost = ingredient.unit === "each" ? ingredient.price || 0 : (ingredient.costPerUnit || 0) * (Number(ingredient.amount) || 0) * (ingredient.multiplier || unitInfo?.multiplier || 1);
+							const multiplier = getMultiplier(unitsList, ingredient.unit, "oz");
+							const ingredientCost = (Number(ingredient.costPerUnit) || 0) * (Number(ingredient.amount) || 0) * (multiplier);
 
 							return {
 								ingredient: ingredient._id || ingredient.ingredient,
@@ -564,8 +589,8 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 								costPerUnit: ingredient.costPerUnit || 0,
 								baseUnit: ingredient.baseUnit || "",
 								productLink: ingredient.productLink || "",
-								multiplier: ingredient.multiplier || unitInfo?.multiplier || 1,
-								price: ingredient.price,
+								multiplier: multiplier,
+								price: ingredient.price || ingredient.ingredientCost,
 								storeName: ingredient.storeName,
 								packageSize: ingredient.packageSize,
 								ingredientCost: ingredientCost

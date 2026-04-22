@@ -13,6 +13,7 @@ type Filters = {
     appliances: string[];
     tags: Tags;
     maxCost: number;
+    categories: string[];
 }
 
 // Custom hook to handle recipe search and pagination logic, to be used in RecipeSearchPage component, to keep the component clean and separate logic from UI 
@@ -21,7 +22,7 @@ export function useRecipeSearch(lang: string) {
 
     // reference arrays for search
     const ingredientsRef = useRef<string[]>([]);
-    const filtersRef =  useRef<Filters>({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: Infinity});
+    const filtersRef =  useRef<Filters>({appliances: [] as string[], tags: { healthTags: [] as string[], allergenTags: [] as string[]}, maxCost: Infinity, categories: [] as string[]});
 
     // reference array for page info
     const pageInfoRef = useRef({page: 1, isLocked: false, limit: 15});
@@ -41,6 +42,8 @@ export function useRecipeSearch(lang: string) {
             params.set("allergenTags", filters.tags.allergenTags.join(","))
         if (filters.maxCost !== null && filters.maxCost !== Infinity)
             params.set("maxCost", String(filters.maxCost));
+        if(filters.categories.length > 0)
+            params.set("categories", filters.categories.join(","));
 
         // if no filters return all on current page
         if(params.size === 0)
