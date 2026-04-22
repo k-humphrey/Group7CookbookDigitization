@@ -37,7 +37,7 @@ export default function CommPartnersPage() {
         <section aria-label={t.communityPartners} className="relative min-h-screen flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat">
             {/* Background picture */}
             <Image
-                src="/background_maybe3.png"
+                src="/background_maybe2.png"
                 alt=""
                 fill
                 priority

@@ -1,3 +1,5 @@
+//digitalcookbook/models/Recipe.js
+
 import mongoose from 'mongoose';
 
 const recipeSchema = new mongoose.Schema({

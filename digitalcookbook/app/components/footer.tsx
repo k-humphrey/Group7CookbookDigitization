@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLang } from '@/app/components/languageprovider'
+import { useState } from 'react';
+import SubmittedRecipeModal from '@/app/components/submittedRecipeModal';
 
 const STRINGS = {
     en: {
@@ -45,6 +47,8 @@ export default function Footer(){
     const langContext = useLang();
     const lang = langContext?.lang ?? 'en';
     const t = STRINGS[lang];
+    const [showSubmitModal, setShowSubmitModal] = useState(false);
+
     return (
 
         <>
@@ -98,8 +102,28 @@ export default function Footer(){
         {/* Contact */}
         <nav>
             <h2 className="footer-title">{t.contact}</h2>
-            <a href="mailto:Katelyn.steakley@pcsstn.com" className={focusClasses + " link link-hover"}>{t.email}</a>
+
+            <a
+                href="mailto:Katelyn.steakley@pcsstn.com"
+                className={focusClasses + " link link-hover"}
+            >
+                {t.email}
+            </a>
+
+            <button
+                type="button"
+                className={focusClasses + " link link-hover text-left"
+                }
+                onClick={() => setShowSubmitModal(true)}
+            >
+                {lang === "es" ? "¡Enviar una Receta!" : "Submit a Recipe!"}
+            </button>
         </nav>
+
+        <SubmittedRecipeModal
+            open={showSubmitModal}
+            onClose={() => setShowSubmitModal(false)}
+        />
 
         {/* Social */}
         <nav>
@@ -126,7 +150,7 @@ export default function Footer(){
         </footer>
 
         {/*Logos*/}
-        <footer className="footer relative z-10 sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
+        <footer className="footer relative sm:footer-horizontal bg-base-300 p-4 flex items-center justify-center gap-15 md:gap-20 pr-5">
             <Image 
                 src="/pep_logo.png" 
                 alt="PUTNAM EDUCATION PARTNERSHIP FOUNDATION Logo" 

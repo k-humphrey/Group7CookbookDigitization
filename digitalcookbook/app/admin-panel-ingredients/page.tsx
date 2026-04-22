@@ -1,5 +1,4 @@
-//app/admin-panel/page.tsx
-//Page for admin to view, edit, add, and delete recipes once logged in via the admin portal  
+//app/admin-panel-ingredients/page.tsx
 
 import { connectToDB } from "@/lib/connectToDB";
 import Recipe from "@/models/Recipe";
@@ -41,6 +40,7 @@ export default async function AdminPanelPage() {
 					<Link href="/admin-panel-resources" className="block px-4 py-2 hover:bg-gray-100">Edit Resources</Link>
 					<Link href="/admin-panel-partners" className="block px-4 py-2 hover:bg-gray-100">Edit Partners</Link>
                     <Link href="/admin-panel-ingredients" className="block px-4 py-2 hover:bg-gray-100">Edit Ingredients</Link>
+					<Link href="/admin-panel-submitted-recipes" className="block px-4 py-2 hover:bg-gray-100">Submitted Recipes</Link>
 					
 				</div>
 				<div className="w-full max-w-6xl mx-auto">
