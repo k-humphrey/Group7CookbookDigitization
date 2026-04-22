@@ -94,8 +94,7 @@ body {
   #print-ingredients .mt-4 {
     margin-top: 0 !important;
   }
-
-  /* ensure clean list spacing */
+  /* clean list spacing */
   .print-list {
     display: block !important;
     margin-top: 0 !important;
