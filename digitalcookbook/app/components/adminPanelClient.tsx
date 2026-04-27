@@ -576,8 +576,8 @@ export default function AdminPanelClient({ recipes }: { recipes: any[] }) {
 						const isNew = !selectedRecipe._id;  //check if _id exists, if not uses POST 
 
 						const formatedIngredients = (selectedRecipe.ingredients || []).map((ingredient: any) => {
-							const multiplier = getMultiplier(unitsList, ingredient.unit, "oz");
-							const ingredientCost = (Number(ingredient.costPerUnit) || 0) * (Number(ingredient.amount) || 0) * (multiplier);
+							const multiplier = getMultiplier(unitsList, ingredient.unit, ingredient.baseUnit);
+							const ingredientCost = ingredient.unit === "each" ? ingredient.price*(Number(ingredient.amount) || 0) : (Number(ingredient.costPerUnit) || 0) * (Number(ingredient.amount) || 0) * (multiplier);
 
 							return {
 								ingredient: ingredient._id || ingredient.ingredient,
