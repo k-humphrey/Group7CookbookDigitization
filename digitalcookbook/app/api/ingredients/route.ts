@@ -81,7 +81,7 @@ export async function PUT(req: NextRequest){
             recipe.ingredients = recipe.ingredients.map((ing: any) => {
                 if (String(ing.ingredient) === String(ingredient._id)) {
                     // Recalculate costs
-                    const multiplier = getMultiplier(units, ing.unit, "oz");
+                    const multiplier = getMultiplier(units, ing.unit, ingredient.baseUnit);
 
                     if (multiplier === null) {
                         throw new Error(`Missing conversion: ${ing.unit} → ${ingredient.baseUnit}`);
