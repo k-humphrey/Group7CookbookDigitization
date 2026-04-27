@@ -51,8 +51,8 @@ export default function PlanSummary({ selectedRecipes, setSelectedRecipes, ingre
                 <button
                 className={focusClasses + " btn btn-error md:mr-2 md:btn-md btn-sm"}
                 onClick={() => {
-                        setSelectedRecipes([]);                // clear recipes state
-                        sessionStorage.removeItem("plannerRecipes"); // clear session storage
+                    setSelectedRecipes([]);                // clear recipes state
+                    sessionStorage.removeItem("plannerRecipes"); // clear session storage
                 }}
                 >
                     {t.clearAll}

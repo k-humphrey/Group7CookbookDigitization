@@ -6,6 +6,7 @@ import Recipe from "@/models/Recipe";
 import FeaturedRecipes from "@/models/FeaturedRecipes";
 import { cookies } from "next/headers";
 import FeaturedRecipeSelector from "../components/featuredRecipeSelector";
+import FavoriteRecipes from "@/app/components/favoriteRecipes";
 import { isAdminAuthenticated } from "@/lib/checkAdminAuth";
 import AdminLoginPage from "../admin-login/page";
 import Link from "next/link";
@@ -46,6 +47,9 @@ export default async function AdminPanelPage() {
 			</div>
             <div className="w-full max-w-6xl mx-auto">
                 <FeaturedRecipeSelector recipes={safeRecipes} featuredIds={featuredIds} />
+                <div className="w-1/2 m-4">
+                    <FavoriteRecipes/>
+                </div>
             </div>
         </section>
     );

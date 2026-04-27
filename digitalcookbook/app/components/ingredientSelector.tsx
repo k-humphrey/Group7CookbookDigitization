@@ -162,7 +162,7 @@ export default function IngredientSelector() {
                         <h3 className="font-bold text-2xl mb-6">{modalIngredient._id ? "Edit Ingredient" : "Add Ingredient"}</h3>
 
                         {/* Fields */}
-                        {["en","es","productLink","storeName","price","packageSize"].map(field => {
+                        {["en","es","price","packageSize"].map(field => {
                             const isNumber = ["price","packageSize"].includes(field);
                             return (
                                 <div className="mb-4" key={field}>
