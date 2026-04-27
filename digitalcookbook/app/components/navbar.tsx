@@ -358,8 +358,7 @@ export default function Navbar() {
                             ))}
                         </ul>
                     </li>
-
-                    <li>
+                    <li className="hidden xl:inline">
                         <Link href="/meal-planner" className="hover">
                             {t.mealPlanner}
                         </Link>
@@ -367,12 +366,13 @@ export default function Navbar() {
                 </ul>
             </div>
 
-            <div className="navbar-end">
+            <div className="navbar-end ml-10">
                 {/* Language Switch */}
-                <div className="dropdown dropdown-hover dropdown-start">
+                <div className="dropdown dropdown-hover dropdown-start ml-10">
                       <button type="button" onClick={(e) => {setLang(lang === "en" ? "es" : "en");(e.currentTarget as HTMLElement).blur()}} className="btn btn-ghost flex items-center gap-2">
                         <span className="hidden sm:inline text-sm text-gray-500">{t.language}</span>
-                        <span className="font-semibold inline">{lang === "en" ? "English" : "Español"}</span>
+                        <span className="font-semibold inline [@media(max-width:320px)]:hidden">{lang === "en" ? "English" : "Español"}</span>
+                        <span className="hidden font-semibold [@media(max-width:320px)]:inline">{lang === "en" ? "En" : "Es"}</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="w-4 h-4"
@@ -415,7 +415,7 @@ export default function Navbar() {
                     src="/LP_logo.png"
                     alt="LEADERSHIP PUTNAM LOGO"
                     priority
-                    className="w-12 md:w-24 h-auto max-w-full object-contain"
+                    className="w-10 md:w-15 h-auto max-w-full object-contain"
                     height={72}
                     width={168}
                 />
