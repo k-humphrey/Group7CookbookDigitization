@@ -155,7 +155,7 @@ export default function Filters({ onChange }: Props) {
       "bg-gray-200 border border-base-300 rounded-xl",
       "transition-all duration-300",
       isOpen ? "w-40 sm:w-55" : "w-10", // open vs collapsed width
-      "h-full shrink-0 relative",
+      "h-[calc(95vh-1rem)] shrink-0 relative overflow-auto",
     ].join(" ")}
   >
     {/* Filters */}
