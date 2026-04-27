@@ -195,7 +195,7 @@ export default function Searchbar({ onSearch, initialTags, suggestionsSource = [
           </ul>
         )}
       </div>
-      <p className="mt-2 text-xs text-slate-900 backdrop-blur-xs px-3 rounded-full">
+      <p className="mt-2 text-xs text-slate-900 bg-base-100/85 px-3 rounded-full">
        {t.blueRibbon}
       </p>
     </form>
