@@ -201,29 +201,29 @@ export default function SubmittedRecipeModal({
         setIsUploadingImage(true);
 
         try {
-        const formData = new FormData();
-        formData.append("file", file);
+            const formData = new FormData();
+            formData.append("file", file);
 
-        const res = await fetch("/api/upload-recipe-image", {
+            const res = await fetch("/api/upload-submitted-recipe-image", {
             method: "POST",
             body: formData,
-        });
+            });
 
-        const data = await res.json();
+            const data = await res.json();
 
-        if (!res.ok) {
+            if (!res.ok) {
             throw new Error(data?.error || t.uploadError);
-        }
+            }
 
-        setSubmittedRecipe((prev) => ({
+            setSubmittedRecipe((prev) => ({
             ...prev,
-            imageURI: data.imageURI || "",
+            imageURI: data.url || "",
             public_id: data.public_id || "",
-        }));
+            }));
         } catch (err) {
-        setError(err instanceof Error ? err.message : t.uploadError);
+            setError(err instanceof Error ? err.message : t.uploadError);
         } finally {
-        setIsUploadingImage(false);
+            setIsUploadingImage(false);
         }
     };
 
