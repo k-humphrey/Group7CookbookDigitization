@@ -57,13 +57,13 @@ export default function Sponsors() {
                                     rel="noopener noreferrer"
                                     className={`block text-center ${sponsors.length === 3 ? "flex-1" : ""} ${sponsors.length === 3 && i === 1 ? "scale-125 origin-bottom" : sponsors.length === 3 ? "self-end" : ""}`}
                                 >
-                                    <div className="min-h-50">
+                                    <div className="min-h-50 p-4">
                                         {/* Name */}
                                         <div className="text-center underline mb-2">{sponsor.name.startsWith("!") ? <div className="invisible">{sponsor.name}</div> : sponsor.name}</div>
 
                                         {/* Logo */}
                                         {sponsor?.imageURI && /^https?:\/\//.test(sponsor.imageURI) && (
-                                            <div className="relative w-full h-50 md:h-40 mb-5">
+                                            <div className="relative w-full h-20 lg:h-30 mb-5">
                                                 <Image
                                                     src={sponsor.imageURI}
                                                     alt={sponsor.name}
@@ -78,13 +78,13 @@ export default function Sponsors() {
 
                                 </a>
                             ) : (
-                                <div key={sponsor._id} className={`min-h-50 ${sponsors.length === 3 ? "flex-1" : ""} ${sponsors.length === 3 && i === 1 ? "scale-125 origin-bottom mt-4" : sponsors.length === 3 ? "self-end" : ""}`}>
+                                <div key={sponsor._id} className={`min-h-50 p-4 ${sponsors.length === 3 ? "flex-1" : ""} ${sponsors.length === 3 && i === 1 ? "scale-125 origin-bottom mt-4" : sponsors.length === 3 ? "self-end" : ""}`}>
                                     {/* Name */}
-                                    <div className="text-center underline mb-2">{sponsor.name.startsWith("!") ? <div className="invisible">{sponsor.name}</div> : sponsor.name}</div>
+                                    <div className="text-center underline mb-4">{sponsor.name.startsWith("!") ? <div className="invisible">{sponsor.name}</div> : sponsor.name}</div>
 
                                     {/* Logo */}
                                     {sponsor?.imageURI && /^https?:\/\//.test(sponsor.imageURI) && (
-                                        <div className="relative w-full h-50 md:h-40 mb-5">
+                                        <div className="relative w-full h-20 lg:h-30 mb-5">
                                             <Image
                                                 src={sponsor.imageURI}
                                                 alt={sponsor.name}
