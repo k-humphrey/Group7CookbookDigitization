@@ -58,7 +58,7 @@ export default function PlannerRecipeCards({ recipe, selected, toggleRecipe, upd
                 </p>
 
                 {/* Add / Remove Button */}
-                <button type="button" aria-pressed={!!selected} className={`btn ${selected ? "btn-error" : "btn-success"} ${focusClasses}`}
+                <button type="button" aria-pressed={!!selected} className={`btn btn-sm md:btn-md ${selected ? "btn-error" : "btn-success"} ${focusClasses}`}
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
