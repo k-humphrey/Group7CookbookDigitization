@@ -14,36 +14,40 @@ type LocalizedArray = {
   es?: string[];
 };
 
+// Structured ingredient type matching your Admin Panel
+type IngredientEntry = {
+  _id: string;
+  en: string;
+  es: string;
+  amount: string | number;
+  unit: string;
+  multiplier: number;
+  price?: number;
+  packageSize?: number;
+  packageSizeUnit?: string;
+  ingredientCost?: number;
+};
+
 type SubmittedRecipePayload = {
   _id?: string;
   title?: LocalizedText;
   ingredientPlainText?: LocalizedText;
+  ingredients?: IngredientEntry[]; // Added structured ingredients
   instructions?: LocalizedText;
   imageURI?: string;
   public_id?: string;
-  tags?: LocalizedArray;
-  allergens?: LocalizedArray;
-  appliances?: LocalizedArray;
+  tags?: any; // Changed to any to handle both array and object formats from Admin Panel
+  espTags?: any;
+  allergens?: any;
+  espAllergens?: any;
+  appliances?: string[];
+  category?: string;
   submittedFromLang?: "en" | "es";
   status?: "pending" | "approved" | "rejected";
 };
 
 function normalizeText(value?: string) {
   return typeof value === "string" ? value.trim() : "";
-}
-
-function normalizeArray(value?: string[]) {
-  if (!Array.isArray(value)) return [];
-  return value
-    .filter((item): item is string => typeof item === "string")
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
-
-function validateLocalizedRequired(field?: LocalizedText) {
-  const en = normalizeText(field?.en);
-  const es = normalizeText(field?.es);
-  return Boolean(en || es);
 }
 
 function normalizeLocalizedText(field?: LocalizedText) {
@@ -53,185 +57,107 @@ function normalizeLocalizedText(field?: LocalizedText) {
   };
 }
 
-function normalizeLocalizedArray(field?: LocalizedArray) {
-  return {
-    en: normalizeArray(field?.en),
-    es: normalizeArray(field?.es),
-  };
+// Helper to ensure ingredients are properly formatted
+function normalizeIngredients(ingredients?: any[]) {
+  if (!Array.isArray(ingredients)) return [];
+  return ingredients.map(ing => ({
+    ...ing,
+    amount: String(ing.amount || ""),
+    unit: normalizeText(ing.unit),
+    multiplier: Number(ing.multiplier) || 1
+  }));
 }
 
-// get all submitted recipes
+// GET: Fetch all submissions
 export async function GET() {
   try {
     await connectToDB();
-
     const submittedRecipes = await SubmittedRecipe.find()
       .sort({ createdAt: -1 })
       .lean();
-
     return NextResponse.json(submittedRecipes, { status: 200 });
   } catch (error) {
-    console.error("Submitted Recipes API GET error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch submitted recipes." },
-      { status: 500 }
-    );
+    console.error("GET error:", error);
+    return NextResponse.json({ error: "Failed to fetch." }, { status: 500 });
   }
 }
 
-// create submitted recipe
+// POST: Create a submission from the Modal
 export async function POST(req: NextRequest) {
   try {
     await connectToDB();
-
     const body = (await req.json()) as SubmittedRecipePayload;
-
-    if (!validateLocalizedRequired(body.title)) {
-      return NextResponse.json(
-        { error: "At least one title is required." },
-        { status: 400 }
-      );
-    }
-
-    if (!validateLocalizedRequired(body.ingredientPlainText)) {
-      return NextResponse.json(
-        { error: "At least one ingredients field is required." },
-        { status: 400 }
-      );
-    }
-
-    if (!validateLocalizedRequired(body.instructions)) {
-      return NextResponse.json(
-        { error: "At least one instructions field is required." },
-        { status: 400 }
-      );
-    }
 
     const submittedRecipe = await SubmittedRecipe.create({
       title: normalizeLocalizedText(body.title),
       ingredientPlainText: normalizeLocalizedText(body.ingredientPlainText),
+      ingredients: normalizeIngredients(body.ingredients), // Support for structured data
       instructions: normalizeLocalizedText(body.instructions),
       imageURI: normalizeText(body.imageURI),
       public_id: normalizeText(body.public_id),
-      tags: normalizeLocalizedArray(body.tags),
-      allergens: normalizeLocalizedArray(body.allergens),
-      appliances: normalizeLocalizedArray(body.appliances),
-      submittedFromLang: body.submittedFromLang === "es" ? "es" : "en",
+      tags: body.tags || {},
+      espTags: body.espTags || {},
+      allergens: body.allergens || {},
+      espAllergens: body.espAllergens || {},
+      appliances: body.appliances || [],
+      category: body.category || "lunchDinner",
+      submittedFromLang: body.submittedFromLang || "en",
       status: "pending",
     });
 
     return NextResponse.json(submittedRecipe, { status: 201 });
   } catch (error) {
-    console.error("Submitted Recipes API POST error:", error);
-    return NextResponse.json(
-      { error: "Failed to create submitted recipe." },
-      { status: 500 }
-    );
+    console.error("POST error:", error);
+    return NextResponse.json({ error: "Failed to create." }, { status: 500 });
   }
 }
 
-// update submitted recipe
+// PUT: Update a submission from the Selector (Admin View)
 export async function PUT(req: NextRequest) {
   try {
     await connectToDB();
-
     const body = (await req.json()) as SubmittedRecipePayload;
 
-    if (!body._id) {
-      return NextResponse.json(
-        { error: "Recipe id is required." },
-        { status: 400 }
-      );
-    }
+    if (!body._id) return NextResponse.json({ error: "ID required" }, { status: 400 });
 
-    if (!validateLocalizedRequired(body.title)) {
-      return NextResponse.json(
-        { error: "At least one title is required." },
-        { status: 400 }
-      );
-    }
-
-    if (!validateLocalizedRequired(body.ingredientPlainText)) {
-      return NextResponse.json(
-        { error: "At least one ingredients field is required." },
-        { status: 400 }
-      );
-    }
-
-    if (!validateLocalizedRequired(body.instructions)) {
-      return NextResponse.json(
-        { error: "At least one instructions field is required." },
-        { status: 400 }
-      );
-    }
-
-    const submittedRecipe = await SubmittedRecipe.findByIdAndUpdate(
+    const updatedRecipe = await SubmittedRecipe.findByIdAndUpdate(
       body._id,
       {
         title: normalizeLocalizedText(body.title),
         ingredientPlainText: normalizeLocalizedText(body.ingredientPlainText),
+        ingredients: normalizeIngredients(body.ingredients),
         instructions: normalizeLocalizedText(body.instructions),
         imageURI: normalizeText(body.imageURI),
         public_id: normalizeText(body.public_id),
-        tags: normalizeLocalizedArray(body.tags),
-        allergens: normalizeLocalizedArray(body.allergens),
-        appliances: normalizeLocalizedArray(body.appliances),
-        submittedFromLang: body.submittedFromLang === "es" ? "es" : "en",
-        status:
-          body.status && ["pending", "approved", "rejected"].includes(body.status)
-            ? body.status
-            : "pending",
+        tags: body.tags,
+        espTags: body.espTags,
+        allergens: body.allergens,
+        espAllergens: body.espAllergens,
+        appliances: body.appliances,
+        category: body.category,
+        status: body.status || "pending",
       },
-      { new: true, runValidators: true }
+      { new: true }
     );
 
-    if (!submittedRecipe) {
-      return NextResponse.json(
-        { error: "Submitted recipe not found." },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json(submittedRecipe, { status: 200 });
+    return NextResponse.json(updatedRecipe, { status: 200 });
   } catch (error) {
-    console.error("Submitted Recipes API PUT error:", error);
-    return NextResponse.json(
-      { error: "Failed to update submitted recipe." },
-      { status: 500 }
-    );
+    console.error("PUT error:", error);
+    return NextResponse.json({ error: "Failed to update." }, { status: 500 });
   }
 }
 
-// delete submitted recipe
+// DELETE: Remove a submission
 export async function DELETE(req: NextRequest) {
   try {
     await connectToDB();
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("_id");
+    if (!id) return NextResponse.json({ error: "ID required" }, { status: 400 });
 
-    const url = new URL(req.url);
-    const id = url.searchParams.get("_id");
-
-    if (!id) {
-      return NextResponse.json(
-        { error: "Recipe id is required." },
-        { status: 400 }
-      );
-    }
-
-    const deleted = await SubmittedRecipe.findByIdAndDelete(id);
-
-    if (!deleted) {
-      return NextResponse.json(
-        { error: "Submitted recipe not found." },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({ success: true }, { status: 200 });
+    await SubmittedRecipe.findByIdAndDelete(id);
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Submitted Recipes API DELETE error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete submitted recipe." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to delete." }, { status: 500 });
   }
 }

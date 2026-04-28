@@ -39,17 +39,31 @@ export default function SubmittedRecipeSelector() {
             <h2 className="text-xl font-bold mb-4">Submitted Recipes</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {recipes.map(recipe => (
-                    <InfoCard 
-                        key={recipe._id} 
-                        title={recipe.title.en} 
-                        imageSrc={recipe.imageURI}
-                        action={
-                            <div className="flex gap-2">
-                                <button className="btn btn-primary btn-sm" onClick={() => setModalRecipe(recipe)}>Edit</button>
-                                <button className="btn btn-success btn-sm" onClick={() => handleApprove(recipe)}>Approve</button>
-                            </div>
-                        }
-                    />
+
+<InfoCard 
+    key={recipe._id} 
+    title={recipe.title.en} 
+    imageSrc={recipe.imageURI}
+    // Add these two lines to satisfy the Type Check:
+    description={recipe.instructions?.en || "No description provided."}
+    href="#" 
+    action={
+        <div className="flex gap-2">
+            <button 
+                className="btn btn-primary btn-sm" 
+                onClick={() => setModalRecipe(recipe)}
+            >
+                Edit
+            </button>
+            <button 
+                className="btn btn-success btn-sm" 
+                onClick={() => handleApprove(recipe)}
+            >
+                Approve
+            </button>
+        </div>
+    }
+/>
                 ))}
             </div>
 

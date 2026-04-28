@@ -1,61 +1,46 @@
-// digitalcookbook/models/SubmittedRecipe.js
+import mongoose, { Schema, model, models } from "mongoose";
 
-import mongoose from "mongoose";
+// 1. Define the missing sub-schemas first
+const localizedTextSchema = new Schema({
+    en: { type: String, default: "" },
+    es: { type: String, default: "" },
+}, { _id: false });
 
-const localizedTextSchema = new mongoose.Schema(
-    {
-        en: { type: String, default: "" },
-        es: { type: String, default: "" },
+const ingredientSchema = new Schema({
+    _id: String,
+    en: String,
+    es: String,
+    amount: String,
+    unit: String,
+    multiplier: Number,
+    ingredientCost: Number,
+    packageSize: Number,
+    packageSizeUnit: String,
+}, { _id: false });
+
+// 2. Define the main Submitted Recipe Schema
+const submittedRecipeSchema = new Schema({
+    title: localizedTextSchema,
+    ingredientPlainText: localizedTextSchema,
+    ingredients: [ingredientSchema], // Structured ingredients array
+    instructions: localizedTextSchema,
+    imageURI: { type: String, default: "" },
+    public_id: { type: String, default: "" },
+    tags: { type: Map, of: Boolean, default: {} },
+    espTags: { type: Map, of: Boolean, default: {} },
+    allergens: { type: Map, of: Boolean, default: {} },
+    espAllergens: { type: Map, of: Boolean, default: {} },
+    appliances: [String],
+    category: { type: String, default: "lunchDinner" },
+    submittedFromLang: { type: String, enum: ["en", "es"], default: "en" },
+    status: { 
+        type: String, 
+        enum: ["pending", "approved", "rejected"], 
+        default: "pending" 
     },
-    { _id: false }
-);
+}, { timestamps: true });
 
-const localizedArraySchema = new mongoose.Schema(
-    {
-        en: { type: [String], default: [] },
-        es: { type: [String], default: [] },
-    },
-    { _id: false }
-);
+// 3. Export the model (checking if it exists already to prevent re-compilation errors)
+const SubmittedRecipe = models.SubmittedRecipe || model("SubmittedRecipe", submittedRecipeSchema);
 
-const SubmittedRecipeSchema = new mongoose.Schema(
-    {
-        title: { type: localizedTextSchema, required: true },
-        ingredientPlainText: { type: localizedTextSchema, required: true },
-        instructions: { type: localizedTextSchema, required: true },
-
-        imageURI: { type: String, default: "" },
-        public_id: { type: String, default: "" },
-
-        tags: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
-        },
-        allergens: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
-        },
-        appliances: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
-        },
-
-        submittedFromLang: {
-        type: String,
-        enum: ["en", "es"],
-        default: "en",
-        },
-
-        status: {
-        type: String,
-        enum: ["pending", "approved", "rejected"],
-        default: "pending",
-        },
-    },
-    {
-        timestamps: true,
-        collection: "submittedRecipes",
-    }
-);
-
-export default mongoose.models.SubmittedRecipe || mongoose.model("SubmittedRecipe", SubmittedRecipeSchema);
+export default SubmittedRecipe;
