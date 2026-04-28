@@ -30,6 +30,12 @@ export default function MeasurementPage() {
       <div className="relative z-10 -mt-40">
         <MeasurementConverter />
       </div>
+
+      {/* Background image credit */}
+        <div className="absolute bottom-1 right-2 z-20 text-sm text-black px-2 py-1 rounded">
+            Background illustration by Hailey Van Kooten, CHS
+        </div>
     </section>
+
   );
 }
