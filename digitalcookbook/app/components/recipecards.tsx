@@ -92,7 +92,7 @@ export default function RecipeGrid({ recipes, loading }: Props) {
         {/* Loop through all recipes and render a card for each one */}
         {recipes.map((recipe: any) => (
           <Link key={recipe._id} href={`/single-recipe/${recipe._id}`} className="group block focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-1 rounded">
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col">
+            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow flex flex-col min-w-[180px]">
 
               {/* IMAGE */}
               <figure className="h-48 overflow-hidden bg-base-200 relative">
