@@ -78,7 +78,7 @@ export default function RecipeSearchPage() {
       <a href="#recipes" className="sr-only">Skip to recipes</a>
 
       {/* Background Image */}
-      <div className="relative w-full py-5 flex flex-col items-center">
+      <div className="relative w-full py-5 flex flex-col overflow-hidden items-center">
 
         {/* Background picture */}
         <Image
