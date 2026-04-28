@@ -63,7 +63,7 @@ export default function Sponsors() {
 
                                         {/* Logo */}
                                         {sponsor?.imageURI && /^https?:\/\//.test(sponsor.imageURI) && (
-                                            <div className="relative w-full h-20 md:h-30 mb-5">
+                                            <div className="relative w-full h-20 lg:h-30 mb-5">
                                                 <Image
                                                     src={sponsor.imageURI}
                                                     alt={sponsor.name}
