@@ -1,50 +1,36 @@
-// app/components/submittedRecipeModal.tsx
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLang } from "@/app/components/languageprovider";
-import Image from "next/image";
 import { uploadImage } from "@/lib/uploadImage";
 
 const STRINGS = {
     en: {
         title: "Submit Recipe",
         recipeTitle: "Title",
-        ingredients: "Ingredients (Structured)",
-        ingredientPlainText: "Ingredients (Plain Text)",
+        ingredients: "Ingredients",
         instructions: "Instructions",
         image: "Recipe Image",
         tags: "Tags",
         allergens: "Allergens",
         appliances: "Appliances",
-        addOtherLanguage: "Add Spanish",
-        hideOtherLanguage: "Hide Spanish",
-        english: "English",
-        spanish: "Spanish",
+        category: "Category",
         cancel: "Cancel",
         submit: "Submit",
-        submitting: "Submitting...",
-        uploadingImage: "Uploading image...",
         success: "Recipe submitted successfully.",
     },
     es: {
         title: "Enviar Receta",
         recipeTitle: "Título",
-        ingredients: "Ingredientes (Estructurados)",
-        ingredientPlainText: "Ingredientes (Texto Plano)",
+        ingredients: "Ingredientes",
         instructions: "Instrucciones",
         image: "Imagen de la receta",
         tags: "Etiquetas",
         allergens: "Alérgenos",
         appliances: "Electrodomésticos",
-        addOtherLanguage: "Agregar inglés",
-        hideOtherLanguage: "Ocultar inglés",
-        english: "Inglés",
-        spanish: "Español",
+        category: "Categoría",
         cancel: "Cancelar",
         submit: "Enviar",
-        submitting: "Enviando...",
-        uploadingImage: "Subiendo imagen...",
         success: "Receta enviada con éxito.",
     },
 } as const;
@@ -85,27 +71,56 @@ export default function SubmittedRecipeModal({ open, onClose }: { open: boolean;
     const [unitsList, setUnitsList] = useState<any[]>([]);
     const [ingredientSearch, setIngredientSearch] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [showOtherLanguage, setShowOtherLanguage] = useState(false);
 
     useEffect(() => {
         if (!open) return;
-        fetch("/api/appliances/all").then(res => res.json()).then(data => setAppliancesList(data));
-        fetch("/api/tags/all").then(res => res.json()).then(data => setTagsList(data));
-        fetch("/api/allergens/all").then(res => res.json()).then(data => setAllergensList(data));
-        fetch("/api/ingredients").then(res => res.json()).then(data => setIngredientsList(data));
-        fetch("/api/units").then(res => res.json()).then(data => setUnitsList(data.uniqueUnits));
+        const fetchData = async () => {
+            const [tags, allergens, appliances, ingredients, units] = await Promise.all([
+                fetch("/api/tags/all").then(res => res.json()),
+                fetch("/api/allergens/all").then(res => res.json()),
+                fetch("/api/appliances/all").then(res => res.json()),
+                fetch("/api/ingredients").then(res => res.json()),
+                fetch("/api/units").then(res => res.json())
+            ]);
+            setTagsList(tags);
+            setAllergensList(allergens);
+            setAppliancesList(appliances);
+            setIngredientsList(ingredients);
+            setUnitsList(units.uniqueUnits);
+        };
+        fetchData();
     }, [open]);
-
-    if (!open) return null;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+
+        // Mirror the exact Admin Panel formatting logic
+        const formattedIngredients = recipe.ingredients.map((ing: any) => {
+            const ingredientCost = (Number(ing.amount) * (ing.multiplier || 1) * (ing.price || 0)) / (ing.packageSize || 1);
+            return {
+                ...ing,
+                ingredientCost: ingredientCost
+            };
+        });
+
+        const totalCost = formattedIngredients.reduce((sum: number, ing: any) => sum + (ing.ingredientCost || 0), 0);
+
+        const payload = {
+            ...recipe,
+            ingredients: formattedIngredients,
+            totalCost,
+            tags: Object.fromEntries(tagsList.map(tag => [tag.en, !!recipe.tags?.[tag.en]])),
+            espTags: Object.fromEntries(tagsList.map(tag => [tag.es, !!recipe.espTags?.[tag.es]])),
+            allergens: Object.fromEntries(allergensList.map(a => [a.en, !!recipe.allergens?.[a.en]])),
+            espAllergens: Object.fromEntries(allergensList.map(a => [a.es, !!recipe.espAllergens?.[a.es]])),
+        };
+
         try {
             const res = await fetch("/api/submitted-recipes", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...recipe, submittedFromLang: lang }),
+                body: JSON.stringify(payload),
             });
             if (res.ok) {
                 alert(t.success);
@@ -118,72 +133,72 @@ export default function SubmittedRecipeModal({ open, onClose }: { open: boolean;
         }
     };
 
+    if (!open) return null;
+
     return (
         <dialog className="modal modal-open">
-            <div className="modal-box max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="modal-box max-w-4xl max-h-[90vh] overflow-y-auto">
                 <h3 className="font-bold text-2xl mb-6">{t.title}</h3>
 
-                {/* Image Upload Logic from Admin Panel */}
-                <label className="font-semibold block mb-2">{t.image}</label>
-                <input className="file-input file-input-bordered w-full mb-4" type="file" accept="image/*"
-                    onChange={async (e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                            const res = await uploadImage(file);
-                            if (res?.url) setRecipe({ ...recipe, imageURI: res.url, public_id: res.public_id });
-                        }
-                    }}
-                />
-
-                <form onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <div className="flex flex-col">
-                            <label className="font-semibold">{t.recipeTitle} (EN)</label>
-                            <input className="input input-bordered" value={recipe.title.en} onChange={(e) => setRecipe({...recipe, title: {...recipe.title, en: e.target.value}})} />
-                        </div>
-                        <div className="flex flex-col">
-                            <label className="font-semibold">{t.recipeTitle} (ES)</label>
-                            <input className="input input-bordered" value={recipe.title.es} onChange={(e) => setRecipe({...recipe, title: {...recipe.title, es: e.target.value}})} />
-                        </div>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Category Selection */}
+                    <div className="form-control">
+                        <label className="label font-bold">{t.category}</label>
+                        <select 
+                            className="select select-bordered" 
+                            value={recipe.category}
+                            onChange={(e) => setRecipe({...recipe, category: e.target.value})}
+                        >
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunchDinner">Lunch/Dinner</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="snack">Snack</option>
+                        </select>
                     </div>
 
-                    {/* Structured Ingredient Logic */}
-                    <h4 className="font-bold mt-6 mb-2">{t.ingredients}</h4>
-                    <input type="text" placeholder="Search..." className="input input-bordered w-full mb-4" value={ingredientSearch} onChange={(e) => setIngredientSearch(e.target.value)} />
-                    <div className="max-h-60 overflow-y-auto border p-4 rounded-lg mb-6">
-                        {ingredientsList.filter(i => i.en.toLowerCase().includes(ingredientSearch.toLowerCase())).map(ing => {
-                            const isChecked = recipe.ingredients.some((a: any) => a._id === ing._id);
-                            return (
-                                <div key={ing._id} className="flex flex-col gap-2 mb-4 border-b pb-2">
+                    {/* Title and Instructions mirrored from Admin Panel UI */}
+                    <div className="grid grid-cols-2 gap-4">
+                        <input className="input input-bordered" placeholder="Title (EN)" value={recipe.title.en} onChange={(e) => setRecipe({...recipe, title: {...recipe.title, en: e.target.value}})} />
+                        <input className="input input-bordered" placeholder="Title (ES)" value={recipe.title.es} onChange={(e) => setRecipe({...recipe, title: {...recipe.title, es: e.target.value}})} />
+                    </div>
+
+                    {/* Ingredient Selection Logic */}
+                    <div>
+                        <label className="label font-bold">{t.ingredients}</label>
+                        <input type="text" placeholder="Search ingredients..." className="input input-bordered w-full mb-2" onChange={(e) => setIngredientSearch(e.target.value)} />
+                        <div className="border rounded-md p-4 max-h-64 overflow-y-auto space-y-2">
+                            {ingredientsList.filter(i => i.en.toLowerCase().includes(ingredientSearch.toLowerCase())).map(ing => (
+                                <div key={ing._id} className="flex flex-col gap-2 p-2 border-b last:border-0">
                                     <label className="flex items-center gap-2">
-                                        <input type="checkbox" checked={isChecked} onChange={(e) => {
-                                            if (e.target.checked) setRecipe({...recipe, ingredients: [...recipe.ingredients, {...ing, amount: "", unit: "", multiplier: 1}]});
-                                            else setRecipe({...recipe, ingredients: recipe.ingredients.filter((a: any) => a._id !== ing._id)});
-                                        }} />
+                                        <input type="checkbox" className="checkbox" checked={recipe.ingredients.some((i: any) => i._id === ing._id)} 
+                                            onChange={(e) => {
+                                                if (e.target.checked) setRecipe({...recipe, ingredients: [...recipe.ingredients, {...ing, amount: "", unit: ing.packageSizeUnit, multiplier: 1}]});
+                                                else setRecipe({...recipe, ingredients: recipe.ingredients.filter((i: any) => i._id !== ing._id)});
+                                            }} 
+                                        />
                                         <span>{ing.en} / {ing.es}</span>
                                     </label>
-                                    {isChecked && (
-                                        <div className="flex gap-2 items-center pl-6">
-                                            <input type="number" placeholder="Amt" className="input input-bordered input-sm w-20" onChange={(e) => {
-                                                setRecipe({...recipe, ingredients: recipe.ingredients.map((a: any) => a._id === ing._id ? {...a, amount: e.target.value} : a)});
+                                    {recipe.ingredients.find((i: any) => i._id === ing._id) && (
+                                        <div className="flex gap-2 pl-8">
+                                            <input type="number" placeholder="Amt" className="input input-bordered input-sm w-24" onChange={(e) => {
+                                                setRecipe({...recipe, ingredients: recipe.ingredients.map((i: any) => i._id === ing._id ? {...i, amount: e.target.value} : i)});
                                             }} />
                                             <select className="select select-bordered select-sm" onChange={(e) => {
                                                 const mult = getMultiplier(unitsList, e.target.value, ing.packageSizeUnit);
-                                                setRecipe({...recipe, ingredients: recipe.ingredients.map((a: any) => a._id === ing._id ? {...a, unit: e.target.value, multiplier: mult} : a)});
+                                                setRecipe({...recipe, ingredients: recipe.ingredients.map((i: any) => i._id === ing._id ? {...i, unit: e.target.value, multiplier: mult} : i)});
                                             }}>
-                                                <option value="">Unit</option>
                                                 {unitsList.map(u => <option key={u.fromUnit} value={u.fromUnit}>{u.fromUnit}</option>)}
                                             </select>
                                         </div>
                                     )}
                                 </div>
-                            );
-                        })}
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="flex gap-4">
-                        <button type="button" className="btn flex-1" onClick={onClose}>{t.cancel}</button>
-                        <button type="submit" className="btn btn-success flex-1" disabled={isSubmitting}>{isSubmitting ? t.submitting : t.submit}</button>
+                    <div className="modal-action">
+                        <button type="button" className="btn" onClick={onClose}>{t.cancel}</button>
+                        <button type="submit" className="btn btn-success" disabled={isSubmitting}>{t.submit}</button>
                     </div>
                 </form>
             </div>
