@@ -4,16 +4,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/connectToDB";
 import SubmittedRecipe from "@/models/SubmittedRecipe";
 import Recipe from "@/models/Recipe";
+import Tag from "@/models/Tag";
+import Allergen from "@/models/Allergen";
 import Appliance from "@/models/Appliance";
 
 type LocalizedText = {
     en?: string;
     es?: string;
-};
-
-type LocalizedArray = {
-    en?: string[];
-    es?: string[];
 };
 
 type SubmittedRecipeDoc = {
@@ -23,9 +20,9 @@ type SubmittedRecipeDoc = {
     instructions?: LocalizedText;
     imageURI?: string;
     public_id?: string;
-    tags?: LocalizedArray;
-    allergens?: LocalizedArray;
-    appliances?: LocalizedArray;
+    tags?: string[];
+    allergens?: string[];
+    appliances?: string[];
     status?: "pending" | "approved" | "rejected";
 };
 
@@ -79,19 +76,26 @@ export async function POST(req: NextRequest) {
         const { _id } = await req.json();
 
         if (!_id) {
-        return NextResponse.json(
-            { success: false, error: "Submitted recipe id is required." },
-            { status: 400 }
-        );
+            return NextResponse.json(
+                { success: false, error: "Submitted recipe id is required." },
+                { status: 400 }
+            );
         }
 
         const submitted = (await SubmittedRecipe.findById(_id).lean()) as SubmittedRecipeDoc | null;
 
         if (!submitted) {
-        return NextResponse.json(
-            { success: false, error: "Submitted recipe not found." },
-            { status: 404 }
-        );
+            return NextResponse.json(
+                { success: false, error: "Submitted recipe not found." },
+                { status: 404 }
+            );
+        }
+
+        if (submitted.status === "approved") {
+            return NextResponse.json(
+                { success: false, error: "Submitted recipe has already been approved." },
+                { status: 400 }
+            );
         }
 
         const title = {
@@ -139,26 +143,40 @@ export async function POST(req: NextRequest) {
         );
         }
 
-        const submittedEnglishTags = normalizeArray(submitted.tags?.en);
-        const submittedSpanishTags = normalizeArray(submitted.tags?.es);
+        const submittedTagIds = Array.isArray(submitted.tags) ? submitted.tags : [];
+        const submittedAllergenIds = Array.isArray(submitted.allergens) ? submitted.allergens : [];
+        const submittedApplianceIds = Array.isArray(submitted.appliances) ? submitted.appliances : [];
 
-        const submittedEnglishAllergens = normalizeArray(submitted.allergens?.en);
-        const submittedSpanishAllergens = normalizeArray(submitted.allergens?.es);
+        const matchedTags = await Tag.find({
+            _id: { $in: submittedTagIds },
+        }).lean();
 
-        const submittedEnglishAppliances = normalizeArray(submitted.appliances?.en);
-        const submittedSpanishAppliances = normalizeArray(submitted.appliances?.es);
+        const matchedAllergens = await Allergen.find({
+            _id: { $in: submittedAllergenIds },
+        }).lean();
 
-        const tags = buildBooleanMap(EN_TAG_KEYS, submittedEnglishTags);
-        const espTags = buildBooleanMap(ES_TAG_KEYS, submittedSpanishTags);
+        const tags = buildBooleanMap(
+            EN_TAG_KEYS,
+            matchedTags.map((tag: any) => tag.recipeKey)
+        );
 
-        const allergens = buildBooleanMap(EN_ALLERGEN_KEYS, submittedEnglishAllergens);
-        const espAllergens = buildBooleanMap(ES_ALLERGEN_KEYS, submittedSpanishAllergens);
+        const espTags = buildBooleanMap(
+            ES_TAG_KEYS,
+            matchedTags.map((tag: any) => tag.espRecipeKey)
+        );
+
+        const allergens = buildBooleanMap(
+            EN_ALLERGEN_KEYS,
+            matchedAllergens.map((allergen: any) => allergen.recipeKey)
+        );
+
+        const espAllergens = buildBooleanMap(
+            ES_ALLERGEN_KEYS,
+            matchedAllergens.map((allergen: any) => allergen.espRecipeKey)
+        );
 
         const matchedAppliances = await Appliance.find({
-        $or: [
-            { en: { $in: submittedEnglishAppliances } },
-            { es: { $in: submittedSpanishAppliances } },
-        ],
+            _id: { $in: submittedApplianceIds },
         }).lean();
 
         const recipeAppliances = matchedAppliances.map((appliance: any) => ({
@@ -183,7 +201,12 @@ export async function POST(req: NextRequest) {
         };
 
         await Recipe.create(newRecipe);
-        await SubmittedRecipe.findByIdAndDelete(_id);
+
+        await SubmittedRecipe.findByIdAndUpdate(
+            _id,
+            { status: "approved" },
+            { runValidators: true }
+        );
 
         return NextResponse.json({ success: true }, { status: 200 });
     } catch (error) {

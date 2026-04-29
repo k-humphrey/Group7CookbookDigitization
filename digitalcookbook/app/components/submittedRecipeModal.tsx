@@ -67,10 +67,7 @@ type LocalizedText = {
     es: string;
 };
 
-type LocalizedArray = {
-    en: string[];
-    es: string[];
-};
+type ObjectIdArray = string[];
 
 type SubmittedRecipe = {
     title: LocalizedText;
@@ -78,9 +75,9 @@ type SubmittedRecipe = {
     instructions: LocalizedText;
     imageURI: string;
     public_id: string;
-    tags: LocalizedArray;
-    allergens: LocalizedArray;
-    appliances: LocalizedArray;
+    tags: ObjectIdArray;
+    allergens: ObjectIdArray;
+    appliances: ObjectIdArray;
     submittedFromLang?: Lang;
 };
 
@@ -90,7 +87,10 @@ type SubmittedRecipeModalProps = {
 };
 
 const EMPTY_LOCALIZED_TEXT: LocalizedText = { en: "", es: "" };
-const EMPTY_LOCALIZED_ARRAY: LocalizedArray = { en: [], es: [] };
+const EMPTY_ID_ARRAY: ObjectIdArray = [];
+const asIdArray = (value: unknown): string[] => {
+  return Array.isArray(value) ? value : [];
+};
 
 const createEmptySubmittedRecipe = (): SubmittedRecipe => ({
     title: { ...EMPTY_LOCALIZED_TEXT },
@@ -98,9 +98,9 @@ const createEmptySubmittedRecipe = (): SubmittedRecipe => ({
     instructions: { ...EMPTY_LOCALIZED_TEXT },
     imageURI: "",
     public_id: "",
-    tags: { ...EMPTY_LOCALIZED_ARRAY },
-    allergens: { ...EMPTY_LOCALIZED_ARRAY },
-    appliances: { ...EMPTY_LOCALIZED_ARRAY },
+    tags: { ...EMPTY_ID_ARRAY },
+    allergens: { ...EMPTY_ID_ARRAY },
+    appliances: { ...EMPTY_ID_ARRAY },
     submittedFromLang: "en",
 });
 
@@ -122,8 +122,7 @@ export default function SubmittedRecipeModal({
     const [appliancesList, setAppliancesList] = useState<NamedOption[]>([]);
 
     const emptySubmittedRecipe = useMemo(() => createEmptySubmittedRecipe(), []);
-    const [submittedRecipe, setSubmittedRecipe] =
-        useState<SubmittedRecipe>(emptySubmittedRecipe);
+    const [submittedRecipe, setSubmittedRecipe] = useState<SubmittedRecipe>(emptySubmittedRecipe);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isUploadingImage, setIsUploadingImage] = useState(false);
@@ -491,9 +490,8 @@ export default function SubmittedRecipeModal({
             <h4 className="font-bold mt-6 mb-2">{t.tags}</h4>
             <div className="mb-4">
                 {tagsList.map((tag) => {
-                const isChecked =
-                    submittedRecipe.tags.en.includes(tag.en) ||
-                    submittedRecipe.tags.es.includes(tag.es);
+                const selectedTags = asIdArray(submittedRecipe.tags);
+                const isChecked = selectedTags.includes(tag._id);
 
                 return (
                     <label key={tag._id} className="flex gap-2 mb-2">
@@ -503,12 +501,11 @@ export default function SubmittedRecipeModal({
                         onChange={(e) =>
                         setSubmittedRecipe((prev) => ({
                             ...prev,
-                            tags: toggleLocalizedPair(
-                            prev.tags,
-                            tag.en,
-                            tag.es,
-                            e.target.checked
-                            ),
+                            tags: e.target.checked
+                            ? asIdArray(prev.tags).includes(tag._id)
+                                ? asIdArray(prev.tags)
+                                : [...asIdArray(prev.tags), tag._id]
+                            : asIdArray(prev.tags).filter((id) => id !== tag._id),
                         }))
                         }
                     />
@@ -521,9 +518,8 @@ export default function SubmittedRecipeModal({
             <h4 className="font-bold mt-6 mb-2">{t.allergens}</h4>
             <div className="mb-4">
                 {allergensList.map((allergen) => {
-                const isChecked =
-                    submittedRecipe.allergens.en.includes(allergen.en) ||
-                    submittedRecipe.allergens.es.includes(allergen.es);
+                const selectedAllergens = asIdArray(submittedRecipe.allergens);
+                const isChecked = selectedAllergens.includes(allergen._id);
 
                 return (
                     <label key={allergen._id} className="flex gap-2 mb-2">
@@ -533,12 +529,11 @@ export default function SubmittedRecipeModal({
                         onChange={(e) =>
                         setSubmittedRecipe((prev) => ({
                             ...prev,
-                            allergens: toggleLocalizedPair(
-                            prev.allergens,
-                            allergen.en,
-                            allergen.es,
-                            e.target.checked
-                            ),
+                            allergens: e.target.checked
+                            ? asIdArray(prev.allergens).includes(allergen._id)
+                                ? asIdArray(prev.allergens)
+                                : [...asIdArray(prev.allergens), allergen._id]
+                            : asIdArray(prev.allergens).filter((id) => id !== allergen._id),
                         }))
                         }
                     />
@@ -551,9 +546,8 @@ export default function SubmittedRecipeModal({
             <h4 className="font-bold mt-6 mb-2">{t.appliances}</h4>
             <div className="mb-4">
                 {appliancesList.map((appliance) => {
-                const isChecked =
-                    submittedRecipe.appliances.en.includes(appliance.en) ||
-                    submittedRecipe.appliances.es.includes(appliance.es);
+                const selectedAppliances = asIdArray(submittedRecipe.appliances);
+                const isChecked = selectedAppliances.includes(appliance._id);
 
                 return (
                     <label key={appliance._id} className="flex gap-2 mb-2">
@@ -563,12 +557,11 @@ export default function SubmittedRecipeModal({
                         onChange={(e) =>
                         setSubmittedRecipe((prev) => ({
                             ...prev,
-                            appliances: toggleLocalizedPair(
-                            prev.appliances,
-                            appliance.en,
-                            appliance.es,
-                            e.target.checked
-                            ),
+                            appliances: e.target.checked
+                            ? asIdArray(prev.appliances).includes(appliance._id)
+                                ? asIdArray(prev.appliances)
+                                : [...asIdArray(prev.appliances), appliance._id]
+                            : asIdArray(prev.appliances).filter((id) => id !== appliance._id),
                         }))
                         }
                     />

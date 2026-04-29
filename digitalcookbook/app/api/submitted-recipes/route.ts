@@ -9,11 +9,6 @@ type LocalizedText = {
   es?: string;
 };
 
-type LocalizedArray = {
-  en?: string[];
-  es?: string[];
-};
-
 type SubmittedRecipePayload = {
   _id?: string;
   title?: LocalizedText;
@@ -21,9 +16,9 @@ type SubmittedRecipePayload = {
   instructions?: LocalizedText;
   imageURI?: string;
   public_id?: string;
-  tags?: LocalizedArray;
-  allergens?: LocalizedArray;
-  appliances?: LocalizedArray;
+  tags?: string[];
+  allergens?: string[];
+  appliances?: string[];
   submittedFromLang?: "en" | "es";
   status?: "pending" | "approved" | "rejected";
 };
@@ -34,6 +29,15 @@ function normalizeText(value?: string) {
 
 function normalizeArray(value?: string[]) {
   if (!Array.isArray(value)) return [];
+  return value
+    .filter((item): item is string => typeof item === "string")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function normalizeIdArray(value?: string[]) {
+  if (!Array.isArray(value)) return [];
+
   return value
     .filter((item): item is string => typeof item === "string")
     .map((item) => item.trim())
@@ -53,19 +57,27 @@ function normalizeLocalizedText(field?: LocalizedText) {
   };
 }
 
-function normalizeLocalizedArray(field?: LocalizedArray) {
+{/*function normalizeLocalizedArray(field?: LocalizedArray) {
   return {
     en: normalizeArray(field?.en),
     es: normalizeArray(field?.es),
   };
-}
+}*/}
 
 // get all submitted recipes
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     await connectToDB();
 
-    const submittedRecipes = await SubmittedRecipe.find()
+    const url = new URL(req.url);
+    const status = url.searchParams.get("status");
+
+    const filter =
+      status && ["pending", "approved", "rejected"].includes(status)
+        ? { status }
+        : {};
+
+    const submittedRecipes = await SubmittedRecipe.find(filter)
       .sort({ createdAt: -1 })
       .lean();
 
@@ -113,9 +125,9 @@ export async function POST(req: NextRequest) {
       instructions: normalizeLocalizedText(body.instructions),
       imageURI: normalizeText(body.imageURI),
       public_id: normalizeText(body.public_id),
-      tags: normalizeLocalizedArray(body.tags),
-      allergens: normalizeLocalizedArray(body.allergens),
-      appliances: normalizeLocalizedArray(body.appliances),
+      tags: normalizeIdArray(body.tags),
+      allergens: normalizeIdArray(body.allergens),
+      appliances: normalizeIdArray(body.appliances),
       submittedFromLang: body.submittedFromLang === "es" ? "es" : "en",
       status: "pending",
     });
@@ -173,9 +185,9 @@ export async function PUT(req: NextRequest) {
         instructions: normalizeLocalizedText(body.instructions),
         imageURI: normalizeText(body.imageURI),
         public_id: normalizeText(body.public_id),
-        tags: normalizeLocalizedArray(body.tags),
-        allergens: normalizeLocalizedArray(body.allergens),
-        appliances: normalizeLocalizedArray(body.appliances),
+        tags: normalizeIdArray(body.tags),
+        allergens: normalizeIdArray(body.allergens),
+        appliances: normalizeIdArray(body.appliances),
         submittedFromLang: body.submittedFromLang === "es" ? "es" : "en",
         status:
           body.status && ["pending", "approved", "rejected"].includes(body.status)

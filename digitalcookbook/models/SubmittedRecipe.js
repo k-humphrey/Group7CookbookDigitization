@@ -28,28 +28,43 @@ const SubmittedRecipeSchema = new mongoose.Schema(
         public_id: { type: String, default: "" },
 
         tags: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
+            type: [
+                {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Tag",
+                },
+            ],
+            default: [],
         },
         allergens: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
+            type: [
+                {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Allergen",
+                },
+            ],
+            default: [],
         },
         appliances: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
+            type: [
+                {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Appliance",
+                },
+            ],
+            default: [],
         },
 
         submittedFromLang: {
-        type: String,
-        enum: ["en", "es"],
-        default: "en",
+            type: String,
+            enum: ["en", "es"],
+            default: "en",
         },
 
         status: {
-        type: String,
-        enum: ["pending", "approved", "rejected"],
-        default: "pending",
+            type: String,
+            enum: ["pending", "approved", "rejected"],
+            default: "pending",
         },
     },
     {
