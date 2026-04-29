@@ -151,8 +151,8 @@ export async function PUT(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   try {
     await connectToDB();
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("_id");
+    const body = (await req.json())
+    const id = body._id
     if (!id) return NextResponse.json({ error: "ID required" }, { status: 400 });
 
     await SubmittedRecipe.findByIdAndDelete(id);
