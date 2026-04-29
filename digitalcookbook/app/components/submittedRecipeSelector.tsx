@@ -26,6 +26,7 @@ export default function SubmittedRecipeSelector() {
     useEffect(() => { fetchAll(); }, []);
 
     const handleSave = async () => {
+       
         // Calculate costs exactly like AdminPanelClient
         const formattedIngredients = modalRecipe.ingredients.map((ing: any) => {
             const cost = (Number(ing.amount) * (ing.multiplier || 1) * (ing.price || 0)) / (ing.packageSize || 1);
@@ -42,13 +43,37 @@ export default function SubmittedRecipeSelector() {
             espTags: Object.fromEntries(tagsList.map(tag => [tag.es, !!modalRecipe.espTags?.[tag.es]])),
         };
 
-        await fetch("/api/submitted-recipes", {
+        if(modalRecipe.status == "rejected"){
+            console.log("Deleting recipe.\n")
+            await fetch("/api/submitted-recipes", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updated),
+            });
+            setModalRecipe(null);
+            fetchAll();
+        }
+        else if(modalRecipe.status == "approved"){
+            await fetch("/api/edit-recipes/", {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(updated),
+            });
+            setModalRecipe(null);
+            fetchAll();
+        }
+        else{
+            await fetch("/api/submitted-recipes", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updated),
-        });
-        setModalRecipe(null);
-        fetchAll();
+            });
+            setModalRecipe(null);
+            fetchAll();
+        }
+        
     };
 
     return (
