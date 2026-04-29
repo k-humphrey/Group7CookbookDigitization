@@ -44,11 +44,12 @@ export default function SubmittedRecipeSelector() {
         };
 
         if(modalRecipe.status == "rejected"){
-            console.log("Deleting recipe.\n")
+            console.log("Deleting recipe with id\n")
+            console.log(updated.recipe_id)
             await fetch("/api/edit-recipes/", {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updated),
+            body: JSON.stringify({_id: updated.recipe_id}), 
             });
             setModalRecipe(null);
             fetchAll();
