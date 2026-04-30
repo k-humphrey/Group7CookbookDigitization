@@ -277,7 +277,7 @@ export default function ShoppingListPage() {
               key={recipe._id}
               className="group block rounded-xl focus:outline-none focus-visible:ring-3 focus-visible:ring-neutral focus-visible:ring-offset-2">
               <div
-                className="bg-base-100 shadow-xl rounded-xl p-6 relative flex flex-row md:flex-row hover:shadow-2xl transition-shadow cursor-pointer"
+                className="bg-base-100 shadow-xl rounded-xl p-6 relative flex flex-col md:flex-row hover:shadow-2xl transition-shadow cursor-pointer mb-2"
                 onClick={() => {
                   const selection = window.getSelection()?.toString();
                   if (!selection) {
