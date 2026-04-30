@@ -62,12 +62,21 @@ function normalizeText(value?: string) {
     return typeof value === "string" ? value.trim() : "";
 }
 
-function normalizeArray(value?: string[]) {
-    if (!Array.isArray(value)) return [];
-    return value
-        .filter((item): item is string => typeof item === "string")
-        .map((item) => item.trim())
-        .filter(Boolean);
+function normalizeId(value: any) {
+    if (!value) return "";
+    if (typeof value === "string") return value;
+    if (value._id) return value._id.toString();
+    return value.toString();
+}
+
+function normalizeMultilineToRecipeDelimiter(value?: string) {
+    return typeof value === "string"
+        ? value
+            .split("\n")
+            .map((line) => line.trim())
+            .filter(Boolean)
+            .join("|||\n")
+        : "";
 }
 
 function buildBooleanMap(allowedKeys: readonly string[], selectedValues: string[]) {
@@ -113,13 +122,13 @@ export async function POST(req: NextRequest) {
         };
 
         const ingredientPlainText = {
-        en: normalizeText(submitted.ingredientPlainText?.en),
-        es: normalizeText(submitted.ingredientPlainText?.es),
+        en: normalizeMultilineToRecipeDelimiter(submitted.ingredientPlainText?.en),
+        es: normalizeMultilineToRecipeDelimiter(submitted.ingredientPlainText?.es),
         };
 
         const instructions = {
-        en: normalizeText(submitted.instructions?.en),
-        es: normalizeText(submitted.instructions?.es),
+        en: normalizeMultilineToRecipeDelimiter(submitted.instructions?.en),
+        es: normalizeMultilineToRecipeDelimiter(submitted.instructions?.es),
         };
 
         if (
@@ -157,8 +166,8 @@ export async function POST(req: NextRequest) {
         const submittedApplianceIds = Array.isArray(submitted.appliances) ? submitted.appliances : [];
         const submittedIngredients = Array.isArray(submitted.ingredients) ? submitted.ingredients : [];
         const submittedIngredientIds = submittedIngredients
-        .map((item) => item.ingredient)
-        .filter(Boolean);
+            .map((item) => normalizeId(item.ingredient))
+            .filter(Boolean);
 
         const matchedTags = await Tag.find({
             _id: { $in: submittedTagIds },
@@ -211,7 +220,7 @@ export async function POST(req: NextRequest) {
 
         const recipeIngredients = submittedIngredients
         .map((item) => {
-            const matched = ingredientById.get(String(item.ingredient));
+            const matched = ingredientById.get(normalizeId(item.ingredient));
             if (!matched) return null;
 
             const amount = Number(item.amount) || 0;
@@ -242,6 +251,10 @@ export async function POST(req: NextRequest) {
         0
         );
 
+        console.log("submitted.ingredients:", submitted.ingredients);
+        console.log("submittedIngredientIds:", submittedIngredientIds);
+        console.log("matchedIngredients:", matchedIngredients);
+        console.log("recipeIngredients:", recipeIngredients);
         const newRecipe = {
             title,
             ingredientPlainText,

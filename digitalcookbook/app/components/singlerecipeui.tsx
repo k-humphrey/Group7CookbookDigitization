@@ -90,11 +90,11 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
     ? scaleCost(recipe.totalCost, servings)
     : {scaleFactor: 1, scaledCost: 0.00};
 
-  const ingredients = recipe?.ingredientPlainText?.[lang]
-    ? recipe.ingredientPlainText[lang]!.split("|||").map((l) => l.trim())
-    : (recipe?.ingredients || []).map((ing: any) => { 
-      return (ing.unit || "") === "each" ? `${(ing.amount || 0)} ${(ing?.[lang] || "")}`.trim() : `${(ing.amount || 0)} ${(ing.unit || "")} ${(ing?.[lang] || "")}`.trim();
-    });
+  const ingredients = (recipe?.ingredients && recipe.ingredients.length > 0)
+    ? recipe.ingredients.map((ing: any) => {
+        return (ing.unit || "") === "each" ? `${(ing.amount || 0)} ${(ing?.[lang] || "")}`.trim() : `${(ing.amount || 0)} ${(ing.unit || "")} ${(ing?.[lang] || "")}`.trim();
+      })
+    : recipe?.ingredientPlainText?.[lang] ? recipe.ingredientPlainText[lang]!.split("|||").map((l) => l.trim()) : [];
 
   const steps = recipe?.instructions?.[lang]
     ? recipe.instructions[lang]!.split("|||").map((l) => l.trim())

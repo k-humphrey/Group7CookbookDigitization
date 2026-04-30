@@ -22,6 +22,7 @@ type SubmittedRecipe = {
     tags?: string[];
     allergens?: string[];
     appliances?: string[];
+    ingredients?: SubmittedIngredient[];
     submittedFromLang?: Lang;
     status?: "pending" | "approved" | "rejected";
 };
@@ -30,6 +31,21 @@ type NamedOption = {
     _id: string;
     en: string;
     es: string;
+};
+
+type IngredientOption = {
+  _id: string;
+  en: string;
+  es: string;
+  costPerUnit?: number;
+  baseUnit?: string;
+};
+
+type SubmittedIngredient = {
+  ingredient: string;
+  amount: number;
+  unit: string;
+  multiplier: number;
 };
 
 const EMPTY_LOCALIZED_TEXT: LocalizedText = { en: "", es: "" };
@@ -43,6 +59,7 @@ const [modalRecipe, setModalRecipe] = useState<SubmittedRecipe | null>(null);
 const [tagsList, setTagsList] = useState<NamedOption[]>([]);
 const [allergensList, setAllergensList] = useState<NamedOption[]>([]);
 const [appliancesList, setAppliancesList] = useState<NamedOption[]>([]);
+const [ingredientsList, setIngredientsList] = useState<IngredientOption[]>([]);
 
 const [isLoading, setIsLoading] = useState(true);
 const [isSaving, setIsSaving] = useState(false);
@@ -99,6 +116,11 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
         .then((res) => res.json())
         .then((data) => setAppliancesList(Array.isArray(data) ? data : []))
         .catch(() => setAppliancesList([]));
+
+        fetch("/api/ingredients")
+        .then((res) => res.json())
+        .then((data) => setIngredientsList(Array.isArray(data) ? data : []))
+        .catch(() => setIngredientsList([]));
     }, [statusFilter]);
 
     const getPrimaryLang = (recipe: SubmittedRecipe | null): Lang => {
@@ -144,16 +166,32 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
     };
 
     const asIdArray = (value: unknown): string[] => {
-    if (!Array.isArray(value)) return [];
+        if (!Array.isArray(value)) return [];
 
-    return value
-        .map((item: any) =>
-        typeof item === "string"
-            ? item
-            : item?._id?.toString?.() ?? item?.toString?.() ?? ""
-        )
-        .filter(Boolean);
-    };
+        return value
+            .map((item: any) =>
+            typeof item === "string"
+                ? item
+                : item?._id?.toString?.() ?? item?.toString?.() ?? ""
+            )
+            .filter(Boolean);
+        };
+
+    const asSubmittedIngredients = (value: unknown): SubmittedIngredient[] => {
+        if (!Array.isArray(value)) return [];
+
+        return value
+            .map((item: any) => ({
+            ingredient:
+                typeof item?.ingredient === "string"
+                ? item.ingredient
+                : item?.ingredient?._id?.toString?.() ?? item?.ingredient?.toString?.() ?? "",
+            amount: Number(item?.amount) || 0,
+            unit: typeof item?.unit === "string" ? item.unit : "",
+            multiplier: Number(item?.multiplier) || 1,
+            }))
+            .filter((item) => item.ingredient);
+        };
 
     const openModal = (recipe: SubmittedRecipe) => {
         setErrorMessage("");
@@ -167,6 +205,7 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
         tags: asIdArray(recipe.tags),
         allergens: asIdArray(recipe.allergens),
         appliances: asIdArray(recipe.appliances),
+        ingredients: asSubmittedIngredients(recipe.ingredients),
         });
     };
 
@@ -226,8 +265,7 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
         label: string,
         value: string,
         onChange: (value: string) => void,
-        multiline = false,
-        placeholder = ""
+        multiline = false
     ) => {
         if (multiline) {
         return (
@@ -438,6 +476,7 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
                         tags: modalRecipe.tags ?? EMPTY_ID_ARRAY,
                         allergens: modalRecipe.allergens ?? EMPTY_ID_ARRAY,
                         appliances: modalRecipe.appliances ?? EMPTY_ID_ARRAY,
+                        ingredients: modalRecipe.ingredients ?? [],
                         submittedFromLang:
                             modalRecipe.submittedFromLang ?? "en",
                         status: modalRecipe.status ?? "pending",
@@ -674,6 +713,127 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
                     )}
                     </div>
                 )}
+
+                <h4 className="font-bold mt-6 mb-2">Structured Ingredients</h4>
+
+                    <div className="mb-4 space-y-3">
+                    {(modalRecipe.ingredients ?? []).map((item, index) => (
+                        <div key={index} className="grid grid-cols-4 gap-2">
+                        <select
+                            className="select select-bordered"
+                            value={item.ingredient}
+                            onChange={(e) =>
+                            setModalRecipe((prev) => {
+                                if (!prev) return prev;
+
+                                const ingredients = [...(prev.ingredients ?? [])];
+                                const selected = ingredientsList.find(
+                                (ingredient) => ingredient._id === e.target.value
+                                );
+
+                                ingredients[index] = {
+                                ...ingredients[index],
+                                ingredient: e.target.value,
+                                unit: selected?.baseUnit || ingredients[index].unit,
+                                };
+
+                                return { ...prev, ingredients };
+                            })
+                            }
+                        >
+                            <option value="">Select ingredient</option>
+                            {ingredientsList.map((ingredient) => (
+                            <option key={ingredient._id} value={ingredient._id}>
+                                {ingredient.en} / {ingredient.es}
+                            </option>
+                            ))}
+                        </select>
+
+                        <input
+                            type="number"
+                            className="input input-bordered"
+                            placeholder="Amount"
+                            value={item.amount}
+                            onChange={(e) =>
+                            setModalRecipe((prev) => {
+                                if (!prev) return prev;
+
+                                const ingredients = [...(prev.ingredients ?? [])];
+                                ingredients[index] = {
+                                ...ingredients[index],
+                                amount: Number(e.target.value),
+                                };
+
+                                return { ...prev, ingredients };
+                            })
+                            }
+                        />
+
+                        <input
+                            className="input input-bordered"
+                            placeholder="Unit"
+                            value={item.unit}
+                            onChange={(e) =>
+                            setModalRecipe((prev) => {
+                                if (!prev) return prev;
+
+                                const ingredients = [...(prev.ingredients ?? [])];
+                                ingredients[index] = {
+                                ...ingredients[index],
+                                unit: e.target.value,
+                                };
+
+                                return { ...prev, ingredients };
+                            })
+                            }
+                        />
+
+                        <button
+                            type="button"
+                            className="btn btn-error"
+                            onClick={() =>
+                            setModalRecipe((prev) =>
+                                prev
+                                ? {
+                                    ...prev,
+                                    ingredients: (prev.ingredients ?? []).filter(
+                                        (_, i) => i !== index
+                                    ),
+                                    }
+                                : prev
+                            )
+                            }
+                        >
+                            Remove
+                        </button>
+                        </div>
+                    ))}
+
+                    <button
+                        type="button"
+                        className="btn btn-outline"
+                        onClick={() =>
+                        setModalRecipe((prev) =>
+                            prev
+                            ? {
+                                ...prev,
+                                ingredients: [
+                                    ...(prev.ingredients ?? []),
+                                    {
+                                    ingredient: "",
+                                    amount: 0,
+                                    unit: "",
+                                    multiplier: 1,
+                                    },
+                                ],
+                                }
+                            : prev
+                        )
+                        }
+                    >
+                        Add Ingredient
+                    </button>
+                    </div>
 
                 <h4 className="font-bold mt-6 mb-2">Tags</h4>
                 {tagsList.map((tag) => {
