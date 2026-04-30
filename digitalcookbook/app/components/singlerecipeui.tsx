@@ -311,7 +311,7 @@ export default function SingleRecipeUI({ recipe }: { recipe: Recipe }) {
                 <h2 className="text-lg lg:text-2xl font-bold text-black">
                   {t.directions}
                   <span className="ml-2 text-sm font-semibold text-black/60">
-                    ({servings} {lang === "es" ? "porciones" : "servings"})
+                    ({"4"} {lang === "es" ? "porciones" : "servings"})
                   </span>
                 </h2>
                 <span className="text-xs font-semibold hidden sm:block text-black/60">
