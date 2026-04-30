@@ -21,7 +21,7 @@ export default function TimerPage() {
 
         {/* Background */}
         <Image
-          src="/searchbackground2.0.webp"
+          src="/searchbackground2.0.png"
           alt=""
           fill
           priority
