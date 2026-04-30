@@ -62,12 +62,27 @@ type NamedOption = {
     es: string;
 };
 
+type IngredientOption = {
+    _id: string;
+    en: string;
+    es: string;
+    costPerUnit?: number;
+    baseUnit?: string;
+};
+
 type LocalizedText = {
     en: string;
     es: string;
 };
 
 type ObjectIdArray = string[];
+
+type SubmittedIngredient = {
+    ingredient: string;
+    amount: number;
+    unit: string;
+    multiplier: number;
+};
 
 type SubmittedRecipe = {
     title: LocalizedText;
@@ -78,6 +93,7 @@ type SubmittedRecipe = {
     tags: ObjectIdArray;
     allergens: ObjectIdArray;
     appliances: ObjectIdArray;
+    ingredients: SubmittedIngredient[];
     submittedFromLang?: Lang;
 };
 
@@ -94,13 +110,14 @@ const asIdArray = (value: unknown): string[] => {
 
 const createEmptySubmittedRecipe = (): SubmittedRecipe => ({
     title: { ...EMPTY_LOCALIZED_TEXT },
-    ingredientPlainText: { ...EMPTY_LOCALIZED_TEXT },
+    ingredientPlainText: { en: "", es: "" },
     instructions: { ...EMPTY_LOCALIZED_TEXT },
     imageURI: "",
     public_id: "",
-    tags: { ...EMPTY_ID_ARRAY },
-    allergens: { ...EMPTY_ID_ARRAY },
-    appliances: { ...EMPTY_ID_ARRAY },
+    tags: [],
+    allergens: [],
+    appliances: [],
+    ingredients: [],
     submittedFromLang: "en",
 });
 
@@ -120,6 +137,7 @@ export default function SubmittedRecipeModal({
     const [tagsList, setTagsList] = useState<NamedOption[]>([]);
     const [allergensList, setAllergensList] = useState<NamedOption[]>([]);
     const [appliancesList, setAppliancesList] = useState<NamedOption[]>([]);
+    const [ingredientsList, setIngredientsList] = useState<IngredientOption[]>([]);
 
     const emptySubmittedRecipe = useMemo(() => createEmptySubmittedRecipe(), []);
     const [submittedRecipe, setSubmittedRecipe] = useState<SubmittedRecipe>(emptySubmittedRecipe);
@@ -140,12 +158,15 @@ export default function SubmittedRecipeModal({
         setSuccess("");
         setShowOtherLanguage(false);
 
-        fetch("/api/tags/all")
+        fetch("/api/submitted-recipes/tags")
         .then((res) => res.json())
-        .then((data) => setTagsList(Array.isArray(data) ? data : []))
+        .then((data) => {
+                console.log("tags list from API", data);
+                setTagsList(Array.isArray(data) ? data : []);
+            })
         .catch(() => setTagsList([]));
 
-        fetch("/api/allergens/all")
+        fetch("/api/submitted-recipes/allergens")
         .then((res) => res.json())
         .then((data) => setAllergensList(Array.isArray(data) ? data : []))
         .catch(() => setAllergensList([]));
@@ -154,6 +175,11 @@ export default function SubmittedRecipeModal({
         .then((res) => res.json())
         .then((data) => setAppliancesList(Array.isArray(data) ? data : []))
         .catch(() => setAppliancesList([]));
+
+        fetch("/api/ingredients")
+        .then((res) => res.json())
+        .then((data) => setIngredientsList(Array.isArray(data) ? data : []))
+        .catch(() => setIngredientsList([]));
     }, [open, primaryLang]);
 
     if (!open) return null;
@@ -174,25 +200,6 @@ export default function SubmittedRecipeModal({
         }
 
         return true;
-    };
-
-    const toggleLocalizedPair = (
-        current: LocalizedArray,
-        enValue: string,
-        esValue: string,
-        checked: boolean
-    ): LocalizedArray => {
-        const addOrRemove = (list: string[], value: string) =>
-        checked
-            ? list.includes(value)
-            ? list
-            : [...list, value]
-            : list.filter((item) => item !== value);
-
-        return {
-        en: addOrRemove(current.en, enValue),
-        es: addOrRemove(current.es, esValue),
-        };
     };
 
     const handleImageUpload = async (file: File) => {
@@ -242,7 +249,8 @@ export default function SubmittedRecipeModal({
         label: string,
         value: string,
         onChange: (value: string) => void,
-        multiline = false
+        multiline = false,
+        placeholder = ""
     ) => {
         if (multiline) {
         return (
@@ -255,6 +263,7 @@ export default function SubmittedRecipeModal({
                 className="textarea textarea-bordered w-full mb-4"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
+                placeholder={placeholder}
             />
             </>
         );
@@ -270,6 +279,7 @@ export default function SubmittedRecipeModal({
             className="input input-bordered w-full mb-4"
             value={value}
             onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder}
             />
         </>
         );
@@ -288,6 +298,7 @@ export default function SubmittedRecipeModal({
             className="pb-6"
             onSubmit={async (e) => {
                 e.preventDefault();
+                console.log("submit clicked", submittedRecipe)
                 setError("");
                 setSuccess("");
 
@@ -296,6 +307,7 @@ export default function SubmittedRecipeModal({
                 try {
                 setIsSubmitting(true);
 
+                console.log("submittedRecipe before POST", submittedRecipe);
                 const res = await fetch("/api/submitted-recipes", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -370,7 +382,9 @@ export default function SubmittedRecipeModal({
                         [primaryLang]: value,
                     },
                     })),
-                true
+                true,
+                primaryLang === "en" ? "Please view Structured Ingredients"
+                : "Please view structured ingredients first"
                 )}
 
                 {renderTextField(
@@ -487,14 +501,118 @@ export default function SubmittedRecipeModal({
                 </div>
             )}
 
+            <h4 className="font-bold mt-6 mb-2">Structured Ingredients</h4>
+
+            <div className="mb-4 space-y-3">
+            {submittedRecipe.ingredients.map((item, index) => (
+                <div key={index} className="grid grid-cols-4 gap-2">
+                <select
+                    className="select select-bordered"
+                    value={item.ingredient}
+                    onChange={(e) =>
+                    setSubmittedRecipe((prev) => {
+                        const ingredients = [...prev.ingredients];
+                        const selected = ingredientsList.find(
+                        (ingredient) => ingredient._id === e.target.value
+                        );
+
+                        ingredients[index] = {
+                        ...ingredients[index],
+                        ingredient: e.target.value,
+                        unit: selected?.baseUnit || ingredients[index].unit,
+                        };
+
+                        return { ...prev, ingredients };
+                    })
+                    }
+                >
+                    <option value="">Select ingredient</option>
+                    {ingredientsList.map((ingredient) => (
+                    <option key={ingredient._id} value={ingredient._id}>
+                        {ingredient[lang]}
+                    </option>
+                    ))}
+                </select>
+
+                <input
+                    type="number"
+                    className="input input-bordered"
+                    placeholder="Amount"
+                    value={item.amount}
+                    onChange={(e) =>
+                    setSubmittedRecipe((prev) => {
+                        const ingredients = [...prev.ingredients];
+                        ingredients[index] = {
+                        ...ingredients[index],
+                        amount: Number(e.target.value),
+                        };
+                        return { ...prev, ingredients };
+                    })
+                    }
+                />
+
+                <input
+                    className="input input-bordered"
+                    placeholder="Unit"
+                    value={item.unit}
+                    onChange={(e) =>
+                    setSubmittedRecipe((prev) => {
+                        const ingredients = [...prev.ingredients];
+                        ingredients[index] = {
+                        ...ingredients[index],
+                        unit: e.target.value,
+                        };
+                        return { ...prev, ingredients };
+                    })
+                    }
+                />
+
+                <button
+                    type="button"
+                    className="btn btn-error"
+                    onClick={() =>
+                    setSubmittedRecipe((prev) => ({
+                        ...prev,
+                        ingredients: prev.ingredients.filter((_, i) => i !== index),
+                    }))
+                    }
+                >
+                    Remove
+                </button>
+                </div>
+            ))}
+
+            <button
+                type="button"
+                className="btn btn-outline"
+                onClick={() =>
+                setSubmittedRecipe((prev) => ({
+                    ...prev,
+                    ingredients: [
+                    ...prev.ingredients,
+                    {
+                        ingredient: "",
+                        amount: 0,
+                        unit: "",
+                        multiplier: 1,
+                    },
+                    ],
+                }))
+                }
+            >
+                Add Ingredient
+            </button>
+            </div>
+
             <h4 className="font-bold mt-6 mb-2">{t.tags}</h4>
             <div className="mb-4">
-                {tagsList.map((tag) => {
+            {tagsList.map((tag) => {
+                const tagId = String(tag._id);
                 const selectedTags = asIdArray(submittedRecipe.tags);
-                const isChecked = selectedTags.includes(tag._id);
+                const isChecked = selectedTags.includes(tagId);
 
                 return (
-                    <label key={tag._id} className="flex gap-2 mb-2">
+                    <label key={tagId} className="flex gap-2 mb-2">
                     <input
                         type="checkbox"
                         checked={isChecked}
@@ -502,44 +620,45 @@ export default function SubmittedRecipeModal({
                         setSubmittedRecipe((prev) => ({
                             ...prev,
                             tags: e.target.checked
-                            ? asIdArray(prev.tags).includes(tag._id)
-                                ? asIdArray(prev.tags)
-                                : [...asIdArray(prev.tags), tag._id]
-                            : asIdArray(prev.tags).filter((id) => id !== tag._id),
+                            ? selectedTags.includes(tagId)
+                                ? selectedTags
+                                : [...selectedTags, tagId]
+                            : selectedTags.filter((id) => id !== tagId),
                         }))
                         }
                     />
                     <span>{tag[lang]}</span>
                     </label>
                 );
-                })}
+            })}
             </div>
 
             <h4 className="font-bold mt-6 mb-2">{t.allergens}</h4>
             <div className="mb-4">
                 {allergensList.map((allergen) => {
-                const selectedAllergens = asIdArray(submittedRecipe.allergens);
-                const isChecked = selectedAllergens.includes(allergen._id);
+                    const allergenId = String(allergen._id);
+                    const selectedAllergens = asIdArray(submittedRecipe.allergens);
+                    const isChecked = selectedAllergens.includes(allergenId);
 
-                return (
-                    <label key={allergen._id} className="flex gap-2 mb-2">
-                    <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={(e) =>
-                        setSubmittedRecipe((prev) => ({
-                            ...prev,
-                            allergens: e.target.checked
-                            ? asIdArray(prev.allergens).includes(allergen._id)
-                                ? asIdArray(prev.allergens)
-                                : [...asIdArray(prev.allergens), allergen._id]
-                            : asIdArray(prev.allergens).filter((id) => id !== allergen._id),
-                        }))
-                        }
-                    />
-                    <span>{allergen[lang]}</span>
-                    </label>
-                );
+                    return (
+                        <label key={allergenId} className="flex gap-2 mb-2">
+                        <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) =>
+                            setSubmittedRecipe((prev) => ({
+                                ...prev,
+                                allergens: e.target.checked
+                                ? selectedAllergens.includes(allergenId)
+                                    ? selectedAllergens
+                                    : [...selectedAllergens, allergenId]
+                                : selectedAllergens.filter((id) => id !== allergenId),
+                            }))
+                            }
+                        />
+                        <span>{allergen[lang]}</span>
+                        </label>
+                    );
                 })}
             </div>
 

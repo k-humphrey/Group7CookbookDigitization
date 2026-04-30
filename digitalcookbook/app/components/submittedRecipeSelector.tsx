@@ -85,12 +85,12 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
     useEffect(() => {
         fetchRecipes();
 
-        fetch("/api/tags/all")
+        fetch("/api/submitted-recipes/tags")
         .then((res) => res.json())
         .then((data) => setTagsList(Array.isArray(data) ? data : []))
         .catch(() => setTagsList([]));
 
-        fetch("/api/allergens/all")
+        fetch("/api/submitted-recipes/allergens")
         .then((res) => res.json())
         .then((data) => setAllergensList(Array.isArray(data) ? data : []))
         .catch(() => setAllergensList([]));
@@ -226,7 +226,8 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
         label: string,
         value: string,
         onChange: (value: string) => void,
-        multiline = false
+        multiline = false,
+        placeholder = ""
     ) => {
         if (multiline) {
         return (
@@ -250,10 +251,10 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
             {label}
             </label>
             <input
-            id={id}
-            className="input input-bordered w-full mb-4"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
+                id={id}
+                className="input input-bordered w-full mb-4"
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
             />
         </>
         );
@@ -676,40 +677,38 @@ const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
 
                 <h4 className="font-bold mt-6 mb-2">Tags</h4>
                 {tagsList.map((tag) => {
+                    const tagId = String(tag._id);
                     const selectedTags = asIdArray(modalRecipe.tags);
-                    const isChecked = selectedTags.includes(tag._id);
+                    const isChecked = selectedTags.includes(tagId);
 
                     return (
-                    <label key={tag._id} className="flex gap-2 mb-2">
+                        <label key={tagId} className="flex gap-2 mb-2">
                         <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={(e) =>
-                        setModalRecipe((prev) =>
-                            prev
-                            ? {
-                                ...prev,
-                                tags: e.target.checked
-                                    ? asIdArray(prev.tags).includes(tag._id)
-                                    ? asIdArray(prev.tags)
-                                    : [...asIdArray(prev.tags), tag._id]
-                                    : asIdArray(prev.tags).filter((id) => id !== tag._id),
-                                }
-                            : prev
-                        )
-                        }
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) =>
+                            setModalRecipe((prev) =>
+                                prev
+                                ? {
+                                    ...prev,
+                                    tags: e.target.checked
+                                        ? selectedTags.includes(tagId)
+                                        ? selectedTags
+                                        : [...selectedTags, tagId]
+                                        : selectedTags.filter((id) => id !== tagId),
+                                    }
+                                : prev
+                            )
+                            }
                         />
-                        <span>
-                        {tag.en} / {tag.es}
-                        </span>
-                    </label>
+                        <span>{tag.en} / {tag.es}</span>
+                        </label>
                     );
-                })}
-
+                    })}
                 <h4 className="font-bold mt-6 mb-2">Allergens</h4>
                 {allergensList.map((allergen) => {
                     const selectedAllergens = asIdArray(modalRecipe.allergens);
-                    const isChecked = selectedAllergens.includes(allergen._id);
+                    const isChecked = selectedAllergens.includes(String(allergen._id));
                     return (
                     <label key={allergen._id} className="flex gap-2 mb-2">
                         <input

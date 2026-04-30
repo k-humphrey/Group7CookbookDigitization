@@ -7,10 +7,18 @@ import Recipe from "@/models/Recipe";
 import Tag from "@/models/Tag";
 import Allergen from "@/models/Allergen";
 import Appliance from "@/models/Appliance";
+import Ingredient from "@/models/Ingredient";
 
 type LocalizedText = {
     en?: string;
     es?: string;
+};
+
+type SubmittedIngredient = {
+  ingredient?: string;
+  amount?: number;
+  unit?: string;
+  multiplier?: number;
 };
 
 type SubmittedRecipeDoc = {
@@ -23,6 +31,7 @@ type SubmittedRecipeDoc = {
     tags?: string[];
     allergens?: string[];
     appliances?: string[];
+    ingredients?: SubmittedIngredient[];
     status?: "pending" | "approved" | "rejected";
 };
 
@@ -146,6 +155,10 @@ export async function POST(req: NextRequest) {
         const submittedTagIds = Array.isArray(submitted.tags) ? submitted.tags : [];
         const submittedAllergenIds = Array.isArray(submitted.allergens) ? submitted.allergens : [];
         const submittedApplianceIds = Array.isArray(submitted.appliances) ? submitted.appliances : [];
+        const submittedIngredients = Array.isArray(submitted.ingredients) ? submitted.ingredients : [];
+        const submittedIngredientIds = submittedIngredients
+        .map((item) => item.ingredient)
+        .filter(Boolean);
 
         const matchedTags = await Tag.find({
             _id: { $in: submittedTagIds },
@@ -185,6 +198,50 @@ export async function POST(req: NextRequest) {
             es: appliance.es || "",
         }));
 
+        const matchedIngredients = await Ingredient.find({
+        _id: { $in: submittedIngredientIds },
+        }).lean();
+
+        const ingredientById = new Map(
+        matchedIngredients.map((ingredient: any) => [
+            ingredient._id.toString(),
+            ingredient,
+        ])
+        );
+
+        const recipeIngredients = submittedIngredients
+        .map((item) => {
+            const matched = ingredientById.get(String(item.ingredient));
+            if (!matched) return null;
+
+            const amount = Number(item.amount) || 0;
+            const multiplier = Number(item.multiplier) || 1;
+            const costPerUnit = Number(matched.costPerUnit) || 0;
+            const ingredientCost = amount * multiplier * costPerUnit;
+
+            return {
+            ingredient: matched._id,
+            amount,
+            unit: item.unit || matched.baseUnit || "",
+            en: matched.en || "",
+            es: matched.es || "",
+            costPerUnit,
+            baseUnit: matched.baseUnit || "",
+            productLink: matched.productLink || "",
+            multiplier,
+            price: Number(matched.price) || 0,
+            storeName: matched.storeName || "",
+            packageSize: Number(matched.packageSize) || 0,
+            ingredientCost,
+            };
+        })
+        .filter(Boolean);
+
+        const totalCost = recipeIngredients.reduce(
+        (sum: number, item: any) => sum + item.ingredientCost,
+        0
+        );
+
         const newRecipe = {
             title,
             ingredientPlainText,
@@ -193,9 +250,9 @@ export async function POST(req: NextRequest) {
             public_id: normalizeText(submitted.public_id),
             tags,
             espTags,
-            ingredients: [],
+            ingredients: recipeIngredients,
             appliances: recipeAppliances,
-            totalCost: 0,
+            totalCost,
             allergens,
             espAllergens,
         };

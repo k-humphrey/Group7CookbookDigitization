@@ -10,14 +10,6 @@ const localizedTextSchema = new mongoose.Schema(
     { _id: false }
 );
 
-const localizedArraySchema = new mongoose.Schema(
-    {
-        en: { type: [String], default: [] },
-        es: { type: [String], default: [] },
-    },
-    { _id: false }
-);
-
 const SubmittedRecipeSchema = new mongoose.Schema(
     {
         title: { type: localizedTextSchema, required: true },
@@ -50,6 +42,21 @@ const SubmittedRecipeSchema = new mongoose.Schema(
                 {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Appliance",
+                },
+            ],
+            default: [],
+        },
+
+        ingredients: {
+            type: [
+                {
+                ingredient: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Ingredient",
+                },
+                amount: { type: Number, default: 0 },
+                unit: { type: String, default: "" },
+                multiplier: { type: Number, default: 1 },
                 },
             ],
             default: [],

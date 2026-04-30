@@ -9,6 +9,13 @@ type LocalizedText = {
   es?: string;
 };
 
+type SubmittedIngredientPayload = {
+  ingredient?: string;
+  amount?: number;
+  unit?: string;
+  multiplier?: number;
+};
+
 type SubmittedRecipePayload = {
   _id?: string;
   title?: LocalizedText;
@@ -19,6 +26,7 @@ type SubmittedRecipePayload = {
   tags?: string[];
   allergens?: string[];
   appliances?: string[];
+  ingredients?: SubmittedIngredientPayload[];
   submittedFromLang?: "en" | "es";
   status?: "pending" | "approved" | "rejected";
 };
@@ -42,6 +50,19 @@ function normalizeIdArray(value?: string[]) {
     .filter((item): item is string => typeof item === "string")
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function normalizeSubmittedIngredients(value?: SubmittedIngredientPayload[]) {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .filter((item) => typeof item?.ingredient === "string" && item.ingredient.trim())
+    .map((item) => ({
+      ingredient: item.ingredient!.trim(),
+      amount: Number(item.amount) || 0,
+      unit: normalizeText(item.unit),
+      multiplier: Number(item.multiplier) || 1,
+    }));
 }
 
 function validateLocalizedRequired(field?: LocalizedText) {
@@ -128,6 +149,7 @@ export async function POST(req: NextRequest) {
       tags: normalizeIdArray(body.tags),
       allergens: normalizeIdArray(body.allergens),
       appliances: normalizeIdArray(body.appliances),
+      ingredients: normalizeSubmittedIngredients(body.ingredients),
       submittedFromLang: body.submittedFromLang === "es" ? "es" : "en",
       status: "pending",
     });
@@ -188,6 +210,7 @@ export async function PUT(req: NextRequest) {
         tags: normalizeIdArray(body.tags),
         allergens: normalizeIdArray(body.allergens),
         appliances: normalizeIdArray(body.appliances),
+        ingredients: normalizeSubmittedIngredients(body.ingredients),
         submittedFromLang: body.submittedFromLang === "es" ? "es" : "en",
         status:
           body.status && ["pending", "approved", "rejected"].includes(body.status)
