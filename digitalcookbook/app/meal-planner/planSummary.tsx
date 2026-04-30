@@ -2,6 +2,7 @@
 
 import { useLang } from "@/app/components/languageprovider";
 import { useState } from "react"
+import { useRouter } from "next/navigation";
 import { combineIngredients, SelectedRecipe } from "@/lib/combineIngredients";
 import { ingredientShoppingConverter } from "@/lib/ingredientShoppingConverter";
 import { IngredientPriceInfo } from "@/app/api/ingredients/byIDsGetIngredientPriceInfo/route";
@@ -10,6 +11,7 @@ import { scaleCost } from "@/lib/scaleRecipe";
 import { decimalToFraction } from "@/lib/fractionConverter";
 import { PLANNER_STRINGS } from "@/app/meal-planner/plannerStrings";
 import { MEASUREMENT_STRINGS } from "@/app/measurement-converter/measurementStrings"; 
+
 
 // Components
 import RecipeBreakdownCard from "@/app/components/recipeBreakdownCard";
@@ -26,6 +28,8 @@ const focusClasses = "focus:outline-none focus-visible:ring-2 focus-visible:ring
 
 // Component to show summary of selected recipes, total costs, and scaled ingredients
 export default function PlanSummary({ selectedRecipes, setSelectedRecipes, ingredientPriceInfo }: Props) {
+    const router = useRouter();
+    
     // Lang settings
     const langContext = useLang();
     const lang = langContext?.lang ?? 'en';
@@ -71,6 +75,8 @@ export default function PlanSummary({ selectedRecipes, setSelectedRecipes, ingre
 
                     localStorage.setItem("shoppingList", JSON.stringify(list));
                     setToastMessage(`Plan added to Shopping List`);
+                    //navigate to shopping list 
+                    router.push("/shopping-list");
 
                 }}
                 >
