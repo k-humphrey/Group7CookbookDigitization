@@ -227,7 +227,7 @@ export default function RecipeGrid({ recipes, loading }: Props) {
                       sessionStorage.setItem("plannerRecipes", JSON.stringify(list));
                       setIsPlannerMap(updated); // Update UI state
                     }}
-                    className={`h-10 px-3 btn btn-sm flex items-center cursor-pointer transition
+                    className={`h-10 px-3 btn btn-sm flex items-center cursor-pointer transition max-w-26 md:max-w-100 
                       ${isPlannerMap[recipe._id] ? "btn-error text-black" : "btn-success text-black" }`} >
                     {/* Button label changes based on state */}
                     {isPlannerMap[recipe._id] ? t.removeFromPlanner : t.addToPlanner}
