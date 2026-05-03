@@ -119,7 +119,7 @@ export default function Navbar() {
     return (
         <div className="navbar bg-white text-black shadow-sm relative z-50">
             <div className="navbar-start">
-                <Link href="/">
+                <Link href="https://www.peptn.org/">
                     <div className="p-2 hover:bg-gray-100 rounded-lg relative h-[72px] items-center flex">
                         <Image
                             src="/pep_logo.png"
@@ -131,6 +131,26 @@ export default function Navbar() {
                         />
                     </div>
                 </Link>
+                <ul className="menu menu-horizontal px-2">
+                    <li>
+                        <Link href="/" aria-label="Home" className="tooltip tooltip-bottom" data-tip="Home">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                />
+                            </svg>
+                        </Link>
+                    </li>
+                </ul>
 
                 <div className="dropdown relative">
                     <div

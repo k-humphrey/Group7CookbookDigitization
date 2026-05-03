@@ -28,6 +28,9 @@ const STRINGS = {
         uploadError: "Image upload failed.",
         submitError: "Recipe submission failed.",
         success: "Recipe submitted successfully.",
+        structuredIngredients: "Structured Ingredients",
+        selectIngredients: "Select ingredient",
+        addIngredient: "Add Ingredient",
     },
     es: {
         title: "Enviar Receta",
@@ -51,6 +54,9 @@ const STRINGS = {
         uploadError: "La carga de la imagen falló.",
         submitError: "No se pudo enviar la receta.",
         success: "Receta enviada con éxito.",
+        structuredIngredients: "Ingredientes Estructurados",
+        selectIngredients: "Seleccione un ingrediente",
+        addIngredient: "Agregar Ingrediente",
     },
     } as const;
 
@@ -383,8 +389,8 @@ export default function SubmittedRecipeModal({
                     },
                     })),
                 true,
-                primaryLang === "en" ? "Please view Structured Ingredients"
-                : "Please view structured ingredients first"
+                primaryLang === "en" ? "Please view Structured Ingredients first before typing ingredients"
+                : "Por favor, consulte primero los Ingredientes Estructurados antes de escribir los ingredientes."
                 )}
 
                 {renderTextField(
@@ -501,7 +507,7 @@ export default function SubmittedRecipeModal({
                 </div>
             )}
 
-            <h4 className="font-bold mt-6 mb-2">Structured Ingredients</h4>
+            <h4 className="font-bold mt-6 mb-2">{t.structuredIngredients}</h4>
 
             <div className="mb-4 space-y-3">
             {submittedRecipe.ingredients.map((item, index) => (
@@ -526,7 +532,7 @@ export default function SubmittedRecipeModal({
                     })
                     }
                 >
-                    <option value="">Select ingredient</option>
+                    <option value="">{t.selectIngredients}</option>
                     {ingredientsList.map((ingredient) => (
                     <option key={ingredient._id} value={ingredient._id}>
                         {ingredient[lang]}
@@ -600,7 +606,7 @@ export default function SubmittedRecipeModal({
                 }))
                 }
             >
-                Add Ingredient
+                {t.addIngredient}
             </button>
             </div>
 
