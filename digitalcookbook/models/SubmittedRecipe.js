@@ -10,14 +10,6 @@ const localizedTextSchema = new mongoose.Schema(
     { _id: false }
 );
 
-const localizedArraySchema = new mongoose.Schema(
-    {
-        en: { type: [String], default: [] },
-        es: { type: [String], default: [] },
-    },
-    { _id: false }
-);
-
 const SubmittedRecipeSchema = new mongoose.Schema(
     {
         title: { type: localizedTextSchema, required: true },
@@ -28,28 +20,58 @@ const SubmittedRecipeSchema = new mongoose.Schema(
         public_id: { type: String, default: "" },
 
         tags: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
+            type: [
+                {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Tag",
+                },
+            ],
+            default: [],
         },
         allergens: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
+            type: [
+                {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Allergen",
+                },
+            ],
+            default: [],
         },
         appliances: {
-        type: localizedArraySchema,
-        default: () => ({ en: [], es: [] }),
+            type: [
+                {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Appliance",
+                },
+            ],
+            default: [],
+        },
+
+        ingredients: {
+            type: [
+                {
+                ingredient: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Ingredient",
+                },
+                amount: { type: Number, default: 0 },
+                unit: { type: String, default: "" },
+                multiplier: { type: Number, default: 1 },
+                },
+            ],
+            default: [],
         },
 
         submittedFromLang: {
-        type: String,
-        enum: ["en", "es"],
-        default: "en",
+            type: String,
+            enum: ["en", "es"],
+            default: "en",
         },
 
         status: {
-        type: String,
-        enum: ["pending", "approved", "rejected"],
-        default: "pending",
+            type: String,
+            enum: ["pending", "approved", "rejected"],
+            default: "pending",
         },
     },
     {

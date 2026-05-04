@@ -21,7 +21,7 @@ export default function TimerPage() {
 
         {/* Background */}
         <Image
-          src="/searchbackground2.0.webp"
+          src="/searchbackground2.0.png"
           alt=""
           fill
           priority
@@ -37,6 +37,12 @@ export default function TimerPage() {
             <Timer />
           </section>
         </div>
+
+        {/* Background image credit */}
+        <div className="absolute bottom-1 right-2 z-20 text-sm text-black px-2 py-1 rounded">
+            Background illustration by Magali Agustin-Baltazar, CHS
+        </div>
       </section>
+
   );
 }

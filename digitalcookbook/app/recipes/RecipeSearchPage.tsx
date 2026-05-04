@@ -81,6 +81,7 @@ export default function RecipeSearchPage() {
       <div className="relative w-full py-5 flex flex-col items-center">
 
         {/* Background picture */}
+        <div className="absolute inset-0 overflow-hidden">
         <Image
           src="/searchbackground2.0.webp"
           alt=""
@@ -88,6 +89,7 @@ export default function RecipeSearchPage() {
           priority
           className="object-cover scale-110"
         />
+        </div>
 
         <div className="w-11/12 w-md-full z-10">
           <Searchbar suggestionsSource={ingredientSuggestions} onSearch={async (ingredients) => {

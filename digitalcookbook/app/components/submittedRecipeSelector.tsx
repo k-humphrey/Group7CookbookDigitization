@@ -8,37 +8,49 @@ import InfoCard from "@/app/components/infocard";
 type Lang = "en" | "es";
 
 type LocalizedText = {
-en: string;
-es: string;
-};
-
-type LocalizedArray = {
-en: string[];
-es: string[];
+    en: string;
+    es: string;
 };
 
 type SubmittedRecipe = {
-_id: string;
-title: LocalizedText;
-ingredientPlainText: LocalizedText;
-instructions: LocalizedText;
-imageURI?: string;
-public_id?: string;
-tags?: LocalizedArray;
-allergens?: LocalizedArray;
-appliances?: LocalizedArray;
-submittedFromLang?: Lang;
-status?: "pending" | "approved" | "rejected";
+    _id: string;
+    title: LocalizedText;
+    ingredientPlainText: LocalizedText;
+    instructions: LocalizedText;
+    imageURI?: string;
+    public_id?: string;
+    tags?: string[];
+    allergens?: string[];
+    appliances?: string[];
+    ingredients?: SubmittedIngredient[];
+    submittedFromLang?: Lang;
+    status?: "pending" | "approved" | "rejected";
 };
 
 type NamedOption = {
-_id: string;
-en: string;
-es: string;
+    _id: string;
+    en: string;
+    es: string;
+};
+
+type IngredientOption = {
+  _id: string;
+  en: string;
+  es: string;
+  costPerUnit?: number;
+  baseUnit?: string;
+};
+
+type SubmittedIngredient = {
+  ingredient: string;
+  amount: number;
+  unit: string;
+  multiplier: number;
 };
 
 const EMPTY_LOCALIZED_TEXT: LocalizedText = { en: "", es: "" };
-const EMPTY_LOCALIZED_ARRAY: LocalizedArray = { en: [], es: [] };
+//const EMPTY_LOCALIZED_ARRAY: LocalizedArray = { en: [], es: [] };
+const EMPTY_ID_ARRAY: string[] = [];
 
 export default function SubmittedRecipeSelector() {
 const [recipes, setRecipes] = useState<SubmittedRecipe[]>([]);
@@ -47,6 +59,7 @@ const [modalRecipe, setModalRecipe] = useState<SubmittedRecipe | null>(null);
 const [tagsList, setTagsList] = useState<NamedOption[]>([]);
 const [allergensList, setAllergensList] = useState<NamedOption[]>([]);
 const [appliancesList, setAppliancesList] = useState<NamedOption[]>([]);
+const [ingredientsList, setIngredientsList] = useState<IngredientOption[]>([]);
 
 const [isLoading, setIsLoading] = useState(true);
 const [isSaving, setIsSaving] = useState(false);
@@ -56,15 +69,17 @@ const [isUploadingImage, setIsUploadingImage] = useState(false);
 const [errorMessage, setErrorMessage] = useState("");
 const [showOtherLanguage, setShowOtherLanguage] = useState(false);
 
+const [statusFilter, setStatusFilter] = useState<"pending" | "approved" | "rejected" | "all">("pending");
+
 const emptyLocalizedText = useMemo(() => ({ ...EMPTY_LOCALIZED_TEXT }), []);
-const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
 
     const fetchRecipes = async () => {
         try {
         setIsLoading(true);
         setErrorMessage("");
 
-        const res = await fetch("/api/submitted-recipes");
+        const query = statusFilter === "all" ? "" : `?status=${statusFilter}`;
+        const res = await fetch(`/api/submitted-recipes${query}`);
         const data = await res.json();
 
         if (!res.ok) {
@@ -87,12 +102,12 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
     useEffect(() => {
         fetchRecipes();
 
-        fetch("/api/tags/all")
+        fetch("/api/submitted-recipes/tags")
         .then((res) => res.json())
         .then((data) => setTagsList(Array.isArray(data) ? data : []))
         .catch(() => setTagsList([]));
 
-        fetch("/api/allergens/all")
+        fetch("/api/submitted-recipes/allergens")
         .then((res) => res.json())
         .then((data) => setAllergensList(Array.isArray(data) ? data : []))
         .catch(() => setAllergensList([]));
@@ -101,7 +116,12 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
         .then((res) => res.json())
         .then((data) => setAppliancesList(Array.isArray(data) ? data : []))
         .catch(() => setAppliancesList([]));
-    }, []);
+
+        fetch("/api/ingredients")
+        .then((res) => res.json())
+        .then((data) => setIngredientsList(Array.isArray(data) ? data : []))
+        .catch(() => setIngredientsList([]));
+    }, [statusFilter]);
 
     const getPrimaryLang = (recipe: SubmittedRecipe | null): Lang => {
         if (!recipe?.submittedFromLang) return "en";
@@ -145,24 +165,33 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
         return "";
     };
 
-    const toggleLocalizedPair = (
-        current: LocalizedArray = { en: [], es: [] },
-        enValue: string,
-        esValue: string,
-        checked: boolean
-    ): LocalizedArray => {
-        const updateList = (list: string[], value: string) =>
-        checked
-            ? list.includes(value)
-            ? list
-            : [...list, value]
-            : list.filter((item) => item !== value);
+    const asIdArray = (value: unknown): string[] => {
+        if (!Array.isArray(value)) return [];
 
-        return {
-        en: updateList(current.en ?? [], enValue),
-        es: updateList(current.es ?? [], esValue),
+        return value
+            .map((item: any) =>
+            typeof item === "string"
+                ? item
+                : item?._id?.toString?.() ?? item?.toString?.() ?? ""
+            )
+            .filter(Boolean);
         };
-    };
+
+    const asSubmittedIngredients = (value: unknown): SubmittedIngredient[] => {
+        if (!Array.isArray(value)) return [];
+
+        return value
+            .map((item: any) => ({
+            ingredient:
+                typeof item?.ingredient === "string"
+                ? item.ingredient
+                : item?.ingredient?._id?.toString?.() ?? item?.ingredient?.toString?.() ?? "",
+            amount: Number(item?.amount) || 0,
+            unit: typeof item?.unit === "string" ? item.unit : "",
+            multiplier: Number(item?.multiplier) || 1,
+            }))
+            .filter((item) => item.ingredient);
+        };
 
     const openModal = (recipe: SubmittedRecipe) => {
         setErrorMessage("");
@@ -173,9 +202,10 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
         title: recipe.title ?? emptyLocalizedText,
         ingredientPlainText: recipe.ingredientPlainText ?? emptyLocalizedText,
         instructions: recipe.instructions ?? emptyLocalizedText,
-        tags: recipe.tags ?? emptyLocalizedArray,
-        allergens: recipe.allergens ?? emptyLocalizedArray,
-        appliances: recipe.appliances ?? emptyLocalizedArray,
+        tags: asIdArray(recipe.tags),
+        allergens: asIdArray(recipe.allergens),
+        appliances: asIdArray(recipe.appliances),
+        ingredients: asSubmittedIngredients(recipe.ingredients),
         });
     };
 
@@ -259,10 +289,10 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
             {label}
             </label>
             <input
-            id={id}
-            className="input input-bordered w-full mb-4"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
+                id={id}
+                className="input input-bordered w-full mb-4"
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
             />
         </>
         );
@@ -272,6 +302,28 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
         <>
         <div className="p-6 w-full">
             <h2 className="text-xl font-bold mb-4">Submitted Recipes</h2>
+
+            <div className="mb-4">
+            <label className="font-semibold block mb-1" htmlFor="statusFilter">
+                Status
+            </label>
+
+            <select
+                id="statusFilter"
+                className="select select-bordered w-full max-w-xs"
+                value={statusFilter}
+                onChange={(e) =>
+                setStatusFilter(
+                    e.target.value as "pending" | "approved" | "rejected" | "all"
+                )
+                }
+            >
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+                <option value="all">All</option>
+            </select>
+            </div>
 
             {errorMessage && !modalRecipe && (
             <div className="alert alert-error mb-4">
@@ -290,6 +342,7 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
                     <InfoCard
                     title={getRecipeDisplayTitle(recipe)}
                     description={getRecipeDisplayDescription(recipe)}
+                    imageSrc={recipe.imageURI}
                     href="#"
                     action={
                         <div className="flex gap-2 flex-wrap">
@@ -420,9 +473,10 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
                         instructions: modalRecipe.instructions,
                         imageURI: modalRecipe.imageURI ?? "",
                         public_id: modalRecipe.public_id ?? "",
-                        tags: modalRecipe.tags ?? emptyLocalizedArray,
-                        allergens: modalRecipe.allergens ?? emptyLocalizedArray,
-                        appliances: modalRecipe.appliances ?? emptyLocalizedArray,
+                        tags: modalRecipe.tags ?? EMPTY_ID_ARRAY,
+                        allergens: modalRecipe.allergens ?? EMPTY_ID_ARRAY,
+                        appliances: modalRecipe.appliances ?? EMPTY_ID_ARRAY,
+                        ingredients: modalRecipe.ingredients ?? [],
                         submittedFromLang:
                             modalRecipe.submittedFromLang ?? "en",
                         status: modalRecipe.status ?? "pending",
@@ -660,65 +714,179 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
                     </div>
                 )}
 
-                <h4 className="font-bold mt-6 mb-2">Tags</h4>
-                {tagsList.map((tag) => {
-                    const isChecked =
-                    (modalRecipe.tags?.en ?? []).includes(tag.en) ||
-                    (modalRecipe.tags?.es ?? []).includes(tag.es);
+                <h4 className="font-bold mt-6 mb-2">Structured Ingredients</h4>
 
-                    return (
-                    <label key={tag._id} className="flex gap-2 mb-2">
+                    <div className="mb-4 space-y-3">
+                    {(modalRecipe.ingredients ?? []).map((item, index) => (
+                        <div key={index} className="grid grid-cols-4 gap-2">
+                        <select
+                            className="select select-bordered"
+                            value={item.ingredient}
+                            onChange={(e) =>
+                            setModalRecipe((prev) => {
+                                if (!prev) return prev;
+
+                                const ingredients = [...(prev.ingredients ?? [])];
+                                const selected = ingredientsList.find(
+                                (ingredient) => ingredient._id === e.target.value
+                                );
+
+                                ingredients[index] = {
+                                ...ingredients[index],
+                                ingredient: e.target.value,
+                                unit: selected?.baseUnit || ingredients[index].unit,
+                                };
+
+                                return { ...prev, ingredients };
+                            })
+                            }
+                        >
+                            <option value="">Select ingredient</option>
+                            {ingredientsList.map((ingredient) => (
+                            <option key={ingredient._id} value={ingredient._id}>
+                                {ingredient.en} / {ingredient.es}
+                            </option>
+                            ))}
+                        </select>
+
                         <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={(e) =>
+                            type="number"
+                            className="input input-bordered"
+                            placeholder="Amount"
+                            value={item.amount}
+                            onChange={(e) =>
+                            setModalRecipe((prev) => {
+                                if (!prev) return prev;
+
+                                const ingredients = [...(prev.ingredients ?? [])];
+                                ingredients[index] = {
+                                ...ingredients[index],
+                                amount: Number(e.target.value),
+                                };
+
+                                return { ...prev, ingredients };
+                            })
+                            }
+                        />
+
+                        <input
+                            className="input input-bordered"
+                            placeholder="Unit"
+                            value={item.unit}
+                            onChange={(e) =>
+                            setModalRecipe((prev) => {
+                                if (!prev) return prev;
+
+                                const ingredients = [...(prev.ingredients ?? [])];
+                                ingredients[index] = {
+                                ...ingredients[index],
+                                unit: e.target.value,
+                                };
+
+                                return { ...prev, ingredients };
+                            })
+                            }
+                        />
+
+                        <button
+                            type="button"
+                            className="btn btn-error"
+                            onClick={() =>
                             setModalRecipe((prev) =>
-                            prev
+                                prev
                                 ? {
                                     ...prev,
-                                    tags: toggleLocalizedPair(
-                                    prev.tags ?? emptyLocalizedArray,
-                                    tag.en,
-                                    tag.es,
-                                    e.target.checked
+                                    ingredients: (prev.ingredients ?? []).filter(
+                                        (_, i) => i !== index
                                     ),
-                                }
+                                    }
                                 : prev
                             )
-                        }
-                        />
-                        <span>
-                        {tag.en} / {tag.es}
-                        </span>
-                    </label>
-                    );
-                })}
+                            }
+                        >
+                            Remove
+                        </button>
+                        </div>
+                    ))}
 
+                    <button
+                        type="button"
+                        className="btn btn-outline"
+                        onClick={() =>
+                        setModalRecipe((prev) =>
+                            prev
+                            ? {
+                                ...prev,
+                                ingredients: [
+                                    ...(prev.ingredients ?? []),
+                                    {
+                                    ingredient: "",
+                                    amount: 0,
+                                    unit: "",
+                                    multiplier: 1,
+                                    },
+                                ],
+                                }
+                            : prev
+                        )
+                        }
+                    >
+                        Add Ingredient
+                    </button>
+                    </div>
+
+                <h4 className="font-bold mt-6 mb-2">Tags</h4>
+                {tagsList.map((tag) => {
+                    const tagId = String(tag._id);
+                    const selectedTags = asIdArray(modalRecipe.tags);
+                    const isChecked = selectedTags.includes(tagId);
+
+                    return (
+                        <label key={tagId} className="flex gap-2 mb-2">
+                        <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) =>
+                            setModalRecipe((prev) =>
+                                prev
+                                ? {
+                                    ...prev,
+                                    tags: e.target.checked
+                                        ? selectedTags.includes(tagId)
+                                        ? selectedTags
+                                        : [...selectedTags, tagId]
+                                        : selectedTags.filter((id) => id !== tagId),
+                                    }
+                                : prev
+                            )
+                            }
+                        />
+                        <span>{tag.en} / {tag.es}</span>
+                        </label>
+                    );
+                    })}
                 <h4 className="font-bold mt-6 mb-2">Allergens</h4>
                 {allergensList.map((allergen) => {
-                    const isChecked =
-                    (modalRecipe.allergens?.en ?? []).includes(allergen.en) ||
-                    (modalRecipe.allergens?.es ?? []).includes(allergen.es);
-
+                    const selectedAllergens = asIdArray(modalRecipe.allergens);
+                    const isChecked = selectedAllergens.includes(String(allergen._id));
                     return (
                     <label key={allergen._id} className="flex gap-2 mb-2">
                         <input
                         type="checkbox"
                         checked={isChecked}
                         onChange={(e) =>
-                            setModalRecipe((prev) =>
+                        setModalRecipe((prev) =>
                             prev
-                                ? {
-                                    ...prev,
-                                    allergens: toggleLocalizedPair(
-                                    prev.allergens ?? emptyLocalizedArray,
-                                    allergen.en,
-                                    allergen.es,
-                                    e.target.checked
-                                    ),
+                            ? {
+                                ...prev,
+                                allergens: e.target.checked
+                                    ? asIdArray(prev.allergens).includes(allergen._id)
+                                    ? asIdArray(prev.allergens)
+                                    : [...asIdArray(prev.allergens), allergen._id]
+                                    : asIdArray(prev.allergens).filter((id) => id !== allergen._id),
                                 }
-                                : prev
-                            )
+                            : prev
+                        )
                         }
                         />
                         <span>
@@ -730,9 +898,7 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
 
                 <h4 className="font-bold mt-6 mb-2">Appliances</h4>
                 {appliancesList.map((appliance) => {
-                    const isChecked =
-                    (modalRecipe.appliances?.en ?? []).includes(appliance.en) ||
-                    (modalRecipe.appliances?.es ?? []).includes(appliance.es);
+                    const isChecked = (modalRecipe.appliances ?? []).includes(appliance._id);
 
                     return (
                     <label key={appliance._id} className="flex gap-2 mb-2">
@@ -740,19 +906,18 @@ const emptyLocalizedArray = useMemo(() => ({ ...EMPTY_LOCALIZED_ARRAY }), []);
                         type="checkbox"
                         checked={isChecked}
                         onChange={(e) =>
-                            setModalRecipe((prev) =>
+                        setModalRecipe((prev) =>
                             prev
-                                ? {
-                                    ...prev,
-                                    appliances: toggleLocalizedPair(
-                                    prev.appliances ?? emptyLocalizedArray,
-                                    appliance.en,
-                                    appliance.es,
-                                    e.target.checked
-                                    ),
+                            ? {
+                                ...prev,
+                                appliances: e.target.checked
+                                    ? (prev.appliances ?? []).includes(appliance._id)
+                                    ? prev.appliances ?? []
+                                    : [...(prev.appliances ?? []), appliance._id]
+                                    : (prev.appliances ?? []).filter((id) => id !== appliance._id),
                                 }
-                                : prev
-                            )
+                            : prev
+                        )
                         }
                         />
                         <span>
