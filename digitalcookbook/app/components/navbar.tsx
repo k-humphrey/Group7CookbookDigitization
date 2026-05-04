@@ -25,6 +25,7 @@ const STRINGS = {
         login: "Login",
         findResources: "Map of Local Resources",
         language: "Language:",
+        home: "Home Page"
     },
     es: {
         communityResources: "Recursos Comunitarios",
@@ -44,6 +45,7 @@ const STRINGS = {
         login: "Login",
         findResources: "Mapa de Recursos Locales",
         language: "Idioma:",
+        home: "Home Page"
     } as const
 };
 
@@ -119,8 +121,8 @@ export default function Navbar() {
     return (
         <div className="navbar bg-white text-black shadow-sm relative z-50">
             <div className="navbar-start">
-                <Link href="/">
-                    <div className="p-2 hover:bg-gray-100 rounded-lg relative h-[72px] items-center flex">
+                <Link href="https://www.peptn.org/">
+                    <div className="hover:bg-gray-100 rounded-lg relative h-[72px] items-center flex">
                         <Image
                             src="/pep_logo.png"
                             alt="PEP Logo"
@@ -131,6 +133,26 @@ export default function Navbar() {
                         />
                     </div>
                 </Link>
+                <ul className="menu menu-horizontal px-2">
+                    <li>
+                        <Link href="/" aria-label="Home" className="tooltip tooltip-bottom hidden sm:inline" data-tip="Home">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                />
+                            </svg>
+                        </Link>
+                    </li>
+                </ul>
 
                 <div className="dropdown relative">
                     <div
@@ -161,6 +183,12 @@ export default function Navbar() {
                         tabIndex={-1}
                         className="menu menu-sm dropdown-content bg-white text-black rounded-box z-50 mt-3 w-64 p-2 shadow"
                     >
+                        <li>
+                            <Link href="/" className="hover inline sm:hidden">
+                                {t.home}
+                            </Link>
+                        </li>
+
                         <li>
                             <Link href="/recipes" className="hover">
                                 {t.allRecipes}
@@ -370,7 +398,7 @@ export default function Navbar() {
                 {/* Language Switch */}
                 <div className="dropdown dropdown-hover dropdown-start ml-10">
                       <button type="button" onClick={(e) => {setLang(lang === "en" ? "es" : "en");(e.currentTarget as HTMLElement).blur()}} className="btn btn-ghost flex items-center gap-2">
-                        <span className="hidden sm:inline text-sm text-gray-500">{t.language}</span>
+                        <span className="hidden sm:inline lg:hidden xl:inline text-sm text-gray-500">{t.language}</span>
                         <span className="font-semibold inline [@media(max-width:320px)]:hidden">{lang === "en" ? "English" : "Español"}</span>
                         <span className="hidden font-semibold [@media(max-width:320px)]:inline">{lang === "en" ? "En" : "Es"}</span>
                         <svg
